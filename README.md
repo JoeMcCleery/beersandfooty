@@ -1,2 +1,2 @@
 # beersandfooty
-A website for posting beer and footy review
+A website for posting beer and footy reviews
