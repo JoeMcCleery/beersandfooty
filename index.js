@@ -4,4 +4,5 @@ ghpages.publish('public', deployed())
 
 function deployed () {
 
+    return;
 }

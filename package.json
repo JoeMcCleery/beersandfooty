@@ -1,12 +1,12 @@
 {
   "name": "beersandfooty",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d public"
   },
   "dependencies": {
     "core-js": "^2.6.5",
