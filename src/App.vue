@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+#website-content {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,6 +31,7 @@ export default {
     width: 20%;
     height: auto;
     z-index: 0;
+    margin: 1%;
   }
   .beer:hover{
     transform: rotate(-180deg);
