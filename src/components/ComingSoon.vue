@@ -23,7 +23,7 @@ export default {
 .coming-soon {
   .beer, .footy{
     transition: transform 0.3s ease-out;
-    width: 50%;
+    width: 30%;
     height: auto;
     z-index: 0;
   }
