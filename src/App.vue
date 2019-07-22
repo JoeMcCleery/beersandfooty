@@ -1,13 +1,8 @@
 <template>
-  <div id="app">
+  <div id="website-content">
     <img class="beer" alt="Beer" src="./assets/beer.png">
     <img class="footy" alt="Footy" src="./assets/footy.jpg">
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
+    <div class="uk-divider"></div>
     <ComingSoon msg="Welcome to BeersAndFooty.com"/>
   </div>
 </template>
