@@ -1,0 +1,23 @@
+{
+  "name": "beersandfooty",
+  "version": "1.0.0",
+  "description": "website for posting beer and footy reviews",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeMcCleery/beersandfooty.git"
+  },
+  "author": "Joseph McCleery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeMcCleery/beersandfooty/issues"
+  },
+  "homepage": "https://github.com/JoeMcCleery/beersandfooty",
+  "dependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
