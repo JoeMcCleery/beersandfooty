@@ -1,8 +1,7 @@
-var ghpages = require('gh-pages');
- 
-ghpages.publish('dist', deployed());
+var ghpages = require('gh-pages')
 
-function deployed(){
+ghpages.publish('dist', deployed())
 
-    return;
+function deployed () {
+
 }
