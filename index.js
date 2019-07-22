@@ -1,6 +1,6 @@
 var ghpages = require('gh-pages')
 
-ghpages.publish('public', deployed())
+ghpages.publish('dist', deployed())
 
 function deployed () {
 
