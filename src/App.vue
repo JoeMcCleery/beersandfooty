@@ -1,8 +1,5 @@
 <template>
   <div id="website-content">
-    <img class="beer" alt="Beer" src="./assets/beer.png">
-    <img class="footy" alt="Footy" src="./assets/footy.jpg">
-    <div class="uk-divider"></div>
     <ComingSoon msg="Welcome to BeersAndFooty.com"/>
   </div>
 </template>
@@ -26,18 +23,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  .beer, .footy{
-    transition: transform 0.3s ease-out;
-    width: 20%;
-    height: auto;
-    z-index: 0;
-    margin: 1%;
-  }
-  .beer:hover{
-    transform: rotate(-180deg);
-  }
-  .footy:hover{
-    transform: rotate(180deg);
-  }
 }
 </style>
