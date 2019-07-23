@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'ComingSoon',
   props: {
     msg: String
   }
