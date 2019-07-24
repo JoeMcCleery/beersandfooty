@@ -1,17 +1,30 @@
 <template>
 <div class="coming-soon uk-container">
-  <div class="content-container">
+  <h1>{{ msg }}</h1>
+  <hr/>
+  <div class="uk-divider"></div>
+  <div class="footybeers-container">
     <img class="beer-image" src="../assets/beer.png">
     <div class="spin-container" id="ref-position">
       <img class="footy-image" src="../assets/footy.jpg" />
     </div>
   </div>
   <div class="uk-divider"></div>
-  <div class="">
-    <h1>{{ msg }}</h1>
-    <p>
-      The website is still in development, please come back soon!
-    </p>
+  <div class="text-container">
+    <div>
+      <h2>
+        The website is still in development<br/>
+        please come back soon!<br/>
+      </h2>
+    </div>
+    <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" style="color: inherit; text-decoration: none;">
+      <div class="contact-text">
+          <p>
+            Or get in contact at:<br/>
+            contact@beersandfooty.com
+          </p>
+      </div>
+    </a>
   </div>
 </div>
 </template>
@@ -54,22 +67,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $size: 33vw;
 .coming-soon {
-  padding: 2vw;
-  .content-container {
+  .text-container {
+    width: 100%;
+  }
+  .contact-text {
+    border: none;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 1em;
+    padding: 1em;
+    width: max-content;
+    box-shadow: 0px 1px 2px;
+    transition: all 0.1s;
+    margin: auto;
+    p {
+      margin: 0;
+      padding: 0.5em;
+      text-decoration: none;
+    }
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 4px 8px;
+    }
+    &:focus {
+      background-color: rgba(0,0,0,0.1);
+    }
+  }
+  .footybeers-container {
+    width: 10em;
+    height: 10em;
+  }
+  .footybeers-container {
     display: block;
-    height: $size;
-    width: $size;
     margin: auto;
     .beer-image{
-      display: block;
-      height: $size;
+      height: 100%;
       width: auto;
-      margin: auto;
       z-index: 100;
       background: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%,rgba(0,0,0,0) 50%);
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.3s ease-in-out;
       &:hover {
         transform: rotate(180deg);
       }
@@ -77,16 +113,13 @@ export default {
     .spin-container {
       position: relative;
       top: -90%;
-      display: block;
       width: 80%;
       height: 80%;
       margin: auto;
       z-index: -1;
       .footy-image {
-        display: block;
         width: 100%;
         height: auto;
-        margin: auto;
         z-index: 0;
       }
     }

@@ -24,7 +24,13 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  h1 {
+    font-family: 'Rubik', sans-serif;
+  }
+  em {
+    font-family: 'Pacifico', cursive;
+  }
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -33,5 +39,6 @@ export default {
   width: 100%;
   margin: 0;
   padding: 0;
+  // overflow: hidden;
 }
 </style>
