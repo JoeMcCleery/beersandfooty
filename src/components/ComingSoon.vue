@@ -1,5 +1,6 @@
 <template>
 <div class="coming-soon uk-container">
+  <div class="uk-divider"></div>
   <h1>{{ msg }}</h1>
   <hr/>
   <div class="uk-divider"></div>
