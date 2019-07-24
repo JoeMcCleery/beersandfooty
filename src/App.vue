@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style lang="scss">
+html, body {
+  height: 100%;
+  width: 100%;
+}
 #app {
   font-family: 'Quicksand', sans-serif;
   h1 {
@@ -35,7 +39,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
