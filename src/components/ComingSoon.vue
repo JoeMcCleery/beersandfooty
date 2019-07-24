@@ -13,8 +13,10 @@
   <div class="uk-divider"></div>
   <div class="text-container">
     <div>
+      <h2>
+        The website is still in development
+      </h2>
       <h3>
-        The website is still in development<br/>
         please come back soon!<br/>
       </h3>
     </div>
