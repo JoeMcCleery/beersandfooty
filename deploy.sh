@@ -4,6 +4,11 @@ set -e
 # build
 npm run build
 
+# get latest version and push commits
+git fetch
+git pull
+git push
+
 # navigate into the build output directory
 cd dist
 

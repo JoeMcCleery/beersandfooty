@@ -56,7 +56,7 @@ export default {
 <style lang="scss" scoped>
   $size: 33vw;
 .coming-soon {
-  padding: 16vw;
+  padding: 2vw;
   .content-container {
     display: block;
     height: $size;
