@@ -85,11 +85,7 @@ export default {
       padding: 0.5em;
       text-decoration: none;
     }
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 4px 8px;
-    }
-    &:focus {
+    &:focus , &:hover{
       background-color: rgba(0,0,0,0.1);
     }
   }
