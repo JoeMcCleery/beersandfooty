@@ -78,7 +78,6 @@ export default {
     border-radius: 1em;
     padding: 1em;
     width: max-content;
-    box-shadow: 0px 1px 2px;
     transition: all 0.1s;
     margin: auto;
     p {
