@@ -13,10 +13,10 @@
   <div class="uk-divider"></div>
   <div class="text-container">
     <div>
-      <h2>
+      <h3>
         The website is still in development<br/>
         please come back soon!<br/>
-      </h2>
+      </h3>
     </div>
       <div class="contact-text">
         <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" style="color: inherit; text-decoration: none;">
