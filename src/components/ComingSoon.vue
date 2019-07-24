@@ -18,14 +18,14 @@
         please come back soon!<br/>
       </h2>
     </div>
-    <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" style="color: inherit; text-decoration: none;">
       <div class="contact-text">
+        <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" style="color: inherit; text-decoration: none;">
           <p>
             Or get in contact at:<br/>
             contact@beersandfooty.com
           </p>
+        </a>
       </div>
-    </a>
   </div>
 </div>
 </template>
