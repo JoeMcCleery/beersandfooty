@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     rotateFooty: function (event) {
-      //  Get rotation from compass to cursor
+      //  Get rotation from footy to cursor
       var rect = this.el.getBoundingClientRect()
       var containerX = ((rect.left + rect.right) / 2)
       var containerY = ((rect.top + rect.bottom) / 2)
