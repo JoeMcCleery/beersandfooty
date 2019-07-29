@@ -1,8 +1,6 @@
 <template>
-<div class="coming-soon uk-container">
-  <div class="uk-divider"></div>
+<div class="coming-soon uk-container uk-padding">
   <h1>{{ msg }}</h1>
-  <hr/>
   <div class="uk-divider"></div>
   <div class="footybeers-container">
     <img class="beer-image" src="../assets/beer.png">
@@ -16,10 +14,6 @@
       <h2>
         The website is still in development
       </h2>
-      <h3>
-        please come back soon!<br/>
-      </h3>
-    </div>
       <div class="contact-text">
         <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" style="color: inherit; text-decoration: none;">
           <p>
@@ -28,6 +22,7 @@
           </p>
         </a>
       </div>
+    </div>
   </div>
 </div>
 </template>
