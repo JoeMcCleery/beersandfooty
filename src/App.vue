@@ -1,12 +1,11 @@
 <template>
-  <div id="app" v-on:mousemove="sendMouseEventToCompass($event)">
-    <ComingSoon msg="Welcome to BeersAndFooty.com" ref="comingsoon"/>
+  <div id="app" v-on:mousemove="sendMouseEventToSpinComponent($event)">
+    <ComingSoon msg="Welcome to BeersAndFooty.com" ref="spinComponent"/>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-
 import ComingSoon from './components/ComingSoon.vue'
 
 export default {
@@ -15,8 +14,8 @@ export default {
     ComingSoon
   },
   methods: {
-    sendMouseEventToCompass: _.throttle(function (event) {
-      this.$refs.comingsoon.rotateFooty(event)
+    sendMouseEventToSpinComponent: _.throttle(function (event) {
+      this.$refs.spinComponent.rotateFooty(event)
     }, 200)
   }
 }
