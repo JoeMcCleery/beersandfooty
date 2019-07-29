@@ -1,17 +1,20 @@
 <template>
   <div id="app" v-on:mousemove="sendMouseEventToSpinComponent($event)">
     <ComingSoon msg="Welcome to BeersAndFooty.com" ref="spinComponent"/>
+    <BackgroundVideo/>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
 import ComingSoon from './components/ComingSoon.vue'
+import BackgroundVideo from './components/BackgroundVideo'
 
 export default {
   name: 'app',
   components: {
-    ComingSoon
+    ComingSoon,
+    BackgroundVideo
   },
   methods: {
     sendMouseEventToSpinComponent: _.throttle(function (event) {
@@ -42,6 +45,5 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  // overflow: hidden;
 }
 </style>
