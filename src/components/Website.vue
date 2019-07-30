@@ -13,28 +13,24 @@
 
 <script>
 import $ from 'jquery'
-$(document).ready(function(){
-  $('.footy-window').click(function(){
-    if($('.footy-window').hasClass('active')) {
-      return;
-    }else{
-      $('.footy-window').removeClass('inactive');
-      $('.footy-window').addClass('active');
-      $('.beers-window').removeClass('active');
-      $('.beers-window').addClass('inactive');
+$(document).ready(function () {
+  $('.footy-window').click(function () {
+    if (!$('.footy-window').hasClass('active')) {
+      $('.footy-window').removeClass('inactive')
+      $('.footy-window').addClass('active')
+      $('.beers-window').removeClass('active')
+      $('.beers-window').addClass('inactive')
     }
-  });
-  $('.beers-window').click(function(){
-    if($('.beers-window').hasClass('active')) {
-      return;
-    }else{
-      $('.beers-window').removeClass('inactive');
-      $('.beers-window').addClass('active');
-      $('.footy-window').removeClass('active');
-      $('.footy-window').addClass('inactive');
+  })
+  $('.beers-window').click(function () {
+    if (!$('.beers-window').hasClass('active')) {
+      $('.beers-window').removeClass('inactive')
+      $('.beers-window').addClass('active')
+      $('.footy-window').removeClass('active')
+      $('.footy-window').addClass('inactive')
     }
-  });
-});
+  })
+})
 export default {
   name: 'Website'
 }
