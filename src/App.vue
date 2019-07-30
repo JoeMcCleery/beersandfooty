@@ -1,19 +1,19 @@
 <template>
-  <div id="app" v-on:mousemove="sendMouseEventToSpinComponent($event)">
-    <ComingSoon msg="Welcome to BeersAndFooty.com" ref="spinComponent"/>
+  <div id="app">
+    <Website/>
     <BackgroundVideo/>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import ComingSoon from './components/ComingSoon.vue'
+import Website from './components/Website.vue'
 import BackgroundVideo from './components/BackgroundVideo'
 
 export default {
   name: 'app',
   components: {
-    ComingSoon,
+    Website,
     BackgroundVideo
   },
   methods: {
@@ -28,6 +28,7 @@ export default {
 html, body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 #app {
   font-family: 'Quicksand', sans-serif;
@@ -45,5 +46,6 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 </style>
