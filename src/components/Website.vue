@@ -74,7 +74,7 @@ export default {
       height: 100%;
       position: absolute;
       left: 50%;
-      background-color: darken(yellow, 2);
+      background-color: yellow;
       transition: all 1s ease-in-out;
       &.active {
         transform: translateX(calc(-50% + 20px));
