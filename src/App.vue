@@ -33,7 +33,7 @@ html, body {
 #app {
   font-family: 'Quicksand', sans-serif;
   h1 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Muli', sans-serif;
   }
   em {
     font-family: 'Pacifico', cursive;
