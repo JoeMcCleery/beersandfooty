@@ -29,6 +29,7 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  transform: perspective(0px);
 }
 #app {
   font-family: 'Quicksand', sans-serif;
