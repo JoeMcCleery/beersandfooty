@@ -1,20 +1,17 @@
 <template>
   <div id="app">
     <Website/>
-    <BackgroundVideo/>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
 import Website from './components/Website.vue'
-import BackgroundVideo from './components/BackgroundVideo'
 
 export default {
   name: 'app',
   components: {
-    Website,
-    BackgroundVideo
+    Website
   },
   methods: {
     sendMouseEventToSpinComponent: _.throttle(function (event) {
