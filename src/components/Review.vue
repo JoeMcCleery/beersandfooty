@@ -20,6 +20,7 @@ export default {
   height: auto;
   position: relative;
   z-index: 0;
+  text-align: center;
   .content {
     background-color: white;
     height: auto;

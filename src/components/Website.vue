@@ -1,5 +1,5 @@
 <template>
-<div class="website">
+<div>
   <div class="beers-window">
     <div class="top-pannel">
       <h1 class="header-title">BEERS</h1>
@@ -90,15 +90,6 @@ export default {
   $beerscolour-darker: darken( #F9690E, 5%);
   $footycolour: #FFB61E;
   $footycolour-darker: darken( #FFB61E, 5%);
-  .website {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
   .top-pannel {
     height: 30px;
     width: 100%;
@@ -115,7 +106,7 @@ export default {
     transition: transform $animation-duration ease-in-out;
   }
   .window-content {
-    height: 100%;
+    height: calc(100% - 30px);
     overflow: hidden;
     opacity: 0;
     transition: opacity $animation-duration ease-in-out;
