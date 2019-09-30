@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $animation-duration: 500ms;
+  $animation-duration: 600ms;
   $beerscolour: #F9690E;
   $beerscolour-darker: darken( #F9690E, 5%);
   $footycolour: #FFB61E;
@@ -102,14 +102,13 @@ export default {
     font-size: 22px;
     font-weight: bold;
     margin: auto;
-    padding: 0 35px 0 35px;
+    padding: 0 40px 0 40px;
     transition: transform $animation-duration ease-in-out;
   }
   .window-content {
     height: calc(100% - 30px);
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity $animation-duration ease-in-out;
+    overflow-x: hidden;
+    transition: transform $animation-duration ease-in-out;
   }
   .beers-window {
     overflow: hidden;
@@ -127,6 +126,10 @@ export default {
       float: right;
       background: url("../assets/leftarrow.svg") no-repeat calc(100% + 1px) 3px;
     }
+    .window-content {
+      transform-origin: top left;
+      transform: rotateZ(90deg);
+    }
     &.active {
       right: calc(30px);
       .header-title {
@@ -134,8 +137,7 @@ export default {
         background: transparent;
       }
       .window-content {
-        overflow-y: auto;
-        opacity: 1;
+        transform: rotateZ(0);
       }
     }
     &.inactive {
@@ -162,6 +164,10 @@ export default {
       float: left;
       background: url("../assets/rightarrow.svg") no-repeat 4px 3px;
     }
+    .window-content {
+      transform-origin: top right;
+      transform: rotateZ(-90deg);
+    }
     &.active {
       left: calc(30px);
       .header-title {
@@ -169,8 +175,7 @@ export default {
         background: transparent;
       }
       .window-content {
-        overflow-y: auto;
-        opacity: 1;
+        transform: rotateZ(0);
       }
     }
     &.inactive {
