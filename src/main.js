@@ -4,7 +4,8 @@ import CMS from 'netlify-cms'
 
 // Config
 Vue.config.productionTip = false
-CMS.registerPreviewTemplate('MyCMS', MyCMS)
+// Now the registry is available via the CMS object.
+CMS.registerPreviewTemplate('App', App)
 
 // Render Vue App at #app
 new Vue({
