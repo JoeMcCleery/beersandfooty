@@ -1,6 +1,7 @@
 # abort on errors
 set -e
 
+git remote add origin 'https://github.com/JoeMcCleery/beersandfooty.git' 
 # # get latest version
 # git pull
 # git add .
