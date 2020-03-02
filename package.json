@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "cli-deploy": "./deploy.sh",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

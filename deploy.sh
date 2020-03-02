@@ -1,16 +1,11 @@
 # abort on errors
 set -e
 
-git remote add origin 'https://$GH_TOKEN:x-oauth-basic@github.com/joemccleery/beersandfooty.git'
-git config --global git.protocol https
-git config --global user.email "mccleery.joseph@gmail.com"
-git config --global user.name "joemccleery"
-
 # # get latest version
-# git pull
-# git add .
-# git commit
-# git push
+git pull
+git add .
+git commit
+git push
 
 # build
 npm run build
