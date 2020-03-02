@@ -2,7 +2,7 @@
 set -e
 
 git remote add origin 'git+https://'$GH_TOKEN':x-oauth-basic@github.com/joemccleery/beersandfooty.git'
-git config --global git.protocol https
+git config --global git.protocol git+https
 git config --global user.email "mccleery.joseph@gmail.com"
 git config --global user.name "joemccleery"
 
