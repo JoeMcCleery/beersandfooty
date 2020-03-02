@@ -1,6 +1,11 @@
 # abort on errors
 set -e
 
+git remote add origin 'git+https://${GITHUB_TOKEN}:x-oauth-basic@github.com/joemccleery/beersandfooty.git'
+git config --global git.protocol https
+git config --global user.email "mccleery.joseph@gmail.com"
+git config --global user.name "joemccleery"
+
 # # get latest version
 # git pull
 # git add .
