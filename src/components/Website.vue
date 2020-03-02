@@ -33,7 +33,6 @@
 
 <script>
 import $ from 'jquery'
-import Review from './Review'
 
 $(document).ready(function () {
   let footy = $('.footy-window')
@@ -62,10 +61,7 @@ function togglebeers () {
   }
 }
 export default {
-  name: 'Website',
-  components: {
-    Review
-  }
+  name: 'Website'
 }
 </script>
 
