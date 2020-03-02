@@ -5,21 +5,13 @@
       <h1 class="header-title">BEERS</h1>
     </div>
     <div class="window-content">
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
+      <!-- Beers Content -->
+      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default">
+          <p>
+            Get in contact at:<br/>
+            contact@beersandfooty.com
+          </p>
+        </a>
     </div>
   </div>
   <div class="footy-window">
@@ -27,21 +19,13 @@
       <h1 class="header-title">FOOTY</h1>
     </div>
     <div class="window-content">
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
-      <Review/>
+      <!-- Footy Content -->
+      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default">
+          <p>
+            Get in contact at:<br/>
+            contact@beersandfooty.com
+          </p>
+        </a>
     </div>
   </div>
 </div>
@@ -50,6 +34,7 @@
 <script>
 import $ from 'jquery'
 import Review from './Review'
+
 $(document).ready(function () {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
