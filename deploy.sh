@@ -2,8 +2,10 @@
 set -e
 
 # get latest version
-git fetch
 git pull
+git add .
+git commit
+git push
 
 # build
 npm run build
