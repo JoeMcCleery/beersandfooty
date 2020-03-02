@@ -1,7 +1,7 @@
 # abort on errors
 set -e
 
-git remote add origin 'https://github.com/JoeMcCleery/beersandfooty.git'
+git remote add origin 'git@github.com:joemccleery/beersandfooty.git'
 git config --global user.email "mccleery.joseph@gmail.com"
 git config --global user.name "joemccleery"
 # # get latest version
