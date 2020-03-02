@@ -1,11 +1,11 @@
 # abort on errors
 set -e
 
-# get latest version
-git pull
-git add .
-git commit
-git push
+# # get latest version
+# git pull
+# git add .
+# git commit
+# git push
 
 # build
 npm run build
