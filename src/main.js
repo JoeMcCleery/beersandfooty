@@ -11,13 +11,11 @@ Vue.use(VueRouter)
 
 // Define Routes
 const routes = [
-  { path: '*', redirect: '/' },
   { path: '/', component: Website }
 ]
 
 // Create Router Instance
 const router = new VueRouter({
-  mode: 'history',
   routes
 })
 
