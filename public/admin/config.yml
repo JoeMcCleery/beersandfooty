@@ -3,7 +3,7 @@ backend:
   branch: master # Branch to update (optional; defaults to master)
 publish_mode: editorial_workflow
 media_folder: "src/assets/uploads" # Media files will be stored in the repo under src/assets/uploads
-public_folder: "/img/uploads" # The src attribute for uploaded media will begin with /img/uploads
+public_folder: "/uploads" # The src attribute for uploaded media will begin with /img/uploads
 collections:
   - name: "footyReview" # Used in routes, e.g., /admin/collections/footyReview
     label: "Footy Review" # Used in the UI
