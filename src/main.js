@@ -1,29 +1,30 @@
 import Vue from 'vue'
-import CMS from 'netlify-cms'
-import App from './App'
 import VueRouter from 'vue-router'
+import App from './App'
+
 // Import Components for routing
 import Website from './components/Website'
 
 // Config
-Vue.use(VueRouter)
 Vue.config.productionTip = false
-CMS.registerPreviewTemplate('App', App)
+Vue.use(VueRouter)
 
 // Define Routes
 const routes = [
+  { path: '*', redirect: '/' },
   { path: '/', component: Website }
 ]
 
-// Create Router
+// Create Router Instance
 const router = new VueRouter({
   mode: 'history',
-  base: __dirname,
-  routes: routes
+  routes
 })
 
+// Render App
 /* eslint-disable no-new */
 new Vue({
+  el: '#app',
   router,
   render: h => h(App)
-}).$mount('#app')
+})
