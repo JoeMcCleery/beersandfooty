@@ -14,6 +14,8 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Home Team", name: "team-home", widget: "string"}
+      - {label: "Away Team", name: "team-away", widget: "string"}
       - {label: "Game Date", name: "date", widget: "datetime"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
       - {label: "Body", name: "body", widget: "markdown"}
