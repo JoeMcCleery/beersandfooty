@@ -5,15 +5,27 @@ publish_mode: editorial_workflow
 media_folder: "src/assets/uploads" # Media files will be stored in the repo under src/assets/uploads
 public_folder: "/img/uploads" # The src attribute for uploaded media will begin with /img/uploads
 collections:
-  - name: "review" # Used in routes, e.g., /admin/collections/review
-    label: "Review" # Used in the UI
-    folder: "public/posts/review" # The path to the folder where the documents are stored
+  - name: "footyReview" # Used in routes, e.g., /admin/collections/footyReview
+    label: "Footy Review" # Used in the UI
+    folder: "public/posts/footyReview" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Game Date", name: "date", widget: "datetime"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
       - {label: "Body", name: "body", widget: "markdown"}
+  - name: "beerReview" # Used in routes, e.g., /admin/collections/beerReview
+      label: "Beer Review" # Used in the UI
+      folder: "public/posts/beerReview" # The path to the folder where the documents are stored
+      create: true # Allow users to create new documents in this collection
+      slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
+      fields: # The fields for each document, usually in front matter
+        - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "Featured Image", name: "thumbnail", widget: "image"}
+        - {label: "Beer Name", name: "title", widget: "string"}
+        - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
+        - {label: "Body", name: "body", widget: "markdown"}
