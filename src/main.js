@@ -1,13 +1,24 @@
 import Vue from 'vue'
-import App from './App.vue'
 import CMS from 'netlify-cms'
-
+import VueRouter from 'vue-router'
+// Import Components for routing
+import Website from './components/Website'
 // Config
 Vue.config.productionTip = false
 // Now the registry is available via the CMS object.
-CMS.registerPreviewTemplate('App', App)
+CMS.registerPreviewTemplate('CMS', CMS)
 
-// Render Vue App at #app
+// Define Routes
+const routes = [
+  { path: '/website', component: Website }
+]
+
+// Create Router
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
+
 new Vue({
-  render: h => h(App)
+  router
 }).$mount('#app')

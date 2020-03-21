@@ -1,23 +1,12 @@
 <template>
   <div id="app">
-    <Website/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import _ from 'lodash'
-import Website from './components/Website.vue'
-
 export default {
-  name: 'app',
-  components: {
-    Website
-  },
-  methods: {
-    sendMouseEventToSpinComponent: _.throttle(function (event) {
-      this.$refs.spinComponent.rotateFooty(event)
-    }, 200)
-  }
+  name: 'app'
 }
 </script>
 
