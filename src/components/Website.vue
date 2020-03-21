@@ -6,11 +6,9 @@
     </div>
     <div class="window-content">
       <!-- Beers Content -->
-      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default">
-          <p>
+      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default uk-width-1-1">
             Get in contact at:<br/>
             contact@beersandfooty.com
-          </p>
         </a>
     </div>
   </div>
@@ -20,12 +18,10 @@
     </div>
     <div class="window-content">
       <!-- Footy Content -->
-      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default">
-          <p>
-            Get in contact at:<br/>
-            contact@beersandfooty.com
-          </p>
-        </a>
+      <button href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default uk-width-1-1">
+        Get in contact at:<br/>
+        contact@beersandfooty.com
+      </button>
     </div>
   </div>
 </div>
