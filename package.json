@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "npm run sync-posts && vue-cli-service serve",
-    "build": "npm run sync-posts && vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "sync-posts": "rsync -r ./public/posts ./src/components/"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^2.6.5",
