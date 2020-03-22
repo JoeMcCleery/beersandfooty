@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CMS from 'netlify-cms'
 import App from './App'
 
 // Import Components for routing
@@ -9,7 +8,6 @@ import Website from './components/Website'
 // Config
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-CMS.registerPreviewTemplate('App', App)
 
 // Define Routes
 const routes = [
