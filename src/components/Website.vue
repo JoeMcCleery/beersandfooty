@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getFileList (dir) {
-      return fs.readdirSync(dir, { withFileTypes: true })
+      return fs.readdirSync(dir, { withFileTypes: true }).filter(item => !item.isDirectory()).map(item => item.name)
     }
   }
 }
