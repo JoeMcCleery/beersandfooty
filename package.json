@@ -6,8 +6,7 @@
     "serve": "npm run sync-posts && vue-cli-service serve",
     "build": "npm run sync-posts && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d dist",
-    "sync-posts": "rsync ./public/posts ./src/"
+    "sync-posts": "rsync -r ./public/posts ./src/components/"
   },
   "dependencies": {
     "core-js": "^2.6.5",
