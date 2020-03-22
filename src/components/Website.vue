@@ -6,7 +6,7 @@
       </div>
       <div class="window-content">
         <!-- Beers Content -->
-        <review v-for="review in this.beerReviews" :key="review" :review="review"/>
+        <review v-for="(review, idx) in this.beerReviews" :key="idx" :review="review"/>
       </div>
     </div>
     <div class="footy-window">
@@ -15,7 +15,7 @@
       </div>
       <div class="window-content">
         <!-- Footy Content -->
-        <review v-for="review in this.footyReviews" :key="review" :review="review"/>
+        <review v-for="(review, idx) in this.footyReviews" :key="idx" :review="review"/>
       </div>
     </div>
   </div>

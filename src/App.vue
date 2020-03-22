@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import UIkit from 'uikit'
+import Icons from 'uikit/dist/js/uikit-icons'
+UIkit.use(Icons)
 export default {
   name: 'app'
 }
 </script>
 
 <style lang="scss">
+@import "./scss/uikit";
 html, body {
   height: 100vh;
   transform: translate3d(0,0,0);
