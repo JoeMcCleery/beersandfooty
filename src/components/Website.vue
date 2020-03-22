@@ -1,40 +1,47 @@
 <template>
-<div>
-  <div class="beers-window">
-    <div class="top-pannel">
-      <h1 class="header-title">BEERS</h1>
+  <div>
+    <div class="beers-window">
+      <div class="top-pannel">
+        <h1 class="header-title">BEERS</h1>
+      </div>
+      <div class="window-content">
+        <!-- Beers Content -->
+        <review v-for="review in this.beerReviews" :key="review" :review="review"/>
+      </div>
     </div>
-    <div class="window-content">
-      <!-- Beers Content -->
-      <review
-        :review-list="getFileList('/posts/footyReview/')"
-      />
-    </div>
-  </div>
-  <div class="footy-window">
-    <div class="top-pannel">
-      <h1 class="header-title">FOOTY</h1>
-    </div>
-    <div class="window-content">
-      <!-- Footy Content -->
-      <review
-        :review-list="getFileList('/posts/footyReview/')"
-      />
+    <div class="footy-window">
+      <div class="top-pannel">
+        <h1 class="header-title">FOOTY</h1>
+      </div>
+      <div class="window-content">
+        <!-- Footy Content -->
+        <review v-for="review in this.footyReviews" :key="review" :review="review"/>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import Review from './Review'
 import $ from 'jquery'
 
+var beerContext = require.context('../../public/posts/beerReview/', true, /\.json$/)
+var beerReviews = []
+beerContext.keys().forEach(function (index, key) {
+  beerReviews.push(beerContext(key))
+})
+var footyContext = require.context('../../public/posts/footyReview/', true, /\.json$/)
+var footyReviews = []
+footyContext.keys().forEach(function (key) {
+  footyReviews.push(footyContext(key))
+})
 $(document).ready(function () {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
   footy.click(togglefooty)
   beers.click(togglebeers)
 })
+
 function togglefooty () {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
@@ -45,6 +52,7 @@ function togglefooty () {
     beers.addClass('inactive')
   }
 }
+
 function togglebeers () {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
@@ -55,14 +63,16 @@ function togglebeers () {
     footy.addClass('inactive')
   }
 }
+
 export default {
   name: 'Website',
   components: {
     Review
   },
-  methods: {
-    getFileList (dir) {
-      return []
+  data () {
+    return {
+      footyReviews,
+      beerReviews
     }
   }
 }
@@ -71,15 +81,16 @@ export default {
 <style lang="scss" scoped>
   $animation-duration: 600ms;
   $beerscolour: #F9690E;
-  $beerscolour-darker: darken( #F9690E, 5%);
+  $beerscolour-darker: darken(#F9690E, 5%);
   $footycolour: #FFB61E;
-  $footycolour-darker: darken( #FFB61E, 5%);
+  $footycolour-darker: darken(#FFB61E, 5%);
   .top-pannel {
     height: 30px;
     width: 100%;
     top: 0;
     position: sticky;
   }
+
   .header-title {
     line-height: 30px;
     color: white;
@@ -89,11 +100,13 @@ export default {
     padding: 0 40px 0 40px;
     transition: transform $animation-duration ease-in-out;
   }
+
   .window-content {
     height: calc(100% - 30px);
     overflow-x: hidden;
     transition: transform $animation-duration ease-in-out;
   }
+
   .beers-window {
     overflow: hidden;
     height: 100%;
@@ -102,36 +115,45 @@ export default {
     background-color: $beerscolour;
     transition: right $animation-duration ease-in-out;
     width: calc(100% - 30px);
+
     .top-pannel {
       background-color: $beerscolour;
     }
+
     .header-title {
       transform-origin: calc(100% - 15px);
       float: right;
       background: url("../assets/leftarrow.svg") no-repeat calc(100% + 1px) 3px;
     }
+
     .window-content {
       transform-origin: top left;
       transform: rotateZ(90deg);
     }
+
     &.active {
       right: calc(30px);
+
       .header-title {
         transform: translateX(calc(-50vw + 50% + 15px));
         background: transparent;
       }
+
       .window-content {
         transform: rotateZ(0);
       }
     }
+
     &.inactive {
       cursor: pointer;
       right: calc(100% - 30px);
+
       .header-title {
         transform: rotateZ(-90deg);
       }
     }
   }
+
   .footy-window {
     overflow: hidden;
     height: 100%;
@@ -140,31 +162,39 @@ export default {
     background-color: $footycolour;
     transition: left $animation-duration ease-in-out;
     width: calc(100% - 30px);
+
     .top-pannel {
       background-color: $footycolour;
     }
+
     .header-title {
       transform-origin: 15px;
       float: left;
       background: url("../assets/rightarrow.svg") no-repeat 4px 3px;
     }
+
     .window-content {
       transform-origin: top right;
       transform: rotateZ(-90deg);
     }
+
     &.active {
       left: calc(30px);
+
       .header-title {
         transform: translateX(calc(50vw - 50% - 15px));
         background: transparent;
       }
+
       .window-content {
         transform: rotateZ(0);
       }
     }
+
     &.inactive {
       cursor: pointer;
       left: calc(100% - 30px);
+
       .header-title {
         transform: rotateZ(90deg);
       }
