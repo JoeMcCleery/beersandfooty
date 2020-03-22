@@ -6,10 +6,7 @@
     </div>
     <div class="window-content">
       <!-- Beers Content -->
-      <a href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default uk-width-1-1">
-            Get in contact at:<br/>
-            contact@beersandfooty.com
-        </a>
+      <review review-list="{{getFileList('/posts/footyReview/')}}"/>
     </div>
   </div>
   <div class="footy-window">
@@ -18,17 +15,16 @@
     </div>
     <div class="window-content">
       <!-- Footy Content -->
-      <button href="mailto:contact@beersandfooty.com?Subject=Website%20Inquiry" class="uk-button uk-button-default uk-width-1-1">
-        Get in contact at:<br/>
-        contact@beersandfooty.com
-      </button>
+      <review review-list="{{getFileList('/posts/beerReview/')}}"/>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import Review from './Review'
 import $ from 'jquery'
+var fs = require('fs')
 
 $(document).ready(function () {
   let footy = $('.footy-window')
@@ -57,7 +53,15 @@ function togglebeers () {
   }
 }
 export default {
-  name: 'Website'
+  name: 'Website',
+  components: {
+    Review
+  },
+  methods: {
+    getFileList (dir) {
+      return fs.readdirSync(dir)
+    }
+  }
 }
 </script>
 
