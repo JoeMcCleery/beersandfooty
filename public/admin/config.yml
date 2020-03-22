@@ -7,6 +7,8 @@ public_folder: "/uploads" # The src attribute for uploaded media will begin with
 collections:
   - name: "footyReview" # Used in routes, e.g., /admin/collections/footyReview
     label: "Footy Review" # Used in the UI
+    format: "json"
+    extension: "json"
     folder: "public/posts/footyReview" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
@@ -18,9 +20,11 @@ collections:
       - {label: "Away Team", name: "team-away", widget: "string"}
       - {label: "Game Date", name: "date", widget: "datetime"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body", name: "body", widget: "string"}
   - name: "beerReview" # Used in routes, e.g., /admin/collections/beerReview
     label: "Beer Review" # Used in the UI
+    format: "json"
+    extension: "json"
     folder: "public/posts/beerReview" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
@@ -30,4 +34,4 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Beer Name", name: "title", widget: "string"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body", name: "body", widget: "string"}

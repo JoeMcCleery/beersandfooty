@@ -11,7 +11,6 @@
 
 <script>
 const yaml = require('js-yaml')
-const fs = require('fs')
 
 export default {
   name: 'Review',
@@ -22,7 +21,7 @@ export default {
     reviewByIndex (index = 0) {
       // Get document, or throw exception on error
       try {
-        let review = yaml.safeLoad(fs.readFileSync(this.props.reviewList[index], 'utf8'))
+        let review = yaml.safeLoad(this.reviewList[index])
         console.log(review)
         return review
       } catch (e) {

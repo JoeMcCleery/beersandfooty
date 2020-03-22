@@ -18,7 +18,7 @@
     <div class="window-content">
       <!-- Footy Content -->
       <review
-        :review-list="getFileList('/posts/beerReview/')"
+        :review-list="getFileList('/posts/footyReview/')"
       />
     </div>
   </div>
@@ -28,7 +28,6 @@
 <script>
 import Review from './Review'
 import $ from 'jquery'
-var fs = require('fs')
 
 $(document).ready(function () {
   let footy = $('.footy-window')
@@ -63,7 +62,7 @@ export default {
   },
   methods: {
     getFileList (dir) {
-      return fs.readdirSync(dir, { withFileTypes: true }).filter(item => !item.isDirectory()).map(item => item.name)
+      return []
     }
   }
 }
