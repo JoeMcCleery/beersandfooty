@@ -24,14 +24,15 @@
 <script>
 import Review from './Review'
 import $ from 'jquery'
+import path from 'path'
 
-var beerContext = require.context('../../public/posts/beerReview/', true, /\.json$/)
-var beerReviews = []
+const beerContext = require.context(path.normalize('../../public/posts/beerReview/'), true, /\.json$/)
+let beerReviews = []
 beerContext.keys().forEach(function (index, key) {
   beerReviews.push(beerContext(key))
 })
-var footyContext = require.context('../../public/posts/footyReview/', true, /\.json$/)
-var footyReviews = []
+const footyContext = require.context(path.normalize('../../public/posts/footyReview/'), true, /\.json$/)
+let footyReviews = []
 footyContext.keys().forEach(function (key) {
   footyReviews.push(footyContext(key))
 })
