@@ -6,7 +6,9 @@
     </div>
     <div class="window-content">
       <!-- Beers Content -->
-      <review review-list="{{getFileList('/posts/footyReview/')}}"/>
+      <review
+        :review-list="getFileList('/posts/footyReview/')"
+      />
     </div>
   </div>
   <div class="footy-window">
@@ -15,7 +17,9 @@
     </div>
     <div class="window-content">
       <!-- Footy Content -->
-      <review review-list="{{getFileList('/posts/beerReview/')}}"/>
+      <review
+        :review-list="getFileList('/posts/beerReview/')"
+      />
     </div>
   </div>
 </div>
@@ -59,7 +63,7 @@ export default {
   },
   methods: {
     getFileList (dir) {
-      return fs.readdirSync(dir)
+      return fs.readdirSync(dir, { withFileTypes: true })
     }
   }
 }

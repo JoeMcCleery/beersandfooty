@@ -16,20 +16,24 @@ const fs = require('fs')
 export default {
   name: 'Review',
   props: {
-    reviewList: Array,
-    review: this.reviewByIndex(0)
+    reviewList: Array
   },
   methods: {
-    reviewByIndex (index) {
+    reviewByIndex (index = 0) {
       // Get document, or throw exception on error
       try {
-        this.review = yaml.safeLoad(fs.readFileSync(this.reviewList[index], 'utf8'))
-        console.log(this.review)
-        return true
+        let review = yaml.safeLoad(fs.readFileSync(this.props.reviewList[index], 'utf8'))
+        console.log(review)
+        return review
       } catch (e) {
         console.log(e)
         return false
       }
+    }
+  },
+  computed: {
+    review: function () {
+      return this.reviewByIndex()
     }
   }
 }
