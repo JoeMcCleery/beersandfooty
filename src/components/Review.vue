@@ -1,6 +1,6 @@
 <template>
-  <div class="review-container uk-container uk-margin-bottom">
-    <div class="content uk-margin-small uk-padding uk-box-shadow-medium">
+  <div class="review-container">
+    <div class="content uk-margin-small uk-padding">
       <h2>
         {{ this.review.title }}
       </h2>
@@ -23,8 +23,6 @@ export default {
 
 <style lang="scss" scoped>
   .review-container {
-    height: auto;
-    position: relative;
     z-index: 0;
     text-align: center;
 

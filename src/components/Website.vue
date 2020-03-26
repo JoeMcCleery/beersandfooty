@@ -6,7 +6,7 @@
       </div>
       <div class="window-content">
         <!-- Beers Content -->
-        <section class="uk-section">
+        <section class="uk-section uk-container">
           <review v-for="(review, idx) in this.beerReviews" :key="idx" :review="review"/>
         </section>
       </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="window-content">
         <!-- Footy Content -->
-        <section class="uk-section">
+        <section class="uk-section uk-container">
           <review v-for="(review, idx) in this.footyReviews" :key="idx" :review="review"/>
         </section>
       </div>
@@ -93,6 +93,9 @@ export default {
     width: 100%;
     top: 0;
     position: sticky;
+    box-shadow: 0 0 15px rgba(0,0,0,0.08);
+    z-index: 1;
+    transition: box-shadow $animation-duration ease-in-out;
   }
 
   .header-title {
@@ -109,8 +112,6 @@ export default {
     height: calc(100% - 30px);
     overflow-x: hidden;
     transition: transform $animation-duration ease-in-out;
-    box-shadow: inset 0 0px 15px rgba(0, 0, 0, 0.08);
-    background: rgba(0,0,0,0.04);
   }
 
   .beers-window {
@@ -157,6 +158,9 @@ export default {
       right: calc(100% - 30px);
       .header-title {
         transform: rotateZ(-90deg);
+      }
+      .top-pannel {
+        box-shadow: none;
       }
     }
   }
@@ -205,6 +209,9 @@ export default {
       left: calc(100% - 30px);
       .header-title {
         transform: rotateZ(90deg);
+      }
+      .top-pannel {
+        box-shadow: none;
       }
     }
   }
