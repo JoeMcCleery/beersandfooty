@@ -16,9 +16,8 @@ export default {
 <style lang="scss">
 @import "./scss/uikit";
 html, body {
-  height: 100vh;
-  transform: translate3d(0,0,0);
-  perspective: 500px;
+  min-height: 100vh;
+  perspective: 550px;
   overflow-x: hidden;
 }
 h1 {

@@ -6,7 +6,9 @@
       </div>
       <div class="window-content">
         <!-- Beers Content -->
-        <review v-for="(review, idx) in this.beerReviews" :key="idx" :review="review"/>
+        <section class="uk-section">
+          <review v-for="(review, idx) in this.beerReviews" :key="idx" :review="review"/>
+        </section>
       </div>
     </div>
     <div class="footy-window">
@@ -15,7 +17,9 @@
       </div>
       <div class="window-content">
         <!-- Footy Content -->
-        <review v-for="(review, idx) in this.footyReviews" :key="idx" :review="review"/>
+        <section class="uk-section">
+          <review v-for="(review, idx) in this.footyReviews" :key="idx" :review="review"/>
+        </section>
       </div>
     </div>
   </div>
@@ -79,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $animation-duration: 600ms;
+  $animation-duration: 1000ms;
   $beerscolour: #F9690E;
   $beerscolour-darker: darken(#F9690E, 5%);
   $footycolour: #FFB61E;
@@ -98,13 +102,15 @@ export default {
     font-weight: bold;
     margin: auto;
     padding: 0 40px 0 40px;
-    transition: transform $animation-duration ease-in-out;
+    transition: transform $animation-duration / 2 ease-in-out;
   }
 
   .window-content {
     height: calc(100% - 30px);
     overflow-x: hidden;
     transition: transform $animation-duration ease-in-out;
+    box-shadow: inset 0 0 16px rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.05);
   }
 
   .beers-window {
@@ -113,8 +119,21 @@ export default {
     position: absolute;
     right: 50%;
     background-color: $beerscolour;
-    transition: right $animation-duration ease-in-out;
+    transition: right $animation-duration ease-in-out, transform $animation-duration / 2 ease-in-out;
     width: calc(100% - 30px);
+    transform-origin: right;
+
+    &:before {
+      width: 50px;
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      right: -50px;
+      background: linear-gradient(to left, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+      transition: right $animation-duration / 2 ease-in-out;
+    }
 
     .top-pannel {
       background-color: $beerscolour;
@@ -128,11 +147,12 @@ export default {
 
     .window-content {
       transform-origin: top left;
-      transform: rotateZ(90deg);
+      transform: translateX(-100%);
     }
 
     &.active {
       right: calc(30px);
+      transform: rotate3d(0,0,0,0deg);
 
       .header-title {
         transform: translateX(calc(-50vw + 50% + 15px));
@@ -140,7 +160,7 @@ export default {
       }
 
       .window-content {
-        transform: rotateZ(0);
+        transform: rotate3d(0,0,0,0deg);
       }
     }
 
@@ -148,6 +168,12 @@ export default {
       cursor: pointer;
       right: calc(100% - 30px);
 
+      &:hover {
+        transform: rotate3d(0,1,0,-10deg);
+        &:before {
+          right: 0;
+        }
+      }
       .header-title {
         transform: rotateZ(-90deg);
       }
@@ -160,8 +186,21 @@ export default {
     position: absolute;
     left: 50%;
     background-color: $footycolour;
-    transition: left $animation-duration ease-in-out;
+    transition: left $animation-duration ease-in-out, transform $animation-duration / 2 ease-in-out;
     width: calc(100% - 30px);
+    transform-origin: left;
+
+    &:before {
+      width: 50px;
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      left: -50px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+      z-index: 1;
+      transition: left $animation-duration / 2 ease-in-out;
+    }
 
     .top-pannel {
       background-color: $footycolour;
@@ -175,11 +214,12 @@ export default {
 
     .window-content {
       transform-origin: top right;
-      transform: rotateZ(-90deg);
+      transform: translateX(100%);
     }
 
     &.active {
       left: calc(30px);
+      transform: rotate3d(0,0,0,0deg);
 
       .header-title {
         transform: translateX(calc(50vw - 50% - 15px));
@@ -187,7 +227,7 @@ export default {
       }
 
       .window-content {
-        transform: rotateZ(0);
+        transform: rotate3d(0,0,0,0deg);
       }
     }
 
@@ -195,6 +235,12 @@ export default {
       cursor: pointer;
       left: calc(100% - 30px);
 
+      &:hover {
+        transform: rotate3d(0,1,0,10deg);
+        &:before {
+          left: 0;
+        }
+      }
       .header-title {
         transform: rotateZ(90deg);
       }

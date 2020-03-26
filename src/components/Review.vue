@@ -1,9 +1,10 @@
 <template>
-  <div class="review-container">
-    <div class="content uk-container uk-margin-small uk-padding">
+  <div class="review-container uk-container uk-margin-bottom">
+    <div class="content uk-margin-small uk-padding uk-box-shadow-small">
       <h2>
         {{ this.review.title }}
       </h2>
+      <hr class="uk-divider-small"/>
       <p>
         {{ this.review.body }}
       </p>
