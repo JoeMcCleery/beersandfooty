@@ -109,8 +109,8 @@ export default {
     height: calc(100% - 30px);
     overflow-x: hidden;
     transition: transform $animation-duration ease-in-out;
-    box-shadow: inset 0 0 16px rgba(0,0,0,0.3);
-    background: rgba(0,0,0,0.05);
+    box-shadow: inset 0 0px 15px rgba(0, 0, 0, 0.08);
+    background: rgba(0,0,0,0.04);
   }
 
   .beers-window {

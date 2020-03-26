@@ -1,6 +1,6 @@
 <template>
   <div class="review-container uk-container uk-margin-bottom">
-    <div class="content uk-margin-small uk-padding uk-box-shadow-small">
+    <div class="content uk-margin-small uk-padding uk-box-shadow-medium">
       <h2>
         {{ this.review.title }}
       </h2>
