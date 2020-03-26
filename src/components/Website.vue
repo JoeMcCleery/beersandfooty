@@ -123,18 +123,6 @@ export default {
     width: calc(100% - 30px);
     transform-origin: right;
 
-    &:before {
-      width: 50px;
-      position: absolute;
-      content: '';
-      top: 0;
-      bottom: 0;
-      right: -50px;
-      background: linear-gradient(to left, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-      z-index: 1;
-      transition: right $animation-duration / 2 ease-in-out;
-    }
-
     .top-pannel {
       background-color: $beerscolour;
     }
@@ -167,13 +155,6 @@ export default {
     &.inactive {
       cursor: pointer;
       right: calc(100% - 30px);
-
-      &:hover {
-        transform: rotate3d(0,1,0,-10deg);
-        &:before {
-          right: 0;
-        }
-      }
       .header-title {
         transform: rotateZ(-90deg);
       }
@@ -189,18 +170,6 @@ export default {
     transition: left $animation-duration ease-in-out, transform $animation-duration / 2 ease-in-out;
     width: calc(100% - 30px);
     transform-origin: left;
-
-    &:before {
-      width: 50px;
-      position: absolute;
-      content: '';
-      top: 0;
-      bottom: 0;
-      left: -50px;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-      z-index: 1;
-      transition: left $animation-duration / 2 ease-in-out;
-    }
 
     .top-pannel {
       background-color: $footycolour;
@@ -234,13 +203,6 @@ export default {
     &.inactive {
       cursor: pointer;
       left: calc(100% - 30px);
-
-      &:hover {
-        transform: rotate3d(0,1,0,10deg);
-        &:before {
-          left: 0;
-        }
-      }
       .header-title {
         transform: rotateZ(90deg);
       }
