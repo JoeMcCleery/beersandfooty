@@ -94,7 +94,7 @@ export default {
     position: sticky;
     box-shadow: 0 0 15px rgba(0,0,0,0.08);
     z-index: 1;
-    transition: box-shadow $animation-duration ease-in-out, transform $animation-duration ease-in-out;
+    transition: transform $animation-duration ease-in-out;
   }
 
   .header-title {
@@ -165,7 +165,6 @@ export default {
         padding: 0;
       }
       .top-pannel {
-        box-shadow: none;
         transform: translateX(50px);
         z-index: 2;
       }
@@ -224,7 +223,6 @@ export default {
         padding: 0;
       }
       .top-pannel {
-        box-shadow: none;
         transform: translateX(-50px);
         z-index: 2;
       }
