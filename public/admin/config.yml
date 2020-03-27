@@ -22,29 +22,30 @@ collections:
         types:
           - label: 'Short Text Block'
             name: 'short-text-block'
-            widget: 'string'
+            widget: 'object'
+            fields:
+              - {label: "Short Text", name: "short-text", widget: "string"}
           - label: 'Long Text Block'
             name: 'long-text-block'
-            widget: 'text'
+            widget: 'object'
+            fields:
+              - {label: "Long Text", name: "long-text", widget: "text"}
           - label: 'Date Time Block'
             name: 'date-time-block'
-            widget: 'datetime'
-            default: ""
-            dateFormat: "DD/MM/YYYY"
-            timeFormat: "HH:mm"
-            format: "LLL"
+            widget: 'object'
+            fields:
+              - {label: "Date Time", name: "date-time", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
             name: 'image-block'
-            widget: 'image'
-            default: '/uploads/defaults/footy-default.jpg'
-          - label: 'Number Block'
-            name: 'number-block'
-            widget: 'number'
-            default: 0
-            valueType: "int"
-            min: 0
-            max: 10
-            step: 1
+            widget: 'object'
+            fields:
+              - {label: "Image", name: "image", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
+
+          - label: 'Score Block'
+            name: 'score-block'
+            widget: 'object'
+            fields:
+              - {label: 'value', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
   - name: "beerReview" # Used in routes, e.g., /admin/collections/beerReview
     label: "Beer Review" # Used in the UI
     format: "json"
@@ -62,26 +63,27 @@ collections:
         types:
           - label: 'Short Text Block'
             name: 'short-text-block'
-            widget: 'string'
+            widget: 'object'
+            fields:
+              - {label: "Short Text", name: "short-text", widget: "string"}
           - label: 'Long Text Block'
             name: 'long-text-block'
-            widget: 'text'
+            widget: 'object'
+            fields:
+              - {label: "Long Text", name: "long-text", widget: "text"}
           - label: 'Date Time Block'
             name: 'date-time-block'
-            widget: 'datetime'
-            default: ""
-            dateFormat: "DD/MM/YYYY"
-            timeFormat: "HH:mm"
-            format: "LLL"
+            widget: 'object'
+            fields:
+              - {label: "Date Time", name: "date-time", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
             name: 'image-block'
-            widget: 'image'
-            default: '/uploads/defaults/beer-default.jpg'
-          - label: 'Number Block'
-            name: 'number-block'
-            widget: 'number'
-            default: 0
-            valueType: "int"
-            min: 0
-            max: 10
-            step: 1
+            widget: 'object'
+            fields:
+              - {label: "Image", name: "image", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
+
+          - label: 'Score Block'
+            name: 'score-block'
+            widget: 'object'
+            fields:
+              - {label: 'value', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
