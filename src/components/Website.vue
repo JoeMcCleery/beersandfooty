@@ -88,39 +88,38 @@ export default {
   $footycolour: #FFB61E;
   $footycolour-darker: darken(#FFB61E, 5%);
   .top-pannel {
-    height: 30px;
+    height: 80px;
     width: 100%;
     top: 0;
     position: sticky;
     box-shadow: 0 0 15px rgba(0,0,0,0.08);
     z-index: 1;
-    transition: box-shadow $animation-duration ease-in-out;
+    transition: box-shadow $animation-duration ease-in-out, transform $animation-duration ease-in-out;
   }
 
   .header-title {
-    line-height: 30px;
+    line-height: 80px;
     color: white;
-    font-size: 22px;
+    font-size: 2em;
     font-weight: bold;
     margin: auto;
-    padding: 0 40px 0 40px;
-    transition: transform $animation-duration / 2 ease-in-out;
+    transition: transform $animation-duration / 2 ease-in-out, font-size $animation-duration / 2 ease-in-out, padding $animation-duration / 2 ease-in-out;
+    padding: 0 40px;
   }
 
   .window-content {
-    height: calc(100% - 30px);
+    height: calc(100% - 80px);
     overflow-x: hidden;
     transition: transform $animation-duration ease-in-out;
   }
 
   .beers-window {
-    overflow: hidden;
     height: 100%;
     position: absolute;
     right: 50%;
     background-color: $beerscolour;
     transition: right $animation-duration ease-in-out, transform $animation-duration / 2 ease-in-out;
-    width: calc(100% - 30px);
+    width: 100%;
     transform-origin: right;
 
     .top-pannel {
@@ -128,9 +127,8 @@ export default {
     }
 
     .header-title {
-      transform-origin: calc(100% - 15px);
+      transform-origin: center;
       float: right;
-      background: url("../assets/leftarrow.svg") no-repeat calc(100% + 1px) 3px;
     }
 
     .window-content {
@@ -139,12 +137,17 @@ export default {
     }
 
     &.active {
-      right: calc(30px);
+      right: 0;
       transform: rotate3d(0,0,0,0deg);
+      z-index: 0;
 
       .header-title {
-        transform: translateX(calc(-50vw + 50% + 15px));
+        transform: translateX(calc(-50vw + 50%));
         background: transparent;
+      }
+
+      .top-pannel {
+        transform: translateX(0);
       }
 
       .window-content {
@@ -154,24 +157,28 @@ export default {
 
     &.inactive {
       cursor: pointer;
-      right: calc(100% - 30px);
+      right: 100%;
+      z-index: 1;
       .header-title {
         transform: rotateZ(-90deg);
+        font-size: 1em;
+        padding: 0;
       }
       .top-pannel {
         box-shadow: none;
+        transform: translateX(50px);
+        z-index: 2;
       }
     }
   }
 
   .footy-window {
-    overflow: hidden;
     height: 100%;
     position: absolute;
     left: 50%;
     background-color: $footycolour;
     transition: left $animation-duration ease-in-out, transform $animation-duration / 2 ease-in-out;
-    width: calc(100% - 30px);
+    width: 100%;
     transform-origin: left;
 
     .top-pannel {
@@ -179,9 +186,8 @@ export default {
     }
 
     .header-title {
-      transform-origin: 15px;
+      transform-origin: center;
       float: left;
-      background: url("../assets/rightarrow.svg") no-repeat 4px 3px;
     }
 
     .window-content {
@@ -190,12 +196,17 @@ export default {
     }
 
     &.active {
-      left: calc(30px);
+      left: 0;
       transform: rotate3d(0,0,0,0deg);
+      z-index: 0;
 
       .header-title {
-        transform: translateX(calc(50vw - 50% - 15px));
+        transform: translateX(calc(50vw - 50%));
         background: transparent;
+      }
+
+      .top-pannel {
+        transform: translateX(0);
       }
 
       .window-content {
@@ -205,12 +216,17 @@ export default {
 
     &.inactive {
       cursor: pointer;
-      left: calc(100% - 30px);
+      left: 100%;
+      z-index: 1;
       .header-title {
         transform: rotateZ(90deg);
+        font-size: 1em;
+        padding: 0;
       }
       .top-pannel {
         box-shadow: none;
+        transform: translateX(-50px);
+        z-index: 2;
       }
     }
   }

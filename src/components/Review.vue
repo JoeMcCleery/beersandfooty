@@ -5,9 +5,13 @@
         {{ this.review.title }}
       </h2>
       <hr class="uk-divider-small"/>
-      <p>
-        {{ this.getShortText() }}
-      </p>
+      <div v-for="(block, idx) in this.contentBlocks()" :key="idx" :class="block.type">
+        <div v-if="block.type === 'shortText'">{{ block.value }}</div>
+        <div v-if="block.type === 'longText'">{{ block.value }}</div>
+        <div v-if="block.type === 'dateTime'">{{ block.value }}</div>
+        <img v-if="block.type === 'image'" :data-src="block.value" uk-img/>
+        <div v-if="block.type === 'score'">{{ block.value }}/10</div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,17 +23,8 @@ export default {
     review: Object
   },
   methods: {
-    getContentBlocks: function () {
+    contentBlocks: function () {
       return this.review.contentBlocks
-    },
-    getShortText: function () {
-      let body = ''
-      this.getContentBlocks().forEach((block) => {
-        if (block.type === 'shortText') {
-          body += block.value + ' '
-        }
-      })
-      return body
     }
   }
 }
@@ -43,6 +38,13 @@ export default {
     .content {
       background-color: white;
       height: auto;
+    }
+
+    // Content Blocks
+    .image {
+      img {
+        max-height: 400px;
+      }
     }
   }
 </style>
