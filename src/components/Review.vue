@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getContentBlocks: function () {
-      return this.contentBlocks
+      return this.review.contentBlocks
     },
     getShortText: function () {
       let body = ''
