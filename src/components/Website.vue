@@ -17,7 +17,7 @@
       </div>
       <div class="window-content">
         <!-- Footy Content -->
-        <section class="uk-section uk-container">
+        <section class="uk-section-xsmall uk-container">
           <review v-for="(review, idx) in this.footyReviews" :key="idx" :review="review"/>
         </section>
       </div>
