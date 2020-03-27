@@ -6,6 +6,10 @@
     {
       "type": "shortText",
       "value": "Shit's fucked."
+    },
+    {
+      "type": "score",
+      "value": 0
     }
   ]
 }
