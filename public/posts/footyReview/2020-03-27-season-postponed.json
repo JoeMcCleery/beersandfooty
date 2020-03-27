@@ -1,0 +1,11 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "title": "Season Postponed",
+  "contentBlocks": [
+    {
+      "type": "shortTextBlock",
+      "value": "Shit's Fucked."
+    }
+  ]
+}
