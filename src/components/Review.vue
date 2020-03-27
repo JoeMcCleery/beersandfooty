@@ -6,7 +6,7 @@
       </h2>
       <hr class="uk-divider-small"/>
       <p>
-<!--        {{ this.review.body }}-->
+        {{ this.getBody() }}
       </p>
     </div>
   </div>
@@ -20,8 +20,11 @@ export default {
   },
   methods: {
     getBody: function () {
-      let contentList = this.review.contentBlocks
-      return contentList
+      let body = ''
+      this.review.contentBlocks.forEach((block) => {
+        body += block.value
+      })
+      return body
     }
   }
 }

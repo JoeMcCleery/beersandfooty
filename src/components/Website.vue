@@ -28,10 +28,9 @@
 <script>
 import Review from './Review'
 import $ from 'jquery'
-
 const beerContext = require.context('../../public/posts/beerReview/', true, /\.json$/)
 let beerReviews = []
-beerContext.keys().forEach(function (index, key) {
+beerContext.keys().forEach(function (key) {
   beerReviews.push(beerContext(key))
 })
 const footyContext = require.context('../../public/posts/footyReview/', true, /\.json$/)
