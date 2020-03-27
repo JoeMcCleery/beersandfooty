@@ -6,7 +6,7 @@
       </h2>
       <hr class="uk-divider-small"/>
       <p>
-        {{ this.review.body }}
+<!--        {{ this.review.body }}-->
       </p>
     </div>
   </div>
@@ -17,6 +17,12 @@ export default {
   name: 'Review',
   props: {
     review: Object
+  },
+  methods: {
+    getBody: function () {
+      let contentList = this.review.contentBlocks
+      return contentList
+    }
   }
 }
 </script>

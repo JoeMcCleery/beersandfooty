@@ -14,38 +14,37 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
-      - {label: "PinnedPost", name: "pinned-post", widget: "boolean", default: false}
+      - {label: "PinnedPost", name: "pinnedPost", widget: "boolean", default: false}
       - {label: "Title", name: "title", widget: "string"}
       - label: 'Content Blocks'
-        name: 'content-blocks'
+        name: 'contentBlocks'
         widget: 'list'
         types:
           - label: 'Short Text Block'
-            name: 'short-text-block'
+            name: 'shortTextBlock'
             widget: 'object'
             fields:
-              - {label: "Short Text", name: "short-text", widget: "string"}
+              - {label: "Short Text", name: "value", widget: "string"}
           - label: 'Long Text Block'
-            name: 'long-text-block'
+            name: 'longTextBlock'
             widget: 'object'
             fields:
-              - {label: "Long Text", name: "long-text", widget: "text"}
+              - {label: "Long Text", name: "value", widget: "text"}
           - label: 'Date Time Block'
-            name: 'date-time-block'
+            name: 'dateTimeBlock'
             widget: 'object'
             fields:
-              - {label: "Date Time", name: "date-time", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
+              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
-            name: 'image-block'
+            name: 'imageBlock'
             widget: 'object'
             fields:
-              - {label: "Image", name: "image", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
-
+              - {label: "Image", name: "value", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
           - label: 'Score Block'
-            name: 'score-block'
+            name: 'scoreBlock'
             widget: 'object'
             fields:
-              - {label: 'Score', name: 'score', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
+              - {label: 'Score', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
   - name: "beerReview" # Used in routes, e.g., /admin/collections/beerReview
     label: "Beer Review" # Used in the UI
     format: "json"
@@ -55,35 +54,34 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
-      - {label: "PinnedPost", name: "pinned-post", widget: "boolean", default: false}
+      - {label: "PinnedPost", name: "pinnedPost", widget: "boolean", default: false}
       - {label: "Title", name: "title", widget: "string"}
       - label: 'Content Blocks'
-        name: 'content-blocks'
+        name: 'contentBlocks'
         widget: 'list'
         types:
           - label: 'Short Text Block'
-            name: 'short-text-block'
+            name: 'shortTextBlock'
             widget: 'object'
             fields:
-              - {label: "Short Text", name: "short-text", widget: "string"}
+              - {label: "Short Text", name: "value", widget: "string"}
           - label: 'Long Text Block'
-            name: 'long-text-block'
+            name: 'longTextBlock'
             widget: 'object'
             fields:
-              - {label: "Long Text", name: "long-text", widget: "text"}
+              - {label: "Long Text", name: "value", widget: "text"}
           - label: 'Date Time Block'
-            name: 'date-time-block'
+            name: 'dateTimeBlock'
             widget: 'object'
             fields:
-              - {label: "Date Time", name: "date-time", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
+              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
-            name: 'image-block'
+            name: 'imageBlock'
             widget: 'object'
             fields:
-              - {label: "Image", name: "image", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
-
+              - {label: "Image", name: "value", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
           - label: 'Score Block'
-            name: 'score-block'
+            name: 'scoreBlock'
             widget: 'object'
             fields:
-              - {label: 'Score', name: 'score', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
+              - {label: 'Score', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
