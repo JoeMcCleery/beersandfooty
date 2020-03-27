@@ -1,10 +1,17 @@
 {
+  "body": "Shit's fucked",
   "layout": "review",
-  "date": "2020-03-22T08:20:00.000Z",
-  "title": "Season Postponed",
   "thumbnail": "/uploads/img_20200208_083238_01.jpg",
+  "date": "2020-03-22T08:20:00.000Z",
   "team-home": "none",
-  "team-away": "none",
+  "pinned-post": false,
+  "title": "Season Postponed",
+  "content-blocks": [
+    {
+      "type": "short-text-block",
+      "short-text": "Shits Fucked"
+    }
+  ],
   "rating": 0,
-  "body": "Shit's fucked"
+  "team-away": "none"
 }
