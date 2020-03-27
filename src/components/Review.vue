@@ -6,7 +6,7 @@
       </h2>
       <hr class="uk-divider-small"/>
       <p>
-        {{ this.getBody() }}
+        {{ this.getShortText() }}
       </p>
     </div>
   </div>
@@ -19,10 +19,15 @@ export default {
     review: Object
   },
   methods: {
-    getBody: function () {
+    getContentBlocks: function () {
+      return this.contentBlocks
+    },
+    getShortText: function () {
       let body = ''
-      this.review.contentBlocks.forEach((block) => {
-        body += block.value
+      this.getContentBlocks().forEach((block) => {
+        if (block.type === 'shortText') {
+          body += block.value + ' '
+        }
       })
       return body
     }

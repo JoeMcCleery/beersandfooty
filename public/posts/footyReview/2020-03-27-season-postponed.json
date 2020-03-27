@@ -4,7 +4,7 @@
   "title": "Season Postponed",
   "contentBlocks": [
     {
-      "type": "shortTextBlock",
+      "type": "shortText",
       "value": "Shit's Fucked."
     }
   ]

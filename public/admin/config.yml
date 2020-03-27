@@ -21,27 +21,27 @@ collections:
         widget: 'list'
         types:
           - label: 'Short Text Block'
-            name: 'shortTextBlock'
+            name: 'shortText'
             widget: 'object'
             fields:
               - {label: "Short Text", name: "value", widget: "string"}
           - label: 'Long Text Block'
-            name: 'longTextBlock'
+            name: 'longText'
             widget: 'object'
             fields:
               - {label: "Long Text", name: "value", widget: "text"}
           - label: 'Date Time Block'
-            name: 'dateTimeBlock'
+            name: 'dateTime'
             widget: 'object'
             fields:
               - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
-            name: 'imageBlock'
+            name: 'image'
             widget: 'object'
             fields:
               - {label: "Image", name: "value", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
           - label: 'Score Block'
-            name: 'scoreBlock'
+            name: 'score'
             widget: 'object'
             fields:
               - {label: 'Score', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
@@ -61,27 +61,27 @@ collections:
         widget: 'list'
         types:
           - label: 'Short Text Block'
-            name: 'shortTextBlock'
+            name: 'shortText'
             widget: 'object'
             fields:
               - {label: "Short Text", name: "value", widget: "string"}
           - label: 'Long Text Block'
-            name: 'longTextBlock'
+            name: 'longText'
             widget: 'object'
             fields:
               - {label: "Long Text", name: "value", widget: "text"}
           - label: 'Date Time Block'
-            name: 'dateTimeBlock'
+            name: 'dateTime'
             widget: 'object'
             fields:
               - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
-            name: 'imageBlock'
+            name: 'image'
             widget: 'object'
             fields:
               - {label: "Image", name: "value", widget: "image", default: '/uploads/defaults/beer-default.jpg'}
           - label: 'Score Block'
-            name: 'scoreBlock'
+            name: 'score'
             widget: 'object'
             fields:
               - {label: 'Score', name: 'value', widget: 'number', default: 0, valueType: "int", min: 0, max: 10, step: 1}
