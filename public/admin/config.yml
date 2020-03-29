@@ -34,7 +34,7 @@ collections:
             name: 'dateTime'
             widget: 'object'
             fields:
-              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
+              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD:MM:YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
             name: 'image'
             widget: 'object'
@@ -74,7 +74,7 @@ collections:
             name: 'dateTime'
             widget: 'object'
             fields:
-              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD/MM/YYYY", timeFormat: "HH:mm", format: "LLL"}
+              - {label: "Date Time", name: "value", widget: "datetime", default: "", dateFormat: "DD:MM:YYYY", timeFormat: "HH:mm", format: "LLL"}
           - label: 'Image Block'
             name: 'image'
             widget: 'object'
