@@ -22,6 +22,9 @@
         </section>
       </div>
     </div>
+    <div class="uk-position-bottom-center footer">
+      <a class="uk-button uk-button-secondary uk-button-small uk-box-shadow-small" href="mailto: contact@beersandfooty.com?subject=BeersAndFooty.com Feedback" title="Send Feedback Email">Give Us Some Feedback.</a>
+    </div>
   </div>
 </template>
 
@@ -87,6 +90,16 @@ export default {
   $beerscolour-darker: darken(#F9690E, 5%);
   $footycolour: #FFB61E;
   $footycolour-darker: darken(#FFB61E, 5%);
+  .footer {
+    z-index: 100;
+    text-align: center;
+    width: 100%;
+    a {
+      padding-top: 0.25em;
+      border-radius: 25px 25px 0 0;
+    }
+  }
+
   .top-pannel {
     height: 80px;
     width: 100%;

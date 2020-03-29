@@ -1,5 +1,7 @@
 // 1. Your custom variables and variable overwrites.
-//$global-link-color: #DA7D02;
+$button-secondary-background: rgba(0,0,0,0.1);
+$button-secondary-hover-background: rgba(0,0,0,0.333);
+$button-secondary-active-background: rgba(0,0,0,0.666);
 
 // 2. Import default variables and available mixins.
 @import "../../node_modules/uikit/src/scss/variables.scss";
@@ -7,6 +9,7 @@
 
 // 3. Your custom mixin overwrites.
 //@mixin hook-card() { color: #fff; }
+
 
 // 4. Import UIkit.
 @import "../../node_modules/uikit/src/scss/uikit.scss";
