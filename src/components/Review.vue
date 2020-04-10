@@ -10,7 +10,7 @@
         <div v-if="block.type === 'longText'">{{ block.value }}</div>
         <div v-if="block.type === 'dateTime'">{{ block.value }}</div>
         <img v-if="block.type === 'image'" :data-src="block.value" uk-img/>
-        <div v-if="block.type === 'score'">{{ block.value }}/10</div>
+        <div v-if="block.type === 'score'" class="uk-padding">{{ block.value }}/10</div>
       </div>
     </div>
   </div>
@@ -33,11 +33,19 @@ export default {
 <style lang="scss" scoped>
   .review-container {
     z-index: 0;
-    text-align: center;
+
+    h2 {
+      text-align: center;
+    }
+
+    hr {
+      text-align: center;
+    }
 
     .content {
       background-color: white;
       height: auto;
+      text-align: left;
     }
 
     // Content Blocks
@@ -46,5 +54,16 @@ export default {
         max-height: 400px;
       }
     }
+
+    .score {
+      font-weight: bold;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    .shortText {
+      text-align: center;
+    }
+
   }
 </style>
