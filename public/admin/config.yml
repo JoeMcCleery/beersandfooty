@@ -15,7 +15,7 @@ collections:
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "review"}
       - {label: "PinnedPost", name: "pinnedPost", widget: "boolean", default: false}
-      - {label: "PublishDate", name: "publishDate", widget: "datetime", default: "", dateFormat: "x", timeFormat: "x", format: "x"}
+      - {label: "PublishDate", name: "publishDate", widget: "datetime", default: "", dateFormat: "DD.MM.YYYY", timeFormat: "HH:mm", format: "x"}
       - {label: "Title", name: "title", widget: "string"}
       - label: 'Content Blocks'
         name: 'contentBlocks'
