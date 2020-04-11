@@ -11,6 +11,10 @@
     {
       "type": "score",
       "value": 9
+    },
+    {
+      "type": "image",
+      "value": "/uploads/vpa.png"
     }
   ]
 }
