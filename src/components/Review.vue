@@ -50,6 +50,7 @@ export default {
 
     // Content Blocks
     .image {
+      text-align: center;
       img {
         max-height: 400px;
       }
