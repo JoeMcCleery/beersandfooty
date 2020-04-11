@@ -7,7 +7,7 @@
       <div class="window-content">
         <!-- Beers Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.beerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <review v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="window-content">
         <!-- Footy Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.footyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <review v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
@@ -31,6 +31,7 @@
 <script>
 import Review from './Review'
 import $ from 'jquery'
+import _ from 'lodash'
 const beerContext = require.context('../../public/posts/beerReview/', true, /\.json$/)
 let beerReviews = []
 beerContext.keys().forEach(function (key) {
@@ -79,6 +80,14 @@ export default {
     return {
       footyReviews,
       beerReviews
+    }
+  },
+  computed: {
+    orderedBeerReviews: function () {
+      return _.orderBy(this.beerReviews, 'publishDate', 'desc')
+    },
+    orderedFootyReviews: function () {
+      return _.orderBy(this.footyReviews, 'publishDate', 'desc')
     }
   }
 }
