@@ -7,7 +7,7 @@
       <div class="window-content">
         <!-- Beers Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.beerReviews" :key="review.publishDate + review.title" :review="review"/>
+          <review v-for="review in this.beerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="window-content">
         <!-- Footy Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.footyReviews" :key="review.publishDate + review.title" :review="review"/>
+          <review v-for="review in this.footyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
