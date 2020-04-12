@@ -54,6 +54,15 @@ export default {
       img {
         max-height: 400px;
       }
+      + .shortText, + .longText, + .dateTime {
+        margin-top: 1em;
+      }
+    }
+
+    .longText, .shortText, .dateTime {
+      + .image {
+        margin-top: 1em;
+      }
     }
 
     .score {
