@@ -8,6 +8,10 @@
       "value": "Shit's fucked."
     },
     {
+      "type": "image",
+      "value": "/uploads/no_footy.jpg"
+    },
+    {
       "type": "score",
       "value": 0
     }
