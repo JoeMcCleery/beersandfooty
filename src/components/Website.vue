@@ -7,7 +7,7 @@
       <div class="window-content">
         <!-- Beers Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <review class="beer-review" v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="window-content">
         <!-- Footy Content -->
         <section class="uk-section uk-container">
-          <review v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <review class="footy-review" v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
     </div>
@@ -32,6 +32,7 @@
 import Review from './Review'
 import $ from 'jquery'
 import _ from 'lodash'
+require('jquery-touchswipe')
 const beerContext = require.context('../../public/posts/beerReview/', true, /\.json$/)
 let beerReviews = []
 beerContext.keys().forEach(function (key) {
@@ -47,9 +48,18 @@ $(document).ready(function () {
   let beers = $('.beers-window')
   footy.click(togglefooty)
   beers.click(togglebeers)
+  footy.on('swiperight', togglebeers)
+  $('.window-content').swipe({
+    swipeLeft: function () {
+      togglefooty()
+    },
+    swipeRight: function () {
+      togglebeers()
+    }
+  })
 })
 
-function togglefooty () {
+function togglefooty (event) {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
   if (!footy.hasClass('active')) {
@@ -60,7 +70,7 @@ function togglefooty () {
   }
 }
 
-function togglebeers () {
+function togglebeers (event) {
   let footy = $('.footy-window')
   let beers = $('.beers-window')
   if (!beers.hasClass('active')) {
