@@ -54,12 +54,12 @@ export default {
       img {
         max-height: 400px;
       }
-      + .shortText, + .longText, + .dateTime {
+      + .shortText, + .longText, + .dateTime, + .image {
         margin-top: 1em;
       }
     }
 
-    .longText, .shortText, .dateTime {
+    .longText, .shortText, .dateTime, .image {
       + .image {
         margin-top: 1em;
       }
