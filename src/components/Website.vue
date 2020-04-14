@@ -150,6 +150,7 @@ export default {
   }
 
   .beers-window {
+    cursor: pointer;
     height: 100%;
     position: absolute;
     right: 50%;
@@ -173,6 +174,7 @@ export default {
     }
 
     &.active {
+      cursor: auto;
       right: 0;
       transform: rotate3d(0,0,0,0deg);
       z-index: 0;
@@ -192,7 +194,6 @@ export default {
     }
 
     &.inactive {
-      cursor: pointer;
       right: 100%;
       z-index: 1;
       .header-title {
@@ -208,6 +209,7 @@ export default {
   }
 
   .footy-window {
+    cursor: pointer;
     height: 100%;
     position: absolute;
     left: 50%;
@@ -231,6 +233,7 @@ export default {
     }
 
     &.active {
+      cursor: auto;
       left: 0;
       transform: rotate3d(0,0,0,0deg);
       z-index: 0;
