@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import Review from './Review'
 import $ from 'jquery'
 import _ from 'lodash'
 require('jquery-touchswipe')
@@ -82,7 +81,7 @@ function togglefooty () {
 export default {
   name: 'Website',
   components: {
-    Review
+    Review: () => import('./Review')
   },
   data () {
     return {
