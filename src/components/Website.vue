@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="beers-window" @click="togglebeers">
+    <div class="beers-window">
       <div class="top-pannel">
         <h1 class="header-title">BEERS</h1>
       </div>
@@ -11,7 +11,7 @@
         </section>
       </div>
     </div>
-    <div class="footy-window" @click="togglefooty">
+    <div class="footy-window">
       <div class="top-pannel">
         <h1 class="header-title">FOOTY</h1>
       </div>
@@ -44,15 +44,40 @@ footyContext.keys().forEach(function (key) {
   footyReviews.push(footyContext(key))
 })
 $(document).ready(function () {
+  $('.beers-window').click(togglebeers)
+  $('.footy-window').click(togglefooty)
   $('.window-content').swipe({
-    swipeLeft: function () {
-      this.togglefooty()
+    swipeRight: function (e) {
+      togglebeers()
     },
-    swipeRight: function () {
-      this.togglebeers()
+    swipeLeft: function (e) {
+      togglefooty()
     }
   })
 })
+
+function togglebeers () {
+  let footy = $('.footy-window')
+  let beers = $('.beers-window')
+  if (!beers.hasClass('active')) {
+    window.history.pushState('', '', '/beers')
+    beers.removeClass('inactive')
+    beers.addClass('active')
+    footy.removeClass('active')
+    footy.addClass('inactive')
+  }
+}
+function togglefooty () {
+  let footy = $('.footy-window')
+  let beers = $('.beers-window')
+  if (!footy.hasClass('active')) {
+    window.history.pushState('', '', '/footy')
+    footy.removeClass('inactive')
+    footy.addClass('active')
+    beers.removeClass('active')
+    beers.addClass('inactive')
+  }
+}
 
 export default {
   name: 'Website',
@@ -65,13 +90,6 @@ export default {
       beerReviews
     }
   },
-  mounted () {
-    if (window.location.pathname === '/beers') {
-      this.togglebeers()
-    } else if (window.location.pathname === '/footy') {
-      this.togglefooty()
-    }
-  },
   computed: {
     orderedBeerReviews: function () {
       return _.orderBy(this.beerReviews, 'publishDate', 'desc')
@@ -80,28 +98,11 @@ export default {
       return _.orderBy(this.footyReviews, 'publishDate', 'desc')
     }
   },
-  methods: {
-    togglebeers: function (event) {
-      let footy = $('.footy-window')
-      let beers = $('.beers-window')
-      if (!beers.hasClass('active')) {
-        this.$router.push('/beers')
-        beers.removeClass('inactive')
-        beers.addClass('active')
-        footy.removeClass('active')
-        footy.addClass('inactive')
-      }
-    },
-    togglefooty: function (event) {
-      let footy = $('.footy-window')
-      let beers = $('.beers-window')
-      if (!footy.hasClass('active')) {
-        this.$router.push('/footy')
-        footy.removeClass('inactive')
-        footy.addClass('active')
-        beers.removeClass('active')
-        beers.addClass('inactive')
-      }
+  mounted () {
+    if (window.location.pathname === '/beers') {
+      togglebeers()
+    } else if (window.location.pathname === '/footy') {
+      togglefooty()
     }
   }
 }
