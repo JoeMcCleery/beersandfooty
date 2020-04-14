@@ -11,7 +11,9 @@ Vue.use(VueRouter)
 
 // Define Routes
 const routes = [
-  { path: '/', component: Website }
+  { path: '/', component: Website },
+  { path: '/beers', component: Website },
+  { path: '/footy', component: Website }
 ]
 
 // Create Router Instance
