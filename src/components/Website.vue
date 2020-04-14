@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="uk-position-bottom-center footer">
-      <a class="uk-button uk-button-secondary uk-button-small uk-box-shadow-small" href="mailto: contact@beersandfooty.com?subject=BeersAndFooty.com Feedback" title="Send Feedback Email">Give Us Some Feedback.</a>
+      <a class="uk-button uk-button-secondary uk-button-small uk-box-shadow-small" href="mailto:contact@beersandfooty.com?subject=Feedback" title="Send Feedback Email">Give Us Some Feedback.</a>
     </div>
   </div>
 </template>
