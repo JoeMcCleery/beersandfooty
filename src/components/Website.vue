@@ -44,7 +44,14 @@ footyContext.keys().forEach(function (key) {
   footyReviews.push(footyContext(key))
 })
 $(document).ready(function () {
-
+  $('.window-content').swipe({
+    swipeLeft: function () {
+      this.togglefooty()
+    },
+    swipeRight: function () {
+      this.togglebeers()
+    }
+  })
 })
 
 export default {
@@ -64,14 +71,6 @@ export default {
     } else if (window.location.pathname === '/footy') {
       this.togglefooty()
     }
-    $('.window-content').swipe({
-      swipeLeft: function () {
-        this.togglefooty()
-      },
-      swipeRight: function () {
-        this.togglebeers()
-      }
-    })
   },
   computed: {
     orderedBeerReviews: function () {
