@@ -6,7 +6,7 @@
       </div>
       <div class="window-content">
         <!-- Beers Content -->
-        <section class="uk-section uk-container" uk-scrollspy="target: > div; cls: uk-animation-fade;">
+        <section class="uk-section uk-container">
           <review class="beer-review" v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="window-content">
         <!-- Footy Content -->
-        <section class="uk-section uk-container" uk-scrollspy="target: > div; cls: uk-animation-fade;">
+        <section class="uk-section uk-container">
           <review class="footy-review" v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
         </section>
       </div>
