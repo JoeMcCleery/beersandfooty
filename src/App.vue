@@ -14,7 +14,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./scss/uikit";
 html, body {
   min-height: 100vh;
   perspective: 550px;

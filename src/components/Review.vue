@@ -31,6 +31,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .beer-review .content {
+    hr:after {
+      border-color: $beerscolour;
+    }
+  }
+  .footy-review .content {
+    hr:after {
+      border-color: $footycolour;
+    }
+  }
+
   .review-container {
     z-index: 0;
 
@@ -46,6 +57,7 @@ export default {
       background-color: white;
       height: auto;
       text-align: left;
+      border-radius: $border-radius;
     }
 
     // Content Blocks

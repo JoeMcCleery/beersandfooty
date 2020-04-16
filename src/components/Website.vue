@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="beers-window">
-      <div class="top-pannel uk-box-shadow-medium">
+      <div class="top-pannel uk-box-shadow-small">
         <h1 class="header-title">BEERS</h1>
       </div>
       <div class="window-content">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="footy-window">
-      <div class="top-pannel uk-box-shadow-medium">
+      <div class="top-pannel uk-box-shadow-small">
         <h1 class="header-title">FOOTY</h1>
       </div>
       <div class="window-content">
@@ -112,11 +112,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $animation-duration: 1000ms;
-  $beerscolour: #F9690E;
-  $beerscolour-darker: darken(#F9690E, 5%);
-  $footycolour: #FFB61E;
-  $footycolour-darker: darken(#FFB61E, 5%);
   .footer {
     z-index: 100;
     text-align: center;
@@ -133,7 +128,7 @@ export default {
     top: 0;
     position: sticky;
     z-index: 1;
-    transition: transform $animation-duration ease-in-out;
+    transition: transform $animation-duration / 2 ease-in-out $animation-duration / 2;
   }
 
   .header-title {
