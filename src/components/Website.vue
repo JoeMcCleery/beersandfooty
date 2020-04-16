@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="beers-window">
-      <div class="top-pannel uk-box-shadow-large">
+      <div class="top-pannel uk-box-shadow-medium">
         <h1 class="header-title">BEERS</h1>
       </div>
       <div class="window-content">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="footy-window">
-      <div class="top-pannel uk-box-shadow-large">
+      <div class="top-pannel uk-box-shadow-medium">
         <h1 class="header-title">FOOTY</h1>
       </div>
       <div class="window-content">

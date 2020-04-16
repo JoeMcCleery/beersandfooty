@@ -1,6 +1,6 @@
 <template>
   <div class="review-container">
-    <div class="content uk-margin uk-padding uk-box-shadow-large">
+    <div class="content uk-margin uk-padding uk-box-shadow-small">
       <h2>
         {{ this.review.title }}
       </h2>
