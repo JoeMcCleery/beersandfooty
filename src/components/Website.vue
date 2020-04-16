@@ -7,7 +7,9 @@
       <div class="window-content">
         <!-- Beers Content -->
         <section class="uk-section uk-container">
-          <review class="beer-review" v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid="masonry: true">
+            <review class="beer-review" v-for="review in this.orderedBeerReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          </div>
         </section>
       </div>
     </div>
@@ -18,7 +20,9 @@
       <div class="window-content">
         <!-- Footy Content -->
         <section class="uk-section uk-container">
-          <review class="footy-review" v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid="masonry: true">
+            <review class="footy-review" v-for="review in this.orderedFootyReviews" :key="review.publishDate + review.title" :review="review" :id="review.title"/>
+          </div>
         </section>
       </div>
     </div>
