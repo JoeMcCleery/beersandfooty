@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="beers-window">
-      <div class="top-pannel">
+      <div class="top-pannel uk-box-shadow-large">
         <h1 class="header-title">BEERS</h1>
       </div>
       <div class="window-content">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="footy-window">
-      <div class="top-pannel">
+      <div class="top-pannel uk-box-shadow-large">
         <h1 class="header-title">FOOTY</h1>
       </div>
       <div class="window-content">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="uk-position-bottom-center footer">
-      <a class="uk-button uk-button-secondary uk-button-small uk-box-shadow-small" href="mailto:contact@beersandfooty.com?subject=Feedback" title="Send Feedback Email">Give Us Some Feedback.</a>
+      <a class="uk-button uk-button-secondary uk-button-small" href="mailto:contact@beersandfooty.com?subject=Feedback" title="Send Feedback Email">Give Us Some Feedback.</a>
     </div>
   </div>
 </template>
@@ -132,7 +132,6 @@ export default {
     width: 100%;
     top: 0;
     position: sticky;
-    box-shadow: 0 0 15px rgba(0,0,0,0.08);
     z-index: 1;
     transition: transform $animation-duration ease-in-out;
   }
