@@ -11,6 +11,10 @@
     {
       "type": "score",
       "value": 8
+    },
+    {
+      "type": "image",
+      "value": "/uploads/balter-ipa.png"
     }
   ]
 }
