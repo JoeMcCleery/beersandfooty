@@ -2,11 +2,15 @@
   "layout": "review",
   "pinnedPost": false,
   "publishDate": "1587388618225",
-  "title": "Alby",
+  "title": "Alby Draught",
   "contentBlocks": [
     {
       "type": "longText",
       "value": "We all know its true, WA has the best greens, and by that i mean barley, but no leaf thanks. Alby is a good classic draught beer at a good price. With an alcohol content of 4.2% you'll probably need a bit of 4.20% to get you a bit messed up, but that's okay. If people catch you with this in your hand it's nothing to be ashamed of."
+    },
+    {
+      "type": "image",
+      "value": "/uploads/alby.jpg"
     },
     {
       "type": "score",
