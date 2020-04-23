@@ -9,12 +9,12 @@
       "value": "A balanced, refreshing and just drinkable pale ale. Has a lingering aftertaste due to the high levels of dank minerals in the water. Nothing outstanding and nothing horrible reaching the perfect balance of average. "
     },
     {
-      "type": "score",
-      "value": 4
-    },
-    {
       "type": "image",
       "value": "/uploads/jdh-pale-ale.jpg"
+    },
+    {
+      "type": "score",
+      "value": 4
     }
   ]
 }
