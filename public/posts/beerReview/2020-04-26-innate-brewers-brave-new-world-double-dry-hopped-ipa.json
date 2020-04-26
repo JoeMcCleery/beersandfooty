@@ -1,0 +1,20 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "publishDate": "1587874466238",
+  "title": "Innate Brewers - \"Brave New World\" (Double Dry Hopped IPA)",
+  "contentBlocks": [
+    {
+      "type": "longText",
+      "value": "Picture this, the year is 2389, the world is in a dark and perilous state. Beers taste like water and AFL tactics have degraded into a game more closely resembling Curling. Two beer smashers travel back in time search of delicious beer recipe and a more glorious gamestyle for AFL.\n\nCaptain Beers and his sidekick space cadet journey through the local pubs of Australia drinking the kegs dry until they find the most delicious beer:\n\n\"Brave New World\". \n\nCaptain Beers :\"Aww yeah this'll do 5.8% and bit of El dorado hops\"\nSpace Cadet: \"We still need to find a way to fix football\"\nMalcom Blight: \"Hold my Beer\"\n"
+    },
+    {
+      "type": "image",
+      "value": "/uploads/bnw.jpg"
+    },
+    {
+      "type": "score",
+      "value": 9
+    }
+  ]
+}
