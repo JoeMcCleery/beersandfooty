@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="uk-text-center">Footy Page</h2>
+    <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle">
+      <h1 class="uk-text-center">Footy Page</h1>
+    </div>
     <div class="uk-container uk-flex uk-flex-center">
       <review />
     </div>
