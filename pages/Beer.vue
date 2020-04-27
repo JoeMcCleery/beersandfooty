@@ -1,12 +1,18 @@
 <template>
   <div>
-    beer page
+    <h2 class="uk-text-center">Beer Page</h2>
+    <div class="uk-container uk-flex uk-flex-center">
+      <review />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Beer'
+  name: 'Beer',
+  components: {
+    Review: () => import('~/components/Review.vue')
+  }
 }
 </script>
 

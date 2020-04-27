@@ -6,7 +6,7 @@
       uk-toggle
       uk-icon="menu"
     ></a>
-    <span>{{ title }}</span>
+    <span class="navbar-title">{{ title }}</span>
     <div id="offcanvas-slide" uk-offcanvas>
       <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-default">

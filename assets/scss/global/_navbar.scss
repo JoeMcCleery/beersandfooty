@@ -4,8 +4,13 @@
   width: 100%;
   height: $navbar-height;
   background-color: white;
+  z-index: 100;
   .uk-button {
     padding: 0 10px;
     width: 40px;
+    left: 0;
+  }
+  .navbar-title {
+    line-height: $navbar-height;
   }
 }
