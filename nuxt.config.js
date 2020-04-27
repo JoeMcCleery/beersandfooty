@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: '@/assets/scss/main.scss', mode: 'client' }],
+  css: [{ src: '@/assets/scss/global.scss', mode: 'client' }],
   /*
    ** Plugins to load before mounting the App
    */
@@ -50,6 +50,12 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  pwa: {
+    manifest: {
+      name: process.env.SITE_TITLE || '',
+      lang: 'en'
+    }
+  },
   /*
    ** Build configuration
    */

@@ -1,16 +1,13 @@
 <template>
-  <div class="uk-text-center">
-    <h1>Beer Reviews</h1>
+  <div>
+    beer page
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Beer',
-  head() {
-    return {
-      title: process.env.SITE_TITLE + ' - Beer Reviews'
-    }
-  }
+  name: 'Beer'
 }
 </script>
+
+<style src="assets/scss/pages/beer.scss" lang="scss"></style>

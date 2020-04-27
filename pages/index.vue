@@ -1,16 +1,13 @@
 <template>
-  <div class="uk-text-center">
-    <h1>Beers and Footy</h1>
+  <div>
+    home page
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LandingPage',
-  head() {
-    return {
-      title: process.env.SITE_TITLE + ' - Home'
-    }
-  }
+  name: 'Home'
 }
 </script>
+
+<style src="assets/scss/pages/home.scss" lang="scss"></style>

@@ -1,0 +1,11 @@
+#navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: $navbar-height;
+  background-color: white;
+  .uk-button {
+    padding: 0 10px;
+    width: 40px;
+  }
+}

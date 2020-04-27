@@ -1,16 +1,13 @@
 <template>
-  <div class="uk-text-center">
-    <h1>About Us</h1>
+  <div>
+    about page
   </div>
 </template>
 
 <script>
 export default {
-  name: 'About',
-  head() {
-    return {
-      title: process.env.SITE_TITLE + ' - About Us'
-    }
-  }
+  name: 'About'
 }
 </script>
+
+<style src="assets/scss/pages/about.scss" lang="scss"></style>

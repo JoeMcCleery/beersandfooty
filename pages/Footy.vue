@@ -1,16 +1,13 @@
 <template>
-  <div class="uk-text-center">
-    <h1>Footy Reviews</h1>
+  <div>
+    footy page
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Footy',
-  head() {
-    return {
-      title: process.env.SITE_TITLE + ' - Footy Reviews'
-    }
-  }
+  name: 'Footy'
 }
 </script>
+
+<style src="assets/scss/pages/footy.scss" lang="scss"></style>

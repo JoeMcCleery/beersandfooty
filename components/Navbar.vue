@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle
-      >Menu</a
-    >
+  <div id="navbar">
+    <a
+      href="#offcanvas-slide"
+      class="uk-button uk-button-default  uk-height-1-1"
+      uk-toggle
+      uk-icon="menu"
+    ></a>
+    <span>{{ title }}</span>
     <div id="offcanvas-slide" uk-offcanvas>
       <div class="uk-offcanvas-bar">
         <ul class="uk-nav uk-nav-default">
@@ -20,6 +24,12 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  props: {
+    title: {
+      type: String,
+      default: 'Home'
+    }
+  }
 }
 </script>
