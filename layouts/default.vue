@@ -1,6 +1,6 @@
 <template>
   <div :id="RouteName">
-    <Navbar :title="RouteName" />
+    <navbar :title="RouteName" />
     <nuxt />
   </div>
 </template>

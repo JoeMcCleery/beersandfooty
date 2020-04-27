@@ -1,5 +1,5 @@
 <template>
-  <div id="navbar" class="uk-box-shadow-small">
+  <div id="navbar">
     <a
       href="#offcanvas-slide"
       class="uk-button uk-button-default  uk-height-1-1"

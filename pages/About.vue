@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle">
+    <div class="header uk-height-large uk-flex uk-flex-center uk-flex-middle">
       <h1 class="uk-text-center">About</h1>
     </div>
   </div>
