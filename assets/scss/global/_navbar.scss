@@ -17,4 +17,13 @@
     margin-left: $navbar-height;
     padding-left: 1em;
   }
+  ul {
+    height: 100%;
+    position: relative;
+  }
+  .nav-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 }

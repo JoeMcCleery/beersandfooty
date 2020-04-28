@@ -1,7 +1,4 @@
 
-// Uikit variable overrides
-
-
 // Animation
 $animation-duration: 1000ms;
 
@@ -14,3 +11,7 @@ $border-radius: 2px;
 
 // Nav
 $navbar-height: 40px;
+
+// Uikit variable overrides
+$offcanvas-bar-background: #fff;
+$offcanvas-bar-color-mode: none;

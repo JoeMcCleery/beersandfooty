@@ -13,8 +13,7 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -27,7 +26,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '@/assets/js/main.js', mode: 'client' }],
+  plugins: [{ src: '@/assets/js/global/main.js', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -51,9 +50,14 @@ export default {
    */
   axios: {},
   pwa: {
-    manifest: {
+    meta: {
       name: process.env.SITE_TITLE || '',
-      lang: 'en'
+      lang: 'en',
+      ogHost: 'https://beersandfooty.com',
+      ogImage: true
+    },
+    icon: {
+      iconSrc: '@/static/icon.png'
     }
   },
   /*
