@@ -3,7 +3,7 @@
 @import './navbar';
 
 // Global Other
-html, body {
+html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -24,5 +24,9 @@ html, body {
 }
 
 .header {
-  background-color: whitesmoke;
+  background: linear-gradient(white 0%, rgba(256,256,256,0.85) 100%);
+}
+
+#__nuxt, #__layout, .main-page, body {
+  min-height: 100vh;
 }

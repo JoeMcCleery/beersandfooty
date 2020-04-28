@@ -1,5 +1,5 @@
 <template>
-  <div :id="RouteName">
+  <div :id="RouteName" class="main-page">
     <navbar :title="RouteName" />
     <nuxt />
   </div>
