@@ -2,27 +2,24 @@
   <div>
     <section class="uk-section">
       <div class="uk-container">
-        <h1 class="uk-text-center">Admin TODO</h1>
-        <ul>
+        <div class="uk-text-center uk-text-large">Admin TODO</div>
+        <ol>
           <li>
-            <p>Create Articles</p>
+            <p>Laravel Backend API (CRUD, User Accounts, User Roles)</p>
           </li>
           <li>
-            <p>Read Articles</p>
+            <p>Create / Edit Articles (UI)</p>
           </li>
           <li>
-            <p>Edit Articles</p>
+            <p>Publish / Unpublish Articles (UI)</p>
           </li>
           <li>
-            <p>User Credentials</p>
+            <p>Facebook Page Integration</p>
           </li>
           <li>
-            <p>User Permissions</p>
+            <p>Host on EC2 Instance</p>
           </li>
-          <li>
-            <p>Facebook Integration</p>
-          </li>
-        </ul>
+        </ol>
       </div>
     </section>
   </div>

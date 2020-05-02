@@ -1,5 +1,8 @@
 @import '../global/main';
 
 #About {
-  background: $background-muted-background;
+  background: $background-dark;
+  .content {
+    color: #fff;
+  }
 }

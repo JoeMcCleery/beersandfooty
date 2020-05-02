@@ -1,22 +1,16 @@
 #navbar {
   position: sticky;
   top: 0;
+  left: 0;
   width: 100%;
   height: $navbar-height;
-  background-color: white;
+  background-color: #fff;
   z-index: 100;
   text-align: left;
-  .uk-button {
-    position: absolute;
-    padding: 0 10px;
-    width: 40px;
-    left: 0;
-  }
-  .navbar-title {
-    line-height: $navbar-height;
-    margin-left: $navbar-height;
-    padding-left: 1em;
-  }
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: $navbar-padding;
   ul {
     height: 100%;
     position: relative;

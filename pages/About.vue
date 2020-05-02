@@ -7,7 +7,13 @@
     <!--  Page Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
-        <p>Sah Dudes</p>
+        <p>
+          This website is made for beer and footy reviews. Not really serious,
+          for the banter.<br />
+          <br />
+          Code and design by Joe McCleery.<br />
+          Initial reviews by Sam O'Dea and Joe McCleery.
+        </p>
       </div>
     </section>
   </div>

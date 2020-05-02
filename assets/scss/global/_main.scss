@@ -24,7 +24,10 @@ html {
 }
 
 .header {
-  background: linear-gradient(white 0%, rgba(256,256,256,0.85) 100%);
+  background: linear-gradient(white 0%, rgba(256,256,256,0.80) 100%);
+  h1 {
+    color: $grey;
+  }
 }
 
 #__nuxt, #__layout, .main-page, body {

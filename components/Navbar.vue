@@ -1,12 +1,9 @@
 <template>
   <div id="navbar">
-    <a
-      href="#offcanvas-slide"
-      class="uk-button uk-button-default  uk-height-1-1"
-      uk-toggle
-      uk-icon="menu"
-    ></a>
-    <span class="navbar-title">{{ title }}</span>
+    <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>
+      <span uk-icon="icon: menu; ratio: 1;" />
+      <span class="uk-visible@s">&nbsp;{{ title }}</span>
+    </a>
     <div
       id="offcanvas-slide"
       uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
@@ -24,10 +21,10 @@
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': title === 'Beer' }">
-            <a href="/beer">Beer Reviews</a>
+            <a href="/beer">Beer</a>
           </li>
           <li :class="{ 'uk-active': title === 'Footy' }">
-            <a href="/footy">Footy Reviews</a>
+            <a href="/footy">Footy</a>
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': title === 'About' }">
