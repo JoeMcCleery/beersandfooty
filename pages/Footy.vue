@@ -4,7 +4,7 @@
     <div class="header uk-height-medium uk-flex uk-flex-center uk-flex-middle">
       <h1 class="uk-text-center">Footy</h1>
     </div>
-    <!--  Page Content Container  -->
+    <!--  Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
         <!--  Masonry Grid  -->
