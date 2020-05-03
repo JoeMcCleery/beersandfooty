@@ -2,6 +2,7 @@
   height: $navbar-height;
   background-color: #fff;
   padding: $navbar-padding;
+  z-index: 100;
   ul {
     height: 100%;
     position: relative;

@@ -1,6 +1,6 @@
 <template>
   <div
-    uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"
+    uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; show-on-up: true;"
   >
     <nav id="navbar" class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-left">
