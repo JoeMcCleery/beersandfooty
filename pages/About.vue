@@ -10,8 +10,7 @@
     <section class="uk-section">
       <div class="uk-container">
         <p>
-          This website is made for beer and footy reviews. Not really serious,
-          for the banter.<br />
+          This website is for beer and footy reviews.<br />
           <br />
           Code and design by Joe McCleery.<br />
           Initial reviews by Sam O'Dea and Joe McCleery.
