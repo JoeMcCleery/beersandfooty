@@ -11,6 +11,10 @@
     {
       "type": "score",
       "value": 0
+    },
+    {
+      "type": "image",
+      "value": "/uploads/defaults/beer-default.jpg"
     }
   ]
 }
