@@ -6,7 +6,10 @@ $animation-duration: 1000ms;
 $beerscolour: #F9690E;
 $footycolour: #FFB61E;
 $background-dark: #1f1f1f;
-$grey: #5a5a5a;
+$grey: #505050;
+$grey-light: #e7e7e7;
+
+$brand-gradient: linear-gradient(to left, $beerscolour 0%, $beerscolour 25%, $footycolour 75%, $footycolour 100%);
 
 // Utility
 $border-radius: 2px;

@@ -1,6 +1,6 @@
 <template>
   <div
-    uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; show-on-up: true;"
+    uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-medium; show-on-up: true;"
   >
     <nav id="navbar" class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-left">
@@ -20,14 +20,7 @@
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <ul class="uk-nav uk-nav-primary uk-nav-center">
               <li :class="{ 'uk-active': title === 'Home' }">
-                <a href="/"
-                  ><img
-                    src="~/assets/images/beersandfooty_logo_01.png"
-                    alt="Beers and Footy Home"
-                    width="100%"
-                  />
-                  Home</a
-                >
+                <a href="/">Home</a>
               </li>
               <li class="uk-nav-divider"></li>
               <li :class="{ 'uk-active': title === 'Beer' }">

@@ -3,7 +3,7 @@
 @import './navbar';
 
 // Global Other
-html {
+html, body {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -22,8 +22,8 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
-.content {
-  padding-top: calc(300px - 60px);
+.header + section {
+  margin-top: calc(300px - 60px);
   z-index: -1;
 }
 .header {
