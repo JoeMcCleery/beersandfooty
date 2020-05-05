@@ -1,0 +1,20 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "publishDate": "1588637793408",
+  "title": "Bodriggy Brewing Cucumber & Mint Pilsner",
+  "contentBlocks": [
+    {
+      "type": "longText",
+      "value": "So this beer is a cucumber and mint sour pilsner, sounds a bit how's it goin'. After the first sip or two I could tell that this beer does have potential but it also kinda tastes like a mate put some toothpaste in ya beer as a prank. I'm not laughing. If Bodriggy Brewing took out the mint lollies they add during the brewing process then they could be on a winner. A nice refreshing Sour beer to cool off after those long sessions of king of the pack with the boiz."
+    },
+    {
+      "type": "image",
+      "value": "/uploads/bodriggy-sour-pilsner-200220-210319.png"
+    },
+    {
+      "type": "score",
+      "value": 6
+    }
+  ]
+}
