@@ -24,7 +24,7 @@ html, body {
 }
 
 .header {
-  background: linear-gradient(white 0%, rgba(256,256,256,0) 100%);
+  background: linear-gradient(rgba(255,255,255,0.5) $navbar-height, rgba(256,256,256,0) 100%);
   width: 100%;
   height: $header-height;
   h1 {

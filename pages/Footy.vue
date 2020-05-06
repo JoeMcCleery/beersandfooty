@@ -3,11 +3,19 @@
     <!--  Header  -->
     <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
-        <h1 class="uk-text-center">Footy</h1>
+        <h1 class="uk-text-center">Footy Reviews</h1>
+        <div class="uk-flex uk-flex-center uk-flex-middle">
+          <a
+            href="#"
+            v-scroll-to="'#section-reviews'"
+            class="uk-button uk-button-default uk-animation-fade"
+            ><span uk-icon="icon: chevron-down; ratio: 2;"
+          /></a>
+        </div>
       </div>
     </div>
-    <!--  Content Container  -->
-    <section class="uk-section">
+    <!--  Content  -->
+    <section id="section-reviews" class="uk-section">
       <div class="uk-container">
         <!--  Masonry Grid  -->
         <div

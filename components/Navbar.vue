@@ -1,49 +1,59 @@
 <template>
   <div
-    uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-medium; show-on-up: true;"
+    uk-sticky="animation: uk-animation-fade; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-medium; cls-inactive: uk-navbar-transparent; show-on-up: true;"
   >
-    <nav id="navbar" class="uk-navbar-container" uk-navbar>
-      <div class="uk-navbar-left">
-        <a
-          href="#offcanvas-slide"
-          class="uk-button uk-button-default"
-          uk-toggle
-        >
-          <span uk-icon="icon: menu; ratio: 1;" />
-          <span>&nbsp;{{ title }}</span>
-        </a>
-        <div
-          id="offcanvas-slide"
-          uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
-        >
-          <div class="uk-offcanvas-bar">
-            <button class="uk-offcanvas-close" type="button" uk-close></button>
-            <ul class="uk-nav uk-nav-primary uk-nav-center">
-              <li :class="{ 'uk-active': title === 'Home' }">
-                <a href="/">Home</a>
-              </li>
-              <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': title === 'Beer' }">
-                <a href="/beer">Beer</a>
-              </li>
-              <li :class="{ 'uk-active': title === 'Footy' }">
-                <a href="/footy">Footy</a>
-              </li>
-              <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': title === 'About' }">
-                <a href="/about">About</a>
-              </li>
-              <li
-                :class="{ 'uk-active': title === 'Admin' }"
-                class="nav-bottom"
-              >
-                <a href="/admin">Admin</a>
-              </li>
-            </ul>
+    <div class="uk-position-top">
+      <nav
+        id="navbar"
+        class="uk-navbar-container uk-navbar-transparent"
+        uk-navbar
+      >
+        <div class="uk-navbar-left">
+          <a
+            href="#offcanvas-slide"
+            class="uk-button uk-button-default uk-animation-fade"
+            uk-toggle
+          >
+            <span uk-icon="icon: menu; ratio: 1;" />
+            <span>&nbsp;{{ title }}</span>
+          </a>
+          <div
+            id="offcanvas-slide"
+            uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
+          >
+            <div class="uk-offcanvas-bar">
+              <button
+                class="uk-offcanvas-close"
+                type="button"
+                uk-close
+              ></button>
+              <ul class="uk-nav uk-nav-primary uk-nav-center">
+                <li :class="{ 'uk-active': title === 'Home' }">
+                  <a href="/">Home</a>
+                </li>
+                <li class="uk-nav-divider"></li>
+                <li :class="{ 'uk-active': title === 'Beer' }">
+                  <a href="/beer">Beer</a>
+                </li>
+                <li :class="{ 'uk-active': title === 'Footy' }">
+                  <a href="/footy">Footy</a>
+                </li>
+                <li class="uk-nav-divider"></li>
+                <li :class="{ 'uk-active': title === 'About' }">
+                  <a href="/about">About</a>
+                </li>
+                <li
+                  :class="{ 'uk-active': title === 'Admin' }"
+                  class="nav-bottom"
+                >
+                  <a href="/admin">Admin</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </div>
 </template>
 

@@ -4,11 +4,6 @@
     <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
         <h1>Beers and Footy</h1>
-      </div>
-    </div>
-    <!--  Page Content Container  -->
-    <section class="uk-section">
-      <div class="uk-container">
         <!--  CTA  -->
         <div class="uk-child-width-1-2 uk-text-center" uk-grid>
           <div>
@@ -19,7 +14,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 

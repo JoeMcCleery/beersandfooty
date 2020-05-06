@@ -1,8 +1,15 @@
 <template>
   <div>
+    <!--  Header  -->
+    <div class="uk-height-medium uk-flex uk-flex-center uk-flex-middle">
+      <div class="header-content">
+        <h1 class="uk-text-center">Admin</h1>
+      </div>
+    </div>
+    <!--  Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
-        <div class="uk-text-center uk-text-large">Admin TODO</div>
+        <h2>ToDo:</h2>
         <ol>
           <li>
             <p>Laravel Backend API (CRUD, User Accounts, User Roles)</p>

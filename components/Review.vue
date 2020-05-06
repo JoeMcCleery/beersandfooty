@@ -26,7 +26,7 @@ export default {
   name: 'Review',
   props: {
     review: {
-      type: Array,
+      type: Object,
       default: null
     }
   },
