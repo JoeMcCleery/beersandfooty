@@ -14,7 +14,7 @@
         </a>
         <div
           id="offcanvas-slide"
-          uk-offcanvas="overlay: true; mode: reveal; esc-close: true;"
+          uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
         >
           <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
