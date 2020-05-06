@@ -22,15 +22,9 @@ html, body {
   box-sizing: border-box;
   margin: 0;
 }
-.header + section {
-  margin-top: calc(300px - 60px);
-  z-index: -1;
-}
+
 .header {
   background: linear-gradient(white $navbar-height, rgba(256,256,256,0.80) 100%);
-  padding-top: $navbar-height;
-  position: absolute;
-  top: 0;
   width: 100%;
   .header-content {
     @extend .uk-padding;

@@ -14,78 +14,7 @@
           class="uk-child-width-1-2@s uk-child-width-1-3@m"
           uk-grid="masonry: true"
         >
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 100px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 130px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 150px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 160px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 120px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 140px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 200px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 180px"
-            >
-              Item
-            </div>
-          </div>
-          <div>
-            <div
-              class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle"
-              style="height: 140px"
-            >
-              Item
-            </div>
-          </div>
+          <review v-for="(obj, idx) in reviews" :key="idx" :review="obj" />
         </div>
       </div>
     </section>
@@ -94,7 +23,27 @@
 
 <script>
 export default {
-  name: 'Beer'
+  name: 'Beer',
+  components: {
+    Review: () => import('@/components/Review')
+  },
+  data() {
+    return {
+      reviews: Array
+    }
+  },
+  mounted() {
+    this.fetchReviews()
+  },
+  methods: {
+    fetchReviews() {
+      this.$axios
+        .get('http://127.0.0.1:8001/api/reviews/beer')
+        .then((response) => {
+          this.reviews = response.data.data
+        })
+    }
+  }
 }
 </script>
 

@@ -10,11 +10,11 @@
           uk-toggle
         >
           <span uk-icon="icon: menu; ratio: 1;" />
-          <span class="uk-visible@s">&nbsp;{{ title }}</span>
+          <span>&nbsp;{{ title }}</span>
         </a>
         <div
           id="offcanvas-slide"
-          uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
+          uk-offcanvas="overlay: true; mode: reveal; esc-close: true;"
         >
           <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
