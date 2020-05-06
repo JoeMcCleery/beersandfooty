@@ -1,5 +1,11 @@
 @import '../global/main';
 
 #Footy {
-  background-color: $footycolour;
+  background-color: $footycolour-alpha;
+  #navbar {
+    background: $footycolour;
+  }
+  .header {
+    background: linear-gradient($footycolour 0%, rgba(256,256,256,0) 100%);
+  }
 }

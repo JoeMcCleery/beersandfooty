@@ -19,9 +19,7 @@
   }
 }
 @mixin hook-button-default() {
-  background-color: $grey-light;
   color: $grey;
-  transition: background-color 80ms linear;
 }
 
 // 3.5. Custom scss

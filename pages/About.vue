@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--  Header  -->
-    <div class="header uk-height-medium uk-flex uk-flex-center uk-flex-middle">
+    <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
         <h1 class="uk-text-center">About</h1>
       </div>
@@ -11,9 +11,12 @@
       <div class="uk-container">
         <p>
           This website is for beer and footy reviews.<br />
-          <br />
-          Code and design by Joe McCleery.<br />
-          Initial reviews by Sam O'Dea and Joe McCleery.
+          Send any feedback to
+          <a
+            href="mailto:contact@beersandfooty.com?subject=Feedback"
+            class="uk-link-text"
+            >contact@beersandfooty.com</a
+          >
         </p>
       </div>
     </section>

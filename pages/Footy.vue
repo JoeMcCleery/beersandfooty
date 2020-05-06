@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--  Header  -->
-    <div class="header uk-height-medium uk-flex uk-flex-center uk-flex-middle">
+    <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
         <h1 class="uk-text-center">Footy</h1>
       </div>
