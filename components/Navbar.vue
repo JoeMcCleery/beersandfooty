@@ -11,7 +11,7 @@
         <div class="uk-navbar-left">
           <a
             href="#offcanvas-slide"
-            class="uk-button uk-button-default uk-animation-fade"
+            class="uk-button uk-button-default"
             uk-toggle
           >
             <span uk-icon="icon: menu; ratio: 1;" />

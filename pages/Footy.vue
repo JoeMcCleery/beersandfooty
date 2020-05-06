@@ -8,7 +8,7 @@
           <a
             href="#"
             v-scroll-to="'#section-reviews'"
-            class="uk-button uk-button-default uk-animation-fade"
+            class="uk-button uk-button-default"
             ><span uk-icon="icon: chevron-down; ratio: 2;"
           /></a>
         </div>
