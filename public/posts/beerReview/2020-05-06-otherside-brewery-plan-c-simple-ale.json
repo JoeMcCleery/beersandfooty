@@ -1,0 +1,28 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "publishDate": "1588694400000",
+  "title": "Otherside Brewery Plan C Simple Ale",
+  "contentBlocks": [
+    {
+      "type": "longText",
+      "value": "Plan A: Go to the pub to watch the footy\n"
+    },
+    {
+      "type": "longText",
+      "value": "Plan B: Go to your mates to watch the footy"
+    },
+    {
+      "type": "longText",
+      "value": "Plan C: Drink this beer and watch Dwayne Russell, Eddie McGuire and Dermot Brererton recall an AFL game from the 1990s. You know its gonna be shit but its the best damn shit your gonna get COVID-19. Seriously tho its a pretty tasty simple ale and after a long hard day of working from home you need a good cold plan C and the best plan C is a simple ale and 90s footy. "
+    },
+    {
+      "type": "image",
+      "value": "/uploads/plan-c.jpg"
+    },
+    {
+      "type": "score",
+      "value": 7
+    }
+  ]
+}
