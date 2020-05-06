@@ -3,9 +3,9 @@
 $animation-duration: 1000ms;
 
 // Colours
-$beerscolour: #F9690E;
+$beerscolour: #fff6f2;
 $beerscolour-alpha: rgba(249, 105, 14, 0.95);
-$footycolour: #FFB61E;
+$footycolour: #fff7ed;
 $footycolour-alpha: rgba(255, 182, 30, 0.95);
 $background-dark: #1f1f1f;
 $grey: #343434;
@@ -17,7 +17,7 @@ $brand-gradient: linear-gradient(to top, $beerscolour-alpha 0%, $beerscolour-alp
 $border-radius: 2px;
 
 // Nav
-$navbar-height: 60px;
+$navbar-height: 100px;
 $navbar-padding: 10px;
 
 // Uikit variable overrides
