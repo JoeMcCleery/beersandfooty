@@ -6,21 +6,7 @@
 @import "@/node_modules/uikit/src/scss/mixins.scss";
 
 // 3. Custom mixin overwrites.
-@mixin hook-card() {
-  @extend .uk-box-shadow-small;
-  border-radius: 2px;
-}
-
-@mixin hook-button() {
-  @extend .uk-box-shadow-hover-small;
-  border-radius: 2px;
-  &:active {
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.08) !important;
-  }
-}
-@mixin hook-button-default() {
-  color: $grey;
-}
+@import './mixins.scss';
 
 // 3.5. Custom scss
 img[data-src][src*='data:image'] { background: $grey-light; }

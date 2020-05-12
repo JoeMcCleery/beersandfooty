@@ -3,7 +3,7 @@
     <div class="uk-card uk-card-default uk-card-body">
       <h3 class="uk-card-title">
         {{ review.title }}<br />
-        <span class="uk-text-small">
+        <span class="uk-text-small uk-text-muted">
           {{ formattedPublishDate }}
         </span>
       </h3>

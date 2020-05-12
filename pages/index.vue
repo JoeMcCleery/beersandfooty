@@ -3,16 +3,11 @@
     <!--  Header  -->
     <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
-        <h1>Beers and Footy</h1>
-        <!--  CTA  -->
-        <div class="uk-child-width-1-2 uk-text-center" uk-grid>
-          <div>
-            <a class="uk-button uk-button-default" href="/beer">Beer</a>
-          </div>
-          <div>
-            <a class="uk-button uk-button-default" href="/footy">Footy</a>
-          </div>
-        </div>
+        <h1>
+          <a class="uk-link-text" href="/beer">Beers</a>
+          and
+          <a class="uk-link-text" href="/footy">Footy</a>
+        </h1>
       </div>
     </div>
   </div>

@@ -1,0 +1,50 @@
+// Buttons
+@mixin hook-button() {
+  @extend .uk-box-shadow-hover-small;
+  transition: box-shadow 100ms, background-color 100ms;
+  border-radius: 2px;
+  &:active {
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.08) !important;
+  }
+}
+@mixin hook-button-default() {
+  color: $grey;
+}
+
+// Cards
+@mixin hook-card() {
+  @extend .uk-box-shadow-small;
+  border-radius: 2px;
+  .uk-card-title {
+    margin-bottom: 0.5em;
+  }
+}
+
+// Links
+@mixin hook-link-text() {
+  transition: text-shadow 100ms, color 100ms;
+  text-decoration: none;
+  text-shadow: 0 0 0 rgba(0,0,0,0.15);
+  color: $grey !important;
+  &:hover, &:focus {
+    color: darken($grey, 10%) !important;
+    text-shadow: 2px 3px 2px rgba(0,0,0,0.08);
+  }
+  &:active {
+    color: $grey !important;
+    text-shadow: 0 0 0 rgba(0,0,0,0.08);
+  }
+}
+
+// Nav
+@mixin hook-nav-primary() {
+  > li > a {
+    transition: text-shadow 100ms, color 100ms;
+    &:hover, &:focus {
+      text-shadow: 2px 3px 2px rgba(0,0,0,0.08);
+    }
+    &:active {
+      text-shadow: 0 0 0 rgba(0,0,0,0.08);
+    }
+  }
+}

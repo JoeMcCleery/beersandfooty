@@ -8,18 +8,18 @@
         class="uk-navbar-container uk-navbar-transparent"
         uk-navbar
       >
-        <div class="uk-navbar-left">
+        <div class="uk-navbar-right">
           <a
             href="#offcanvas-slide"
             class="uk-button uk-button-default"
             uk-toggle
           >
-            <span uk-icon="icon: menu; ratio: 1;" />
             <span>&nbsp;{{ title }}</span>
+            <span uk-icon="icon: menu; ratio: 1;" />
           </a>
           <div
             id="offcanvas-slide"
-            uk-offcanvas="overlay: true; mode: slide; esc-close: true;"
+            uk-offcanvas="overlay: true; mode: slide; esc-close: true; flip: true;"
           >
             <div class="uk-offcanvas-bar">
               <button
