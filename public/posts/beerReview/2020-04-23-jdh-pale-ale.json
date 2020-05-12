@@ -1,0 +1,20 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "publishDate": "1589453538963",
+  "title": "JDH Pale Ale",
+  "contentBlocks": [
+    {
+      "type": "longText",
+      "value": "A balanced, refreshing and just drinkable pale ale. Not the most exciting beer but it does the job and hits the spot. Save this beer for the end of your session when your more concerned with being beersy than taste."
+    },
+    {
+      "type": "image",
+      "value": "/uploads/jdh-pale-ale.jpg"
+    },
+    {
+      "type": "score",
+      "value": 5
+    }
+  ]
+}
