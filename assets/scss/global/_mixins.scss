@@ -23,15 +23,11 @@
 // Links
 @mixin hook-link-text() {
   transition: text-shadow 100ms, color 100ms;
-  text-decoration: none;
   text-shadow: 0 0 0 rgba(0,0,0,0.15);
-  color: $grey !important;
   &:hover, &:focus {
-    color: darken($grey, 10%) !important;
     text-shadow: 2px 3px 2px rgba(0,0,0,0.08);
   }
   &:active {
-    color: $grey !important;
     text-shadow: 0 0 0 rgba(0,0,0,0.08);
   }
 }

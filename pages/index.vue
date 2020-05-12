@@ -2,10 +2,10 @@
   <div>
     <!--  Header  -->
     <div class="header uk-flex uk-flex-center uk-flex-middle">
-      <div class="header-content">
+      <div class="header-content uk-animation-fade">
         <h1>
           <a class="uk-link-text" href="/beer">Beers</a>
-          and
+          <span uk-icon="icon: plus-circle; ratio: 2;" />
           <a class="uk-link-text" href="/footy">Footy</a>
         </h1>
       </div>
