@@ -18,12 +18,60 @@
     <!--  Content  -->
     <section v-if="showReviews" id="section-reviews" class="uk-section">
       <div class="uk-container">
+        <!--  Pagination  -->
+        <div class="uk-child-width-1-3" uk-grid>
+          <div class="uk-text-left">
+            <a
+              :class="{ 'uk-hidden': previousPageLink === null }"
+              class="uk-button uk-button-default"
+              v-on:click="fetchReviews(previousPageLink)"
+            >
+              Prev
+            </a>
+          </div>
+          <div class="uk-text-center uk-text-large">
+            {{ currentPage }} / {{ lastPage }}
+          </div>
+          <div class="uk-text-right">
+            <a
+              :class="{ 'uk-hidden': nextPageLink === null }"
+              class="uk-button uk-button-default"
+              v-on:click="fetchReviews(nextPageLink)"
+            >
+              Next
+            </a>
+          </div>
+        </div>
         <!--  Masonry Grid  -->
         <div
           class="uk-child-width-1-2@s uk-child-width-1-3@m"
           uk-grid="masonry: true"
         >
-          <review v-for="(obj, idx) in reviews" :key="idx" :review="obj" />
+          <review v-for="(obj, idx) in reviews.data" :key="idx" :review="obj" />
+        </div>
+        <!--  Pagination  -->
+        <div class="uk-child-width-1-3" uk-grid>
+          <div class="uk-text-left">
+            <a
+              :class="{ 'uk-hidden': previousPageLink === null }"
+              class="uk-button uk-button-default"
+              v-on:click="fetchReviews(previousPageLink)"
+            >
+              Prev
+            </a>
+          </div>
+          <div class="uk-text-center uk-text-large">
+            {{ currentPage }} / {{ lastPage }}
+          </div>
+          <div class="uk-text-right">
+            <a
+              :class="{ 'uk-hidden': nextPageLink === null }"
+              class="uk-button uk-button-default"
+              v-on:click="fetchReviews(nextPageLink)"
+            >
+              Next
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -48,28 +96,54 @@ export default {
   computed: {
     showReviews() {
       return this.hasReviews
+    },
+    nextPageLink() {
+      if (this.hasReviews) {
+        const links = this.reviews.links
+        return links ? links.next : null
+      }
+      return null
+    },
+    previousPageLink() {
+      if (this.hasReviews) {
+        const links = this.reviews.links
+        return links ? links.prev : null
+      }
+      return null
+    },
+    currentPage() {
+      if (this.hasReviews) {
+        const meta = this.reviews.meta
+        return meta ? meta.current_page : null
+      }
+      return null
+    },
+    lastPage() {
+      if (this.hasReviews) {
+        const meta = this.reviews.meta
+        return meta ? meta.last_page : null
+      }
+      return null
     }
   },
   mounted() {
-    this.fetchReviews()
+    this.fetchReviews('http://127.0.0.1:8001/api/reviews/beer')
   },
   methods: {
-    fetchReviews() {
-      console.log('fetching reviews...')
-      this.$axios
-        .get('http://127.0.0.1:8001/api/reviews/beer')
-        .then((response) => {
-          const temp = response.data.data
-          if (temp.length) {
-            console.log('succeeded fetching reviews!', temp.length)
-            this.hasReviews = true
-            this.reviews = temp
-          } else {
-            console.log('failed fetching reviews. retrying in a second...')
-            this.hasReviews = false
-            setTimeout(this.fetchReviews, 1000)
-          }
-        })
+    fetchReviews(url) {
+      console.log('fetching reviews from ' + url)
+      this.$axios.get(url).then((response) => {
+        const temp = response.data
+        if (temp.data.length) {
+          console.log('succeeded fetching reviews!', temp.data.length)
+          this.hasReviews = true
+          this.reviews = temp
+        } else {
+          console.log('failed fetching reviews. retrying in a second...')
+          this.hasReviews = false
+          setTimeout(this.fetchReviews, 1000)
+        }
+      })
     }
   }
 }
