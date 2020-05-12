@@ -7,9 +7,7 @@
     height: 100%;
     position: relative;
   }
-  .nav-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  @media (max-width: 639px) {
+    height: 60px;
   }
 }

@@ -5,18 +5,34 @@
     <div class="uk-position-top">
       <nav
         id="navbar"
-        class="uk-navbar-container uk-navbar-transparent"
+        class="uk-navbar-container uk-dark uk-navbar-transparent"
         uk-navbar
       >
         <div class="uk-navbar-right">
           <a
             href="#offcanvas-slide"
-            class="uk-button uk-button-default"
+            class="uk-button uk-link-text uk-hidden@s"
             uk-toggle
           >
             <span>&nbsp;{{ title }}</span>
             <span uk-icon="icon: menu; ratio: 1;" />
           </a>
+          <ul class="uk-navbar-nav uk-visible@s">
+            <li :class="{ 'uk-active': title === 'Home' }">
+              <a href="/" class="uk-button">Home</a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li :class="{ 'uk-active': title === 'Beer' }">
+              <a href="/beer" class="uk-button">Beer</a>
+            </li>
+            <li :class="{ 'uk-active': title === 'Footy' }">
+              <a href="/footy" class="uk-button">Footy</a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li :class="{ 'uk-active': title === 'About' }">
+              <a href="/about" class="uk-button">About</a>
+            </li>
+          </ul>
           <div
             id="offcanvas-slide"
             uk-offcanvas="overlay: true; mode: slide; esc-close: true; flip: true;"
@@ -41,12 +57,6 @@
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'About' }">
                   <a href="/about">About</a>
-                </li>
-                <li
-                  :class="{ 'uk-active': title === 'Admin' }"
-                  class="nav-bottom"
-                >
-                  <a href="/admin">Admin</a>
                 </li>
               </ul>
             </div>
