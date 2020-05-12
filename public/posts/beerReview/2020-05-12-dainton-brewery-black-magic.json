@@ -1,0 +1,20 @@
+{
+  "layout": "review",
+  "pinnedPost": false,
+  "publishDate": "1589259654522",
+  "title": "Dainton Brewery Black Magic",
+  "contentBlocks": [
+    {
+      "type": "longText",
+      "value": "Dainton has released a salt and pepper squid ink gose. I was expecting this to be extremely dank, but it was actually quite refreshing. Not tasting like liquid squid was a positive to start off with and it has some slight salt and pepper notes and some actual gin. "
+    },
+    {
+      "type": "image",
+      "value": "/uploads/bmagic.png"
+    },
+    {
+      "type": "score",
+      "value": 7
+    }
+  ]
+}
