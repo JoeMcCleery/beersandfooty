@@ -131,15 +131,12 @@ export default {
   },
   methods: {
     fetchReviews(url) {
-      console.log('fetching reviews from ' + url)
       this.$axios.get(url).then((response) => {
         const temp = response.data
         if (temp.data.length) {
-          console.log('succeeded fetching reviews!', temp.data.length)
           this.hasReviews = true
           this.reviews = temp
         } else {
-          console.log('failed fetching reviews. retrying in a second...')
           this.hasReviews = false
           setTimeout(this.fetchReviews, 1000)
         }
