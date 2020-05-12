@@ -6,6 +6,6 @@
     background: $footycolour;
   }
   .header {
-    background: linear-gradient($footycolour 0%, rgba(256,256,256,0) 100%);
+    background: linear-gradient($footycolour 0%, $footycolour $navbar-height, rgba(256,256,256,0) 100%);
   }
 }

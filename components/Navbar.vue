@@ -11,7 +11,7 @@
         <div class="uk-navbar-right">
           <a
             href="#offcanvas-slide"
-            class="uk-button uk-link-text uk-hidden@s"
+            class="uk-button uk-button-default uk-hidden@s"
             uk-toggle
           >
             <span>&nbsp;{{ title }}</span>
@@ -19,18 +19,18 @@
           </a>
           <ul class="uk-navbar-nav uk-visible@s">
             <li :class="{ 'uk-active': title === 'Home' }">
-              <a href="/" class="uk-button">Home</a>
+              <a href="/" class="uk-navbar-item">Home</a>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'Beer' }">
-              <a href="/beer" class="uk-button">Beer</a>
+              <a href="/beer" class="uk-navbar-item">Beer</a>
             </li>
             <li :class="{ 'uk-active': title === 'Footy' }">
-              <a href="/footy" class="uk-button">Footy</a>
+              <a href="/footy" class="uk-navbar-item">Footy</a>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'About' }">
-              <a href="/about" class="uk-button">About</a>
+              <a href="/about" class="uk-navbar-item">About</a>
             </li>
           </ul>
           <div
