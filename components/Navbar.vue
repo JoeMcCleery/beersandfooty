@@ -32,6 +32,9 @@
             <li :class="{ 'uk-active': title === 'About' }">
               <a href="/about" class="uk-navbar-item">About</a>
             </li>
+            <li :class="{ 'uk-active': title === 'Account' }">
+              <a href="/account" class="uk-navbar-item">Account</a>
+            </li>
           </ul>
           <div
             id="offcanvas-slide"
@@ -57,6 +60,9 @@
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'About' }">
                   <a href="/about">About</a>
+                </li>
+                <li :class="{ 'uk-active': title === 'Account' }">
+                  <a href="/account">Account</a>
                 </li>
               </ul>
             </div>

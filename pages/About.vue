@@ -2,9 +2,7 @@
   <div>
     <!--  Header  -->
     <div class="uk-height-medium uk-flex uk-flex-center uk-flex-middle">
-      <div class="header-content">
-        <h1 class="uk-text-center">About</h1>
-      </div>
+      <h1 class="uk-text-center">About</h1>
     </div>
     <!--  Page Content Container  -->
     <section class="uk-section">

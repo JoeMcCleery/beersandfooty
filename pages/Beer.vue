@@ -7,8 +7,8 @@
         <div class="uk-position-bottom-center uk-margin-bottom">
           <a
             v-if="showReviews"
-            href="#"
             v-scroll-to="'#section-reviews'"
+            href="#"
             class="uk-link-text uk-animation-fade"
             ><span uk-icon="icon: chevron-down; ratio: 4;"
           /></a>
@@ -24,19 +24,19 @@
             <a
               :class="{ 'uk-hidden': previousPageLink === null }"
               class="uk-button uk-button-default"
-              v-on:click="fetchReviews(previousPageLink)"
+              @click="fetchReviews(previousPageLink)"
             >
               Prev
             </a>
           </div>
           <div class="uk-text-center uk-text-large">
-            {{ currentPage }} / {{ lastPage }}
+            {{ currentPageNum }} / {{ lastPageNum }}
           </div>
           <div class="uk-text-right">
             <a
               :class="{ 'uk-hidden': nextPageLink === null }"
               class="uk-button uk-button-default"
-              v-on:click="fetchReviews(nextPageLink)"
+              @click="fetchReviews(nextPageLink)"
             >
               Next
             </a>
@@ -55,19 +55,19 @@
             <a
               :class="{ 'uk-hidden': previousPageLink === null }"
               class="uk-button uk-button-default"
-              v-on:click="fetchReviews(previousPageLink)"
+              @click="fetchReviews(previousPageLink)"
             >
               Prev
             </a>
           </div>
           <div class="uk-text-center uk-text-large">
-            {{ currentPage }} / {{ lastPage }}
+            {{ currentPageNum }} / {{ lastPageNum }}
           </div>
           <div class="uk-text-right">
             <a
               :class="{ 'uk-hidden': nextPageLink === null }"
               class="uk-button uk-button-default"
-              v-on:click="fetchReviews(nextPageLink)"
+              @click="fetchReviews(nextPageLink)"
             >
               Next
             </a>
@@ -86,40 +86,39 @@ export default {
   },
   data() {
     return {
-      reviews: Array,
-      hasReviews: {
-        type: Boolean,
+      reviews: {
+        type: Array,
         default: false
       }
     }
   },
   computed: {
     showReviews() {
-      return this.hasReviews
+      return this.reviews.data
     },
     nextPageLink() {
-      if (this.hasReviews) {
+      if (this.showReviews) {
         const links = this.reviews.links
         return links ? links.next : null
       }
       return null
     },
     previousPageLink() {
-      if (this.hasReviews) {
+      if (this.showReviews) {
         const links = this.reviews.links
         return links ? links.prev : null
       }
       return null
     },
-    currentPage() {
-      if (this.hasReviews) {
+    currentPageNum() {
+      if (this.showReviews) {
         const meta = this.reviews.meta
         return meta ? meta.current_page : null
       }
       return null
     },
-    lastPage() {
-      if (this.hasReviews) {
+    lastPageNum() {
+      if (this.showReviews) {
         const meta = this.reviews.meta
         return meta ? meta.last_page : null
       }
@@ -134,11 +133,7 @@ export default {
       this.$axios.get(url).then((response) => {
         const temp = response.data
         if (temp.data.length) {
-          this.hasReviews = true
           this.reviews = temp
-        } else {
-          this.hasReviews = false
-          setTimeout(this.fetchReviews, 1000)
         }
       })
     }
