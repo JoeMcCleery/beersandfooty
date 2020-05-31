@@ -18,6 +18,20 @@ export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
   nuxtServerInit({ commit }, { req }) {},
 
+  async getToken({ commit }, { id, secret, scope }) {
+    const { data } = await axios.post('http://127.0.0.1:8001/oauth/token', {
+      grant_type: 'client_credentials',
+      client_id: id,
+      client_secret: secret,
+      scope
+    })
+    if (!data.message) {
+      commit('SET_ACCESS_TOKEN', data.access_token)
+    } else {
+      throw new Error(data.message)
+    }
+  },
+
   logout({ commit }) {
     commit('SET_USER', null)
   },
@@ -29,7 +43,9 @@ export const actions = {
         username,
         password
       },
-      {}
+      {
+        Authorisation: 'Bearer ' + this.state.accessToken
+      }
     )
     if (data.success) {
       commit('SET_USER', data.data.user)
@@ -45,7 +61,9 @@ export const actions = {
         username,
         password
       },
-      {}
+      {
+        Authorisation: 'Bearer ' + this.state.accessToken
+      }
     )
     if (data.success) {
       commit('SET_USER', data.data.user)

@@ -130,12 +130,18 @@ export default {
   },
   methods: {
     fetchReviews(url) {
-      return this.$axios.get(url).then((response) => {
-        const r = response.data
-        if (r.data.length) {
-          this.reviews = r
-        }
-      })
+      return this.$axios
+        .get(url, {
+          headers: {
+            Authorization: `Bearer  ${this.$store.state.accessToken}`
+          }
+        })
+        .then((response) => {
+          const r = response.data
+          if (r.data.length) {
+            this.reviews = r
+          }
+        })
     }
   }
 }

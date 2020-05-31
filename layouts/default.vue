@@ -28,6 +28,18 @@ export default {
       }
     }
   },
+  fetch() {
+    try {
+      this.$store.dispatch('getToken', {
+        grant_type: 'client_credentials',
+        id: process.env.CLIENT_ID,
+        secret: process.env.CLIENT_SECRET,
+        scope: '*'
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  },
   head() {
     return {
       title: process.env.SITE_TITLE + ' - ' + this.RouteName
