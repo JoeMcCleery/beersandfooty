@@ -86,11 +86,14 @@
                     >Account</nuxt-link
                   >
                 </li>
-                <li v-else>
-                  <a href="#login-modal" uk-toggle>
-                    Login / Register
-                  </a>
-                </li>
+                <a
+                  v-else
+                  href="#login-modal"
+                  class="uk-button uk-button-primary uk-position-bottom"
+                  uk-toggle
+                >
+                  Login / Register
+                </a>
               </ul>
             </div>
           </div>
