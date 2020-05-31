@@ -41,20 +41,20 @@
         </div>
         <div class="uk-modal-footer uk-text-right">
           <button
-            class="uk-button uk-button-default"
-            type="submit"
-            name="register"
-            value="true"
-          >
-            Register
-          </button>
-          <button
             class="uk-button uk-button-primary"
             type="submit"
             name="login"
             value="true"
           >
             Login
+          </button>
+          <button
+            class="uk-button uk-button-default"
+            type="submit"
+            name="register"
+            value="true"
+          >
+            Register
           </button>
         </div>
       </form>
