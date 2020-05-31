@@ -7,7 +7,7 @@
     <!--  Page Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
-        <button @click="logout" class="uk-button uk-button-default">
+        <button class="uk-button uk-button-default" @click="logout">
           Logout
         </button>
         <p>Welcome {{ user.username }}</p>

@@ -130,10 +130,10 @@ export default {
   },
   methods: {
     fetchReviews(url) {
-      this.$axios.get(url).then((response) => {
-        const temp = response.data
-        if (temp.data.length) {
-          this.reviews = temp
+      return this.$axios.get(url).then((response) => {
+        const r = response.data
+        if (r.data.length) {
+          this.reviews = r
         }
       })
     }

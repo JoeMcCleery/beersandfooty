@@ -8,7 +8,6 @@ export const state = () => ({
 export const mutations = {
   SET_USER(state, user) {
     state.user = user
-    console.log(state.user)
   },
   SET_ACCESS_TOKEN(state, token) {
     state.accessToken = token
