@@ -19,21 +19,29 @@
           </a>
           <ul class="uk-navbar-nav uk-visible@s">
             <li :class="{ 'uk-active': title === 'Home' }">
-              <a href="/" class="uk-navbar-item">Home</a>
+              <nuxt-link to="/" class="uk-navbar-item">Home</nuxt-link>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'Beer' }">
-              <a href="/beer" class="uk-navbar-item">Beer</a>
+              <nuxt-link to="/beer" class="uk-navbar-item">Beer</nuxt-link>
             </li>
             <li :class="{ 'uk-active': title === 'Footy' }">
-              <a href="/footy" class="uk-navbar-item">Footy</a>
+              <nuxt-link to="/footy" class="uk-navbar-item">Footy</nuxt-link>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'About' }">
-              <a href="/about" class="uk-navbar-item">About</a>
+              <nuxt-link to="/about" class="uk-navbar-item">About</nuxt-link>
             </li>
-            <li :class="{ 'uk-active': title === 'Account' }">
-              <a href="/account" class="uk-navbar-item">Account</a>
+            <!-- Auth Routes -->
+            <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
+              <nuxt-link to="/account" class="uk-navbar-item">
+                Account
+              </nuxt-link>
+            </li>
+            <li v-else>
+              <a href="#login-modal" class="uk-navbar-item" uk-toggle>
+                Login / Register
+              </a>
             </li>
           </ul>
           <div
@@ -48,21 +56,27 @@
               ></button>
               <ul class="uk-nav uk-nav-primary uk-nav-center">
                 <li :class="{ 'uk-active': title === 'Home' }">
-                  <a href="/">Home</a>
+                  <nuxt-link to="/">Home</nuxt-link>
                 </li>
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'Beer' }">
-                  <a href="/beer">Beer</a>
+                  <nuxt-link to="/beer">Beer</nuxt-link>
                 </li>
                 <li :class="{ 'uk-active': title === 'Footy' }">
-                  <a href="/footy">Footy</a>
+                  <nuxt-link to="/footy">Footy</nuxt-link>
                 </li>
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'About' }">
-                  <a href="/about">About</a>
+                  <nuxt-link to="/about">About</nuxt-link>
                 </li>
-                <li :class="{ 'uk-active': title === 'Account' }">
-                  <a href="/account">Account</a>
+                <!-- Auth Routes -->
+                <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
+                  <nuxt-link to="/account">Account</nuxt-link>
+                </li>
+                <li v-else>
+                  <a href="#login-modal" uk-toggle>
+                    Login / Register
+                  </a>
                 </li>
               </ul>
             </div>
@@ -80,6 +94,11 @@ export default {
     title: {
       type: String,
       default: 'Home'
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     }
   }
 }

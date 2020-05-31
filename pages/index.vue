@@ -4,9 +4,9 @@
     <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content uk-animation-fade">
         <h1>
-          <a class="uk-link-text" href="/beer">Beers</a>
+          <nuxt-link class="uk-link-text" to="/beer">Beers</nuxt-link>
           <span uk-icon="icon: plus-circle; ratio: 2;" />
-          <a class="uk-link-text" href="/footy">Footy</a>
+          <nuxt-link class="uk-link-text" to="/footy">Footy</nuxt-link>
         </h1>
       </div>
     </div>

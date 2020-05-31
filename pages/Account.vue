@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div v-if="user">
     <!--  Header  -->
     <div class="uk-height-medium uk-flex uk-flex-center uk-flex-middle">
-      <h1 class="uk-text-center">Your Account</h1>
+      <h1 class="uk-text-center">Account</h1>
     </div>
     <!--  Page Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
-        <a @click="login" class="uk-button uk-button-default">
-          Login
-        </a>
-        <a @click="logout" class="uk-button uk-button-default">
-          Register
-        </a>
+        <button @click="logout" class="uk-button uk-button-default">
+          Logout
+        </button>
+        <p>Welcome {{ user.username }}</p>
       </div>
     </section>
   </div>
@@ -21,12 +19,15 @@
 <script>
 export default {
   name: 'Account',
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
   methods: {
-    login() {
-      return true
-    },
-    logout() {
-      return false
+    logout(e) {
+      this.$store.dispatch('logout')
+      this.$router.push('/')
     }
   }
 }

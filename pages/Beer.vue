@@ -84,6 +84,9 @@ export default {
   components: {
     Review: () => import('@/components/Review')
   },
+  async fetch() {
+    await this.fetchReviews('http://127.0.0.1:8001/api/v1/reviews/beer')
+  },
   data() {
     return {
       reviews: {
@@ -124,9 +127,6 @@ export default {
       }
       return null
     }
-  },
-  mounted() {
-    this.fetchReviews('http://127.0.0.1:8001/api/reviews/beer')
   },
   methods: {
     fetchReviews(url) {
