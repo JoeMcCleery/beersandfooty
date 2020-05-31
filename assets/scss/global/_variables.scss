@@ -5,6 +5,7 @@ $images-dir: '../../images/';
 $animation-duration: 1000ms;
 
 // Colours
+$brand-blue: #7b47bb;
 $beerscolour: rgb(255, 131, 58);
 $beerscolour-alpha: rgba(255, 131, 58, 0.95);
 $footycolour: rgb(255, 181, 55);
@@ -19,12 +20,14 @@ $brand-gradient: linear-gradient(to top, $beerscolour-alpha 0%, $beerscolour-alp
 $border-radius: 2px;
 
 // Nav
-$navbar-height: 100px;
+$navbar-height: 60px;
 $navbar-padding: 10px;
+
+// Header
+$header-height: 100vh;
 
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
-
-// Header
-$header-height: 100vh;
+$global-secondary-background: $grey;
+$global-primary-background: $brand-blue;

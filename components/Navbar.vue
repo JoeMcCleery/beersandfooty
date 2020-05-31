@@ -19,30 +19,33 @@
           </a>
           <ul class="uk-navbar-nav uk-visible@s">
             <li :class="{ 'uk-active': title === 'Home' }">
-              <nuxt-link to="/" class="uk-navbar-item">Home</nuxt-link>
+              <nuxt-link to="/" class="">Home</nuxt-link>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'Beer' }">
-              <nuxt-link to="/beer" class="uk-navbar-item">Beer</nuxt-link>
+              <nuxt-link to="/beer" class="">Beer</nuxt-link>
             </li>
             <li :class="{ 'uk-active': title === 'Footy' }">
-              <nuxt-link to="/footy" class="uk-navbar-item">Footy</nuxt-link>
+              <nuxt-link to="/footy" class="">Footy</nuxt-link>
             </li>
             <li class="uk-nav-divider"></li>
             <li :class="{ 'uk-active': title === 'About' }">
-              <nuxt-link to="/about" class="uk-navbar-item">About</nuxt-link>
+              <nuxt-link to="/about" class="">About</nuxt-link>
             </li>
             <!-- Auth Routes -->
             <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
-              <nuxt-link to="/account" class="uk-navbar-item">
+              <nuxt-link to="/account" class="">
                 Account
               </nuxt-link>
             </li>
-            <li v-else>
-              <a href="#login-modal" class="uk-navbar-item" uk-toggle>
-                Login / Register
-              </a>
-            </li>
+            <a
+              v-else
+              href="#login-modal"
+              class="uk-button uk-button-primary"
+              uk-toggle
+            >
+              Login / Register
+            </a>
           </ul>
           <div
             id="offcanvas-slide"
@@ -56,22 +59,32 @@
               ></button>
               <ul class="uk-nav uk-nav-primary uk-nav-center">
                 <li :class="{ 'uk-active': title === 'Home' }">
-                  <nuxt-link to="/">Home</nuxt-link>
+                  <nuxt-link to="/" uk-toggle="target: #offcanvas-slide;"
+                    >Home</nuxt-link
+                  >
                 </li>
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'Beer' }">
-                  <nuxt-link to="/beer">Beer</nuxt-link>
+                  <nuxt-link to="/beer" uk-toggle="target: #offcanvas-slide;"
+                    >Beer</nuxt-link
+                  >
                 </li>
                 <li :class="{ 'uk-active': title === 'Footy' }">
-                  <nuxt-link to="/footy">Footy</nuxt-link>
+                  <nuxt-link to="/footy" uk-toggle="target: #offcanvas-slide;"
+                    >Footy</nuxt-link
+                  >
                 </li>
                 <li class="uk-nav-divider"></li>
                 <li :class="{ 'uk-active': title === 'About' }">
-                  <nuxt-link to="/about">About</nuxt-link>
+                  <nuxt-link to="/about" uk-toggle="target: #offcanvas-slide;"
+                    >About</nuxt-link
+                  >
                 </li>
                 <!-- Auth Routes -->
                 <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
-                  <nuxt-link to="/account">Account</nuxt-link>
+                  <nuxt-link to="/account" uk-toggle="target: #offcanvas-slide;"
+                    >Account</nuxt-link
+                  >
                 </li>
                 <li v-else>
                   <a href="#login-modal" uk-toggle>
