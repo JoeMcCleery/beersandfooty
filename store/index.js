@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const state = () => ({
   user: null,
-  appToken: null
+  accessToken: null
 })
 
 export const mutations = {
@@ -19,7 +19,7 @@ export const actions = {
   nuxtServerInit({ commit }, { req }) {},
 
   async getToken({ commit }, { id, secret, scope }) {
-    const { data } = await axios.post('http://127.0.0.1:8001/oauth/token', {
+    const { data } = await axios.post(process.env.API_URL + '/oauth/token', {
       grant_type: 'client_credentials',
       client_id: id,
       client_secret: secret,
@@ -38,7 +38,7 @@ export const actions = {
 
   async login({ commit }, { username, password }) {
     const { data } = await axios.post(
-      'http://127.0.0.1:8001/api/v1/login',
+      process.env.API_URL + '/api/v1/login',
       {
         username,
         password
@@ -56,7 +56,7 @@ export const actions = {
 
   async register({ commit }, { username, password }) {
     const { data } = await axios.post(
-      'http://127.0.0.1:8001/api/v1/register',
+      process.env.API_URL + '/api/v1/register',
       {
         username,
         password

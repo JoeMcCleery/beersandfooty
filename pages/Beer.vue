@@ -85,7 +85,7 @@ export default {
     Review: () => import('@/components/Review')
   },
   async fetch() {
-    await this.fetchReviews('http://127.0.0.1:8001/api/v1/reviews/beer')
+    await this.fetchReviews(process.env.API_URL + '/api/v1/reviews/beer')
   },
   data() {
     return {
