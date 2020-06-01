@@ -89,7 +89,7 @@ export default {
       process.env.API_URL +
         '/api/' +
         this.$store.state.api_version +
-        '/reviews/beer'
+        '/beer-reviews'
     )
   },
   data() {
