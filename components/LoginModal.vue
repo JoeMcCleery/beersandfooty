@@ -101,7 +101,6 @@ export default {
       }
       if (!this.formError) {
         window.hideModal(this.$refs.modal)
-        this.$router.push('/account')
       }
     }
   }

@@ -19,6 +19,9 @@ export default {
     SvgBackground: () => import('~/components/SvgBackground.vue'),
     LoginModal: () => import('~/components/LoginModal.vue')
   },
+  fetch() {
+    this.getToken()
+  },
   computed: {
     RouteName() {
       if (this.$nuxt.$route.name === 'index') {
@@ -28,16 +31,18 @@ export default {
       }
     }
   },
-  fetch() {
-    try {
-      this.$store.dispatch('getToken', {
-        grant_type: 'client_credentials',
-        id: process.env.CLIENT_ID,
-        secret: process.env.CLIENT_SECRET,
-        scope: '*'
-      })
-    } catch (e) {
-      console.log(e)
+  methods: {
+    getToken() {
+      try {
+        this.$store.dispatch('getToken', {
+          grant_type: 'client_credentials',
+          id: process.env.CREDENTIALS_CLIENT_ID,
+          secret: process.env.CREDENTIALS_CLIENT_SECRET,
+          scope: '*'
+        })
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   head() {

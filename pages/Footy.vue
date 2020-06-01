@@ -133,7 +133,7 @@ export default {
       return this.$axios
         .get(url, {
           headers: {
-            Authorization: `Bearer  ${this.$store.state.accessToken}`
+            Authorization: 'Bearer ' + this.$store.state.accessToken
           }
         })
         .then((response) => {
