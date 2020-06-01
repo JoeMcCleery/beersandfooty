@@ -20,7 +20,7 @@ export default {
     LoginModal: () => import('~/components/LoginModal.vue')
   },
   fetch() {
-    this.getToken()
+    this.getClientToken()
   },
   computed: {
     RouteName() {
@@ -32,16 +32,15 @@ export default {
     }
   },
   methods: {
-    getToken() {
+    getClientToken() {
       try {
-        this.$store.dispatch('getToken', {
-          grant_type: 'client_credentials',
+        this.$store.dispatch('getClientToken', {
           id: process.env.CREDENTIALS_CLIENT_ID,
           secret: process.env.CREDENTIALS_CLIENT_SECRET,
           scope: '*'
         })
       } catch (e) {
-        console.log(e)
+        setTimeout(this.getClientToken, 5000)
       }
     }
   },

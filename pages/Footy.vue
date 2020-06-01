@@ -85,7 +85,12 @@ export default {
     Review: () => import('@/components/Review')
   },
   async fetch() {
-    await this.fetchReviews(process.env.API_URL + '/api/v1/reviews/footy')
+    await this.fetchReviews(
+      process.env.API_URL +
+        '/api/' +
+        this.$store.state.api_version +
+        '/reviews/footy'
+    )
   },
   data() {
     return {
@@ -133,7 +138,7 @@ export default {
       return this.$axios
         .get(url, {
           headers: {
-            Authorization: 'Bearer ' + this.$store.state.accessToken
+            Authorization: 'Bearer ' + this.$store.state.clientAccessToken
           }
         })
         .then((response) => {

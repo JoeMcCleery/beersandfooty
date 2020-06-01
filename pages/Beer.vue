@@ -85,7 +85,12 @@ export default {
     Review: () => import('@/components/Review')
   },
   async fetch() {
-    await this.fetchReviews(process.env.API_URL + '/api/v1/reviews/beer')
+    await this.fetchReviews(
+      process.env.API_URL +
+        '/api/' +
+        this.$store.state.api_version +
+        '/reviews/beer'
+    )
   },
   data() {
     return {
@@ -133,10 +138,11 @@ export default {
       return this.$axios
         .get(url, {
           headers: {
-            Authorization: 'Bearer ' + this.$store.state.accessToken
+            Authorization: 'Bearer ' + this.$store.state.clientAccessToken
           }
         })
         .then((response) => {
+          console.log(response)
           const r = response.data
           if (r.data.length) {
             this.reviews = r
