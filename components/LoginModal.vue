@@ -73,22 +73,9 @@ export default {
     }
   },
   methods: {
-    async submitForm(e) {
+    submitForm(e) {
       if (e.submitter.name === 'login') {
-        try {
-          await this.$store.dispatch('getUserToken', {
-            client_id: process.env.PASSWORD_CLIENT_ID,
-            client_secret: process.env.PASSWORD_CLIENT_SECRET,
-            username: this.formUsername,
-            password: this.formPassword,
-            scope: '*'
-          })
-          this.formUsername = ''
-          this.formPassword = ''
-          this.formError = null
-        } catch (e) {
-          this.formError = e.message
-        }
+        this.getUserToken()
       } else if (e.submitter.name === 'register') {
         // try {
         //   await this.$store.dispatch('register', {
@@ -105,6 +92,22 @@ export default {
       }
       if (!this.formError) {
         window.hideModal(this.$refs.modal)
+      }
+    },
+    async getUserToken() {
+      try {
+        await this.$store.dispatch('getUserToken', {
+          client_id: process.env.PASSWORD_CLIENT_ID,
+          client_secret: process.env.PASSWORD_CLIENT_SECRET,
+          username: this.formUsername,
+          password: this.formPassword,
+          scope: '*'
+        })
+        this.formUsername = ''
+        this.formPassword = ''
+        this.formError = null
+      } catch (e) {
+        this.formError = e.message
       }
     }
   }

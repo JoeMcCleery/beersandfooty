@@ -4,6 +4,7 @@ export const state = () => ({
   api_version: 'v1',
   user: null,
   userAccessToken: null,
+  refreshToken: null,
   clientAccessToken: null
 })
 
@@ -14,6 +15,9 @@ export const mutations = {
   SET_USER_TOKEN(state, token) {
     state.userAccessToken = token
   },
+  SET_REFRESH_TOKEN(state, token) {
+    state.refreshToken = token
+  },
   SET_CLIENT_TOKEN(state, token) {
     state.clientAccessToken = token
   }
@@ -22,6 +26,12 @@ export const mutations = {
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
   nuxtServerInit({ commit }, { req }) {},
+
+  logout({ commit }, { req }) {
+    commit('SET_USER', null)
+    commit('SET_USER_TOKEN', null)
+    commit('SET_REFRESH_TOKEN', null)
+  },
 
   // eslint-disable-next-line camelcase
   async getClientToken({ commit }, { client_id, client_secret, scope }) {
@@ -51,8 +61,9 @@ export const actions = {
       password,
       scope
     })
-    if (data.access_token) {
+    if (data.access_token && data.refresh_token) {
       commit('SET_USER_TOKEN', data.access_token)
+      commit('SET_REFRESH_TOKEN', data.refresh_token)
     } else if (data.message || !data.success) {
       throw new Error(data.message)
     }
