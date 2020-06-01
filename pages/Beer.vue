@@ -142,7 +142,6 @@ export default {
           }
         })
         .then((response) => {
-          console.log(response)
           const r = response.data
           if (r.data.length) {
             this.reviews = r

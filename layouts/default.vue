@@ -35,8 +35,8 @@ export default {
     getClientToken() {
       try {
         this.$store.dispatch('getClientToken', {
-          id: process.env.CREDENTIALS_CLIENT_ID,
-          secret: process.env.CREDENTIALS_CLIENT_SECRET,
+          client_id: process.env.CREDENTIALS_CLIENT_ID,
+          client_secret: process.env.CREDENTIALS_CLIENT_SECRET,
           scope: '*'
         })
       } catch (e) {
