@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user">
+  <div v-if="loggedIn">
     <!--  Header  -->
     <div class="uk-height-medium uk-flex uk-flex-center uk-flex-middle">
       <h1 class="uk-text-center">Account</h1>
@@ -7,10 +7,43 @@
     <!--  Page Content Container  -->
     <section class="uk-section">
       <div class="uk-container">
-        <button class="uk-button uk-button-default" @click="logout">
+        <button
+          class="uk-button uk-button-primary uk-align-right"
+          @click="logout"
+        >
           Logout
         </button>
-        <p>Welcome {{ user.username }}</p>
+        <div>
+          <p>
+            id:<br /><b>{{ user.id }}</b>
+          </p>
+          <p>
+            username:<br /><b>{{ user.username }}</b>
+          </p>
+          <p>
+            created:<br /><b>{{ user.created_at }}</b>
+          </p>
+          <p>
+            updated:<br /><b>{{ user.updated_at }}</b>
+          </p>
+          <p>
+            deleted:<br /><b>{{ user.deleted_at }}</b>
+          </p>
+          <div>
+            <p>reviews:</p>
+            <!--  Masonry Grid  -->
+            <div
+              class="uk-child-width-1-2@s uk-child-width-1-3@m"
+              uk-grid="masonry: true"
+            >
+              <review
+                v-for="(obj, idx) in user.reviews"
+                :key="idx"
+                :review="obj"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -19,14 +52,20 @@
 <script>
 export default {
   name: 'Account',
+  components: {
+    Review: () => import('@/components/Review')
+  },
   computed: {
     user() {
       return this.$store.state.user
+    },
+    loggedIn() {
+      return this.$store.state.userAccessToken && this.$store.state.user
     }
   },
   methods: {
     logout(e) {
-      this.$store.dispatch('logout')
+      this.$store.dispatch('logout', {})
       this.$router.push('/')
     }
   }

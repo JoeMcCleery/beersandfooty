@@ -33,7 +33,7 @@
               <nuxt-link to="/about" class="">About</nuxt-link>
             </li>
             <!-- Auth Routes -->
-            <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
+            <li v-if="loggedIn" :class="{ 'uk-active': title === 'Account' }">
               <nuxt-link to="/account" class="">
                 Account
               </nuxt-link>
@@ -81,7 +81,11 @@
                   >
                 </li>
                 <!-- Auth Routes -->
-                <li v-if="user" :class="{ 'uk-active': title === 'Account' }">
+                <li
+                  v-if="loggedIn"
+                  :class="{ 'uk-active': title === 'Account' }"
+                  class="uk-position-bottom"
+                >
                   <nuxt-link to="/account" uk-toggle="target: #offcanvas-slide;"
                     >Account</nuxt-link
                   >
@@ -113,8 +117,8 @@ export default {
     }
   },
   computed: {
-    user() {
-      return this.$store.state.user
+    loggedIn() {
+      return this.$store.state.userAccessToken && this.$store.state.user
     }
   }
 }

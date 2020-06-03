@@ -84,14 +84,6 @@ export default {
   components: {
     Review: () => import('@/components/Review')
   },
-  async fetch() {
-    await this.fetchReviews(
-      process.env.API_URL +
-        '/api/' +
-        this.$store.state.api_version +
-        '/footy-reviews'
-    )
-  },
   data() {
     return {
       reviews: {
@@ -132,6 +124,14 @@ export default {
       }
       return null
     }
+  },
+  mounted() {
+    this.fetchReviews(
+      process.env.API_URL +
+        '/api/' +
+        this.$store.state.api_version +
+        '/footy-reviews'
+    )
   },
   methods: {
     fetchReviews(url) {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const state = () => ({
-  api_version: 'v1',
+  api_version: process.env.API_VERSION,
   user: null,
   userAccessToken: null,
   refreshToken: null,
@@ -43,7 +43,7 @@ export const actions = {
     })
     if (data.access_token) {
       commit('SET_CLIENT_TOKEN', data.access_token)
-    } else if (data.message || !data.success) {
+    } else if (data.message) {
       throw new Error(data.message)
     }
   },
@@ -53,18 +53,62 @@ export const actions = {
     // eslint-disable-next-line camelcase
     { client_id, client_secret, username, password, scope }
   ) {
-    const { data } = await axios.post(process.env.API_URL + '/oauth/token', {
-      grant_type: 'password',
-      client_id,
-      client_secret,
-      username,
-      password,
-      scope
-    })
+    const { data } = await axios.post(
+      process.env.API_URL + '/oauth/token',
+      {
+        grant_type: 'password',
+        client_id,
+        client_secret,
+        username,
+        password,
+        scope
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.clientAccessToken
+        }
+      }
+    )
     if (data.access_token && data.refresh_token) {
       commit('SET_USER_TOKEN', data.access_token)
       commit('SET_REFRESH_TOKEN', data.refresh_token)
-    } else if (data.message || !data.success) {
+    } else if (data.message) {
+      throw new Error(data.message)
+    }
+  },
+
+  async getUser({ commit }) {
+    const { data } = await axios.get(
+      process.env.API_URL + '/api/' + process.env.API_VERSION + '/user/',
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+    if (data.data && data.data.user) {
+      commit('SET_USER', data.data.user)
+    } else if (data.message) {
+      throw new Error(data.message)
+    }
+  },
+
+  async createUser({ commit }, { username, password }) {
+    const { data } = await axios.post(
+      process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/',
+      {
+        username,
+        password
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.clientAccessToken
+        }
+      }
+    )
+    if (data.data && data.data.user) {
+      commit('SET_USER', data.data.user)
+    } else if (data.message) {
       throw new Error(data.message)
     }
   }

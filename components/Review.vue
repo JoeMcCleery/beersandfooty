@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default uk-card-body">
+    <div class="uk-card uk-card-default uk-card-body" :class="review.type">
       <h3 class="uk-card-title">
         {{ review.title }}<br />
         <span class="uk-text-small uk-text-muted">
           {{ formattedPublishDate }}
         </span>
       </h3>
-
+      <hr />
       <div
         v-for="(block, idx) in review.content_blocks"
         :key="idx"

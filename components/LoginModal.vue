@@ -77,21 +77,19 @@ export default {
       if (e.submitter.name === 'login') {
         this.getUserToken()
       } else if (e.submitter.name === 'register') {
-        // try {
-        //   await this.$store.dispatch('register', {
-        //     username: this.formUsername,
-        //     password: this.formPassword,
-        //     scope: '*'
-        //   })
-        //   this.formUsername = ''
-        //   this.formPassword = ''
-        //   this.formError = null
-        // } catch (e) {
-        //   this.formError = e.message
-        // }
+        this.registerNewUser()
       }
-      if (!this.formError) {
-        window.hideModal(this.$refs.modal)
+    },
+    async registerNewUser() {
+      try {
+        await this.$store.dispatch('createUser', {
+          username: this.formUsername,
+          password: this.formPassword
+        })
+        this.formError = null
+        this.getUserToken()
+      } catch (e) {
+        this.formError = e.message
       }
     },
     async getUserToken() {
@@ -106,6 +104,15 @@ export default {
         this.formUsername = ''
         this.formPassword = ''
         this.formError = null
+        if (!this.$store.state.user) {
+          try {
+            await this.$store.dispatch('getUser', {})
+            this.formError = null
+          } catch (e) {
+            this.formError = e.message
+          }
+        }
+        window.hideModal(this.$refs.modal)
       } catch (e) {
         this.formError = e.message
       }

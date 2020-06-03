@@ -19,8 +19,18 @@ export default {
     SvgBackground: () => import('~/components/SvgBackground.vue'),
     LoginModal: () => import('~/components/LoginModal.vue')
   },
-  fetch() {
-    this.getClientToken()
+  async fetch() {
+    if (!this.$store.state.clientAccessToken) {
+      try {
+        await this.$store.dispatch('getClientToken', {
+          client_id: process.env.CREDENTIALS_CLIENT_ID,
+          client_secret: process.env.CREDENTIALS_CLIENT_SECRET,
+          scope: '*'
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }
   },
   computed: {
     RouteName() {
@@ -28,19 +38,6 @@ export default {
         return 'Home'
       } else {
         return this.$nuxt.$route.name
-      }
-    }
-  },
-  methods: {
-    getClientToken() {
-      try {
-        this.$store.dispatch('getClientToken', {
-          client_id: process.env.CREDENTIALS_CLIENT_ID,
-          client_secret: process.env.CREDENTIALS_CLIENT_SECRET,
-          scope: '*'
-        })
-      } catch (e) {
-        setTimeout(this.getClientToken, 5000)
       }
     }
   },
