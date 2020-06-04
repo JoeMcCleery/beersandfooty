@@ -2,7 +2,7 @@
   height: $navbar-height;
   padding: $navbar-padding;
   z-index: 100;
-  transition: box-shadow 200ms ease;
+  transition: box-shadow 200ms ease, background-color 200ms ease;
   ul {
     height: 100%;
     position: relative;
