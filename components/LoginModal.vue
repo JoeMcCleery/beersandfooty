@@ -110,7 +110,7 @@ export default {
             this.formError = e.message
           }
         }
-        window.hideModal(this.$refs.modal)
+        this.$uikit.modal(this.$refs.modal).hide()
       } catch (e) {
         this.formError = e.message
       }

@@ -26,7 +26,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '@/assets/js/global/main.js', mode: 'client' }],
+  plugins: [{ src: '@/assets/js/global/main.js', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -69,6 +69,15 @@ export default {
    ** Build configuration
    */
   build: {
+    loaders:
+      {
+        vue: {
+          transformAssetUrls: {
+            img: "data-src",
+            div: "data-src"
+          }
+        }
+      },
     /*
      ** You can extend webpack config here
      */
