@@ -26,6 +26,7 @@
               class="uk-button uk-button-default"
               @click="fetchReviews(previousPageLink)"
             >
+              <span uk-icon="chevron-left"></span>
               Prev
             </a>
           </div>
@@ -39,6 +40,7 @@
               @click="fetchReviews(nextPageLink)"
             >
               Next
+              <span uk-icon="chevron-right"></span>
             </a>
           </div>
         </div>
@@ -57,6 +59,7 @@
               class="uk-button uk-button-default"
               @click="fetchReviews(previousPageLink)"
             >
+              <span uk-icon="chevron-left"></span>
               Prev
             </a>
           </div>
@@ -70,6 +73,7 @@
               @click="fetchReviews(nextPageLink)"
             >
               Next
+              <span uk-icon="chevron-right"></span>
             </a>
           </div>
         </div>

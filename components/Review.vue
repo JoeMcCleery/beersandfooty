@@ -17,6 +17,16 @@
           {{ block.content }}
         </p>
       </div>
+      <div>
+        <button class="uk-button uk-button-primary uk-button-small">
+          <span uk-icon="chevron-up"></span>
+          {{ review.votes.upvotes }}
+        </button>
+        <button class="uk-button uk-button-danger uk-button-small">
+          <span uk-icon="chevron-down"></span>
+          {{ review.votes.downvotes }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
