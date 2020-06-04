@@ -25,14 +25,14 @@
           :class="{ upvoted: userVote && userVote.upvote === 1 }"
         >
           <span uk-icon="chevron-up"></span>
-          {{ upvotes.length }}
+          {{ upvotes }}
         </button>
         <button
           class="uk-button uk-button-small"
           :class="{ downvoted: userVote && userVote.upvote === 0 }"
         >
           <span uk-icon="chevron-down"></span>
-          {{ downvotes.length }}
+          {{ downvotes }}
         </button>
       </div>
     </div>
@@ -55,10 +55,11 @@ export default {
     },
     userVote() {
       const user = this.$store.state.user
+      const id = this.review.id
       let vote = null
       if (user) {
-        vote = this.review.votes.filter(function(e) {
-          if (e.user_id === user.id) {
+        vote = user.votes.filter(function(e) {
+          if (e.review_id === id) {
             return e
           }
         })
@@ -66,18 +67,10 @@ export default {
       return vote ? vote.shift() : null
     },
     upvotes() {
-      return this.review.votes.filter(function(e) {
-        if (e.upvote) {
-          return e
-        }
-      })
+      return this.review.votes.upvotes
     },
     downvotes() {
-      return this.review.votes.filter(function(e) {
-        if (!e.upvote) {
-          return e
-        }
-      })
+      return this.review.votes.downvotes
     }
   }
 }

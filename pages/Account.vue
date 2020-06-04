@@ -27,7 +27,10 @@
             updated:<br /><b>{{ user.updated_at }}</b>
           </p>
           <p>
-            deleted:<br /><b>{{ user.deleted_at }}</b>
+            votes:<br /><b>{{ user.votes.length }}</b>
+          </p>
+          <p>
+            score:<br /><b>{{ user.score }}</b>
           </p>
           <div>
             <p>reviews:</p>
