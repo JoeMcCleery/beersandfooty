@@ -101,8 +101,6 @@ export default {
           password: this.formPassword,
           scope: '*'
         })
-        this.formUsername = ''
-        this.formPassword = ''
         this.formError = null
         if (!this.$store.state.user) {
           try {
