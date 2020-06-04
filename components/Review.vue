@@ -1,30 +1,38 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default uk-card-body" :class="review.type">
-      <h3 class="uk-card-title">
-        {{ review.title }}<br />
-        <span class="uk-text-small uk-text-muted">
-          {{ formattedPublishDate }}
-        </span>
-      </h3>
-      <hr />
-      <div
-        v-for="(block, idx) in review.content_blocks"
-        :key="idx"
-        :class="block.type"
-      >
-        <p v-if="block.type === 'long_text'">
-          {{ block.content }}
-        </p>
+    <div class="uk-card uk-card-default" :class="review.type">
+      <div class="uk-card-body uk-background-default">
+        <h3 class="uk-card-title">
+          {{ review.title }}<br />
+          <span class="uk-text-small uk-text-muted">
+            {{ formattedPublishDate }}
+          </span>
+        </h3>
+        <hr />
+        <div
+          v-for="(block, idx) in review.content_blocks"
+          :key="idx"
+          :class="block.type"
+        >
+          <p v-if="block.type === 'long_text'">
+            {{ block.content }}
+          </p>
+        </div>
       </div>
-      <div>
-        <button class="uk-button uk-button-primary uk-button-small">
+      <div class="uk-card-footer uk-background-muted">
+        <button
+          class="uk-button uk-button-small"
+          :class="{ upvoted: userVote && userVote.upvote === 1 }"
+        >
           <span uk-icon="chevron-up"></span>
-          {{ review.votes.upvotes }}
+          {{ upvotes.length }}
         </button>
-        <button class="uk-button uk-button-danger uk-button-small">
+        <button
+          class="uk-button uk-button-small"
+          :class="{ downvoted: userVote && userVote.upvote === 0 }"
+        >
           <span uk-icon="chevron-down"></span>
-          {{ review.votes.downvotes }}
+          {{ downvotes.length }}
         </button>
       </div>
     </div>
@@ -44,6 +52,32 @@ export default {
     formattedPublishDate: (e) => {
       const date = new Date(parseInt(e.review.publish_date) * 1000)
       return date.toLocaleString()
+    },
+    userVote() {
+      const user = this.$store.state.user
+      let vote = null
+      if (user) {
+        vote = this.review.votes.filter(function(e) {
+          if (e.user_id === user.id) {
+            return e
+          }
+        })
+      }
+      return vote ? vote.shift() : null
+    },
+    upvotes() {
+      return this.review.votes.filter(function(e) {
+        if (e.upvote) {
+          return e
+        }
+      })
+    },
+    downvotes() {
+      return this.review.votes.filter(function(e) {
+        if (!e.upvote) {
+          return e
+        }
+      })
     }
   }
 }
