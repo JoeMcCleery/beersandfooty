@@ -50,8 +50,7 @@ export default {
   },
   computed: {
     formattedPublishDate: (e) => {
-      const date = new Date(parseInt(e.review.publish_date) * 1000)
-      return date.toLocaleString()
+      return new Date(parseInt(e.review.publish_date) * 1000).toLocaleString()
     },
     userVote() {
       const user = this.$store.state.user

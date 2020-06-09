@@ -21,7 +21,7 @@
             username:<br /><b>{{ user.username }}</b>
           </p>
           <p>
-            created:<br /><b>{{ user.created_at }}</b>
+            created:<br /><b>{{ formatDate(user.created_at) }}</b>
           </p>
           <p>
             votes:<br /><b>{{ user.votes.length }}</b>
@@ -67,6 +67,9 @@ export default {
     logout(e) {
       this.$store.dispatch('logout', {})
       this.$router.push('/')
+    },
+    formatDate(dateTimeValue) {
+      return new Date(dateTimeValue).toLocaleString()
     }
   }
 }
