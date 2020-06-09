@@ -63,6 +63,11 @@ export default {
       return this.$store.state.userAccessToken && this.$store.state.user
     }
   },
+  mounted() {
+    if (this.loggedIn) {
+      this.$store.dispatch('getUser', {})
+    }
+  },
   methods: {
     logout(e) {
       this.$store.dispatch('logout', {})
