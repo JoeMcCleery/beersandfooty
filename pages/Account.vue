@@ -24,9 +24,6 @@
             created:<br /><b>{{ user.created_at }}</b>
           </p>
           <p>
-            updated:<br /><b>{{ user.updated_at }}</b>
-          </p>
-          <p>
             votes:<br /><b>{{ user.votes.length }}</b>
           </p>
           <p>
