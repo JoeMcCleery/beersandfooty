@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div
-      uk-sticky="animation: uk-animation-fade; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-medium; cls-inactive: uk-navbar-transparent; show-on-up: true;"
+      uk-sticky="animation: uk-animation-fade; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-small; cls-inactive: uk-navbar-transparent; show-on-up: true;"
     >
       <div class="uk-position-top">
         <nav
@@ -15,26 +15,29 @@
               class="uk-button uk-button-default uk-hidden@s"
               uk-toggle
             >
-              <span>&nbsp;{{ title }}</span>
+              <span>&nbsp;{{ this.$store.state.page }}</span>
               <span uk-icon="icon: menu; ratio: 1;" />
             </a>
             <ul class="uk-navbar-nav uk-visible@s">
-              <li :class="{ 'uk-active': title === 'Home' }">
+              <li :class="{ 'uk-active': this.$store.state.page === 'Home' }">
                 <nuxt-link to="/" class="">Home</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': title === 'Beer' }">
+              <li :class="{ 'uk-active': this.$store.state.page === 'Beer' }">
                 <nuxt-link to="/beer" class="">Beer</nuxt-link>
               </li>
-              <li :class="{ 'uk-active': title === 'Footy' }">
+              <li :class="{ 'uk-active': this.$store.state.page === 'Footy' }">
                 <nuxt-link to="/footy" class="">Footy</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': title === 'About' }">
+              <li :class="{ 'uk-active': this.$store.state.page === 'About' }">
                 <nuxt-link to="/about" class="">About</nuxt-link>
               </li>
               <!-- Auth Routes -->
-              <li v-if="loggedIn" :class="{ 'uk-active': title === 'Account' }">
+              <li
+                v-if="loggedIn"
+                :class="{ 'uk-active': this.$store.state.page === 'Account' }"
+              >
                 <nuxt-link to="/account" class="">
                   Account
                 </nuxt-link>
@@ -59,24 +62,32 @@
                   uk-close
                 ></button>
                 <ul class="uk-nav uk-nav-primary uk-nav-center">
-                  <li :class="{ 'uk-active': title === 'Home' }">
+                  <li
+                    :class="{ 'uk-active': this.$store.state.page === 'Home' }"
+                  >
                     <nuxt-link to="/" uk-toggle="target: #offcanvas-slide;"
                       >Home</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
-                  <li :class="{ 'uk-active': title === 'Beer' }">
+                  <li
+                    :class="{ 'uk-active': this.$store.state.page === 'Beer' }"
+                  >
                     <nuxt-link to="/beer" uk-toggle="target: #offcanvas-slide;"
                       >Beer</nuxt-link
                     >
                   </li>
-                  <li :class="{ 'uk-active': title === 'Footy' }">
+                  <li
+                    :class="{ 'uk-active': this.$store.state.page === 'Footy' }"
+                  >
                     <nuxt-link to="/footy" uk-toggle="target: #offcanvas-slide;"
                       >Footy</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
-                  <li :class="{ 'uk-active': title === 'About' }">
+                  <li
+                    :class="{ 'uk-active': this.$store.state.page === 'About' }"
+                  >
                     <nuxt-link to="/about" uk-toggle="target: #offcanvas-slide;"
                       >About</nuxt-link
                     >
@@ -84,7 +95,9 @@
                   <!-- Auth Routes -->
                   <li
                     v-if="loggedIn"
-                    :class="{ 'uk-active': title === 'Account' }"
+                    :class="{
+                      'uk-active': this.$store.state.page === 'Account'
+                    }"
                     class="uk-position-bottom"
                   >
                     <nuxt-link
@@ -114,12 +127,6 @@
 <script>
 export default {
   name: 'Navbar',
-  props: {
-    title: {
-      type: String,
-      default: 'Home'
-    }
-  },
   computed: {
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user

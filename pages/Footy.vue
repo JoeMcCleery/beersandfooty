@@ -1,84 +1,91 @@
 <template>
   <div>
-    <!--  Header  -->
-    <div class="header uk-flex uk-flex-center uk-flex-middle">
-      <div class="header-content">
-        <h1 class="uk-text-center">Footy Reviews</h1>
-        <div class="uk-position-bottom-center uk-margin-bottom">
-          <a
-            v-if="showReviews"
-            v-scroll-to="'#section-reviews'"
-            href="#"
-            class="uk-link-text"
-            ><span uk-icon="icon: chevron-down; ratio: 4;"
-          /></a>
+    <div class="content">
+      <svg-background />
+      <!--  Header  -->
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
+        <div class="header-content">
+          <h1 class="uk-text-center">Footy Reviews</h1>
+          <div class="uk-position-bottom-center uk-margin-bottom">
+            <a
+              v-if="showReviews"
+              v-scroll-to="'#section-reviews'"
+              href="#"
+              class="uk-link-text"
+              ><span uk-icon="icon: chevron-down; ratio: 4;"
+            /></a>
+          </div>
         </div>
       </div>
+      <!--  Content  -->
+      <section v-if="showReviews" id="section-reviews" class="uk-section">
+        <div class="uk-container">
+          <!--  Pagination  -->
+          <div class="uk-child-width-1-3" uk-grid>
+            <div class="uk-text-left">
+              <a
+                :class="{ 'uk-hidden': previousPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(previousPageLink)"
+              >
+                <span uk-icon="chevron-left"></span>
+                Prev
+              </a>
+            </div>
+            <div class="uk-text-center uk-text-large">
+              {{ currentPageNum }} / {{ lastPageNum }}
+            </div>
+            <div class="uk-text-right">
+              <a
+                :class="{ 'uk-hidden': nextPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(nextPageLink)"
+              >
+                Next
+                <span uk-icon="chevron-right"></span>
+              </a>
+            </div>
+          </div>
+          <!--  Masonry Grid  -->
+          <div
+            class="uk-child-width-1-2@s uk-child-width-1-3@m"
+            uk-grid="masonry: true"
+          >
+            <review
+              v-for="(obj, idx) in reviews.data"
+              :key="idx"
+              :review="obj"
+            />
+          </div>
+          <!--  Pagination  -->
+          <div class="uk-child-width-1-3" uk-grid>
+            <div class="uk-text-left">
+              <a
+                :class="{ 'uk-hidden': previousPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(previousPageLink)"
+              >
+                <span uk-icon="chevron-left"></span>
+                Prev
+              </a>
+            </div>
+            <div class="uk-text-center uk-text-large">
+              {{ currentPageNum }} / {{ lastPageNum }}
+            </div>
+            <div class="uk-text-right">
+              <a
+                :class="{ 'uk-hidden': nextPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(nextPageLink)"
+              >
+                Next
+                <span uk-icon="chevron-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <!--  Content  -->
-    <section v-if="showReviews" id="section-reviews" class="uk-section">
-      <div class="uk-container">
-        <!--  Pagination  -->
-        <div class="uk-child-width-1-3" uk-grid>
-          <div class="uk-text-left">
-            <a
-              :class="{ 'uk-hidden': previousPageLink === null }"
-              class="uk-button uk-button-default"
-              @click="fetchReviews(previousPageLink)"
-            >
-              <span uk-icon="chevron-left"></span>
-              Prev
-            </a>
-          </div>
-          <div class="uk-text-center uk-text-large">
-            {{ currentPageNum }} / {{ lastPageNum }}
-          </div>
-          <div class="uk-text-right">
-            <a
-              :class="{ 'uk-hidden': nextPageLink === null }"
-              class="uk-button uk-button-default"
-              @click="fetchReviews(nextPageLink)"
-            >
-              Next
-              <span uk-icon="chevron-right"></span>
-            </a>
-          </div>
-        </div>
-        <!--  Masonry Grid  -->
-        <div
-          class="uk-child-width-1-2@s uk-child-width-1-3@m"
-          uk-grid="masonry: true"
-        >
-          <review v-for="(obj, idx) in reviews.data" :key="idx" :review="obj" />
-        </div>
-        <!--  Pagination  -->
-        <div class="uk-child-width-1-3" uk-grid>
-          <div class="uk-text-left">
-            <a
-              :class="{ 'uk-hidden': previousPageLink === null }"
-              class="uk-button uk-button-default"
-              @click="fetchReviews(previousPageLink)"
-            >
-              <span uk-icon="chevron-left"></span>
-              Prev
-            </a>
-          </div>
-          <div class="uk-text-center uk-text-large">
-            {{ currentPageNum }} / {{ lastPageNum }}
-          </div>
-          <div class="uk-text-right">
-            <a
-              :class="{ 'uk-hidden': nextPageLink === null }"
-              class="uk-button uk-button-default"
-              @click="fetchReviews(nextPageLink)"
-            >
-              Next
-              <span uk-icon="chevron-right"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -86,7 +93,8 @@
 export default {
   name: 'Footy',
   components: {
-    Review: () => import('@/components/Review')
+    Review: () => import('@/components/Review'),
+    SvgBackground: () => import('~/components/SvgBackground.vue')
   },
   data() {
     return {

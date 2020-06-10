@@ -23,13 +23,11 @@ html, body {
   box-sizing: border-box;
   margin: 0;
 }
-
-.main-page {
-  background-color: rgba(255,255,255,0.95);
+.content {
+  background-color: $transparent-white;
+  min-height: 100vh;
 }
-
 .header {
-  background: linear-gradient(rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) $navbar-height, rgba(256,256,256,0) 100%);
   width: 100%;
   height: $header-height;
   h1 {
@@ -37,7 +35,6 @@ html, body {
     font-weight: bold;
   }
 }
-
 #background {
   position: fixed;
   top: 0;
@@ -47,6 +44,7 @@ html, body {
   z-index: -1;
   svg {
     height: 100%;
+    z-index: -1;
   }
 }
 
@@ -55,18 +53,13 @@ html, body {
 }
 
 .page-enter-active {
-  backface-visibility: hidden;
-  will-change: opacity;
   opacity: 1;
-  transition: opacity 250ms linear;
+  transition: opacity 500ms;
 }
 .page-leave-active {
-  backface-visibility: hidden;
-  will-change: opacity;
   opacity: 0;
-  transition: opacity 250ms linear;
+  transition: opacity 500ms;
 }
 .page-enter {
   opacity: 0;
-  z-index: -1;
 }

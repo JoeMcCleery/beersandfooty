@@ -2,11 +2,10 @@
 @import '../global/variables';
 
 #Footy {
-  background-color: $footycolour-alpha;
-  #navbar.uk-navbar-sticky {
-    background: $footycolour;
-  }
-  .header {
-    background: linear-gradient($footycolour 0%, $footycolour $navbar-height, rgba(256,256,256,0) 100%);
+  .content {
+    background-color: $footycolour-alpha;
+    .header {
+      background: linear-gradient($footycolour 0%, $footycolour $navbar-height, rgba(256,256,256,0) 100%);
+    }
   }
 }

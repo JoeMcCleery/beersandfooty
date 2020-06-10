@@ -2,8 +2,10 @@
 @import '../global/variables';
 
 #Home {
-  background: $brand-gradient;
-  .header {
-    background: transparent;
+  .content {
+    background: $brand-gradient;
+    .header {
+      background: linear-gradient($footycolour 0%, $footycolour $navbar-height, rgba(256,256,256,0) 100%);
+    }
   }
 }

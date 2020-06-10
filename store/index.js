@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export const state = () => ({
+  page: null,
   api_version: process.env.API_VERSION,
   user: null,
   userAccessToken: null,
@@ -9,6 +10,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  UPDATE_PAGE(state, pageName) {
+    state.page = pageName
+  },
   SET_USER(state, user) {
     state.user = user
   },

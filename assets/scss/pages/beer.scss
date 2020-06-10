@@ -2,11 +2,10 @@
 @import '../global/variables';
 
 #Beer {
-  background-color: $beerscolour-alpha;
-  #navbar.uk-navbar-sticky {
-    background: $beerscolour;
-  }
-  .header {
-    background: linear-gradient($beerscolour 0%, $beerscolour $navbar-height, rgba(256,256,256,0) 100%);
+  .content {
+    background-color: $beerscolour-alpha;
+    .header {
+      background: linear-gradient($beerscolour 0%, $beerscolour $navbar-height, rgba(256,256,256,0) 100%);
+    }
   }
 }

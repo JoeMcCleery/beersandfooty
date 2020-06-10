@@ -16,10 +16,6 @@ export default {
     ]
   },
   /*
-   ** Default layout Transitions
-   */
-  layoutTransition: 'layout',
-  /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
@@ -68,20 +64,21 @@ export default {
   /*
    ** Router configuration
    */
-  router: {},
+  router: {
+    middleware: 'pages'
+  },
   /*
    ** Build configuration
    */
   build: {
-    loaders:
-      {
-        vue: {
-          transformAssetUrls: {
-            img: "data-src",
-            div: "data-src"
-          }
+    loaders: {
+      vue: {
+        transformAssetUrls: {
+          img: 'data-src',
+          div: 'data-src'
         }
-      },
+      }
+    },
     /*
      ** You can extend webpack config here
      */

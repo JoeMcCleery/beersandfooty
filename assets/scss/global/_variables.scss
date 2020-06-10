@@ -5,7 +5,7 @@ $images-dir: '../../images/';
 $animation-duration: 1000ms;
 
 // Colours
-$brand-blue: #7b47bb;
+$brand-purple: #7b47bb;
 $beerscolour: rgb(255, 131, 58);
 $beerscolour-alpha: rgba(255, 131, 58, 0.95);
 $footycolour: rgb(255, 181, 55);
@@ -13,6 +13,7 @@ $footycolour-alpha: rgba(255, 181, 55, 0.95);
 $background-dark: #1f1f1f;
 $grey: #343434;
 $grey-light: #e7e7e7;
+$transparent-white: rgba(255,255,255,0.95);
 
 $brand-gradient: linear-gradient(to top, $beerscolour-alpha 0%, $beerscolour-alpha 25%, $footycolour-alpha 75%, $footycolour-alpha 100%);
 
@@ -30,4 +31,4 @@ $header-height: 100vh;
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
 $global-secondary-background: $grey;
-$global-primary-background: $brand-blue;
+$global-primary-background: $brand-purple;

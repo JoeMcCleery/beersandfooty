@@ -1,13 +1,16 @@
 <template>
   <div>
-    <!--  Header  -->
-    <div class="header uk-flex uk-flex-center uk-flex-middle">
-      <div class="header-content">
-        <h1>
-          <nuxt-link class="uk-link-text" to="/beer">Beers</nuxt-link>
-          <span uk-icon="icon: plus-circle; ratio: 2;" />
-          <nuxt-link class="uk-link-text" to="/footy">Footy</nuxt-link>
-        </h1>
+    <div class="content">
+      <svg-background />
+      <!--  Header  -->
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
+        <div class="header-content">
+          <h1>
+            <nuxt-link class="uk-link-text" to="/beer">Beers</nuxt-link>
+            <span uk-icon="icon: plus-circle; ratio: 2;" />
+            <nuxt-link class="uk-link-text" to="/footy">Footy</nuxt-link>
+          </h1>
+        </div>
       </div>
     </div>
   </div>
@@ -15,7 +18,10 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    SvgBackground: () => import('~/components/SvgBackground.vue')
+  }
 }
 </script>
 

@@ -1,10 +1,9 @@
 <template>
-  <div :id="RouteName" class="main-page">
+  <div :id="title" class="main-page">
     <!--  Navbar  -->
-    <navbar :title="RouteName" />
-    <!--  Content  -->
-    <div class="content">
-      <svg-background />
+    <navbar />
+    <!--  Page  -->
+    <div>
       <nuxt />
     </div>
     <!--  Modals  -->
@@ -14,10 +13,8 @@
 
 <script>
 export default {
-  mode: 'out-in',
   components: {
     Navbar: () => import('~/components/Navbar.vue'),
-    SvgBackground: () => import('~/components/SvgBackground.vue'),
     LoginModal: () => import('~/components/LoginModal.vue')
   },
   async fetch() {
@@ -34,17 +31,17 @@ export default {
     }
   },
   computed: {
-    RouteName() {
-      if (this.$nuxt.$route.name === 'index') {
-        return 'Home'
-      } else {
-        return this.$nuxt.$route.name
-      }
+    title() {
+      return this.$store.state.page
+        ? this.$store.state.page
+        : this.$nuxt.$route.name === 'index'
+        ? 'Home'
+        : this.$nuxt.$route.name
     }
   },
   head() {
     return {
-      title: process.env.SITE_TITLE + ' - ' + this.RouteName
+      title: process.env.SITE_TITLE + ' - ' + this.$store.state.page
     }
   }
 }
