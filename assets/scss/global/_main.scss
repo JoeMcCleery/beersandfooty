@@ -52,13 +52,14 @@ html, body {
   min-height: 100vh;
 }
 
+// Page Transitions
 .page-enter-active {
   opacity: 1;
   transition: opacity 500ms linear;
 }
 .page-leave-active {
   opacity: 0;
-  transition: opacity 500ms;
+  transition: opacity 250ms;
 }
 .page-enter {
   opacity: 0;

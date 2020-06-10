@@ -1,42 +1,38 @@
 <template>
   <client-only>
     <div
-      uk-sticky="animation: uk-animation-fade; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-small; cls-inactive: uk-navbar-transparent; show-on-up: true;"
+      uk-sticky="animation: uk-animation-fade; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-box-shadow-small; cls-inactive: uk-navbar-transparent uk-dark; show-on-up: true;"
     >
       <div class="uk-position-top">
-        <nav
-          id="navbar"
-          class="uk-navbar-container uk-dark uk-navbar-transparent"
-          uk-navbar
-        >
+        <nav id="navbar" class="uk-navbar-container" uk-navbar>
           <div class="uk-navbar-right">
             <a
               href="#offcanvas-slide"
               class="uk-button uk-button-default uk-hidden@s"
               uk-toggle
             >
-              <span>&nbsp;{{ this.$store.state.page }}</span>
+              <span>&nbsp;{{ pageTitle }}</span>
               <span uk-icon="icon: menu; ratio: 1;" />
             </a>
             <ul class="uk-navbar-nav uk-visible@s">
-              <li :class="{ 'uk-active': this.$store.state.page === 'Home' }">
+              <li :class="{ 'uk-active': pageTitle === 'Home' }">
                 <nuxt-link to="/" class="">Home</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': this.$store.state.page === 'Beer' }">
+              <li :class="{ 'uk-active': pageTitle === 'Beer' }">
                 <nuxt-link to="/beer" class="">Beer</nuxt-link>
               </li>
-              <li :class="{ 'uk-active': this.$store.state.page === 'Footy' }">
+              <li :class="{ 'uk-active': pageTitle === 'Footy' }">
                 <nuxt-link to="/footy" class="">Footy</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li :class="{ 'uk-active': this.$store.state.page === 'About' }">
+              <li :class="{ 'uk-active': pageTitle === 'About' }">
                 <nuxt-link to="/about" class="">About</nuxt-link>
               </li>
               <!-- Auth Routes -->
               <li
                 v-if="loggedIn"
-                :class="{ 'uk-active': this.$store.state.page === 'Account' }"
+                :class="{ 'uk-active': pageTitle === 'Account' }"
               >
                 <nuxt-link to="/account" class="">
                   Account
@@ -62,32 +58,24 @@
                   uk-close
                 ></button>
                 <ul class="uk-nav uk-nav-primary uk-nav-center">
-                  <li
-                    :class="{ 'uk-active': this.$store.state.page === 'Home' }"
-                  >
+                  <li :class="{ 'uk-active': pageTitle === 'Home' }">
                     <nuxt-link to="/" uk-toggle="target: #offcanvas-slide;"
                       >Home</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
-                  <li
-                    :class="{ 'uk-active': this.$store.state.page === 'Beer' }"
-                  >
+                  <li :class="{ 'uk-active': pageTitle === 'Beer' }">
                     <nuxt-link to="/beer" uk-toggle="target: #offcanvas-slide;"
                       >Beer</nuxt-link
                     >
                   </li>
-                  <li
-                    :class="{ 'uk-active': this.$store.state.page === 'Footy' }"
-                  >
+                  <li :class="{ 'uk-active': pageTitle === 'Footy' }">
                     <nuxt-link to="/footy" uk-toggle="target: #offcanvas-slide;"
                       >Footy</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
-                  <li
-                    :class="{ 'uk-active': this.$store.state.page === 'About' }"
-                  >
+                  <li :class="{ 'uk-active': pageTitle === 'About' }">
                     <nuxt-link to="/about" uk-toggle="target: #offcanvas-slide;"
                       >About</nuxt-link
                     >
@@ -96,7 +84,7 @@
                   <li
                     v-if="loggedIn"
                     :class="{
-                      'uk-active': this.$store.state.page === 'Account'
+                      'uk-active': pageTitle === 'Account'
                     }"
                     class="uk-position-bottom"
                   >
@@ -127,6 +115,12 @@
 <script>
 export default {
   name: 'Navbar',
+  props: {
+    pageTitle: {
+      type: String,
+      default: 'Home'
+    }
+  },
   computed: {
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user

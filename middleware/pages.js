@@ -6,5 +6,5 @@ export default function(context) {
       'UPDATE_PAGE',
       context.route.name === 'index' ? 'Home' : context.route.name
     )
-  }, 500)
+  }, 250)
 }

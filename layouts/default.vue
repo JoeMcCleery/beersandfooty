@@ -1,7 +1,7 @@
 <template>
   <div :id="title" class="main-page">
     <!--  Navbar  -->
-    <navbar />
+    <navbar :pageTitle="title" />
     <!--  Page  -->
     <div>
       <nuxt />
