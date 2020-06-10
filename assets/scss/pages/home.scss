@@ -1,5 +1,9 @@
-@import '../global/main';
+//@import '../global/main';
+@import '../global/variables';
 
 #Home {
   background: $brand-gradient;
+  .header {
+    background: transparent;
+  }
 }

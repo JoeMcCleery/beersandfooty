@@ -54,9 +54,19 @@ html, body {
   min-height: 100vh;
 }
 
-.page-enter-active, .page-leave-to {
-  transition: opacity .5s;
+.page-enter-active {
+  backface-visibility: hidden;
+  will-change: opacity;
+  opacity: 1;
+  transition: opacity 250ms linear;
 }
-.page-enter, .page-leave-to {
+.page-leave-active {
+  backface-visibility: hidden;
+  will-change: opacity;
   opacity: 0;
+  transition: opacity 250ms linear;
+}
+.page-enter {
+  opacity: 0;
+  z-index: -1;
 }
