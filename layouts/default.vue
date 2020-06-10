@@ -41,7 +41,7 @@ export default {
   },
   head() {
     return {
-      title: process.env.SITE_TITLE + ' - ' + this.$store.state.page
+      title: process.env.SITE_TITLE + ' - ' + this.title
     }
   }
 }

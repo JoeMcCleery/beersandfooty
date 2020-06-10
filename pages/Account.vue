@@ -50,7 +50,7 @@
       </section>
       <div v-else>
         <p class="uk-text-center">
-          You must log in to see account details.
+          You must log in or register to see account details.
         </p>
       </div>
     </div>
