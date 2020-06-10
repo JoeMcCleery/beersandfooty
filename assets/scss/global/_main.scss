@@ -54,7 +54,7 @@ html, body {
 
 .page-enter-active {
   opacity: 1;
-  transition: opacity 500ms;
+  transition: opacity 500ms linear;
 }
 .page-leave-active {
   opacity: 0;
