@@ -16,6 +16,10 @@ export default {
     ]
   },
   /*
+   ** Default layout Transitions
+   */
+  layoutTransition: 'layout',
+  /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },

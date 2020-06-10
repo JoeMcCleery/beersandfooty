@@ -3,13 +3,13 @@
     <!--  Header  -->
     <div class="header uk-flex uk-flex-center uk-flex-middle">
       <div class="header-content">
-        <h1 class="uk-text-center uk-animation-fade">Beer Reviews</h1>
+        <h1 class="uk-text-center">Beer Reviews</h1>
         <div class="uk-position-bottom-center uk-margin-bottom">
           <a
             v-if="showReviews"
             v-scroll-to="'#section-reviews'"
             href="#"
-            class="uk-link-text uk-animation-fade"
+            class="uk-link-text"
             ><span uk-icon="icon: chevron-down; ratio: 4;"
           /></a>
         </div>

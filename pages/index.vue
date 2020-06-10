@@ -2,7 +2,7 @@
   <div>
     <!--  Header  -->
     <div class="header uk-flex uk-flex-center uk-flex-middle">
-      <div class="header-content uk-animation-fade">
+      <div class="header-content">
         <h1>
           <nuxt-link class="uk-link-text" to="/beer">Beers</nuxt-link>
           <span uk-icon="icon: plus-circle; ratio: 2;" />

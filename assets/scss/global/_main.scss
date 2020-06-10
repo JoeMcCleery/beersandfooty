@@ -47,7 +47,6 @@ html, body {
   z-index: -1;
   svg {
     height: 100%;
-    animation: pulse 10s ease infinite;
   }
 }
 
@@ -55,8 +54,9 @@ html, body {
   min-height: 100vh;
 }
 
-@keyframes pulse {
-  50% {
-    fill-opacity: 75%;
-  }
+.page-enter-active, .page-leave-to {
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
 }

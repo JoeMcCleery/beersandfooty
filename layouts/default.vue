@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  mode: 'out-in',
   components: {
     Navbar: () => import('~/components/Navbar.vue'),
     SvgBackground: () => import('~/components/SvgBackground.vue'),
