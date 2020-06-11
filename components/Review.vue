@@ -22,17 +22,25 @@
       <div class="uk-card-footer uk-background-muted">
         <button
           class="uk-button uk-button-small"
-          :class="{ upvoted: userVote && userVote.upvote === 1 }"
+          :class="{
+            upvoted: userVote && userVote.upvote === 1,
+            'uk-disabled': !user
+          }"
+          @click="voteAction(1)"
         >
           <span uk-icon="chevron-up"></span>
-          {{ upvotes }}
+          {{ votes.upvotes }}
         </button>
         <button
           class="uk-button uk-button-small"
-          :class="{ downvoted: userVote && userVote.upvote === 0 }"
+          :class="{
+            downvoted: userVote && userVote.upvote === 0,
+            'uk-disabled': !user
+          }"
+          @click="voteAction(0)"
         >
           <span uk-icon="chevron-down"></span>
-          {{ downvotes }}
+          {{ votes.downvotes }}
         </button>
       </div>
     </div>
@@ -48,28 +56,59 @@ export default {
       default: null
     }
   },
+  data() {
+    return {
+      votes: {
+        downvotes: 0,
+        upvotes: 0
+      }
+    }
+  },
+  mounted() {
+    this.votes = this.review.votes
+  },
   computed: {
-    formattedPublishDate: (e) => {
-      return new Date(parseInt(e.review.publish_date) * 1000).toLocaleString()
+    formattedPublishDate() {
+      return new Date(
+        parseInt(this.review.publish_date) * 1000
+      ).toLocaleString()
+    },
+    user() {
+      return this.$store.state.user
+    },
+    userVotes() {
+      return this.$store.state.userVotes
     },
     userVote() {
-      const user = this.$store.state.user
-      const id = this.review.id
       let vote = null
-      if (user) {
-        vote = user.votes.filter(function(e) {
+      const id = this.review.id
+      if (this.user) {
+        vote = this.userVotes.filter(function(e) {
           if (e.review_id === id) {
             return e
           }
         })
       }
       return vote ? vote.shift() : null
-    },
-    upvotes() {
-      return this.review.votes.upvotes
-    },
-    downvotes() {
-      return this.review.votes.downvotes
+    }
+  },
+  methods: {
+    async voteAction(upvote) {
+      if (this.userVote && this.userVote.upvote === upvote) {
+        upvote ? this.votes.upvotes-- : this.votes.downvotes--
+        await this.$store.dispatch('deleteVote', {
+          voteID: this.userVote.id
+        })
+      } else {
+        upvote ? this.votes.upvotes++ : this.votes.downvotes++
+        if (this.userVote) {
+          upvote ? this.votes.downvotes-- : this.votes.upvotes--
+        }
+        await this.$store.dispatch('createVote', {
+          review_id: this.review.id,
+          upvote
+        })
+      }
     }
   }
 }

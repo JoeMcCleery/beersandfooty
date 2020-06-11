@@ -1,9 +1,12 @@
 import axios from 'axios'
 
+const mode = process.env.MODE
+
 export const state = () => ({
   page: null,
   api_version: process.env.API_VERSION,
   user: null,
+  userVotes: null,
   userAccessToken: null,
   refreshToken: null,
   clientAccessToken: null
@@ -15,6 +18,12 @@ export const mutations = {
   },
   SET_USER(state, user) {
     state.user = user
+    if (user.votes) {
+      state.userVotes = user.votes
+    }
+  },
+  SET_USER_VOTES(state, votes) {
+    state.userVotes = votes
   },
   SET_USER_TOKEN(state, token) {
     state.userAccessToken = token
@@ -47,7 +56,7 @@ export const actions = {
     })
     if (data.access_token) {
       commit('SET_CLIENT_TOKEN', data.access_token)
-    } else if (data.message) {
+    } else if (data.message && mode === 'dev') {
       throw new Error(data.message)
     }
   },
@@ -76,7 +85,7 @@ export const actions = {
     if (data.access_token && data.refresh_token) {
       commit('SET_USER_TOKEN', data.access_token)
       commit('SET_REFRESH_TOKEN', data.refresh_token)
-    } else if (data.message) {
+    } else if (data.message && mode === 'dev') {
       throw new Error(data.message)
     }
   },
@@ -92,7 +101,7 @@ export const actions = {
     )
     if (data.data && data.data.user) {
       commit('SET_USER', data.data.user)
-    } else if (data.message) {
+    } else if (data.message && mode === 'dev') {
       throw new Error(data.message)
     }
   },
@@ -112,7 +121,49 @@ export const actions = {
     )
     if (data.data && data.data.user) {
       commit('SET_USER', data.data.user)
-    } else if (data.message) {
+    } else if (data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+  },
+
+  // eslint-disable-next-line camelcase
+  async createVote({ commit }, { review_id, upvote }) {
+    const { data } = await axios.post(
+      process.env.API_URL + '/api/' + process.env.API_VERSION + '/votes/',
+      {
+        review_id,
+        upvote
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+    if (data.data && data.data.votes) {
+      commit('SET_USER_VOTES', data.data.votes)
+    } else if (data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+  },
+
+  // eslint-disable-next-line camelcase
+  async deleteVote({ commit }, { voteID }) {
+    const { data } = await axios.delete(
+      process.env.API_URL +
+        '/api/' +
+        process.env.API_VERSION +
+        '/votes/' +
+        voteID,
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+    if (data.data && data.data.votes) {
+      commit('SET_USER_VOTES', data.data.votes)
+    } else if (data.message && mode === 'dev') {
       throw new Error(data.message)
     }
   }

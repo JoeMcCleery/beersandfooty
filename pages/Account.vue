@@ -26,7 +26,7 @@
               created:<br /><b>{{ formatDate(user.created_at) }}</b>
             </p>
             <p>
-              votes:<br /><b>{{ user.votes.length }}</b>
+              votes:<br /><b>{{ userVotes.length }}</b>
             </p>
             <p>
               score:<br /><b>{{ user.score }}</b>
@@ -39,7 +39,7 @@
                 uk-grid="masonry: true"
               >
                 <review
-                  v-for="(obj, idx) in user.reviews"
+                  v-for="(obj, idx) in userReviews"
                   :key="idx"
                   :review="obj"
                 />
@@ -67,6 +67,12 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    userReviews() {
+      return this.user.reviews
+    },
+    userVotes() {
+      return this.$store.state.userVotes
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
