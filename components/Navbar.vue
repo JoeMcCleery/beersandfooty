@@ -8,13 +8,13 @@
           <div class="uk-navbar-right">
             <a
               href="#offcanvas-slide"
-              class="uk-button uk-button-default uk-hidden@s"
+              class="uk-button uk-button-default uk-hidden@m"
               uk-toggle
             >
               <span>&nbsp;{{ pageTitle }}</span>
               <span uk-icon="icon: menu; ratio: 1;" />
             </a>
-            <ul class="uk-navbar-nav uk-visible@s">
+            <ul class="uk-navbar-nav uk-visible@m">
               <li :class="{ 'uk-active': pageTitle === 'Home' }">
                 <nuxt-link to="/" class="">Home</nuxt-link>
               </li>
@@ -51,7 +51,9 @@
               id="offcanvas-slide"
               uk-offcanvas="overlay: true; mode: slide; esc-close: true; flip: true;"
             >
-              <div class="uk-offcanvas-bar">
+              <div
+                class="uk-offcanvas-bar uk-width-1-1 uk-width-medium@s uk-hidden@m"
+              >
                 <button
                   class="uk-offcanvas-close"
                   type="button"

@@ -51,7 +51,7 @@ export default {
         numbers.classList.remove('tickUp')
         numbers.classList.remove('tickDown')
         ref.numberFunc()
-      }, 200)
+      }, 150)
     }
   }
 }

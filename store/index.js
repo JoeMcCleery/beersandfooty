@@ -50,11 +50,8 @@ export const actions = {
     Vue.prototype.$localStorageClear()
   },
 
-  setStoreFromLocalStorage({ commit }) {
-    commit('SET_USER', Vue.prototype.$localStorageGet('user'))
-    commit('SET_USER_VOTES', Vue.prototype.$localStorageGet('userVotes'))
+  setUserFromLocalStorage({ commit }) {
     commit('SET_USER_TOKEN', Vue.prototype.$localStorageGet('userAccessToken'))
-    commit('SET_REFRESH_TOKEN', Vue.prototype.$localStorageGet('refreshToken'))
   },
 
   // eslint-disable-next-line camelcase

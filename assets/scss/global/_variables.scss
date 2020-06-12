@@ -1,9 +1,6 @@
 // SCSS Helpers
 $images-dir: '../../images/';
 
-// Animation
-$animation-duration: 1000ms;
-
 // Colours
 $brand-purple: #7b47bb;
 $beerscolour: rgb(255, 131, 58);
@@ -30,5 +27,6 @@ $header-height: 100vh;
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
+$button-default-background: #fff;
 $global-secondary-background: $grey;
 $global-primary-background: $brand-purple;

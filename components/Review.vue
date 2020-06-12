@@ -30,7 +30,7 @@
         >
           <span uk-icon="chevron-up"></span>
           <span class="uk-text-small">
-            {{ this.votes.upvotes }}
+            <animated-number :number="votes.upvotes" class="uk-inline" />
           </span>
         </button>
         <button class="uk-button uk-button-small uk-disabled">
@@ -46,7 +46,7 @@
         >
           <span uk-icon="chevron-down"></span>
           <span class="uk-text-small">
-            {{ this.votes.downvotes }}
+            <animated-number :number="votes.downvotes" class="uk-inline" />
           </span>
         </button>
       </div>
@@ -64,13 +64,14 @@ export default {
     review: {
       type: Object,
       default: null
-    }
-  },
-  data() {
-    return {
-      votes: {
-        downvotes: 0,
-        upvotes: 0
+    },
+    votes: {
+      type: Object,
+      default() {
+        return {
+          upvotes: 0,
+          downvotes: 0
+        }
       }
     }
   },
@@ -101,9 +102,6 @@ export default {
       }
       return vote ? vote.shift() : null
     }
-  },
-  mounted() {
-    this.votes = this.review.votes
   },
   methods: {
     async voteAction(upvote, event) {

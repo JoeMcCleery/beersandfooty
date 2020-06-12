@@ -9,49 +9,52 @@
       <!--  Page Content Container  -->
       <section v-if="loggedIn" class="uk-section">
         <div class="uk-container">
-          <button
-            class="uk-button uk-button-primary uk-align-right"
-            @click="logout"
-          >
-            Logout
-          </button>
-          <div>
-            <p>
-              Username:<br /><b>
-                {{ user.username }}
-              </b>
-            </p>
-            <p>
-              Created:<br /><b>
-                {{ formatDate(user.created_at) }}
-              </b>
-            </p>
-            <p>
-              Votes:<br /><b>
-                <animated-number :number="numVotes" />
-              </b>
-            </p>
-            <p>
-              Score:<br /><b>
-                <animated-number :number="userScore" />
-              </b>
-            </p>
+          <div class="uk-card uk-card-default uk-card-body">
+            <button
+              class="uk-button uk-button-primary uk-align-right"
+              @click="logout"
+            >
+              Logout
+            </button>
             <div>
-              <p>Reviews:</p>
-              <!--  Masonry Grid  -->
-              <div
-                v-if="userReviews.length"
-                class="uk-child-width-1-2@m uk-child-width-1-3@l"
-                uk-grid="masonry: true"
-              >
-                <review
-                  v-for="(obj, idx) in userReviews"
-                  :key="idx"
-                  :review="obj"
-                />
-              </div>
-              <div v-else>
-                <b>No Reviews...</b>
+              <p>
+                Username:<br /><b>
+                  {{ user.username }}
+                </b>
+              </p>
+              <p>
+                Date Created:<br /><b>
+                  {{ formatDate(user.created_at) }}
+                </b>
+              </p>
+              <p>
+                Votes Casted:<br /><b>
+                  <animated-number :number="numVotes" />
+                </b>
+              </p>
+              <p>
+                User Score:<br /><b>
+                  <animated-number :number="userScore" />
+                </b>
+              </p>
+              <div>
+                <p>Reviews:</p>
+                <!--  Masonry Grid  -->
+                <div
+                  v-if="userReviews.length"
+                  class="uk-child-width-1-2@m uk-child-width-1-3@l"
+                  uk-grid="masonry: true"
+                >
+                  <review
+                    v-for="(obj, idx) in userReviews"
+                    :key="idx"
+                    :review="obj"
+                    :votes="obj.votes"
+                  />
+                </div>
+                <div v-else>
+                  <b>No Reviews Made...</b>
+                </div>
               </div>
             </div>
           </div>
@@ -88,7 +91,7 @@ export default {
       return this.userVotes ? this.userVotes.length : 0
     },
     userScore() {
-      return this.user.score !== 0 ? this.user.score : 0
+      return this.user.score
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user

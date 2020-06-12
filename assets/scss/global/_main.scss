@@ -67,15 +67,14 @@ html, body {
 
 // Animated Counter
 .animated-number {
-  position: relative;
   overflow: hidden;
   .numbers {
     height: 40px;
     &.tickUp {
-      animation: tickUp 200ms ease infinite;
+      animation: tickUp 150ms infinite;
     }
     &.tickDown {
-      animation: tickDown 200ms ease infinite;
+      animation: tickDown 150ms infinite;
     }
   }
   .number {

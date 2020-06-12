@@ -19,7 +19,7 @@
       </div>
       <!--  Content  -->
       <section v-if="showReviews" id="section-reviews" class="uk-section">
-        <div class="uk-container">
+        <div class="uk-container uk-container-large">
           <!--  Pagination  -->
           <div uk-grid>
             <div>
@@ -33,7 +33,7 @@
               </a>
             </div>
             <div class="uk-text-center uk-text-large uk-width-expand">
-              {{ currentPageNum }} / {{ lastPageNum }}
+              <animated-number :number="currentPageNum" />
             </div>
             <div>
               <a
@@ -55,6 +55,7 @@
               v-for="(obj, idx) in reviews.data"
               :key="idx"
               :review="obj"
+              :votes="obj.votes"
             />
           </div>
           <!--  Pagination  -->
@@ -70,7 +71,7 @@
               </a>
             </div>
             <div class="uk-text-center uk-text-large uk-width-expand">
-              {{ currentPageNum }} / {{ lastPageNum }}
+              <animated-number :number="currentPageNum" />
             </div>
             <div>
               <a
@@ -94,7 +95,8 @@ export default {
   name: 'Footy',
   components: {
     Review: () => import('@/components/Review'),
-    SvgBackground: () => import('~/components/SvgBackground.vue')
+    SvgBackground: () => import('~/components/SvgBackground.vue'),
+    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
   data() {
     return {
@@ -126,13 +128,6 @@ export default {
       if (this.showReviews) {
         const meta = this.reviews.meta
         return meta ? meta.current_page : null
-      }
-      return null
-    },
-    lastPageNum() {
-      if (this.showReviews) {
-        const meta = this.reviews.meta
-        return meta ? meta.last_page : null
       }
       return null
     }

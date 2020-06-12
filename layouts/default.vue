@@ -41,8 +41,9 @@ export default {
     }
   },
   mounted() {
-    if (Vue.prototype.$localStorageGet('user')) {
-      this.$store.dispatch('setStoreFromLocalStorage')
+    if (Vue.prototype.$localStorageGet('userAccessToken')) {
+      this.$store.dispatch('setUserFromLocalStorage')
+      this.$store.dispatch('getUser', {})
     }
   },
   head() {
