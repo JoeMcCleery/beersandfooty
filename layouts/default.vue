@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   components: {
     Navbar: () => import('~/components/Navbar.vue'),
@@ -37,6 +38,11 @@ export default {
         : this.$nuxt.$route.name === 'index'
         ? 'Home'
         : this.$nuxt.$route.name
+    }
+  },
+  mounted() {
+    if (Vue.prototype.$localStorageGet('user')) {
+      this.$store.dispatch('setStoreFromLocalStorage')
     }
   },
   head() {

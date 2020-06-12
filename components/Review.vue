@@ -19,28 +19,35 @@
           </p>
         </div>
       </div>
-      <div class="uk-card-footer uk-background-muted">
+      <div class="uk-card-footer uk-background-muted uk-text-center">
         <button
-          class="uk-button uk-button-small"
+          class="uk-button uk-float-left"
           :class="{
             upvoted: userVote && userVote.upvote === 1,
             'uk-disabled': !user
           }"
-          @click="voteAction(1)"
+          @click="voteAction(1, $event)"
         >
           <span uk-icon="chevron-up"></span>
-          {{ votes.upvotes }}
+          <span class="uk-text-small">
+            {{ this.votes.upvotes }}
+          </span>
+        </button>
+        <button class="uk-button uk-button-small uk-disabled">
+          <animated-number :number="totalScore" />
         </button>
         <button
-          class="uk-button uk-button-small"
+          class="uk-button uk-float-right"
           :class="{
             downvoted: userVote && userVote.upvote === 0,
             'uk-disabled': !user
           }"
-          @click="voteAction(0)"
+          @click="voteAction(0, $event)"
         >
           <span uk-icon="chevron-down"></span>
-          {{ votes.downvotes }}
+          <span class="uk-text-small">
+            {{ this.votes.downvotes }}
+          </span>
         </button>
       </div>
     </div>
@@ -50,6 +57,9 @@
 <script>
 export default {
   name: 'Review',
+  components: {
+    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+  },
   props: {
     review: {
       type: Object,
@@ -64,14 +74,14 @@ export default {
       }
     }
   },
-  mounted() {
-    this.votes = this.review.votes
-  },
   computed: {
     formattedPublishDate() {
       return new Date(
         parseInt(this.review.publish_date) * 1000
       ).toLocaleString()
+    },
+    totalScore() {
+      return this.votes.upvotes - this.votes.downvotes
     },
     user() {
       return this.$store.state.user
@@ -82,7 +92,7 @@ export default {
     userVote() {
       let vote = null
       const id = this.review.id
-      if (this.user) {
+      if (this.userVotes) {
         vote = this.userVotes.filter(function(e) {
           if (e.review_id === id) {
             return e
@@ -92,13 +102,18 @@ export default {
       return vote ? vote.shift() : null
     }
   },
+  mounted() {
+    this.votes = this.review.votes
+  },
   methods: {
-    async voteAction(upvote) {
+    async voteAction(upvote, event) {
+      event.target.classList.add('uk-disabled')
       if (this.userVote && this.userVote.upvote === upvote) {
         upvote ? this.votes.upvotes-- : this.votes.downvotes--
         await this.$store.dispatch('deleteVote', {
           voteID: this.userVote.id
         })
+        await this.$store.dispatch('getUser', {})
       } else {
         upvote ? this.votes.upvotes++ : this.votes.downvotes++
         if (this.userVote) {
@@ -108,7 +123,9 @@ export default {
           review_id: this.review.id,
           upvote
         })
+        await this.$store.dispatch('getUser', {})
       }
+      event.target.classList.remove('uk-disabled')
     }
   }
 }

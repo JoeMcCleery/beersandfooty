@@ -10,7 +10,8 @@
 
 // 3.5. Custom scss
 img[data-src][src*='data:image'] { background: $grey-light; }
-.uk-form-icon { z-index: 1; }
+.uk-form-icon { z-index: 1; cursor: pointer; }
+.uk-icon { pointer-events: none; }
 
 // 4. Import UIkit.
 @import "@/node_modules/uikit/src/scss/uikit.scss";

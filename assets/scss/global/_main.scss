@@ -64,3 +64,40 @@ html, body {
 .page-enter {
   opacity: 0;
 }
+
+// Animated Counter
+.animated-number {
+  position: relative;
+  overflow: hidden;
+  .numbers {
+    height: 40px;
+    &.tickUp {
+      animation: tickUp 200ms ease infinite;
+    }
+    &.tickDown {
+      animation: tickDown 200ms ease infinite;
+    }
+  }
+  .number {
+    height: 40px;
+    line-height: 40px;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes tickUp {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes tickDown {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

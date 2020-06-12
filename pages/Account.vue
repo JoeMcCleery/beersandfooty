@@ -17,25 +17,31 @@
           </button>
           <div>
             <p>
-              id:<br /><b>{{ user.id }}</b>
+              Username:<br /><b>
+                {{ user.username }}
+              </b>
             </p>
             <p>
-              username:<br /><b>{{ user.username }}</b>
+              Created:<br /><b>
+                {{ formatDate(user.created_at) }}
+              </b>
             </p>
             <p>
-              created:<br /><b>{{ formatDate(user.created_at) }}</b>
+              Votes:<br /><b>
+                <animated-number :number="numVotes" />
+              </b>
             </p>
             <p>
-              votes:<br /><b>{{ userVotes.length }}</b>
-            </p>
-            <p>
-              score:<br /><b>{{ user.score }}</b>
+              Score:<br /><b>
+                <animated-number :number="userScore" />
+              </b>
             </p>
             <div>
-              <p>reviews:</p>
+              <p>Reviews:</p>
               <!--  Masonry Grid  -->
               <div
-                class="uk-child-width-1-2@s uk-child-width-1-3@m"
+                v-if="userReviews.length"
+                class="uk-child-width-1-2@m uk-child-width-1-3@l"
                 uk-grid="masonry: true"
               >
                 <review
@@ -43,6 +49,9 @@
                   :key="idx"
                   :review="obj"
                 />
+              </div>
+              <div v-else>
+                <b>No Reviews...</b>
               </div>
             </div>
           </div>
@@ -62,7 +71,8 @@ export default {
   name: 'Account',
   components: {
     Review: () => import('@/components/Review'),
-    SvgBackground: () => import('~/components/SvgBackground.vue')
+    SvgBackground: () => import('~/components/SvgBackground.vue'),
+    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
   computed: {
     user() {
@@ -73,6 +83,12 @@ export default {
     },
     userVotes() {
       return this.$store.state.userVotes
+    },
+    numVotes() {
+      return this.userVotes ? this.userVotes.length : 0
+    },
+    userScore() {
+      return this.user.score !== 0 ? this.user.score : 0
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user

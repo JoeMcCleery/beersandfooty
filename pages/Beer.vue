@@ -21,10 +21,10 @@
       <section v-if="showReviews" id="section-reviews" class="uk-section">
         <div class="uk-container">
           <!--  Pagination  -->
-          <div class="uk-child-width-1-3" uk-grid>
-            <div class="uk-text-left">
+          <div uk-grid>
+            <div>
               <a
-                :class="{ 'uk-hidden': previousPageLink === null }"
+                :class="{ 'uk-invisible': previousPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(previousPageLink)"
               >
@@ -32,12 +32,12 @@
                 Prev
               </a>
             </div>
-            <div class="uk-text-center uk-text-large">
+            <div class="uk-text-center uk-text-large uk-width-expand">
               {{ currentPageNum }} / {{ lastPageNum }}
             </div>
-            <div class="uk-text-right">
+            <div>
               <a
-                :class="{ 'uk-hidden': nextPageLink === null }"
+                :class="{ 'uk-invisible': nextPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(nextPageLink)"
               >
@@ -48,7 +48,7 @@
           </div>
           <!--  Masonry Grid  -->
           <div
-            class="uk-child-width-1-2@s uk-child-width-1-3@m"
+            class="uk-child-width-1-2@m uk-child-width-1-3@l"
             uk-grid="masonry: true"
           >
             <review
@@ -58,10 +58,10 @@
             />
           </div>
           <!--  Pagination  -->
-          <div class="uk-child-width-1-3" uk-grid>
-            <div class="uk-text-left">
+          <div uk-grid>
+            <div>
               <a
-                :class="{ 'uk-hidden': previousPageLink === null }"
+                :class="{ 'uk-invisible': previousPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(previousPageLink)"
               >
@@ -69,12 +69,12 @@
                 Prev
               </a>
             </div>
-            <div class="uk-text-center uk-text-large">
+            <div class="uk-text-center uk-text-large uk-width-expand">
               {{ currentPageNum }} / {{ lastPageNum }}
             </div>
-            <div class="uk-text-right">
+            <div>
               <a
-                :class="{ 'uk-hidden': nextPageLink === null }"
+                :class="{ 'uk-invisible': nextPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(nextPageLink)"
               >
