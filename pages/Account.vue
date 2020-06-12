@@ -28,7 +28,7 @@
                 </b>
               </p>
               <p>
-                Votes Casted:<br /><b>
+                Votes Made:<br /><b>
                   <animated-number :number="numVotes" />
                 </b>
               </p>
