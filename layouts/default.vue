@@ -42,7 +42,7 @@ export default {
   },
   mounted() {
     if (Vue.prototype.$localStorageGet('userAccessToken')) {
-      this.$store.dispatch('setUserFromLocalStorage')
+      this.$store.dispatch('setUserTokenFromLocalStorage')
       this.$store.dispatch('getUser', {})
     }
   },

@@ -50,7 +50,7 @@ export const actions = {
     Vue.prototype.$localStorageClear()
   },
 
-  setUserFromLocalStorage({ commit }) {
+  setUserTokenFromLocalStorage({ commit }) {
     commit('SET_USER_TOKEN', Vue.prototype.$localStorageGet('userAccessToken'))
   },
 
