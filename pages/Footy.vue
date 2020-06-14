@@ -33,7 +33,10 @@
               </a>
             </div>
             <div class="uk-text-center uk-text-large uk-width-expand">
-              <animated-number :number="currentPageNum" />
+              <animated-number
+                :number="currentPageNum"
+                class="uk-button uk-disabled uk-button-default uk-button-small"
+              />
             </div>
             <div>
               <a
@@ -70,7 +73,10 @@
               </a>
             </div>
             <div class="uk-text-center uk-text-large uk-width-expand">
-              <animated-number :number="currentPageNum" />
+              <animated-number
+                :number="currentPageNum"
+                class="uk-button uk-disabled uk-button-default uk-button-small"
+              />
             </div>
             <div>
               <a
