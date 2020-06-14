@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       displayNumber: 0,
-      interval: false
+      timeout: false
     }
   },
   watch: {
@@ -23,12 +23,12 @@ export default {
       this.numberFunc()
     }
   },
-  mounted() {
+  created() {
     this.displayNumber = this.number
   },
   methods: {
     numberFunc() {
-      clearTimeout(this.interval)
+      clearTimeout(this.timeout)
 
       if (this.number === this.displayNumber) {
         return
@@ -47,7 +47,7 @@ export default {
 
       this.displayNumber = this.displayNumber + change
 
-      this.interval = setTimeout(function() {
+      this.timeout = setTimeout(function() {
         numbers.classList.remove('tickUp')
         numbers.classList.remove('tickDown')
         ref.numberFunc()

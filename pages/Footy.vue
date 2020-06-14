@@ -55,7 +55,6 @@
               v-for="(obj, idx) in reviews.data"
               :key="idx"
               :review="obj"
-              :votes="obj.votes"
             />
           </div>
           <!--  Pagination  -->

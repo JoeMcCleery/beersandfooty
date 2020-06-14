@@ -64,18 +64,17 @@ export default {
     review: {
       type: Object,
       default: null
-    },
-    votes: {
-      type: Object,
-      default() {
-        return {
-          upvotes: 0,
-          downvotes: 0
-        }
-      }
+    }
+  },
+  data() {
+    return {
+      votesData: this.review.votes
     }
   },
   computed: {
+    votes() {
+      return this.votesData
+    },
     formattedPublishDate() {
       return new Date(
         parseInt(this.review.publish_date) * 1000
@@ -101,6 +100,11 @@ export default {
         })
       }
       return vote ? vote.shift() : null
+    }
+  },
+  watch: {
+    review() {
+      this.votesData = this.review.votes
     }
   },
   methods: {

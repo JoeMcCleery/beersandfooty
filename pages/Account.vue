@@ -49,7 +49,6 @@
                     v-for="(obj, idx) in userReviews"
                     :key="idx"
                     :review="obj"
-                    :votes="obj.votes"
                   />
                 </div>
                 <div v-else>
