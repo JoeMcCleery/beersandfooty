@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default" :class="review.type">
+    <div class="uk-card uk-card-default" :class="reviewData.type">
       <div class="uk-card-body uk-background-default">
         <h3 class="uk-card-title">
-          {{ review.title }}<br />
+          {{ reviewData.title }}<br />
           <span class="uk-text-small uk-text-muted">
             {{ formattedPublishDate }}
           </span>
         </h3>
         <hr />
         <div
-          v-for="(block, idx) in review.content_blocks"
+          v-for="(block, idx) in reviewData.content_blocks"
           :key="idx"
           :class="block.type"
         >
@@ -68,13 +68,16 @@ export default {
   },
   data() {
     return {
-      votes: this.review.votes
+      reviewData: this.review
     }
   },
   computed: {
+    votes() {
+      return this.reviewData.votes
+    },
     formattedPublishDate() {
       return new Date(
-        parseInt(this.review.publish_date) * 1000
+        parseInt(this.reviewData.publish_date) * 1000
       ).toLocaleString()
     },
     totalScore() {
@@ -88,7 +91,7 @@ export default {
     },
     userVote() {
       let vote = null
-      const id = this.review.id
+      const id = this.reviewData.id
       if (this.userVotes) {
         vote = this.userVotes.filter(function(e) {
           if (e.review_id === id) {
@@ -101,7 +104,7 @@ export default {
   },
   watch: {
     review() {
-      this.votes = this.review.votes
+      this.reviewData = this.review
     }
   },
   methods: {
@@ -119,7 +122,7 @@ export default {
           upvote ? this.votes.downvotes-- : this.votes.upvotes--
         }
         await this.$store.dispatch('createVote', {
-          review_id: this.review.id,
+          review_id: this.reviewData.id,
           upvote
         })
         await this.$store.dispatch('getUser', {})

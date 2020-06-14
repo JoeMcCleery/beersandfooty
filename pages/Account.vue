@@ -46,9 +46,9 @@
                   uk-grid="masonry: true"
                 >
                   <review
-                    v-for="(obj, idx) in userReviews"
-                    :key="idx"
-                    :review="obj"
+                    v-for="r in userReviews"
+                    :key="r.title + r.id"
+                    :review="r"
                   />
                 </div>
                 <div v-else>

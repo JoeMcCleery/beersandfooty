@@ -52,9 +52,9 @@
             uk-grid="masonry: true"
           >
             <review
-              v-for="(obj, idx) in reviews.data"
-              :key="idx"
-              :review="obj"
+              v-for="r in reviews.data"
+              :key="r.title + r.id"
+              :review="r"
             />
           </div>
           <!--  Pagination  -->
