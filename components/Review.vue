@@ -68,13 +68,10 @@ export default {
   },
   data() {
     return {
-      votesData: this.review.votes
+      votes: this.review.votes
     }
   },
   computed: {
-    votes() {
-      return this.votesData
-    },
     formattedPublishDate() {
       return new Date(
         parseInt(this.review.publish_date) * 1000
@@ -104,7 +101,7 @@ export default {
   },
   watch: {
     review() {
-      this.votesData = this.review.votes
+      this.votes = this.review.votes
     }
   },
   methods: {
