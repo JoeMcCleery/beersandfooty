@@ -100,6 +100,9 @@ export default {
         })
       }
       return vote ? vote.shift() : null
+    },
+    isAccountPage() {
+      return this.$nuxt.$route.name === 'Account'
     }
   },
   watch: {
@@ -109,17 +112,22 @@ export default {
   },
   methods: {
     async voteAction(upvote, event) {
+      console.log(this.isAccountPage)
       event.target.classList.add('uk-disabled')
       if (this.userVote && this.userVote.upvote === upvote) {
-        upvote ? this.votes.upvotes-- : this.votes.downvotes--
+        if (!this.isAccountPage) {
+          upvote ? this.votes.upvotes-- : this.votes.downvotes--
+        }
         await this.$store.dispatch('deleteVote', {
           voteID: this.userVote.id
         })
         await this.$store.dispatch('getUser', {})
       } else {
-        upvote ? this.votes.upvotes++ : this.votes.downvotes++
-        if (this.userVote) {
-          upvote ? this.votes.downvotes-- : this.votes.upvotes--
+        if (!this.isAccountPage) {
+          upvote ? this.votes.upvotes++ : this.votes.downvotes++
+          if (this.userVote) {
+            upvote ? this.votes.downvotes-- : this.votes.upvotes--
+          }
         }
         await this.$store.dispatch('createVote', {
           review_id: this.reviewData.id,
