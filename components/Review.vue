@@ -112,7 +112,6 @@ export default {
   },
   methods: {
     async voteAction(upvote, event) {
-      console.log(this.isAccountPage)
       event.target.classList.add('uk-disabled')
       if (this.userVote && this.userVote.upvote === upvote) {
         if (!this.isAccountPage) {
