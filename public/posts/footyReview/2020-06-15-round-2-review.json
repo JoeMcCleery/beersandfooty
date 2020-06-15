@@ -10,39 +10,75 @@
     },
     {
       "type": "shortText",
-      "value": "Collingwood v Richmond Title Contenders out defend each other into abysmal draw. 7/10"
+      "value": "Collingwood v Richmond: Title Contenders out defend each other into abysmal draw."
+    },
+    {
+      "type": "score",
+      "value": 7
     },
     {
       "type": "shortText",
-      "value": "Geelong v Hawthorn Arch rivals show us an abysmal draw is better than a boring belting as Hawks get lost in Geelong. 5/10"
+      "value": "Geelong v Hawthorn: Arch rivals show us an abysmal draw is better than a boring belting as Hawks get lost in Geelong."
+    },
+    {
+      "type": "score",
+      "value": 5
     },
     {
       "type": "shortText",
-      "value": "Fremantle v Brisbane Brisbane prevail in tight contest in first Hub game. 7/10"
+      "value": "Fremantle v Brisbane: Brisbane prevail in tight contest in first Hub game."
+    },
+    {
+      "type": "score",
+      "value": 7
     },
     {
       "type": "shortText",
-      "value": "Carlton v Melbourne Game of two halves as both teams remind us that they are still shit. 8/10"
+      "value": "Carlton v Melbourne: Game of two halves as both teams remind us that they are still shit."
+    },
+    {
+      "type": "score",
+      "value": 8
     },
     {
       "type": "shortText",
-      "value": "Port Adelaide v Adelaide Port Adelaide smash arch rivals as 2000 fans tested for Covid. 6/10"
+      "value": "Port Adelaide v Adelaide: Port Adelaide smash arch rivals as 2000 fans tested for Covid."
+    },
+    {
+      "type": "score",
+      "value": 6
     },
     {
       "type": "shortText",
-      "value": "Gold Coast v West Coast Worst rated team destroys title contenders in one of Gold Coast's greatest wins. 9/10"
+      "value": "Gold Coast v West Coast: Worst rated team destroys title contenders in one of Gold Coast's greatest wins."
+    },
+    {
+      "type": "score",
+      "value": 9
     },
     {
       "type": "shortText",
-      "value": "Greater Western Sydney v North Melbourne North Melbourne stun GWS in 20 point win. 8/10"
+      "value": "Greater Western Sydney v North Melbourne: North Melbourne stun GWS in 20 point win."
+    },
+    {
+      "type": "score",
+      "value": 8
     },
     {
       "type": "shortText",
-      "value": "Sydney v Essendon Essendon edges Sydney in the Joe Daniher cup. 8/10"
+      "value": "Sydney v Essendon: Essendon edges Sydney in the Joe Daniher cup."
+    },
+    {
+      "type": "score",
+      "value": 8
     },
     {
       "type": "shortText",
-      "value": "Western Bulldogs v St. Kilda St. Kilda smash the bulldogs as tipping nightmare continues. 5/10"
+      "value": "Western Bulldogs v St. Kilda: St. Kilda smash the bulldogs as tipping nightmare continues."
+    },
+    {
+      "type": "score",
+      "value": 5
     }
   ]
 }
