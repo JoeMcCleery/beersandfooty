@@ -18,12 +18,8 @@
               <li :class="{ 'uk-active': pageTitle === 'Home' }">
                 <nuxt-link to="/" class="">Home</nuxt-link>
               </li>
-              <li class="uk-nav-divider"></li>
               <li :class="{ 'uk-active': pageTitle === 'Beer' }">
                 <nuxt-link to="/beer" class="">Beer</nuxt-link>
-              </li>
-              <li :class="{ 'uk-active': pageTitle === 'Footy' }">
-                <nuxt-link to="/footy" class="">Footy</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
               <li :class="{ 'uk-active': pageTitle === 'About' }">
@@ -65,15 +61,9 @@
                       >Home</nuxt-link
                     >
                   </li>
-                  <li class="uk-nav-divider"></li>
                   <li :class="{ 'uk-active': pageTitle === 'Beer' }">
                     <nuxt-link to="/beer" uk-toggle="target: #offcanvas-slide;"
                       >Beer</nuxt-link
-                    >
-                  </li>
-                  <li :class="{ 'uk-active': pageTitle === 'Footy' }">
-                    <nuxt-link to="/footy" uk-toggle="target: #offcanvas-slide;"
-                      >Footy</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
