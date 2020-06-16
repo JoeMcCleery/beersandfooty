@@ -19,9 +19,9 @@
           </p>
         </div>
       </div>
-      <div class="uk-card-footer uk-background-muted uk-text-center">
+      <div class="uk-card-footer uk-text-center">
         <button
-          class="uk-button uk-float-left"
+          class="uk-button uk-button-default uk-float-left"
           :class="{
             upvoted: userVote && userVote.upvote === 1,
             'uk-disabled': !user
@@ -33,11 +33,11 @@
             <animated-number :number="votes.upvotes" class="uk-inline" />
           </span>
         </button>
-        <button class="uk-button uk-button-small uk-disabled">
+        <button class="uk-button uk-button-default uk-button-small uk-disabled">
           <animated-number :number="totalScore" />
         </button>
         <button
-          class="uk-button uk-float-right"
+          class="uk-button uk-button-default uk-float-right"
           :class="{
             downvoted: userVote && userVote.upvote === 0,
             'uk-disabled': !user
