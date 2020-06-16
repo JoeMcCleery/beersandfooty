@@ -115,6 +115,29 @@ export const actions = {
     }
   },
 
+  // eslint-disable-next-line camelcase
+  async getReview({ commit }, { review_id }) {
+    const { data } = await axios.get(
+      process.env.API_URL +
+        '/api/' +
+        process.env.API_VERSION +
+        '/reviews/' +
+        // eslint-disable-next-line camelcase
+        review_id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.clientAccessToken
+        }
+      }
+    )
+    if (data.data) {
+      return data.data
+    } else if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+    return null
+  },
+
   async createUser({ commit }, { username, password }) {
     const { data } = await axios.post(
       process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/',
@@ -149,8 +172,8 @@ export const actions = {
         }
       }
     )
-    if (data.data && data.data.vote) {
-      // commit('SET_USER_VOTE', data.data.vote)
+    if (data.data && data.data) {
+      return data.data
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
     }

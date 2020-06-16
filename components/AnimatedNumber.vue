@@ -56,3 +56,5 @@ export default {
   }
 }
 </script>
+
+<style src="assets/scss/modules/_animated-counter.scss" lang="scss"></style>

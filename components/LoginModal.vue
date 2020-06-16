@@ -1,7 +1,6 @@
 <template>
   <div id="login-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-margin-auto-vertical">
-      <button class="uk-modal-close-default" type="button" uk-close></button>
       <form v-if="!$store.state.authUser" @submit.prevent="submitForm">
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">Login / Register</h2>

@@ -1,6 +1,5 @@
 // Global Modules
 @import './uikit';
-@import './navbar';
 
 // Global Other
 html, body {
@@ -35,18 +34,6 @@ html, body {
     font-weight: bold;
   }
 }
-#background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  svg {
-    height: 100%;
-    z-index: -1;
-  }
-}
 
 #__nuxt, #__layout, .main-page, body {
   min-height: 100vh;
@@ -65,38 +52,7 @@ html, body {
   opacity: 0;
 }
 
-// Animated Counter
-.animated-number {
-  overflow: hidden;
-  .numbers {
-    height: 40px;
-    &.tickUp {
-      animation: tickUp 150ms infinite;
-    }
-    &.tickDown {
-      animation: tickDown 150ms infinite;
-    }
-  }
-  .number {
-    height: 40px;
-    line-height: 40px;
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes tickUp {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-@keyframes tickDown {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+// Misc
+.uk-transparent {
+  background-color: transparent;
 }

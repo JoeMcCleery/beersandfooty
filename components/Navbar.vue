@@ -16,10 +16,7 @@
             </a>
             <ul class="uk-navbar-nav uk-visible@m">
               <li :class="{ 'uk-active': pageTitle === 'Home' }">
-                <nuxt-link to="/" class="">Home</nuxt-link>
-              </li>
-              <li :class="{ 'uk-active': pageTitle === 'Beer' }">
-                <nuxt-link to="/beer" class="">Beer</nuxt-link>
+                <nuxt-link to="/" class="">Beers and Footy</nuxt-link>
               </li>
               <li class="uk-nav-divider"></li>
               <li :class="{ 'uk-active': pageTitle === 'About' }">
@@ -35,6 +32,14 @@
                 </nuxt-link>
               </li>
               <a
+                v-if="loggedIn"
+                href="#review-form-modal"
+                class="uk-button uk-button-primary"
+                uk-toggle
+              >
+                Create Review
+              </a>
+              <a
                 v-else
                 href="#login-modal"
                 class="uk-button uk-button-primary"
@@ -47,23 +52,11 @@
               id="offcanvas-slide"
               uk-offcanvas="overlay: true; mode: slide; esc-close: true; flip: true;"
             >
-              <div
-                class="uk-offcanvas-bar uk-width-1-1 uk-width-medium@s uk-hidden@m"
-              >
-                <button
-                  class="uk-offcanvas-close"
-                  type="button"
-                  uk-close
-                ></button>
+              <div class="uk-offcanvas-bar uk-hidden@m">
                 <ul class="uk-nav uk-nav-primary uk-nav-center">
                   <li :class="{ 'uk-active': pageTitle === 'Home' }">
                     <nuxt-link to="/" uk-toggle="target: #offcanvas-slide;"
-                      >Home</nuxt-link
-                    >
-                  </li>
-                  <li :class="{ 'uk-active': pageTitle === 'Beer' }">
-                    <nuxt-link to="/beer" uk-toggle="target: #offcanvas-slide;"
-                      >Beer</nuxt-link
+                      >Beers and Footy</nuxt-link
                     >
                   </li>
                   <li class="uk-nav-divider"></li>
@@ -86,6 +79,14 @@
                       >Account</nuxt-link
                     >
                   </li>
+                  <a
+                    v-if="loggedIn"
+                    href="#review-form-modal"
+                    class="uk-button uk-button-primary uk-position-bottom"
+                    uk-toggle
+                  >
+                    Create Review
+                  </a>
                   <a
                     v-else
                     href="#login-modal"
@@ -120,3 +121,5 @@ export default {
   }
 }
 </script>
+
+<style src="assets/scss/modules/_navbar.scss" lang="scss"></style>

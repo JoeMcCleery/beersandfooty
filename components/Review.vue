@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default" :class="reviewData.type">
+    <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body uk-background-default">
         <h3 class="uk-card-title">
           {{ reviewData.title }}<br />
@@ -30,11 +30,16 @@
         >
           <span uk-icon="chevron-up"></span>
           <span class="uk-text-small">
-            <animated-number :number="votes.upvotes" class="uk-inline" />
+            <animated-number
+              :number="reviewData.votes.upvotes"
+              class="uk-inline"
+            />
           </span>
         </button>
-        <button class="uk-button uk-button-default uk-button-small uk-disabled">
-          <animated-number :number="totalScore" />
+        <button
+          class="uk-button uk-button-default uk-button-small total uk-disabled"
+        >
+          <animated-number :number="score" />
         </button>
         <button
           class="uk-button uk-button-default uk-float-right"
@@ -46,7 +51,10 @@
         >
           <span uk-icon="chevron-down"></span>
           <span class="uk-text-small">
-            <animated-number :number="votes.downvotes" class="uk-inline" />
+            <animated-number
+              :number="reviewData.votes.downvotes"
+              class="uk-inline"
+            />
           </span>
         </button>
       </div>
@@ -63,7 +71,30 @@ export default {
   props: {
     review: {
       type: Object,
-      default: null
+      default: () => {
+        return {
+          id: 0,
+          score: 0,
+          title: '',
+          type: 'beer',
+          publish_date: 0,
+          content_blocks: [
+            {
+              type: '',
+              content: ''
+            }
+          ],
+          votes: [
+            {
+              downvotes: 0,
+              upvotes: 0
+            }
+          ],
+          created_at: 0,
+          updated_at: 0,
+          deleted_at: 0
+        }
+      }
     }
   },
   data() {
@@ -72,16 +103,13 @@ export default {
     }
   },
   computed: {
-    votes() {
-      return this.reviewData.votes
-    },
     formattedPublishDate() {
       return new Date(
         parseInt(this.reviewData.publish_date) * 1000
       ).toLocaleString()
     },
-    totalScore() {
-      return this.votes.upvotes - this.votes.downvotes
+    score() {
+      return this.reviewData.score || 0
     },
     user() {
       return this.$store.state.user
@@ -90,7 +118,7 @@ export default {
       return this.$store.state.userVotes
     },
     userVote() {
-      let vote = null
+      let vote
       const id = this.reviewData.id
       if (this.userVotes) {
         vote = this.userVotes.filter(function(e) {
@@ -100,9 +128,6 @@ export default {
         })
       }
       return vote ? vote.shift() : null
-    },
-    isAccountPage() {
-      return this.$nuxt.$route.name === 'Account'
     }
   },
   watch: {
@@ -112,30 +137,30 @@ export default {
   },
   methods: {
     async voteAction(upvote, event) {
-      event.target.classList.add('uk-disabled')
-      if (this.userVote && this.userVote.upvote === upvote) {
-        if (!this.isAccountPage) {
-          upvote ? this.votes.upvotes-- : this.votes.downvotes--
+      // eslint-disable-next-line camelcase
+      const review_id = this.reviewData.id
+      // eslint-disable-next-line camelcase
+      if (review_id) {
+        event.target.classList.add('uk-disabled')
+        if (this.userVote && this.userVote.upvote === upvote) {
+          await this.$store.dispatch('deleteVote', {
+            voteID: this.userVote.id
+          })
+        } else {
+          await this.$store.dispatch('createVote', {
+            review_id,
+            upvote
+          })
         }
-        await this.$store.dispatch('deleteVote', {
-          voteID: this.userVote.id
+        await this.$store.dispatch('getUser')
+        this.review = await this.$store.dispatch('getReview', {
+          review_id
         })
-        await this.$store.dispatch('getUser', {})
-      } else {
-        if (!this.isAccountPage) {
-          upvote ? this.votes.upvotes++ : this.votes.downvotes++
-          if (this.userVote) {
-            upvote ? this.votes.downvotes-- : this.votes.upvotes--
-          }
-        }
-        await this.$store.dispatch('createVote', {
-          review_id: this.reviewData.id,
-          upvote
-        })
-        await this.$store.dispatch('getUser', {})
+        event.target.classList.remove('uk-disabled')
       }
-      event.target.classList.remove('uk-disabled')
     }
   }
 }
 </script>
+
+<style src="assets/scss/modules/_review.scss" lang="scss"></style>

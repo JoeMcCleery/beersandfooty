@@ -8,6 +8,7 @@
     </div>
     <!--  Modals  -->
     <login-modal />
+    <review-form-modal />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 import Vue from 'vue'
 export default {
   components: {
+    ReviewFormModal: () => import('~/components/ReviewFormModal.vue'),
     Navbar: () => import('~/components/Navbar.vue'),
     LoginModal: () => import('~/components/LoginModal.vue')
   },

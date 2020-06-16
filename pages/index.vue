@@ -6,12 +6,164 @@
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <div class="header-content">
           <h1>
-            <nuxt-link class="uk-link-text" to="/beer">Beers</nuxt-link>
-            <span uk-icon="icon: plus-circle; ratio: 2;" />
-            <nuxt-link class="uk-link-text" to="/footy">Footy</nuxt-link>
+            BeersAndFooty.com
           </h1>
+          <div class="uk-position-bottom-center uk-margin-bottom">
+            <a v-scroll-to="'#reviews'" href="#" class="uk-link-text"
+              ><span uk-icon="icon: chevron-down; ratio: 4;"
+            /></a>
+          </div>
         </div>
       </div>
+      <!--  Content  -->
+      <section id="reviews" class="uk-section">
+        <div class="uk-container uk-container-large">
+          <!-- Filter -->
+          <form @submit.prevent="fetchReviews(currentPageLink)">
+            <div class="uk-margin">
+              <label for="limit">
+                Limit
+                <input
+                  id="limit"
+                  v-model="filter.limit"
+                  name="limit"
+                  type="number"
+                  min="1"
+                  class="uk-input uk-form-width-small uk-form-small"
+                />
+              </label>
+            </div>
+            <div class="uk-margin">
+              <label>Type:</label>
+              <div class="uk-input uk-width-auto">
+                <label for="beerFilter">
+                  <input
+                    id="beerFilter"
+                    v-model="filter.type"
+                    name="beerFilter"
+                    type="checkbox"
+                    class="uk-checkbox"
+                    value="beer"
+                  />
+                  Beer
+                </label>
+                <label for="footyFilter">
+                  <input
+                    id="footyFilter"
+                    v-model="filter.type"
+                    name="footyFilter"
+                    type="checkbox"
+                    class="uk-checkbox"
+                    value="footy"
+                  />
+                  Footy
+                </label>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="sortField">Sort</label>
+              <select
+                id="sortField"
+                v-model="filter.order.field"
+                name="sortField"
+                class="uk-select uk-form-width-small uk-form-small"
+              >
+                <option value="publish_date">Publish Date</option>
+                <option value="score">Score</option>
+              </select>
+              <select
+                id="sortDir"
+                v-model="filter.order.direction"
+                name="sortDir"
+                class="uk-select uk-width-small uk-form-small"
+              >
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+              </select>
+            </div>
+            <div class="uk-margin">
+              <button
+                class="uk-button uk-button-primary uk-form-small"
+                type="submit"
+                name="fetch"
+                value="true"
+              >
+                Update Filter
+              </button>
+            </div>
+          </form>
+          <!--  Pagination  -->
+          <div v-if="showReviews" class="uk-margin-top" uk-grid>
+            <div>
+              <a
+                :class="{ 'uk-invisible': previousPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(previousPageLink)"
+              >
+                <span uk-icon="chevron-left"></span>
+                Prev
+              </a>
+            </div>
+            <div class="uk-text-center uk-text-large uk-width-expand">
+              <animated-number
+                :number="currentPageNum"
+                class="uk-button uk-disabled uk-button-default uk-button-small"
+              />
+            </div>
+            <div>
+              <a
+                :class="{ 'uk-invisible': nextPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(nextPageLink)"
+              >
+                Next
+                <span uk-icon="chevron-right"></span>
+              </a>
+            </div>
+          </div>
+          <!--  Masonry Grid  -->
+          <div
+            v-if="showReviews"
+            class="uk-child-width-1-2@m uk-child-width-1-3@l"
+            uk-grid="masonry: true"
+          >
+            <review
+              v-for="r in reviews.data"
+              :key="r.title + r.id"
+              :review="r"
+            />
+          </div>
+          <!--  Pagination  -->
+          <div v-if="showReviews" uk-grid>
+            <div>
+              <a
+                :class="{ 'uk-invisible': previousPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(previousPageLink)"
+              >
+                <span uk-icon="chevron-left"></span>
+                Prev
+              </a>
+            </div>
+            <div class="uk-text-center uk-text-large uk-width-expand">
+              <animated-number
+                :number="currentPageNum"
+                class="uk-button uk-disabled uk-button-default uk-button-small"
+              />
+            </div>
+            <div>
+              <a
+                :class="{ 'uk-invisible': nextPageLink === null }"
+                class="uk-button uk-button-default"
+                @click="fetchReviews(nextPageLink)"
+              >
+                Next
+                <span uk-icon="chevron-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -20,7 +172,91 @@
 export default {
   name: 'Home',
   components: {
-    SvgBackground: () => import('~/components/SvgBackground.vue')
+    SvgBackground: () => import('~/components/SvgBackground.vue'),
+    Review: () => import('~/components/Review.vue'),
+    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+  },
+  data() {
+    return {
+      reviews: {
+        type: Array,
+        default: false
+      },
+      filter: {
+        limit: 10,
+        type: ['beer', 'footy'],
+        order: {
+          field: 'publish_date',
+          direction: 'desc'
+        }
+      }
+    }
+  },
+  computed: {
+    showReviews() {
+      return !!this.reviews.data
+    },
+    currentPageLink() {
+      if (this.showReviews) {
+        const meta = this.reviews.meta
+        return meta ? meta.path + '?page=' + this.currentPageNum : null
+      }
+      return (
+        process.env.API_URL +
+        '/api/' +
+        this.$store.state.api_version +
+        '/reviews'
+      )
+    },
+    nextPageLink() {
+      if (this.showReviews) {
+        const links = this.reviews.links
+        return links ? links.next : null
+      }
+      return null
+    },
+    previousPageLink() {
+      if (this.showReviews) {
+        const links = this.reviews.links
+        return links ? links.prev : null
+      }
+      return null
+    },
+    currentPageNum() {
+      if (this.showReviews) {
+        const meta = this.reviews.meta
+        return meta ? meta.current_page : null
+      }
+      return 0
+    }
+  },
+  mounted() {
+    this.fetchReviews(
+      process.env.API_URL + '/api/' + this.$store.state.api_version + '/reviews'
+    )
+  },
+  methods: {
+    fetchReviews(url) {
+      if (url.includes('?page')) {
+        url += '&filter=' + JSON.stringify(this.filter)
+      } else {
+        url += '?filter=' + JSON.stringify(this.filter)
+      }
+      return this.$axios
+        .get(url, {
+          headers: {
+            Authorization: 'Bearer ' + this.$store.state.clientAccessToken
+          }
+        })
+        .then((response) => {
+          const r = response.data
+          if (r.data.length) {
+            this.reviews = r
+          } else {
+            this.reviews = []
+          }
+        })
+    }
   }
 }
 </script>

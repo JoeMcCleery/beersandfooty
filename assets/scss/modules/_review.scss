@@ -1,0 +1,15 @@
+@import '../global/variables';
+
+.review {
+  &.beer {
+    hr {
+      border-color: $beerscolour;
+    }
+  }
+
+  &.footy {
+    hr {
+      border-color: $footycolour;
+    }
+  }
+}
