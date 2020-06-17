@@ -72,6 +72,5 @@
 
 // Off canvas
 @mixin hook-offcanvas-bar() {
-  transition: width 500ms ease;
   @extend .uk-hidden\@l
 }

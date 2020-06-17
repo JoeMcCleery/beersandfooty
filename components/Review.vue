@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div uk-scrollspy="cls:uk-animation-fade uk-animation-fast; delay: 250">
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body uk-background-default">
         <h3 class="uk-card-title">
@@ -10,18 +10,28 @@
         </h3>
         <hr />
         <div
-          v-for="(block, idx) in reviewData.content_blocks"
+          v-for="(block, idx) in sortedContentBlocks"
           :key="idx"
           :class="block.type"
+          uk-scrollspy="target: > .block; cls: uk-animation-slide-top-small uk-animation-fast; delay: 250"
         >
-          <p v-if="block.type === 'long_text'">
+          <p v-if="block.type === 'long_text'" class="block uk-text-left">
             {{ block.content }}
+          </p>
+          <p v-if="block.type === 'short_text'" class="block uk-text-center">
+            {{ block.content }}
+          </p>
+          <p
+            v-if="block.type === 'score'"
+            class="block uk-text-large uk-text-center"
+          >
+            {{ block.content }} / 100
           </p>
         </div>
       </div>
       <div class="uk-card-footer uk-text-center">
         <button
-          class="uk-button uk-button-default uk-float-left"
+          class="uk-button uk-button-default uk-button-small uk-float-left"
           :class="{
             upvoted: userVote && userVote.upvote === 1,
             'uk-disabled': !user
@@ -42,7 +52,7 @@
           <animated-number :number="score" />
         </button>
         <button
-          class="uk-button uk-button-default uk-float-right"
+          class="uk-button uk-button-default uk-button-small uk-float-right"
           :class="{
             downvoted: userVote && userVote.upvote === 0,
             'uk-disabled': !user
@@ -80,6 +90,7 @@ export default {
           publish_date: 0,
           content_blocks: [
             {
+              sort: 0,
               type: '',
               content: ''
             }
@@ -128,6 +139,10 @@ export default {
         })
       }
       return vote ? vote.shift() : null
+    },
+    sortedContentBlocks() {
+      const blocks = this.reviewData.content_blocks
+      return blocks.sort((a, b) => (a.sort > b.sort ? 1 : -1))
     }
   },
   watch: {
@@ -142,6 +157,7 @@ export default {
       // eslint-disable-next-line camelcase
       if (review_id) {
         event.target.classList.add('uk-disabled')
+
         if (this.userVote && this.userVote.upvote === upvote) {
           await this.$store.dispatch('deleteVote', {
             voteID: this.userVote.id
@@ -152,10 +168,12 @@ export default {
             upvote
           })
         }
+
         await this.$store.dispatch('getUser')
-        this.review = await this.$store.dispatch('getReview', {
+        this.reviewData = await this.$store.dispatch('getReview', {
           review_id
         })
+
         event.target.classList.remove('uk-disabled')
       }
     }

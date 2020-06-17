@@ -1,12 +1,17 @@
 @import '../global/variables';
 
 #navbar {
-  height: $navbar-height;
-  padding: $navbar-padding;
   z-index: 100;
-  transition: box-shadow 200ms, background-color 200ms;
+  .uk-navbar-container {
+    height: $navbar-height;
+    padding: $navbar-padding;
+    background: $brand-gradient;
+  }
   ul {
     height: 100%;
     position: relative;
+  }
+  .account {
+    padding-bottom: calc(40px + 1em);
   }
 }

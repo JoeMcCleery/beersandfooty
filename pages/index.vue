@@ -21,20 +21,16 @@
           <!-- Filter -->
           <form @submit.prevent="fetchReviews(currentPageLink)">
             <div class="uk-margin">
-              <label for="limit">
-                Limit
-                <input
-                  id="limit"
-                  v-model="filter.limit"
-                  name="limit"
-                  type="number"
-                  min="1"
-                  class="uk-input uk-form-width-small uk-form-small"
-                />
-              </label>
+              <input
+                id="limit"
+                v-model="filter.limit"
+                name="limit"
+                type="number"
+                min="1"
+                class="uk-input uk-form-width-small uk-form-small"
+              />
             </div>
             <div class="uk-margin">
-              <label>Type:</label>
               <div class="uk-input uk-width-auto">
                 <label for="beerFilter">
                   <input
@@ -61,7 +57,6 @@
               </div>
             </div>
             <div class="uk-margin">
-              <label for="sortField">Sort</label>
               <select
                 id="sortField"
                 v-model="filter.order.field"
@@ -96,6 +91,7 @@
           <div v-if="showReviews" class="uk-margin-top" uk-grid>
             <div>
               <a
+                v-scroll-to="'#reviews'"
                 :class="{ 'uk-invisible': previousPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(previousPageLink)"
@@ -112,6 +108,7 @@
             </div>
             <div>
               <a
+                v-scroll-to="'#reviews'"
                 :class="{ 'uk-invisible': nextPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(nextPageLink)"
@@ -129,7 +126,8 @@
           >
             <review
               v-for="r in reviews.data"
-              :key="r.title + r.id"
+              :id="encodeURI(r.title)"
+              :key="encodeURI(r.title + r.id)"
               :review="r"
             />
           </div>
@@ -137,6 +135,7 @@
           <div v-if="showReviews" uk-grid>
             <div>
               <a
+                v-scroll-to="'#reviews'"
                 :class="{ 'uk-invisible': previousPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(previousPageLink)"
@@ -153,6 +152,7 @@
             </div>
             <div>
               <a
+                v-scroll-to="'#reviews'"
                 :class="{ 'uk-invisible': nextPageLink === null }"
                 class="uk-button uk-button-default"
                 @click="fetchReviews(nextPageLink)"
@@ -199,7 +199,7 @@ export default {
     currentPageLink() {
       if (this.showReviews) {
         const meta = this.reviews.meta
-        return meta ? meta.path + '?page=' + this.currentPageNum : null
+        return meta ? meta.path : null
       }
       return (
         process.env.API_URL +
@@ -231,9 +231,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchReviews(
-      process.env.API_URL + '/api/' + this.$store.state.api_version + '/reviews'
-    )
+    this.fetchReviews(this.currentPageLink)
   },
   methods: {
     fetchReviews(url) {

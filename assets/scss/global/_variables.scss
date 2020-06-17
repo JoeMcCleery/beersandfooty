@@ -4,15 +4,16 @@ $images-dir: '../../images/';
 // Colours
 $brand-purple: #7b47bb;
 $beerscolour: rgb(255, 131, 58);
-$beerscolour-alpha: rgba(255, 131, 58, 0.95);
+$beerscolour-alpha: transparentize($beerscolour, 0.05);
 $footycolour: rgb(255, 181, 55);
-$footycolour-alpha: rgba(255, 181, 55, 0.95);
+$footycolour-alpha: transparentize($footycolour, 0.05);
 $background-dark: #1f1f1f;
 $grey: #343434;
 $grey-light: #e7e7e7;
 $transparent-white: rgba(255,255,255,0.95);
 
-$brand-gradient: linear-gradient(to top, $beerscolour-alpha 0%, $beerscolour-alpha 25%, $footycolour-alpha 75%, $footycolour-alpha 100%);
+$brand-gradient: repeating-linear-gradient(to bottom, $beerscolour 0px, $beerscolour 500px, $footycolour 1500px, $footycolour 2000px, $beerscolour 3000px);
+$brand-gradient-alpha: repeating-linear-gradient(to bottom, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
 
 // Utility
 $border-radius: 2px;

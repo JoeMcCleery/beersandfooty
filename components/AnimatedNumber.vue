@@ -1,6 +1,6 @@
 <template>
   <div class="animated-number">
-    <div class="numbers" ref="numbers">
+    <div ref="numbers" class="numbers">
       <div class="number up">{{ displayNumber + 1 }}</div>
       <div class="number current">{{ displayNumber }}</div>
       <div class="number down">{{ displayNumber - 1 }}</div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'AnimatedNumber',
-  props: { number: { default: 0 } },
+  props: { number: { type: Number, default: 0 } },
   data() {
     return {
       displayNumber: 0,

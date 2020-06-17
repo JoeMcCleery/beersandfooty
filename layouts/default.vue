@@ -1,7 +1,7 @@
 <template>
   <div :id="title" class="main-page">
     <!--  Navbar  -->
-    <navbar :pageTitle="title" />
+    <navbar :page-title="title" />
     <!--  Page  -->
     <div>
       <nuxt />
@@ -29,6 +29,7 @@ export default {
           scope: '*'
         })
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e)
       }
     }

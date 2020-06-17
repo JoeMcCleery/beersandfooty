@@ -23,7 +23,7 @@ html, body {
   margin: 0;
 }
 .content {
-  background-color: $transparent-white;
+  background: $brand-gradient-alpha;
   min-height: 100vh;
 }
 .header {
@@ -55,4 +55,8 @@ html, body {
 // Misc
 .uk-transparent {
   background-color: transparent;
+}
+
+.uk-opaque {
+  opacity: 0.9 !important;
 }
