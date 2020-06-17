@@ -5,6 +5,11 @@
       class="uk-background-default"
       @submit.prevent="createReview"
     >
+      <button
+        class="uk-modal-close-default uk-close-large"
+        type="button"
+        uk-close
+      ></button>
       <div class="uk-modal-header">
         <h2 class="uk-modal-title">Create Review</h2>
       </div>

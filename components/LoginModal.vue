@@ -2,6 +2,11 @@
   <div id="login-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-margin-auto-vertical">
       <form v-if="!$store.state.authUser" @submit.prevent="submitForm">
+        <button
+          class="uk-modal-close-default uk-close-large"
+          type="button"
+          uk-close
+        ></button>
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">Login / Register</h2>
         </div>
