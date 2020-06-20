@@ -5,7 +5,7 @@
   >
     <div class="uk-position-relative">
       <a href="#review-form-modal" class="uk-modal-close-default" uk-toggle>
-        <span class="uk-icon-link" uk-icon="icon: close; ratio: 2;" />
+        <span class="uk-icon-link uk-padding-xsmall" uk-icon="icon: close" />
       </a>
       <form
         v-if="!$store.state.authUser"
@@ -49,65 +49,76 @@
           </div>
 
           <div class="uk-margin">
-            <div>
-              <label for="typeBeer">
-                <input
-                  id="typeBeer"
-                  v-model="review.type"
-                  name="typeBeer"
-                  title="typeBeer"
-                  type="radio"
-                  class="uk-radio"
-                  value="beer"
-                />
-                Beer Review</label
-              >
-            </div>
+            <div
+              class="uk-grid-collapse uk-child-width-1-1 uk-text-center"
+              uk-grid
+            >
+              <div>
+                <label for="typeBeer">
+                  <input
+                    id="typeBeer"
+                    v-model="review.type"
+                    name="typeBeer"
+                    title="typeBeer"
+                    type="radio"
+                    class="uk-radio"
+                    value="beer"
+                  />
+                  Beer Review</label
+                >
+              </div>
 
-            <div>
-              <label for="typeFooty">
-                <input
-                  id="typeFooty"
-                  v-model="review.type"
-                  name="typeFooty"
-                  title="typeFooty"
-                  type="radio"
-                  class="uk-radio"
-                  value="footy"
-                />
-                Footy Review</label
-              >
+              <div>
+                <label for="typeFooty">
+                  <input
+                    id="typeFooty"
+                    v-model="review.type"
+                    name="typeFooty"
+                    title="typeFooty"
+                    type="radio"
+                    class="uk-radio"
+                    value="footy"
+                  />
+                  Footy Review</label
+                >
+              </div>
             </div>
           </div>
-
           <div class="blocks uk-grid-stack uk-grid-medium" uk-grid>
             <div
               v-for="(block, idx) in sortedContentBlocks"
               :key="encodeURI(idx + block.type + block.sort)"
-              class="uk-width-1-1"
+              class="uk-width-1-1 uk-position-relative"
             >
-              <div
-                class="uk-animation-fade uk-background-default uk-position-relative"
-              >
-                <hr />
-                <div class="uk-margin-small">
+              <hr />
+              <div class="uk-animation-fade uk-background-default">
+                <div class="uk-position-top-right uk-padding-small">
                   <a
                     id="removeBlock"
                     name="removeBlock"
                     title="Trash Block"
                     type="button"
-                    class="uk-icon-link uk-float-right uk-margin-right"
+                    class="uk-icon-link"
                     @click="removeBlock(idx)"
                   >
-                    <span uk-icon="icon: trash" />
+                    <span uk-icon="icon: trash" class="uk-padding-xsmall" />
                   </a>
                 </div>
                 <div class="uk-margin-small">
-                  <span
-                    class="uk-margin-small-left uk-margin-small-right uk-inline"
-                  >
-                    {{ block.sort }}
-                  </span>
+                  <div class="uk-inline">
+                    <div>
+                      <select
+                        v-model="block.type"
+                        name="type"
+                        class="uk-select uk-form-width-small uk-form-small"
+                      >
+                        <option value="long_text">Long Text</option>
+                        <option value="short_text">Short Text</option>
+                        <option value="score">Score</option>
+                        <option value="image">Image</option>
+                      </select>
+                    </div>
+                  </div>
                   <button
                     :class="{ 'uk-hidden': block.sort <= 0 }"
                     name="blockIndexUp"
@@ -131,18 +142,6 @@
                     <span uk-icon="icon: chevron-down" />
                   </button>
                 </div>
-                <div class="uk-margin-small">
-                  <select
-                    v-model="block.type"
-                    name="type"
-                    class="uk-select uk-width-small uk-form-small"
-                  >
-                    <option value="long_text">Long Text</option>
-                    <option value="short_text">Short Text</option>
-                    <option value="score">Score</option>
-                    <option value="image">Image</option>
-                  </select>
-                </div>
 
                 <div>
                   <textarea
@@ -152,6 +151,7 @@
                     title="content"
                     type="text"
                     class="uk-textarea uk-width-1-1"
+                    placeholder="content here..."
                   />
                   <input
                     v-if="['short_text'].some((v) => block.type === v)"
@@ -159,39 +159,74 @@
                     name="content"
                     title="content"
                     type="text"
-                    class="uk-input uk-width-expand"
+                    class="uk-input uk-width-expand uk-text-center"
+                    placeholder="content here..."
                   />
-                  <input
+                  <div
                     v-if="['score'].some((v) => block.type === v)"
-                    v-model="block.content"
-                    name="content"
-                    title="content"
-                    type="number"
-                    max="100"
-                    min="0"
-                    class="uk-input uk-form-width-small uk-text-right"
-                  />
-                  <span
-                    v-if="['score'].some((v) => block.type === v)"
-                    class="uk-inline"
+                    class="uk-text-center"
                   >
-                    / 100
-                  </span>
+                    <input
+                      v-model="block.content"
+                      name="content"
+                      title="content"
+                      type="number"
+                      max="100"
+                      min="0"
+                      class="uk-input uk-form-width-small"
+                      placeholder="score..."
+                    />
+                    <span
+                      v-if="['score'].some((v) => block.type === v)"
+                      class="uk-inline uk-text-center"
+                    >
+                      / 100
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="uk-margin-small">
-            <button
-              name="addBlock"
-              title="addBlock"
-              type="button"
-              class="uk-button uk-button-primary uk-button-small"
-              @click="addBlock(sortedContentBlocks.length)"
+          <hr />
+          <div>
+            <div
+              class="uk-grid-small uk-child-width-1-1 uk-text-center"
+              uk-grid
             >
-              Add Block
-            </button>
+              <div>
+                <div>
+                  <select
+                    ref="newBlockType"
+                    name="type"
+                    class="uk-select uk-form-width-small uk-form-small"
+                  >
+                    <option value="long_text">Long Text</option>
+                    <option value="short_text">Short Text</option>
+                    <option value="score">Score</option>
+                    <option value="image">Image</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <button
+                    name="addBlock"
+                    title="addBlock"
+                    type="button"
+                    class="uk-button uk-button-secondary uk-button-small"
+                    @click="
+                      addBlock(
+                        sortedContentBlocks.length,
+                        $refs.newBlockType.value
+                      )
+                    "
+                  >
+                    <span uk-icon="icon: plus; ratio: 0.5" />
+                    Add Block
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -249,7 +284,7 @@ export default {
           {
             sort: 0,
             type: 'long_text',
-            content: 'new block'
+            content: ''
           }
         ],
         votes: [
@@ -274,13 +309,13 @@ export default {
     createReview(e) {},
     addBlock(
       idx,
+      type = 'long_text',
       block = {
-        sort: 0,
-        type: 'long_text',
-        content: 'new block'
+        idx,
+        type,
+        content: ''
       }
     ) {
-      block.sort = idx
       this.review.content_blocks.splice(idx, 0, block)
       for (let i = idx; i < this.review.content_blocks.length; i++) {
         this.review.content_blocks[i].sort = i
@@ -295,10 +330,14 @@ export default {
     moveBlock(fromIndex, toIndex) {
       const element = this.review.content_blocks[fromIndex]
       this.removeBlock(fromIndex)
-      this.addBlock(toIndex, element)
+      this.addBlock(toIndex, element.type, element)
     },
     getTimestamp() {
       return parseInt(new Date().getTime() / 1000)
+    },
+    sanitizedType(type) {
+      const newType = type.replace('_', ' ')
+      return newType.charAt(0).toUpperCase() + newType.slice(1)
     }
   }
 }

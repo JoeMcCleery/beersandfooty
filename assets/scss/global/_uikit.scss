@@ -13,9 +13,28 @@ img[data-src][src*='data:image'] { background: $grey-light; }
 .uk-form-icon { z-index: 1; cursor: pointer; }
 .uk-icon { pointer-events: none; }
 .uk-textarea {
-  height: 100px;
+  height: 70px;
   min-width: 100%;
   min-height: 35px;
+}
+.uk-input, .uk-select, .uk-textarea, .uk-radio, .uk-checkbox {
+  box-shadow: 0 0 4px transparentize(lighten($button-secondary-background, 10%), 0.8);
+  transition: box-shadow 250ms;
+  &:active, &:focus-within, &:hover, &:focus {
+    box-shadow: 0 0 0 transparentize(lighten($button-secondary-background, 10%), 0.8);
+  }
+  &:checked {
+    box-shadow: 0 0 4px transparentize(lighten($button-secondary-background, 10%), 0.8);
+  }
+}
+.uk-modal-close-default .uk-icon-link, .uk-icon-link [uk-icon='icon: trash'] {
+  border-radius: 50%;
+  color: $button-danger-background;
+  background: #fff;
+  box-shadow: 0 0 4px transparentize(lighten($button-danger-background, 10%), 0.9);
+}
+.uk-padding-xsmall {
+  padding: 5px 5px !important;
 }
 
 // 4. Import UIkit.

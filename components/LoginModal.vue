@@ -2,7 +2,7 @@
   <div id="login-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-margin-auto-vertical">
       <a href="#login-modal" class="uk-modal-close-default" uk-toggle>
-        <span class="uk-icon-link" uk-icon="icon: close; ratio: 2;" />
+        <span class="uk-icon-link uk-padding-xsmall" uk-icon="icon: close" />
       </a>
       <form v-if="!$store.state.authUser">
         <div class="uk-modal-header">

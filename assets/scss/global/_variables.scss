@@ -28,6 +28,7 @@ $header-height: 100vh;
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
-$button-default-background: #fff;
-$global-secondary-background: $grey;
+$global-secondary-background: lighten($grey, 40%);
+$global-muted-background: #fafafa;
+$button-default-background: #fdfdfd;
 $global-primary-background: $brand-purple;

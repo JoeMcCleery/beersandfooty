@@ -4,7 +4,6 @@
     @extend .uk-box-shadow-hover-small;
   }
   border-radius: 2px;
-  box-shadow: 0 0 1px rgba(0,0,0,0.08);
   transition: box-shadow 100ms, background-color 100ms;
 
   &.upvoted {
@@ -19,6 +18,15 @@
     box-shadow: inset 0 2px 3px rgba(0,0,0,0.08) !important;
   }
 }
+@mixin hook-button-default() {
+  box-shadow: 0 0 4px transparentize(lighten($button-default-background, 10%), 0.8);
+}
+@mixin hook-button-danger() {
+  box-shadow: 0 0 4px transparentize(lighten($button-danger-background, 10%), 0.8);
+}
+@mixin hook-button-primary() {
+  box-shadow: 0 0 4px transparentize(lighten($button-primary-background, 10%), 0.8);
+}
 
 // Cards
 @mixin hook-card() {
@@ -26,6 +34,14 @@
   border-radius: 2px;
   .uk-card-body {
     border-radius: 2px;
+  }
+}
+
+// Modals
+@mixin hook-modal() {
+  .uk-modal-title {
+    color: $button-primary-background;
+    text-shadow: 0 0 4px transparentize(lighten($button-primary-background, 10%), 0.8);
   }
 }
 
