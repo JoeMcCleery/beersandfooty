@@ -2,7 +2,7 @@
   <div>
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body uk-background-default">
-        <h3 class="uk-card-title">
+        <h3 class="uk-card-title uk-text-italic uk-text-bold">
           {{ reviewData.title }}<br />
           <span class="uk-text-small publish-date">
             {{ formattedPublishDate }}

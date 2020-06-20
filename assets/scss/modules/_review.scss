@@ -1,7 +1,7 @@
 .review {
   &.beer {
     .uk-card-body {
-      background: url($images-dir + 'beer-icon.svg') 10px 10px/20px no-repeat #fff;
+      background: url($images-dir + 'beer-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
     }
     hr {
       border-color: $beerscolour;
@@ -18,7 +18,7 @@
 
   &.footy {
     .uk-card-body {
-      background: url($images-dir + 'football-icon.svg') 10px 10px/20px no-repeat #fff;
+      background: url($images-dir + 'football-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
     }
     hr {
       border-color: $footycolour;
@@ -32,4 +32,20 @@
       text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     }
   }
+
+  @include for-desktop() {
+    &.beer {
+      .uk-card-body {
+        background: url($images-dir + 'beer-icon.svg') calc(100% - 12px) 12px/20px no-repeat #fff;
+      }
+    }
+
+    &.footy {
+      .uk-card-body {
+        background: url($images-dir + 'football-icon.svg') calc(100% - 12px) 12px/20px no-repeat #fff;
+      }
+    }
+  }
 }
+
+

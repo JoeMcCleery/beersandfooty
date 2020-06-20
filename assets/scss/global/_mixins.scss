@@ -74,3 +74,30 @@
 @mixin hook-offcanvas-bar() {
   @extend .uk-hidden\@l
 }
+
+// Breakpoints
+$break-xsmall: 480px;
+$break-small: 640px;
+$break-medium: 960px;
+$break-large: 1200px;
+$break-xlarge: 1600px;
+
+@mixin for-phone {
+  @media (min-width: $break-xsmall) { @content; }
+}
+
+@mixin for-tablet {
+  @media (min-width: $break-small) { @content; }
+}
+
+@mixin for-laptop {
+  @media (min-width: $break-medium) { @content; }
+}
+
+@mixin for-desktop {
+  @media (min-width: $break-large) { @content; }
+}
+
+@mixin for-desktop-large {
+  @media (min-width: $break-xlarge) { @content; }
+}
