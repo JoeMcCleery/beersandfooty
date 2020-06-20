@@ -1,13 +1,35 @@
 .review {
   &.beer {
+    .uk-card-body {
+      background: url($images-dir + 'beer-icon.svg') 10px 10px/20px no-repeat #fff;
+    }
     hr {
       border-color: $beerscolour;
+    }
+    .uk-card-title {
+      color: $beerscolour;
+      text-shadow: 0 0 4px transparentize($beerscolour, 0.8);
+    }
+    .publish-date {
+      color: lighten($beerscolour, 10%);
+      text-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     }
   }
 
   &.footy {
+    .uk-card-body {
+      background: url($images-dir + 'football-icon.svg') 10px 10px/20px no-repeat #fff;
+    }
     hr {
       border-color: $footycolour;
+    }
+    .uk-card-title {
+      color: $footycolour;
+      text-shadow: 0 0 4px transparentize($footycolour, 0.8);
+    }
+    .publish-date {
+      color: lighten($footycolour, 10%);
+      text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     }
   }
 }

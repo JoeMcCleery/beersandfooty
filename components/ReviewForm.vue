@@ -103,7 +103,11 @@
                   </a>
                 </div>
                 <div class="uk-margin-small">
-                  {{ block.sort }}
+                  <span
+                    class="uk-margin-small-left uk-margin-small-right uk-inline"
+                  >
+                    {{ block.sort }}
+                  </span>
                   <button
                     :class="{ 'uk-hidden': block.sort <= 0 }"
                     name="blockIndexUp"
