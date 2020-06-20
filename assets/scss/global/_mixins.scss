@@ -24,8 +24,8 @@
 @mixin hook-card() {
   @extend .uk-box-shadow-small;
   border-radius: 2px;
-  .uk-card-title {
-    margin-bottom: 0.5em;
+  .uk-card-body {
+    border-radius: 2px;
   }
 }
 

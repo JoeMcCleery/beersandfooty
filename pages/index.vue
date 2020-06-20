@@ -6,7 +6,7 @@
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <div class="header-content">
           <h1>
-            BeersAndFooty.com
+            Beers and Footy
           </h1>
           <div class="uk-position-bottom-center uk-margin-bottom">
             <a v-scroll-to="'#reviews'" href="#" class="uk-link-text"
