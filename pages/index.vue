@@ -258,5 +258,3 @@ export default {
   }
 }
 </script>
-
-<style src="assets/scss/pages/home.scss" lang="scss"></style>

@@ -1,12 +1,10 @@
 <template>
   <div id="login-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-margin-auto-vertical">
-      <form v-if="!$store.state.authUser" @submit.prevent="submitForm">
-        <button
-          class="uk-modal-close-default uk-close-large"
-          type="button"
-          uk-close
-        ></button>
+      <a href="#login-modal" class="uk-modal-close-default" uk-toggle>
+        <span class="uk-icon-link" uk-icon="icon: close; ratio: 2;" />
+      </a>
+      <form v-if="!$store.state.authUser">
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">Login / Register</h2>
         </div>
@@ -49,6 +47,7 @@
             type="submit"
             name="login"
             value="true"
+            @click.prevent="submitForm(true)"
           >
             Login
           </button>
@@ -57,6 +56,7 @@
             type="submit"
             name="register"
             value="true"
+            @click.prevent="submitForm(false)"
           >
             Register
           </button>
@@ -77,10 +77,10 @@ export default {
     }
   },
   methods: {
-    submitForm(e) {
-      if (e.submitter.name === 'login') {
+    submitForm(doLogin = true) {
+      if (doLogin) {
         this.getUserToken()
-      } else if (e.submitter.name === 'register') {
+      } else {
         this.registerNewUser()
       }
     },

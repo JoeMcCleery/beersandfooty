@@ -112,5 +112,3 @@ export default {
   }
 }
 </script>
-
-<style src="assets/scss/pages/account.scss" lang="scss"></style>

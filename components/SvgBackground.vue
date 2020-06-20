@@ -33,5 +33,3 @@ export default {
   name: 'SvgBackground'
 }
 </script>
-
-<style src="assets/scss/modules/_svg-background.scss" lang="scss"></style>

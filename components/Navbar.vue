@@ -115,5 +115,3 @@ export default {
   }
 }
 </script>
-
-<style src="assets/scss/modules/_navbar.scss" lang="scss"></style>

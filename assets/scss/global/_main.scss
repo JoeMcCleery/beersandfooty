@@ -1,6 +1,18 @@
 // Global Modules
 @import './uikit';
 
+// Modules
+@import '../modules/animated-counter';
+@import '../modules/navbar';
+@import '../modules/review';
+@import '../modules/svg-background';
+
+// Pages
+@import '../pages/about';
+@import '../pages/account';
+@import '../pages/home';
+
+
 // Global Other
 html, body {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

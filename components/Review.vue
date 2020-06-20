@@ -1,5 +1,5 @@
 <template>
-  <div uk-scrollspy="cls:uk-animation-fade uk-animation-fast; delay: 250">
+  <div>
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body uk-background-default">
         <h3 class="uk-card-title">
@@ -10,7 +10,7 @@
         </h3>
         <hr />
         <div
-          v-for="(block, idx) in sortedContentBlocks"
+          v-for="(block, idx) in reviewData.content_blocks"
           :key="idx"
           :class="block.type"
           uk-scrollspy="target: > .block; cls: uk-animation-slide-top-small uk-animation-fast; delay: 250"
@@ -139,10 +139,6 @@ export default {
         })
       }
       return vote ? vote.shift() : null
-    },
-    sortedContentBlocks() {
-      const blocks = this.reviewData.content_blocks
-      return blocks.sort((a, b) => (a.sort > b.sort ? 1 : -1))
     }
   },
   watch: {
@@ -180,5 +176,3 @@ export default {
   }
 }
 </script>
-
-<style src="assets/scss/modules/_review.scss" lang="scss"></style>
