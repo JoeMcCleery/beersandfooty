@@ -8,7 +8,7 @@
         <span class="uk-icon-link uk-padding-xsmall" uk-icon="icon: close" />
       </a>
       <form
-        v-if="!$store.state.authUser"
+        v-if="loggedIn"
         class="uk-background-default"
         @submit.prevent="createReview"
       >
@@ -30,6 +30,7 @@
                 title="title"
                 type="text"
                 class="uk-input uk-width-expand"
+                required="required"
               />
             </div>
           </div>
@@ -152,6 +153,7 @@
                     type="text"
                     class="uk-textarea uk-width-1-1"
                     placeholder="content here..."
+                    required="required"
                   />
                   <input
                     v-if="['short_text'].some((v) => block.type === v)"
@@ -161,6 +163,7 @@
                     type="text"
                     class="uk-input uk-width-expand uk-text-center"
                     placeholder="content here..."
+                    required="required"
                   />
                   <div
                     v-if="['score'].some((v) => block.type === v)"
@@ -175,6 +178,7 @@
                       min="0"
                       class="uk-input uk-form-width-small"
                       placeholder="score..."
+                      required="required"
                     />
                     <span
                       v-if="['score'].some((v) => block.type === v)"
@@ -271,22 +275,24 @@
 export default {
   name: 'ReviewForm',
   components: { Review: () => import('~/components/Review.vue') },
+  props: {
+    modal: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       formError: null,
       showPreview: false,
       review: {
         id: 0,
+        user_id: 0,
+        author: '',
         title: '',
         type: 'beer',
         publish_date: this.getTimestamp(),
-        content_blocks: [
-          {
-            sort: 0,
-            type: 'long_text',
-            content: ''
-          }
-        ],
+        content_blocks: [],
         votes: [
           {
             downvotes: 1,
@@ -303,10 +309,28 @@ export default {
     sortedContentBlocks() {
       const blocks = this.review.content_blocks
       return blocks.sort((a, b) => (a.sort <= b.sort ? -1 : 1))
+    },
+    loggedIn() {
+      return this.$store.state.userAccessToken && this.$store.state.user
     }
   },
   methods: {
-    createReview(e) {},
+    async createReview(e) {
+      try {
+        const newReview = await this.$store.dispatch('createReview', {
+          user_id: this.user,
+          title: this.review.title,
+          type: this.review.type,
+          publish_date: this.review.publish_date
+        })
+        this.formError = null
+        this.$uikit.modal(this.modal).hide()
+        return newReview
+      } catch (e) {
+        this.formError = e.message
+        return e
+      }
+    },
     addBlock(
       idx,
       type = 'long_text',

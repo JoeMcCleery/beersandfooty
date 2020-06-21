@@ -198,5 +198,28 @@ export const actions = {
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
     }
+  },
+
+  // eslint-disable-next-line camelcase
+  async createReview({ commit }, { user_id, title, type, publish_date }) {
+    const { data } = await axios.post(
+      process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
+      {
+        user_id,
+        title,
+        type,
+        publish_date
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+    if (data.data && data.data) {
+      return data.data
+    } else if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
   }
 }

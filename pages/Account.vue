@@ -9,15 +9,15 @@
       <!--  Page Content Container  -->
       <section v-if="loggedIn" class="uk-section">
         <div class="uk-container">
-          <div class="uk-card uk-card-default uk-card-body">
+          <div>
             <button
-              class="uk-button uk-button-primary uk-align-right"
+              class="uk-button uk-button-danger uk-align-right"
               @click="logout"
             >
               Logout
             </button>
             <div>
-              <p>
+              <p class="uk-text-large">
                 Username:<br /><b>
                   {{ user.username }}
                 </b>
@@ -52,7 +52,14 @@
                   />
                 </div>
                 <div v-else>
-                  <b>No Reviews Made...</b>
+                  <a
+                    v-if="loggedIn"
+                    href="#review-form-modal"
+                    class="uk-button uk-button-primary"
+                    uk-toggle
+                  >
+                    Create Review
+                  </a>
                 </div>
               </div>
             </div>

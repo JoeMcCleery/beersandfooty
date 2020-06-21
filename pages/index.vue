@@ -183,7 +183,7 @@ export default {
         default: false
       },
       filter: {
-        limit: 10,
+        limit: 6,
         type: ['beer', 'footy'],
         order: {
           field: 'publish_date',

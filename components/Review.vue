@@ -1,19 +1,25 @@
 <template>
   <div>
     <div class="uk-card uk-card-default review" :class="reviewData.type">
-      <div class="uk-card-body uk-background-default">
+      <div class="uk-card-body">
         <h3 class="uk-card-title uk-text-italic uk-text-bold">
           {{ reviewData.title }}<br />
           <span class="uk-text-small publish-date">
             {{ formattedPublishDate }}
           </span>
         </h3>
+        <a
+          v-if="userCanEditReview"
+          title="Edit Review"
+          class="uk-position-absolute uk-position-top-left uk-padding-xsmall uk-text-small uk-text-muted"
+        >
+          <span uk-icon="icon: more-vertical; ratio: 0.75;" />
+        </a>
         <hr />
         <div
           v-for="(block, idx) in reviewData.content_blocks"
           :key="idx"
           :class="block.type"
-          uk-scrollspy="target: > .block; cls: uk-animation-slide-top-small uk-animation-fast; delay: 250"
         >
           <p v-if="block.type === 'long_text'" class="block uk-text-left">
             {{ block.content }}
@@ -23,15 +29,29 @@
           </p>
           <p
             v-if="block.type === 'score'"
-            class="block uk-text-large uk-text-center"
+            class="block uk-text-bold uk-text-center"
           >
             {{ block.content }} / 100
           </p>
+          <div
+            v-if="block.type === 'image'"
+            class="block uk-text-center uk-margin"
+          >
+            <div>
+              <img
+                src=""
+                :data-src="block.content"
+                :alt="block.title"
+                style="max-height: 350px"
+                uk-img
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="uk-card-footer uk-text-center">
+      <div class="uk-card-footer uk-background-default uk-text-center">
         <button
-          class="uk-button uk-button-default uk-button-small uk-float-left"
+          class="uk-button uk-button-default uk-button-small"
           :class="{
             upvoted: userVote && userVote.upvote === 1,
             'uk-disabled': !user
@@ -52,7 +72,7 @@
           <animated-number :number="score" />
         </button>
         <button
-          class="uk-button uk-button-default uk-button-small uk-float-right"
+          class="uk-button uk-button-default uk-button-small"
           :class="{
             downvoted: userVote && userVote.upvote === 0,
             'uk-disabled': !user
@@ -84,6 +104,8 @@ export default {
       default: () => {
         return {
           id: 0,
+          user_id: 0,
+          author: '',
           score: 0,
           title: '',
           type: 'beer',
@@ -124,6 +146,12 @@ export default {
     },
     user() {
       return this.$store.state.user
+    },
+    userCanEditReview() {
+      return (
+        (this.user && this.reviewData.user_id === this.user.id) ||
+        (this.user && this.user.isAdmin)
+      )
     },
     userVotes() {
       return this.$store.state.userVotes

@@ -1,10 +1,12 @@
 .review {
   &.beer {
+    box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     .uk-card-body {
       background: url($images-dir + 'beer-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
     }
     hr {
-      border-color: $beerscolour;
+      border-color: transparentize(darken($beerscolour, 10%), 0.8);
+      box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     }
     .uk-card-title {
       color: $beerscolour;
@@ -17,11 +19,13 @@
   }
 
   &.footy {
+    box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     .uk-card-body {
       background: url($images-dir + 'football-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
     }
     hr {
-      border-color: $footycolour;
+      border-color: transparentize(darken($footycolour, 10%), 0.8);
+      box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     }
     .uk-card-title {
       color: $footycolour;
