@@ -9,7 +9,7 @@
             Beers and Footy
           </h1>
           <div class="uk-position-bottom-center uk-margin-bottom">
-            <a v-scroll-to="'#reviews'" href="#" class="uk-link-text"
+            <a v-scroll-to="'#reviews'" href="#"
               ><span uk-icon="icon: chevron-down; ratio: 4;"
             /></a>
           </div>
@@ -19,19 +19,12 @@
       <section id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
-          <form @submit.prevent="fetchReviews(currentPageLink)">
-            <div class="uk-margin">
-              <input
-                id="limit"
-                v-model="filter.limit"
-                name="limit"
-                type="number"
-                min="1"
-                class="uk-input uk-form-width-small uk-form-small"
-              />
-            </div>
-            <div class="uk-margin">
-              <div class="uk-input uk-width-auto">
+          <form
+            class="uk-text-center"
+            @submit.prevent="fetchReviews(currentPageLink)"
+          >
+            <div class="uk-margin-small">
+              <div class="uk-input uk-form-small uk-width-auto">
                 <label for="beerFilter">
                   <input
                     id="beerFilter"
@@ -56,7 +49,7 @@
                 </label>
               </div>
             </div>
-            <div class="uk-margin">
+            <div class="uk-margin-small">
               <select
                 id="sortField"
                 v-model="filter.order.field"
@@ -66,17 +59,8 @@
                 <option value="publish_date">Publish Date</option>
                 <option value="score">Score</option>
               </select>
-              <select
-                id="sortDir"
-                v-model="filter.order.direction"
-                name="sortDir"
-                class="uk-select uk-width-small uk-form-small"
-              >
-                <option value="desc">Descending</option>
-                <option value="asc">Ascending</option>
-              </select>
             </div>
-            <div class="uk-margin">
+            <div class="uk-margin-small">
               <button
                 class="uk-button uk-button-primary uk-form-small"
                 type="submit"
