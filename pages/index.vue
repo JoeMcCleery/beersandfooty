@@ -19,10 +19,7 @@
       <section id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
-          <form
-            class="uk-text-center"
-            @submit.prevent="fetchReviews(currentPageLink)"
-          >
+          <form class="uk-text-center">
             <div class="uk-margin-small">
               <div class="uk-input uk-form-small uk-width-auto">
                 <label for="beerFilter">
@@ -33,6 +30,7 @@
                     type="checkbox"
                     class="uk-checkbox"
                     value="beer"
+                    @change="fetchReviews(currentPageLink)"
                   />
                   Beer
                 </label>
@@ -44,6 +42,7 @@
                     type="checkbox"
                     class="uk-checkbox"
                     value="footy"
+                    @change="fetchReviews(currentPageLink)"
                   />
                   Footy
                 </label>
@@ -55,53 +54,13 @@
                 v-model="filter.order.field"
                 name="sortField"
                 class="uk-select uk-form-width-small uk-form-small"
+                @change="fetchReviews(currentPageLink)"
               >
                 <option value="publish_date">Publish Date</option>
                 <option value="score">Score</option>
               </select>
             </div>
-            <div class="uk-margin-small">
-              <button
-                class="uk-button uk-button-primary uk-form-small"
-                type="submit"
-                name="fetch"
-                value="true"
-              >
-                Update Filter
-              </button>
-            </div>
           </form>
-          <!--  Pagination  -->
-          <div v-if="showReviews" class="uk-margin-top" uk-grid>
-            <div>
-              <a
-                v-scroll-to="'#reviews'"
-                :class="{ 'uk-invisible': previousPageLink === null }"
-                class="uk-button uk-button-default"
-                @click="fetchReviews(previousPageLink)"
-              >
-                <span uk-icon="chevron-left"></span>
-                Prev
-              </a>
-            </div>
-            <div class="uk-text-center uk-text-large uk-width-expand">
-              <animated-number
-                :number="currentPageNum"
-                class="uk-button uk-disabled uk-button-default uk-button-small"
-              />
-            </div>
-            <div>
-              <a
-                v-scroll-to="'#reviews'"
-                :class="{ 'uk-invisible': nextPageLink === null }"
-                class="uk-button uk-button-default"
-                @click="fetchReviews(nextPageLink)"
-              >
-                Next
-                <span uk-icon="chevron-right"></span>
-              </a>
-            </div>
-          </div>
           <!--  Masonry Grid  -->
           <div
             v-if="showReviews"
@@ -111,39 +70,25 @@
             <review
               v-for="r in reviews.data"
               :id="encodeURI(r.title)"
-              :key="encodeURI(r.title + r.id)"
+              :key="encodeURI(r.title + r.id + r.publish_date + r.author)"
               :review="r"
             />
           </div>
           <!--  Pagination  -->
-          <div v-if="showReviews" uk-grid>
+          <div class="uk-text-center uk-margin">
             <div>
               <a
-                v-scroll-to="'#reviews'"
-                :class="{ 'uk-invisible': previousPageLink === null }"
-                class="uk-button uk-button-default"
-                @click="fetchReviews(previousPageLink)"
-              >
-                <span uk-icon="chevron-left"></span>
-                Prev
-              </a>
-            </div>
-            <div class="uk-text-center uk-text-large uk-width-expand">
-              <animated-number
-                :number="currentPageNum"
-                class="uk-button uk-disabled uk-button-default uk-button-small"
-              />
-            </div>
-            <div>
-              <a
-                v-scroll-to="'#reviews'"
+                v-if="showReviews"
                 :class="{ 'uk-invisible': nextPageLink === null }"
                 class="uk-button uk-button-default"
-                @click="fetchReviews(nextPageLink)"
+                @click="loadMoreReviews(nextPageLink)"
               >
-                Next
-                <span uk-icon="chevron-right"></span>
+                <span uk-icon="icon: refresh;" />
+                Load more
               </a>
+              <span v-else>
+                No more to load...
+              </span>
             </div>
           </div>
         </div>
@@ -157,8 +102,7 @@ export default {
   name: 'Home',
   components: {
     SvgBackground: () => import('~/components/SvgBackground.vue'),
-    Review: () => import('~/components/Review.vue'),
-    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+    Review: () => import('~/components/Review.vue')
   },
   data() {
     return {
@@ -218,7 +162,10 @@ export default {
     this.fetchReviews(this.currentPageLink)
   },
   methods: {
-    fetchReviews(url) {
+    loadMoreReviews(url) {
+      this.fetchReviews(url, true)
+    },
+    fetchReviews(url, addData = false) {
       if (url.includes('?page')) {
         url += '&filter=' + JSON.stringify(this.filter)
       } else {
@@ -233,7 +180,15 @@ export default {
         .then((response) => {
           const r = response.data
           if (r.data.length) {
-            this.reviews = r
+            if (addData) {
+              this.reviews.data.push(...r.data)
+              this.reviews.meta = r.meta
+              this.reviews.links = r.links
+            } else {
+              this.reviews = r
+            }
+          } else if (addData) {
+            return this.reviews.data.concat([])
           } else {
             this.reviews = []
           }

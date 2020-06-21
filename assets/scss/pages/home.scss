@@ -1,7 +1,7 @@
 #Home {
   .header-content h1, .header-content a {
     color: $footycolour;
-    font-size: 6rem;
+    font-size: 5rem;
     text-align: center;
     text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
   }
