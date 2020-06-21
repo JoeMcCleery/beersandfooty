@@ -29,6 +29,7 @@
             href="#review-form-modal"
             class="uk-button uk-button-primary"
             uk-toggle
+            @click="clearEditReview"
           >
             Create Review
           </a>
@@ -75,6 +76,7 @@
                 href="#review-form-modal"
                 class="uk-button uk-button-primary uk-position-bottom"
                 uk-toggle
+                @click="clearEditReview"
               >
                 Create Review
               </a>
@@ -111,6 +113,13 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
+    }
+  },
+  methods: {
+    clearEditReview() {
+      if (this.$store.getters.getEditReview) {
+        this.$store.dispatch('setEditReview', { review: null })
+      }
     }
   }
 }

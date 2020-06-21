@@ -57,6 +57,7 @@
                     href="#review-form-modal"
                     class="uk-button uk-button-primary"
                     uk-toggle
+                    @click="clearEditReview"
                   >
                     Create Review
                   </a>
@@ -109,12 +110,17 @@ export default {
     }
   },
   methods: {
-    logout(e) {
+    logout() {
       this.$store.dispatch('logout', {})
       this.$router.push('/')
     },
     formatDate(dateTimeValue) {
       return new Date(dateTimeValue).toLocaleString()
+    },
+    clearEditReview() {
+      if (this.$store.getters.getEditReview) {
+        this.$store.dispatch('setEditReview', { review: null })
+      }
     }
   }
 }

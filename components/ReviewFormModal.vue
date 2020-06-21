@@ -8,7 +8,7 @@
     <div
       class="uk-modal-dialog uk-margin-auto-vertical uk-transparent uk-margin-bottom"
     >
-      <review-form :modal="$refs.modal" />
+      <review-form />
     </div>
   </div>
 </template>

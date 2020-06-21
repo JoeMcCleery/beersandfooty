@@ -10,10 +10,17 @@
       <form
         v-if="loggedIn"
         class="uk-background-default"
-        @submit.prevent="createReview"
+        @submit.prevent="formAction"
       >
         <div class="uk-modal-header">
-          <h2 class="uk-modal-title">Create Review</h2>
+          <h2 class="uk-modal-title">
+            <span v-if="editReview">
+              Edit Review
+            </span>
+            <span v-else>
+              Create Review
+            </span>
+          </h2>
         </div>
         <div class="uk-modal-body">
           <div v-if="formError" class="uk-alert-danger" uk-alert>
@@ -256,16 +263,20 @@
             name="create"
             value="true"
           >
-            Create
+            <span v-if="editReview">
+              Edit
+            </span>
+            <span v-else>
+              Create
+            </span>
           </button>
         </div>
       </form>
     </div>
-
     <!--  preview  -->
     <div v-if="showPreview">
       <div>
-        <review :review="review" />
+        <review :key="preview.title" :review="preview" />
       </div>
     </div>
   </div>
@@ -275,19 +286,13 @@
 export default {
   name: 'ReviewForm',
   components: { Review: () => import('~/components/Review.vue') },
-  props: {
-    modal: {
-      type: Object,
-      default: null
-    }
-  },
   data() {
     return {
       formError: null,
       showPreview: false,
       review: {
         id: 0,
-        user_id: 0,
+        user_id: this.user_id,
         author: '',
         title: '',
         type: 'beer',
@@ -312,30 +317,81 @@ export default {
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
+    },
+    editReview() {
+      return this.$store.getters.getEditReview
+    },
+    user() {
+      return this.$store.state.user
+    },
+    preview() {
+      const previewData = JSON.parse(JSON.stringify(this.review))
+      previewData.id = 0
+      return previewData
+    }
+  },
+  watch: {
+    editReview() {
+      if (this.editReview) {
+        this.review = JSON.parse(
+          JSON.stringify(this.$store.getters.getEditReview)
+        )
+      } else {
+        this.review = {
+          id: 0,
+          user_id: 0,
+          author: '',
+          title: '',
+          type: 'beer',
+          publish_date: this.getTimestamp(),
+          content_blocks: [],
+          votes: [
+            {
+              downvotes: 1,
+              upvotes: 0
+            }
+          ],
+          created_at: 0,
+          updated_at: 0,
+          deleted_at: 0
+        }
+      }
+      this.formError = ''
     }
   },
   methods: {
-    async createReview(e) {
-      try {
-        const newReview = await this.$store.dispatch('createReview', {
-          user_id: this.user,
-          title: this.review.title,
-          type: this.review.type,
-          publish_date: this.review.publish_date
-        })
-        this.formError = null
-        this.$uikit.modal(this.modal).hide()
-        return newReview
-      } catch (e) {
-        this.formError = e.message
-        return e
+    async formAction(e) {
+      if (!this.review.id) {
+        try {
+          const newReview = await this.$store.dispatch('createReview', {
+            user_id: this.user.id,
+            title: this.review.title,
+            type: this.review.type,
+            publish_date: this.review.publish_date,
+            content_blocks: this.review.content_blocks
+          })
+          this.formError = null
+          const modal = document.querySelector('#review-form-modal')
+          this.$uikit.modal(modal).hide()
+          await this.$store.dispatch('getUser')
+          return newReview
+        } catch (e) {
+          this.formError = e.response.data.message
+          if (e.response.data.errors) {
+            this.formError += ' ' + JSON.stringify(e.response.data.errors)
+          }
+          return e
+        }
+      } else {
+        this.formError = 'TODO: update reviews'
+        await this.$store.dispatch('getUser')
       }
     },
     addBlock(
       idx,
       type = 'long_text',
       block = {
-        idx,
+        sort: idx,
         type,
         content: ''
       }

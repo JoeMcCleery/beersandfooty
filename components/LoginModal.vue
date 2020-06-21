@@ -116,7 +116,7 @@ export default {
         }
         this.$uikit.modal(this.$refs.modal).hide()
       } catch (e) {
-        this.formError = e.message
+        this.formError = e.response.data.message
       }
     }
   }

@@ -9,9 +9,10 @@
           </span>
         </h3>
         <a
-          v-if="userCanEditReview"
+          v-if="userCanEditReview && loggedIn"
           title="Edit Review"
           class="uk-position-absolute uk-position-top-left uk-padding-xsmall uk-text-small uk-text-muted"
+          @click="editReviewModal"
         >
           <span uk-icon="icon: more-vertical; ratio: 0.75;" />
         </a>
@@ -167,6 +168,9 @@ export default {
         })
       }
       return vote ? vote.shift() : null
+    },
+    loggedIn() {
+      return this.$store.state.userAccessToken && this.$store.state.user
     }
   },
   watch: {
@@ -199,6 +203,15 @@ export default {
         })
 
         event.target.classList.remove('uk-disabled')
+      }
+    },
+    editReviewModal() {
+      const modal = document.querySelector('#review-form-modal')
+      if (this.reviewData && modal) {
+        this.$store.dispatch('setEditReview', {
+          review: this.reviewData
+        })
+        this.$uikit.modal(modal).show()
       }
     }
   }

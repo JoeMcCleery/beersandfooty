@@ -10,7 +10,8 @@ export const state = () => ({
   userVotes: null,
   userAccessToken: null,
   refreshToken: null,
-  clientAccessToken: null
+  clientAccessToken: null,
+  editReview: null
 })
 
 export const mutations = {
@@ -35,6 +36,16 @@ export const mutations = {
   },
   SET_CLIENT_TOKEN(state, token) {
     state.clientAccessToken = token
+  },
+
+  SET_EDIT_REVIEW(state, review) {
+    state.editReview = review
+  }
+}
+
+export const getters = {
+  getEditReview: (state) => {
+    return state.editReview
   }
 }
 
@@ -52,6 +63,11 @@ export const actions = {
 
   setUserTokenFromLocalStorage({ commit }) {
     commit('SET_USER_TOKEN', Vue.prototype.$localStorageGet('userAccessToken'))
+  },
+
+  setEditReview({ commit }, { review }) {
+    commit('SET_EDIT_REVIEW', null)
+    commit('SET_EDIT_REVIEW', review)
   },
 
   // eslint-disable-next-line camelcase
@@ -200,15 +216,19 @@ export const actions = {
     }
   },
 
-  // eslint-disable-next-line camelcase
-  async createReview({ commit }, { user_id, title, type, publish_date }) {
+  async createReview(
+    { commit },
+    // eslint-disable-next-line camelcase
+    { user_id, title, type, publish_date, content_blocks }
+  ) {
     const { data } = await axios.post(
       process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
       {
         user_id,
         title,
         type,
-        publish_date
+        publish_date,
+        content_blocks
       },
       {
         headers: {
