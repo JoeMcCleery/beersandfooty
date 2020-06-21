@@ -23,22 +23,33 @@
                 </b>
               </p>
               <p>
-                Date Created:<br /><b>
+                Date Created:
+                <b>
                   {{ formatDate(user.created_at) }}
                 </b>
               </p>
               <p>
-                Votes Made:<br /><b>
-                  <animated-number :number="numVotes" />
+                Votes Made:
+                <b>
+                  <animated-number :number="numVotes" class="uk-inline" />
                 </b>
               </p>
               <p>
-                User Score:<br /><b>
-                  <animated-number :number="userScore" />
+                User Score:
+                <b>
+                  <animated-number :number="userScore" class="uk-inline" />
                 </b>
               </p>
               <div>
-                <p>Reviews:</p>
+                <p>
+                  Reviews:
+                  <b>
+                    <animated-number
+                      :number="userReviews.length"
+                      class="uk-inline"
+                    />
+                  </b>
+                </p>
                 <!--  Masonry Grid  -->
                 <div
                   v-if="userReviews.length"
@@ -52,15 +63,9 @@
                   />
                 </div>
                 <div v-else>
-                  <a
-                    v-if="loggedIn"
-                    href="#review-form-modal"
-                    class="uk-button uk-button-primary"
-                    uk-toggle
-                    @click="clearEditReview"
-                  >
-                    Create Review
-                  </a>
+                  <p class="uk-text-italic">
+                    No Reviews Made...
+                  </p>
                 </div>
               </div>
             </div>

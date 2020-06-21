@@ -2,17 +2,17 @@
   <div id="navbar" class="uk-position-fixed uk-position-top">
     <nav class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-right uk-flex-right">
-        <a
-          href="#offcanvas-slide"
-          class="uk-button uk-button-default uk-hidden@m"
-          uk-toggle
-        >
-          <span>&nbsp;{{ pageTitle }}</span>
-          <span uk-icon="icon: menu; ratio: 1;" />
-        </a>
-        <ul class="uk-navbar-nav uk-visible@m">
+        <!--        <a-->
+        <!--          href="#offcanvas-slide"-->
+        <!--          class="uk-button uk-button-default uk-button-small uk-hidden@m uk-flex uk-flex-center uk-flex-middle"-->
+        <!--          style="height: 40px; width: 40px; padding: 0; border-radius: 50%;"-->
+        <!--          uk-toggle-->
+        <!--        >-->
+        <!--          <span uk-icon="icon: menu; ratio: 1;" />-->
+        <!--        </a>-->
+        <ul class="uk-navbar-nav uk-visible">
           <li :class="{ 'uk-active': pageTitle === 'Home' }">
-            <nuxt-link to="/" class="">Beers and Footy</nuxt-link>
+            <nuxt-link to="/" class="">Home</nuxt-link>
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': pageTitle === 'About' }">
@@ -28,10 +28,13 @@
             v-if="loggedIn"
             href="#review-form-modal"
             class="uk-button uk-button-primary"
+            title="Create New Review"
             uk-toggle
+            style="height: 40px; width: 80px; padding: 0;"
             @click="clearEditReview"
           >
-            Create Review
+            <span uk-icon="icon: plus; ratio: 0.7;" />
+            <span uk-icon="icon: file-text; ratio: 1;" />
           </a>
           <a
             v-else
@@ -39,18 +42,18 @@
             class="uk-button uk-button-primary"
             uk-toggle
           >
-            Login / Register
+            Login
           </a>
         </ul>
         <div
           id="offcanvas-slide"
           uk-offcanvas="overlay: true; mode: slide; esc-close: true; flip: true;"
         >
-          <div class="uk-offcanvas-bar uk-hidden@m">
+          <div class="uk-offcanvas-bar uk-hidden">
             <ul class="uk-nav uk-nav-primary uk-nav-center">
               <li :class="{ 'uk-active': pageTitle === 'Home' }">
                 <nuxt-link to="/" uk-toggle="target: #offcanvas-slide;"
-                  >Beers and Footy</nuxt-link
+                  >Home</nuxt-link
                 >
               </li>
               <li class="uk-nav-divider"></li>
