@@ -14,6 +14,7 @@
               class="uk-button uk-button-danger uk-align-right"
               @click="logout"
             >
+              <span uk-icon="icon: sign-out;" />
               Logout
             </button>
             <div>

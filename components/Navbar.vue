@@ -29,19 +29,21 @@
             href="#review-form-modal"
             class="uk-button uk-button-primary"
             title="Create New Review"
+            style="padding: 0 15px;"
             uk-toggle
-            style="height: 40px; width: 80px; padding: 0;"
             @click="clearEditReview"
           >
             <span uk-icon="icon: plus; ratio: 0.7;" />
-            <span uk-icon="icon: file-text; ratio: 1;" />
+            Review
           </a>
           <a
             v-else
             href="#login-modal"
             class="uk-button uk-button-primary"
+            style="padding: 0 15px;"
             uk-toggle
           >
+            <span uk-icon="icon: sign-in;" />
             Login
           </a>
         </ul>

@@ -201,7 +201,7 @@
           <hr />
           <div>
             <div
-              class="uk-grid-small uk-child-width-1-1 uk-text-center"
+              class="uk-grid-small uk-child-width-auto uk-text-center"
               uk-grid
             >
               <div>
@@ -224,7 +224,7 @@
                     name="addBlock"
                     title="addBlock"
                     type="button"
-                    class="uk-button uk-button-secondary uk-button-small"
+                    class="uk-button uk-button-default uk-button-small"
                     @click="
                       addBlock(
                         sortedContentBlocks.length,

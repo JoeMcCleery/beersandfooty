@@ -49,6 +49,7 @@
             value="true"
             @click.prevent="submitForm(true)"
           >
+            <span uk-icon="icon: sign-in;" />
             Login
           </button>
           <button

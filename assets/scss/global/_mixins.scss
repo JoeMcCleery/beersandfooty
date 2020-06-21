@@ -27,6 +27,9 @@
 @mixin hook-button-primary() {
   box-shadow: 0 0 4px transparentize(lighten($button-primary-background, 10%), 0.8);
 }
+@mixin hook-button-secondary() {
+  box-shadow: 0 0 4px transparentize(lighten($button-secondary-background, 10%), 0.8);
+}
 
 // Cards
 @mixin hook-card() {
