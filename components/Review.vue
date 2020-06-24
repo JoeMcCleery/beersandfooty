@@ -37,7 +37,7 @@
         <a
           v-if="userCanEditReview && loggedIn"
           title="Edit Review"
-          class="uk-position-bottom-right uk-padding-xsmall uk-text-small uk-text-muted"
+          class="uk-position-top-right uk-padding-xsmall uk-text-small uk-text-muted"
           @click="editReviewModal"
         >
           <span uk-icon="icon: more-vertical; ratio: 0.75;" />
