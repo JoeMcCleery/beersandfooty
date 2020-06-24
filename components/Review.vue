@@ -9,6 +9,21 @@
             class="uk-text-small publish-date"
             title="go to review's page"
           >
+            <span
+              v-if="reviewData"
+              class="icon-container icon-container-small uk-inline"
+            >
+              <img
+                v-if="reviewData.type === 'beer'"
+                data-src="@/assets/images/beer-icon.svg"
+                uk-svg
+              />
+              <img
+                v-if="reviewData.type === 'footy'"
+                data-src="@/assets/images/football-icon.svg"
+                uk-svg
+              />
+            </span>
             {{ formattedPublishDate }}
           </nuxt-link>
           <nuxt-link
@@ -27,20 +42,6 @@
         >
           <span uk-icon="icon: more-vertical; ratio: 0.75;" />
         </a>
-        <span v-if="reviewData" class="icon-container uk-position-top-right">
-          <img
-            v-if="reviewData.type === 'beer'"
-            class="icon-beer"
-            data-src="@/assets/images/beer-icon.svg"
-            uk-svg
-          />
-          <img
-            v-if="reviewData.type === 'footy'"
-            class="icon-footy"
-            data-src="@/assets/images/football-icon.svg"
-            uk-svg
-          />
-        </span>
         <hr />
         <div
           v-for="(block, idx) in reviewData.content_blocks"

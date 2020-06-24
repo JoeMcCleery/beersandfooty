@@ -89,7 +89,7 @@
   text-shadow: 0 0 4px transparentize(lighten($color, 10%), 0.8);
 }
 @mixin glow-box($color) {
-  box-shadow: 0 0 4px transparentize(lighten($color, 10%), 0.6);
+  box-shadow: 0 0 4px transparentize(lighten($color, 10%), 0.7);
 }
 @mixin glow-icon($color) {
   filter: drop-shadow(0 0 4px transparentize(lighten($color, 10%), 0.7));
