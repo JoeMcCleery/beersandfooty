@@ -1,12 +1,15 @@
 .review {
+  margin: auto;
+  max-width: 600px;
+  background: white;
+  .image img {
+    border-radius: 2px;
+  }
   .publish-date {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   &.beer {
     box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
-    .uk-card-body {
-      background: url($images-dir + 'beer-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
-    }
     hr {
       border-color: transparentize(darken($beerscolour, 10%), 0.8);
       box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
@@ -23,9 +26,6 @@
 
   &.footy {
     box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
-    .uk-card-body {
-      background: url($images-dir + 'football-icon.svg') calc(100% - 7px) 7px/20px no-repeat #fff;
-    }
     hr {
       border-color: transparentize(darken($footycolour, 10%), 0.8);
       box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
@@ -37,20 +37,6 @@
     .publish-date {
       color: lighten($footycolour, 20%);
       text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
-    }
-  }
-
-  @include for-desktop() {
-    &.beer {
-      .uk-card-body {
-        background: url($images-dir + 'beer-icon.svg') calc(100% - 12px) 12px/20px no-repeat #fff;
-      }
-    }
-
-    &.footy {
-      .uk-card-body {
-        background: url($images-dir + 'football-icon.svg') calc(100% - 12px) 12px/20px no-repeat #fff;
-      }
     }
   }
 }

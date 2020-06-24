@@ -9,7 +9,7 @@
 @import './mixins.scss';
 
 // 3.5. Custom scss
-img[data-src][src*='data:image'] { background: $grey-light; }
+img[data-src][src*='data:image'] { background: $grey; }
 .uk-form-icon { z-index: 1; cursor: pointer; }
 .uk-icon { pointer-events: none; }
 .uk-textarea {
@@ -21,12 +21,54 @@ img[data-src][src*='data:image'] { background: $grey-light; }
   padding: 5px 5px !important;
 }
 input[type='checkbox']:checked, input[type='radio']:checked {
-  box-shadow: 0 0 4px transparentize(lighten($form-radio-checked-background, 10%), 0.8);
+  @include glow-box($form-radio-checked-background);
 }
 .uk-lightbox-items {
   cursor: pointer;
   img {
     cursor: initial;
+  }
+}
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  svg {
+    transition: color 100ms;
+    width: 20px;
+  }
+}
+.icon-container-small {
+  height: 25px;
+  width: 25px;
+  svg {
+    width: 15px;
+  }
+}
+.icon-beer {
+  color: $beerscolour;
+  @include glow-icon($beerscolour);
+}
+.icon-footy {
+  color: $footycolour;
+  @include glow-icon($footycolour);
+}
+input:not(:checked) + .icon-container svg {
+  color: $grey-light;
+  @include glow-icon(rgba(0,0,0,0));
+}
+
+
+@include for-desktop() {
+  .icon-container {
+    width: 40px;
+    height: 40px;
+  }
+  .icon-container-small {
+    width: 30px;
+    height: 30px;
   }
 }
 

@@ -47,7 +47,6 @@
 
           <div class="uk-margin uk-hidden">
             <div class="uk-inline uk-width-1-1">
-              <label for="publishDate">Publish Date</label>
               <input
                 id="publishDate"
                 v-model="review.publish_date"
@@ -59,42 +58,45 @@
             </div>
           </div>
 
-          <div class="uk-margin">
-            <div
-              class="uk-grid-collapse uk-child-width-1-1 uk-text-center"
-              uk-grid
-            >
-              <div>
-                <label for="typeBeer">
-                  <input
-                    id="typeBeer"
-                    v-model="review.type"
-                    name="typeBeer"
-                    title="typeBeer"
-                    type="radio"
-                    class="uk-radio"
-                    value="beer"
-                  />
-                  Beer Review</label
-                >
-              </div>
-
-              <div>
-                <label for="typeFooty">
-                  <input
-                    id="typeFooty"
-                    v-model="review.type"
-                    name="typeFooty"
-                    title="typeFooty"
-                    type="radio"
-                    class="uk-radio"
-                    value="footy"
-                  />
-                  Footy Review</label
-                >
-              </div>
-            </div>
+          <div class="uk-margin uk-text-center">
+            <label for="typeBeer" class="uk-inline">
+              <input
+                id="typeBeer"
+                v-model="review.type"
+                name="typeBeer"
+                title="typeBeer"
+                type="radio"
+                class="uk-hidden"
+                value="beer"
+              />
+              <a class="icon-container">
+                <img
+                  class="icon-beer"
+                  data-src="@/assets/images/beer-icon.svg"
+                  uk-svg
+                />
+              </a>
+            </label>
+            <label for="typeFooty" class="uk-inline">
+              <input
+                id="typeFooty"
+                v-model="review.type"
+                name="typeFooty"
+                title="typeFooty"
+                type="radio"
+                class="uk-hidden"
+                value="footy"
+              />
+              <a class="icon-container">
+                <img
+                  class="icon-footy"
+                  data-src="@/assets/images/football-icon.svg"
+                  uk-svg
+                />
+              </a>
+            </label>
           </div>
+
           <div class="blocks uk-grid-stack uk-grid-collapse" uk-grid>
             <div
               v-for="(block, idx) in sortedContentBlocks"
@@ -180,10 +182,10 @@
                       class="uk-text-center"
                     >
                       <label
-                        class="uk-button uk-button-small uk-button-secondary"
+                        class="uk-button uk-button-default uk-button-small"
                       >
                         <span uk-icon="icon: upload; ratio: 0.9;" />
-                        Upload Image
+                        Upload <span v-if="block.content">New </span>Image
                         <input
                           name="content"
                           title="content"

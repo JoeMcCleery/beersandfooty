@@ -6,29 +6,21 @@
   border-radius: 2px;
   transition: box-shadow 100ms, background-color 100ms;
 
-  &.upvoted {
-    @extend .uk-button-primary;
-  }
-
-  &.downvoted {
-    @extend .uk-button-danger;
-  }
-
   &:active:not([disabled='disabled']) {
     box-shadow: inset 0 2px 3px rgba(0,0,0,0.08) !important;
   }
 }
 @mixin hook-button-default() {
-  box-shadow: 0 0 4px transparentize(lighten($button-default-background, 10%), 0.8);
+  @include glow-box($button-default-background);
 }
 @mixin hook-button-danger() {
-  box-shadow: 0 0 4px transparentize(lighten($button-danger-background, 10%), 0.8);
+  @include glow-box($button-danger-background);
 }
 @mixin hook-button-primary() {
-  box-shadow: 0 0 4px transparentize(lighten($button-primary-background, 10%), 0.8);
+  @include glow-box($button-primary-background);
 }
 @mixin hook-button-secondary() {
-  box-shadow: 0 0 4px transparentize(lighten($button-secondary-background, 10%), 0.8);
+  @include glow-box($button-secondary-background);
 }
 
 // Cards
@@ -36,6 +28,9 @@
   @extend .uk-box-shadow-small;
   border-radius: 2px;
   overflow-wrap: break-word;
+  .uk-card-title {
+    font-size: 1.8rem;
+  }
   .uk-card-body {
     border-radius: 2px;
   }
@@ -48,7 +43,7 @@
 @mixin hook-modal() {
   .uk-modal-title {
     color: $button-primary-background;
-    text-shadow: 0 0 4px transparentize(lighten($button-primary-background, 10%), 0.8);
+    @include glow-text($button-primary-background);
   }
 }
 
@@ -67,7 +62,7 @@
 @mixin hook-icon-link() {
   &.icon-red {
     color: $button-danger-background;
-    filter: drop-shadow( 0 0 4px transparentize(lighten($button-danger-background, 10%), 0.8));
+    @include glow-icon($button-danger-background);
   }
 }
 
@@ -87,6 +82,17 @@
 // Lightbox
 @mixin hook-lightbox-toolbar() {
   display: none;
+}
+
+// Glow Effect
+@mixin glow-text($color) {
+  text-shadow: 0 0 4px transparentize(lighten($color, 10%), 0.8);
+}
+@mixin glow-box($color) {
+  box-shadow: 0 0 4px transparentize(lighten($color, 10%), 0.6);
+}
+@mixin glow-icon($color) {
+  filter: drop-shadow(0 0 4px transparentize(lighten($color, 10%), 0.7));
 }
 
 // Breakpoints

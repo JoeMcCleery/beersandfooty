@@ -22,11 +22,25 @@
         <a
           v-if="userCanEditReview && loggedIn"
           title="Edit Review"
-          class="uk-position-absolute uk-position-top-left uk-padding-xsmall uk-text-small uk-text-muted"
+          class="uk-position-bottom-right uk-padding-xsmall uk-text-small uk-text-muted"
           @click="editReviewModal"
         >
           <span uk-icon="icon: more-vertical; ratio: 0.75;" />
         </a>
+        <span v-if="reviewData" class="icon-container uk-position-top-right">
+          <img
+            v-if="reviewData.type === 'beer'"
+            class="icon-beer"
+            data-src="@/assets/images/beer-icon.svg"
+            uk-svg
+          />
+          <img
+            v-if="reviewData.type === 'footy'"
+            class="icon-footy"
+            data-src="@/assets/images/football-icon.svg"
+            uk-svg
+          />
+        </span>
         <hr />
         <div
           v-for="(block, idx) in reviewData.content_blocks"
@@ -55,7 +69,6 @@
                   src=""
                   :data-src="block.content"
                   :alt="block.title"
-                  style="max-height: 350px"
                   uk-img
                 />
               </a>
@@ -67,9 +80,10 @@
         <button
           class="uk-button uk-button-default uk-button-small"
           :class="{
-            upvoted: userVote && userVote.upvote === 1,
+            'uk-button-primary': userVote && userVote.upvote === 1,
             'uk-disabled': !user
           }"
+          title="Upvote Review"
           @click="voteAction(1, $event)"
         >
           <span uk-icon="chevron-up"></span>
@@ -87,8 +101,9 @@
         </button>
         <button
           class="uk-button uk-button-default uk-button-small"
+          title="Downvote Review"
           :class="{
-            downvoted: userVote && userVote.upvote === 0,
+            'uk-button-danger': userVote && userVote.upvote === 0,
             'uk-disabled': !user
           }"
           @click="voteAction(0, $event)"

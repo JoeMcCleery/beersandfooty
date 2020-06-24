@@ -20,55 +20,67 @@
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <ul uk-accordion>
-            <li>
-              <a class="uk-accordion-title uk-text-small" href="#">
+            <li class="uk-width-small uk-margin-auto">
+              <a
+                class="uk-accordion-title uk-text-center uk-text-small uk-light"
+                href="#"
+              >
                 Filter Settings
                 <span uk-icon="icon: settings; ratio: 0.7;" />
-                <span uk-icon="icon: chevron-down;" />
               </a>
-              <div class="uk-accordion-content">
-                <form>
-                  <div class="uk-margin-small">
-                    <div class="uk-input uk-form-small uk-width-auto">
-                      <label for="beerFilter">
+              <div class="uk-accordion-content uk-background-default">
+                <div>
+                  <form>
+                    <div class="uk-text-center">
+                      <label for="beerFilter" class="uk-inline">
                         <input
                           id="beerFilter"
                           v-model="filter.type"
                           name="beerFilter"
                           type="checkbox"
-                          class="uk-checkbox"
+                          class="uk-hidden"
                           value="beer"
                           @change="fetchReviews(currentPageLink)"
                         />
-                        Beer
+                        <a class="icon-container">
+                          <img
+                            class="icon-beer"
+                            data-src="@/assets/images/beer-icon.svg"
+                            uk-svg
+                          />
+                        </a>
                       </label>
-                      <label for="footyFilter">
+                      <label for="footyFilter" class="uk-inline">
                         <input
                           id="footyFilter"
                           v-model="filter.type"
                           name="footyFilter"
                           type="checkbox"
-                          class="uk-checkbox"
+                          class="uk-hidden"
                           value="footy"
                           @change="fetchReviews(currentPageLink)"
                         />
-                        Footy
+                        <a class="icon-container">
+                          <img
+                            class="icon-footy"
+                            data-src="@/assets/images/football-icon.svg"
+                            uk-svg
+                          />
+                        </a>
                       </label>
                     </div>
-                  </div>
-                  <div class="uk-margin-small">
                     <select
                       id="sortField"
                       v-model="filter.order.field"
                       name="sortField"
-                      class="uk-select uk-form-width-small uk-form-small"
+                      class="uk-select uk-inline"
                       @change="fetchReviews(currentPageLink)"
                     >
                       <option value="publish_date">Publish Date</option>
                       <option value="score">Score</option>
                     </select>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </li>
           </ul>
@@ -85,7 +97,7 @@
               :review="r"
             />
           </div>
-          <!--  Pagination  -->
+          <!--  Pagination / Response Info  -->
           <div class="uk-text-center uk-margin">
             <div>
               <a
@@ -97,8 +109,14 @@
                 <span uk-icon="icon: refresh;" />
                 Load more
               </a>
+              <span v-else-if="showReviews && !nextPageLink" class="uk-light">
+                No more reviews to load.
+              </span>
+              <span v-else-if="filter.type.length" class="uk-light">
+                Loading reviews...
+              </span>
               <span v-else class="uk-light">
-                No more to load...
+                Select a review type in the filter settings above.
               </span>
             </div>
           </div>
