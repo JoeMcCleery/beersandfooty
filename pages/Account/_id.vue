@@ -3,21 +3,19 @@
     <div class="content">
       <svg-background />
       <!--  Header  -->
-      <div class="uk-height-medium uk-flex uk-flex-center uk-flex-middle">
-        <h1 class="uk-text-center">Account</h1>
+      <div
+        class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-padding"
+      >
+        <h1 class="uk-text-center">
+          <span v-if="user"> {{ user.username }}'s </span>
+          Account
+        </h1>
       </div>
       <!--  Page Content Container  -->
-      <section v-if="loggedIn" class="uk-section">
+      <section v-if="user" class="uk-section">
         <div class="uk-container">
           <div>
-            <button
-              class="uk-button uk-button-danger uk-align-right"
-              @click="logout"
-            >
-              <span uk-icon="icon: sign-out;" />
-              Logout
-            </button>
-            <div>
+            <div class="user-details">
               <p class="uk-text-large">
                 Username:<br /><b>
                   {{ user.username }}
@@ -41,16 +39,16 @@
                   <animated-number :number="userScore" class="uk-inline" />
                 </b>
               </p>
+              <p>
+                Reviews:
+                <b>
+                  <animated-number
+                    :number="userReviews.length"
+                    class="uk-inline"
+                  />
+                </b>
+              </p>
               <div>
-                <p>
-                  Reviews:
-                  <b>
-                    <animated-number
-                      :number="userReviews.length"
-                      class="uk-inline"
-                    />
-                  </b>
-                </p>
                 <!--  Masonry Grid  -->
                 <div
                   v-if="userReviews.length"
@@ -64,7 +62,7 @@
                   />
                 </div>
                 <div v-else>
-                  <p class="uk-text-italic">
+                  <p class="uk-text-italic uk-light">
                     No Reviews Made...
                   </p>
                 </div>
@@ -74,8 +72,8 @@
         </div>
       </section>
       <div v-else>
-        <p class="uk-text-center">
-          You must log in or register to see account details.
+        <p class="uk-text-center uk-light">
+          Loading account information...
         </p>
       </div>
     </div>
@@ -85,48 +83,49 @@
 <script>
 export default {
   name: 'Account',
+  validate({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  },
   components: {
     Review: () => import('@/components/Review'),
     SvgBackground: () => import('~/components/SvgBackground.vue'),
     AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
+  data() {
+    return {
+      id: this.$route.params.id,
+      userData: ''
+    }
+  },
   computed: {
     user() {
-      return this.$store.state.user
+      return this.userData
     },
     userReviews() {
       return this.user.reviews
     },
     userVotes() {
-      return this.$store.state.userVotes
+      return this.user.votes
     },
     numVotes() {
       return this.userVotes ? this.userVotes.length : 0
     },
     userScore() {
       return this.user.score
-    },
-    loggedIn() {
-      return this.$store.state.userAccessToken && this.$store.state.user
     }
   },
-  mounted() {
-    if (this.loggedIn) {
-      this.$store.dispatch('getUser', {})
+  async mounted() {
+    if (this.id) {
+      const result = await this.$store.dispatch('getUser', { id: this.id })
+      if (result) {
+        this.userData = result
+      }
     }
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout', {})
-      this.$router.push('/')
-    },
     formatDate(dateTimeValue) {
       return new Date(dateTimeValue).toLocaleString()
-    },
-    clearEditReview() {
-      if (this.$store.getters.getEditReview) {
-        this.$store.dispatch('setEditReview', { review: null })
-      }
     }
   }
 }

@@ -5,7 +5,10 @@
   >
     <div class="uk-position-relative">
       <a href="#review-form-modal" class="uk-modal-close-default" uk-toggle>
-        <span class="uk-icon-link uk-padding-xsmall" uk-icon="icon: close" />
+        <span
+          class="uk-icon-link icon-red"
+          uk-icon="icon: close; ratio: 2.2;"
+        />
       </a>
       <form
         v-if="loggedIn"
@@ -29,7 +32,6 @@
 
           <div class="uk-margin">
             <div class="uk-inline uk-width-1-1">
-              <label for="title">Title</label>
               <input
                 id="title"
                 v-model="review.title"
@@ -37,6 +39,7 @@
                 title="title"
                 type="text"
                 class="uk-input uk-width-expand"
+                placeholder="Review Title"
                 required="required"
               />
             </div>
@@ -92,27 +95,26 @@
               </div>
             </div>
           </div>
-          <div class="blocks uk-grid-stack uk-grid-medium" uk-grid>
+          <div class="blocks uk-grid-stack uk-grid-collapse" uk-grid>
             <div
               v-for="(block, idx) in sortedContentBlocks"
               :key="encodeURI(idx + block.type + block.sort)"
-              class="uk-width-1-1 uk-position-relative"
+              class="uk-width-1-1 uk-margin-small uk-position-relative"
             >
-              <hr />
               <div class="uk-animation-fade uk-background-default">
-                <div class="uk-position-top-right uk-padding-small">
+                <div class="uk-position-top-right uk-margin-small-right">
                   <a
                     id="removeBlock"
                     name="removeBlock"
-                    title="Trash Block"
+                    :title="'Trash ' + sanitizedType(block.type) + ' Block'"
                     type="button"
-                    class="uk-icon-link"
+                    class=""
                     @click="removeBlock(idx)"
                   >
-                    <span uk-icon="icon: trash" class="uk-padding-xsmall" />
+                    <span uk-icon="icon: trash" class="uk-icon-link icon-red" />
                   </a>
                 </div>
-                <div class="uk-margin-small">
+                <div class="">
                   <div class="uk-inline">
                     <div>
                       <select
@@ -130,7 +132,7 @@
                   <button
                     :class="{ 'uk-hidden': block.sort <= 0 }"
                     name="blockIndexUp"
-                    title="blockIndexUp"
+                    :title="'Move ' + sanitizedType(block.type) + ' block up'"
                     type="button"
                     class="uk-button uk-button-default uk-button-small"
                     @click="moveBlock(idx, idx - 1)"
@@ -142,7 +144,7 @@
                       'uk-hidden': block.sort >= sortedContentBlocks.length - 1
                     }"
                     name="blockIndexDown"
-                    title="blockIndexDown"
+                    :title="'Move ' + sanitizedType(block.type) + ' block down'"
                     type="button"
                     class="uk-button uk-button-default uk-button-small"
                     @click="moveBlock(idx, idx + 1)"
@@ -151,57 +153,86 @@
                   </button>
                 </div>
 
-                <div>
-                  <textarea
-                    v-if="['long_text'].some((v) => block.type === v)"
-                    v-model="block.content"
-                    name="content"
-                    title="content"
-                    type="text"
-                    class="uk-textarea uk-width-1-1"
-                    placeholder="content here..."
-                    required="required"
-                  />
-                  <input
-                    v-if="['short_text'].some((v) => block.type === v)"
-                    v-model="block.content"
-                    name="content"
-                    title="content"
-                    type="text"
-                    class="uk-input uk-width-expand uk-text-center"
-                    placeholder="content here..."
-                    required="required"
-                  />
-                  <div
-                    v-if="['score'].some((v) => block.type === v)"
-                    class="uk-text-center"
-                  >
-                    <input
+                <div class="uk-margin-small-top">
+                  <div>
+                    <textarea
+                      v-if="['long_text'].some((v) => block.type === v)"
                       v-model="block.content"
                       name="content"
                       title="content"
-                      type="number"
-                      max="100"
-                      min="0"
-                      class="uk-input uk-form-width-small"
-                      placeholder="score..."
+                      type="text"
+                      class="uk-textarea uk-width-1-1"
+                      placeholder="content here..."
                       required="required"
                     />
-                    <span
-                      v-if="['score'].some((v) => block.type === v)"
-                      class="uk-inline uk-text-center"
+                    <input
+                      v-if="['short_text'].some((v) => block.type === v)"
+                      v-model="block.content"
+                      name="content"
+                      title="content"
+                      type="text"
+                      class="uk-input uk-text-center"
+                      placeholder="content here..."
+                      required="required"
+                    />
+                    <div
+                      v-if="['image'].some((v) => block.type === v)"
+                      class="uk-text-center"
                     >
-                      / 100
-                    </span>
+                      <label
+                        class="uk-button uk-button-small uk-button-secondary"
+                      >
+                        <span uk-icon="icon: upload; ratio: 0.9;" />
+                        Upload Image
+                        <input
+                          name="content"
+                          title="content"
+                          type="file"
+                          class="uk-text-center uk-width-expand"
+                          placeholder="content here..."
+                          required="required"
+                          accept="image/x-png,image/gif,image/jpeg"
+                          hidden
+                          @change="saveImageForBlock($event, block)"
+                        />
+                      </label>
+                      <div class="uk-width-1-1">
+                        <img
+                          :src="block.content"
+                          class="uk-height-small uk-margin-small-top"
+                          :class="{ 'uk-width-small': !block.content }"
+                          uk-img
+                        />
+                      </div>
+                    </div>
+                    <div
+                      v-if="['score'].some((v) => block.type === v)"
+                      class="uk-text-center"
+                    >
+                      <input
+                        v-model="block.content"
+                        name="content"
+                        title="content"
+                        type="number"
+                        max="100"
+                        min="0"
+                        step="0.01"
+                        class="uk-input uk-form-width-small"
+                        placeholder="score..."
+                        required="required"
+                      />
+                      <span class="uk-inline uk-text-center">
+                        / 100
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <hr />
           <div>
             <div
-              class="uk-grid-small uk-child-width-auto uk-text-center"
+              class="uk-grid-small uk-child-width-auto uk-flex uk-flex-center"
               uk-grid
             >
               <div>
@@ -327,6 +358,7 @@ export default {
     preview() {
       const previewData = JSON.parse(JSON.stringify(this.review))
       previewData.id = 0
+      previewData.publish_date = this.getTimestamp()
       return previewData
     }
   },
@@ -361,6 +393,7 @@ export default {
   },
   methods: {
     async formAction(e) {
+      this.review.publish_date = this.getTimestamp()
       if (!this.review.id) {
         try {
           const newReview = await this.$store.dispatch('createReview', {
@@ -370,21 +403,51 @@ export default {
             publish_date: this.review.publish_date,
             content_blocks: this.review.content_blocks
           })
+          this.review = {
+            id: 0,
+            user_id: 0,
+            author: '',
+            title: '',
+            type: 'beer',
+            publish_date: this.getTimestamp(),
+            content_blocks: [],
+            votes: [
+              {
+                downvotes: 1,
+                upvotes: 0
+              }
+            ],
+            created_at: 0,
+            updated_at: 0,
+            deleted_at: 0
+          }
           this.formError = null
           const modal = document.querySelector('#review-form-modal')
           this.$uikit.modal(modal).hide()
-          await this.$store.dispatch('getUser')
+          await this.$store.dispatch('getCurrentUser')
           return newReview
         } catch (e) {
-          this.formError = e.response.data.message
-          if (e.response.data.errors) {
+          this.formError = e.message
+          if (e.response && e.response.data && e.response.data.errors) {
             this.formError += ' ' + JSON.stringify(e.response.data.errors)
           }
           return e
         }
       } else {
         this.formError = 'TODO: update reviews'
-        await this.$store.dispatch('getUser')
+        await this.$store.dispatch('getCurrentUser')
+      }
+    },
+    saveImageForBlock(e, block) {
+      const files = e.target.files || e.dataTransfer.files
+      if (files.length) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          block.content = e.target.result
+        }
+        reader.readAsDataURL(files[0])
+      } else {
+        block.content = 'https://via.placeholder.com/512'
       }
     },
     addBlock(

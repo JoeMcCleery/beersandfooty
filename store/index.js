@@ -114,7 +114,7 @@ export const actions = {
     }
   },
 
-  async getUser({ commit }) {
+  async getCurrentUser({ commit }) {
     const { data } = await axios.get(
       process.env.API_URL + '/api/' + process.env.API_VERSION + '/user/',
       {
@@ -126,6 +126,23 @@ export const actions = {
     if (data.data && data.data.user) {
       commit('SET_USER', data.data.user)
       commit('SET_USER_VOTES', data.data.user.votes)
+      return data.data.user
+    } else if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+  },
+
+  async getUser({ commit }, { id }) {
+    const { data } = await axios.get(
+      process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/' + id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.clientAccessToken
+        }
+      }
+    )
+    if (data.data) {
+      return data.data
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
     }

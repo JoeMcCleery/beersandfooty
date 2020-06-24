@@ -44,9 +44,12 @@ export default {
     }
   },
   mounted() {
-    if (Vue.prototype.$localStorageGet('userAccessToken')) {
+    if (
+      Vue.prototype.$localStorageGet('userAccessToken') &&
+      Vue.prototype.$localStorageGet('user')
+    ) {
       this.$store.dispatch('setUserTokenFromLocalStorage')
-      this.$store.dispatch('getUser', {})
+      this.$store.dispatch('getCurrentUser')
     }
   },
   head() {

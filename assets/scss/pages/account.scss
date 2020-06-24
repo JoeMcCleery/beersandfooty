@@ -1,1 +1,9 @@
-#Account {}
+#Account, #Account-id {
+  .user-details > p {
+    color: white;
+  }
+  h1 {
+    font-size: 4rem;
+    color: $footycolour;
+  }
+}

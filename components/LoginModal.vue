@@ -2,7 +2,10 @@
   <div id="login-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
     <div class="uk-modal-dialog uk-margin-auto-vertical">
       <a href="#login-modal" class="uk-modal-close-default" uk-toggle>
-        <span class="uk-icon-link uk-padding-xsmall" uk-icon="icon: close" />
+        <span
+          class="uk-icon-link icon-red"
+          uk-icon="icon: close; ratio: 2.2;"
+        />
       </a>
       <form v-if="!$store.state.authUser">
         <div class="uk-modal-header">
@@ -109,7 +112,7 @@ export default {
         this.formError = null
         if (!this.$store.state.user) {
           try {
-            await this.$store.dispatch('getUser', {})
+            await this.$store.dispatch('getCurrentUser', {})
             this.formError = null
           } catch (e) {
             this.formError = e.message

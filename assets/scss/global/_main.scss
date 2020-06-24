@@ -26,6 +26,7 @@ html, body {
   box-sizing: border-box;
   min-height: 100vh;
   color: $grey;
+  word-break: break-word;
 }
 
 *,
@@ -37,6 +38,7 @@ html, body {
 .content {
   background: $brand-gradient-alpha;
   min-height: 100vh;
+  padding-top: $navbar-height;
 }
 .header {
   width: 100%;

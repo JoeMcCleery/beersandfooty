@@ -3,7 +3,7 @@
     <div class="content">
       <svg-background />
       <!--  Header  -->
-      <div class="header uk-flex uk-flex-center uk-flex-middle">
+      <div class="header uk-flex uk-flex-center uk-flex-middle uk-padding">
         <div class="header-content">
           <h1>
             Beers and Footy
@@ -19,48 +19,59 @@
       <section id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
-          <form class="uk-text-center">
-            <div class="uk-margin-small">
-              <div class="uk-input uk-form-small uk-width-auto">
-                <label for="beerFilter">
-                  <input
-                    id="beerFilter"
-                    v-model="filter.type"
-                    name="beerFilter"
-                    type="checkbox"
-                    class="uk-checkbox"
-                    value="beer"
-                    @change="fetchReviews(currentPageLink)"
-                  />
-                  Beer
-                </label>
-                <label for="footyFilter">
-                  <input
-                    id="footyFilter"
-                    v-model="filter.type"
-                    name="footyFilter"
-                    type="checkbox"
-                    class="uk-checkbox"
-                    value="footy"
-                    @change="fetchReviews(currentPageLink)"
-                  />
-                  Footy
-                </label>
+          <ul uk-accordion>
+            <li>
+              <a class="uk-accordion-title uk-text-small" href="#">
+                Filter Settings
+                <span uk-icon="icon: settings; ratio: 0.7;" />
+                <span uk-icon="icon: chevron-down;" />
+              </a>
+              <div class="uk-accordion-content">
+                <form>
+                  <div class="uk-margin-small">
+                    <div class="uk-input uk-form-small uk-width-auto">
+                      <label for="beerFilter">
+                        <input
+                          id="beerFilter"
+                          v-model="filter.type"
+                          name="beerFilter"
+                          type="checkbox"
+                          class="uk-checkbox"
+                          value="beer"
+                          @change="fetchReviews(currentPageLink)"
+                        />
+                        Beer
+                      </label>
+                      <label for="footyFilter">
+                        <input
+                          id="footyFilter"
+                          v-model="filter.type"
+                          name="footyFilter"
+                          type="checkbox"
+                          class="uk-checkbox"
+                          value="footy"
+                          @change="fetchReviews(currentPageLink)"
+                        />
+                        Footy
+                      </label>
+                    </div>
+                  </div>
+                  <div class="uk-margin-small">
+                    <select
+                      id="sortField"
+                      v-model="filter.order.field"
+                      name="sortField"
+                      class="uk-select uk-form-width-small uk-form-small"
+                      @change="fetchReviews(currentPageLink)"
+                    >
+                      <option value="publish_date">Publish Date</option>
+                      <option value="score">Score</option>
+                    </select>
+                  </div>
+                </form>
               </div>
-            </div>
-            <div class="uk-margin-small">
-              <select
-                id="sortField"
-                v-model="filter.order.field"
-                name="sortField"
-                class="uk-select uk-form-width-small uk-form-small"
-                @change="fetchReviews(currentPageLink)"
-              >
-                <option value="publish_date">Publish Date</option>
-                <option value="score">Score</option>
-              </select>
-            </div>
-          </form>
+            </li>
+          </ul>
           <!--  Masonry Grid  -->
           <div
             v-if="showReviews"
@@ -68,9 +79,9 @@
             uk-grid="masonry: true"
           >
             <review
-              v-for="r in reviews.data"
+              v-for="(r, idx) in reviews.data"
               :id="encodeURI(r.title)"
-              :key="encodeURI(r.title + r.id + r.publish_date + r.author)"
+              :key="encodeURI(idx + '-' + r.id + '-' + r.publish_date)"
               :review="r"
             />
           </div>
@@ -80,13 +91,13 @@
               <a
                 v-if="showReviews"
                 :class="{ 'uk-invisible': nextPageLink === null }"
-                class="uk-button uk-button-default"
+                class="uk-button uk-button-primary"
                 @click="loadMoreReviews(nextPageLink)"
               >
                 <span uk-icon="icon: refresh;" />
                 Load more
               </a>
-              <span v-else>
+              <span v-else class="uk-light">
                 No more to load...
               </span>
             </div>

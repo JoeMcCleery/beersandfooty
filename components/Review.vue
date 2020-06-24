@@ -4,9 +4,20 @@
       <div class="uk-card-body">
         <h3 class="uk-card-title uk-text-italic uk-text-bold">
           {{ reviewData.title }}<br />
-          <span class="uk-text-small publish-date">
+          <nuxt-link
+            :to="'/review/' + reviewData.id"
+            class="uk-text-small publish-date"
+            title="go to review's page"
+          >
             {{ formattedPublishDate }}
-          </span>
+          </nuxt-link>
+          <nuxt-link
+            :to="'/account/' + reviewData.user_id"
+            class="uk-text-small uk-margin-small uk-float-right publish-date"
+            :title="'go to ' + reviewData.author + '\'s account'"
+          >
+            {{ reviewData.author }}
+          </nuxt-link>
         </h3>
         <a
           v-if="userCanEditReview && loggedIn"
@@ -38,14 +49,16 @@
             v-if="block.type === 'image'"
             class="block uk-text-center uk-margin"
           >
-            <div>
-              <img
-                src=""
-                :data-src="block.content"
-                :alt="block.title"
-                style="max-height: 350px"
-                uk-img
-              />
+            <div uk-lightbox="animation: slide;">
+              <a class="uk-inline" :href="block.content">
+                <img
+                  src=""
+                  :data-src="block.content"
+                  :alt="block.title"
+                  style="max-height: 350px"
+                  uk-img
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -197,7 +210,7 @@ export default {
           })
         }
 
-        await this.$store.dispatch('getUser')
+        await this.$store.dispatch('getCurrentUser')
         this.reviewData = await this.$store.dispatch('getReview', {
           review_id
         })
