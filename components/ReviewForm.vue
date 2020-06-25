@@ -10,11 +10,7 @@
           uk-icon="icon: close; ratio: 2.2;"
         />
       </a>
-      <form
-        v-if="loggedIn"
-        class="uk-background-default"
-        @submit.prevent="formAction"
-      >
+      <form v-if="loggedIn" class="uk-background-default">
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">
             <span v-if="editReview">
@@ -295,6 +291,7 @@
             type="submit"
             name="create"
             value="true"
+            @click.prevent="formAction"
           >
             <span v-if="editReview">
               Edit
@@ -395,8 +392,8 @@ export default {
   },
   methods: {
     async formAction(e) {
-      this.review.publish_date = this.getTimestamp()
       if (!this.review.id) {
+        this.review.publish_date = this.getTimestamp()
         try {
           const newReview = await this.$store.dispatch('createReview', {
             user_id: this.user.id,
@@ -436,8 +433,44 @@ export default {
           return e
         }
       } else {
-        this.formError = 'TODO: update reviews'
-        await this.$store.dispatch('getCurrentUser')
+        try {
+          const updatedReview = await this.$store.dispatch('updateReview', {
+            review_id: this.review.id,
+            title: this.review.title,
+            type: this.review.type,
+            publish_date: this.review.publish_date,
+            content_blocks: this.review.content_blocks
+          })
+          this.review = {
+            id: 0,
+            user_id: 0,
+            author: '',
+            title: '',
+            type: 'beer',
+            publish_date: this.getTimestamp(),
+            content_blocks: [],
+            votes: [
+              {
+                downvotes: 1,
+                upvotes: 0
+              }
+            ],
+            created_at: 0,
+            updated_at: 0,
+            deleted_at: 0
+          }
+          this.formError = null
+          const modal = document.querySelector('#review-form-modal')
+          this.$uikit.modal(modal).hide()
+          await this.$store.dispatch('getCurrentUser')
+          return updatedReview
+        } catch (e) {
+          this.formError = e.message
+          if (e.response && e.response.data && e.response.data.errors) {
+            this.formError += ' ' + JSON.stringify(e.response.data.errors)
+          }
+          return e
+        }
       }
     },
     saveImageForBlock(e, block) {

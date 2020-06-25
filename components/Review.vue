@@ -31,7 +31,7 @@
             class="uk-text-small uk-margin-small uk-float-right publish-date"
             :title="'go to ' + reviewData.author + '\'s account'"
           >
-            {{ reviewData.author }}
+            By {{ reviewData.author }}
           </nuxt-link>
         </h3>
         <a
