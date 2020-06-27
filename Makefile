@@ -3,8 +3,9 @@
 install:
 	npm install
 
-build:
+deploy:
 	npm run build
+	npm run start
 
 serve:
 	npm run dev
