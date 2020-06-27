@@ -8,7 +8,10 @@
           <h1>
             Beers and Footy
           </h1>
-          <div class="uk-position-bottom-center uk-margin-bottom">
+          <div
+            v-if="clientAuth"
+            class="uk-position-bottom-center uk-margin-bottom"
+          >
             <a v-scroll-to="'#reviews'" href="#"
               ><span uk-icon="icon: chevron-down; ratio: 4;"
             /></a>
@@ -16,16 +19,18 @@
         </div>
       </div>
       <!--  Content  -->
-      <section id="reviews" class="uk-section">
+      <section v-if="clientAuth" id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <ul uk-accordion>
-            <li class="uk-width-small uk-margin-auto">
+            <li class="uk-width-1-1 uk-width-medium@s uk-margin-auto">
               <a class="uk-accordion-title uk-text-center uk-light" href="#">
                 Filter Settings
-                <span uk-icon="icon: settings; ratio: 0.7;" />
+                <span uk-icon="icon: settings;" />
               </a>
-              <div class="uk-accordion-content uk-background-default">
+              <div
+                class="uk-accordion-content uk-background-default uk-padding-small"
+              >
                 <div>
                   <form>
                     <div class="uk-text-center">
@@ -103,7 +108,8 @@
                 class="uk-button uk-button-primary"
                 @click="loadMoreReviews(nextPageLink)"
               >
-                <span uk-icon="icon: refresh;" />
+                <span v-if="!submitting" uk-icon="icon: refresh;" />
+                <div v-else uk-spinner="ratio: 0.5;"></div>
                 Load more
               </a>
               <span v-else-if="showReviews && !nextPageLink" class="uk-light">
@@ -132,6 +138,7 @@ export default {
   },
   data() {
     return {
+      submitting: false,
       reviews: {
         type: Array,
         default: false
@@ -147,6 +154,9 @@ export default {
     }
   },
   computed: {
+    clientAuth() {
+      return !!this.$store.state.clientAccessToken
+    },
     showReviews() {
       return !!this.reviews.data
     },
@@ -191,13 +201,14 @@ export default {
     loadMoreReviews(url) {
       this.fetchReviews(url, true)
     },
-    fetchReviews(url, addData = false) {
+    async fetchReviews(url, addData = false) {
+      this.submitting = true
       if (url.includes('?page')) {
         url += '&filter=' + JSON.stringify(this.filter)
       } else {
         url += '?filter=' + JSON.stringify(this.filter)
       }
-      return this.$axios
+      await this.$axios
         .get(url, {
           headers: {
             Authorization: 'Bearer ' + this.$store.state.clientAccessToken
@@ -205,6 +216,7 @@ export default {
         })
         .then((response) => {
           const r = response.data
+          this.submitting = false
           if (r.data.length) {
             if (addData) {
               this.reviews.data.push(...r.data)

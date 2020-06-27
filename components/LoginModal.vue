@@ -50,9 +50,11 @@
             type="submit"
             name="login"
             value="true"
+            :class="{ 'uk-disabled': submitting }"
             @click.prevent="submitForm(true)"
           >
-            <span uk-icon="icon: sign-in;" />
+            <span v-if="!submitting" uk-icon="icon: sign-in;" />
+            <div v-else-if="!creatingUser" uk-spinner="ratio: 0.5;"></div>
             Login
           </button>
           <button
@@ -60,8 +62,11 @@
             type="submit"
             name="register"
             value="true"
+            :class="{ 'uk-disabled': submitting }"
             @click.prevent="submitForm(false)"
           >
+            <span v-if="!creatingUser" uk-icon="icon: plus; ratio: 0.7;" />
+            <div v-else uk-spinner="ratio: 0.5;"></div>
             Register
           </button>
         </div>
@@ -75,6 +80,8 @@ export default {
   name: 'LoginModal',
   data() {
     return {
+      submitting: false,
+      creatingUser: false,
       formError: null,
       formUsername: '',
       formPassword: ''
@@ -82,45 +89,66 @@ export default {
   },
   methods: {
     submitForm(doLogin = true) {
-      if (doLogin) {
-        this.getUserToken()
-      } else {
-        this.registerNewUser()
+      if (!this.submitting) {
+        this.submitting = true
+        if (doLogin) {
+          this.getUserToken()
+        } else {
+          this.registerNewUser()
+        }
       }
     },
     async registerNewUser() {
+      this.creatingUser = true
       try {
-        await this.$store.dispatch('createUser', {
-          username: this.formUsername,
-          password: this.formPassword
-        })
-        this.formError = null
-        this.getUserToken()
+        await this.$store
+          .dispatch('createUser', {
+            username: this.formUsername,
+            password: this.formPassword
+          })
+          .then(() => {
+            this.formError = null
+            this.getUserToken()
+            this.creatingUser = false
+          })
       } catch (e) {
         this.formError = e.message
+        if (e.response && e.response.data && e.response.data.errors) {
+          this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+        }
+        this.creatingUser = false
+        this.submitting = false
       }
     },
     async getUserToken() {
       try {
-        await this.$store.dispatch('getUserToken', {
-          client_id: process.env.PASSWORD_CLIENT_ID,
-          client_secret: process.env.PASSWORD_CLIENT_SECRET,
-          username: this.formUsername,
-          password: this.formPassword,
-          scope: '*'
-        })
-        this.formError = null
-        if (!this.$store.state.user) {
-          try {
-            await this.$store.dispatch('getCurrentUser', {})
+        await this.$store
+          .dispatch('getUserToken', {
+            client_id: process.env.PASSWORD_CLIENT_ID,
+            client_secret: process.env.PASSWORD_CLIENT_SECRET,
+            username: this.formUsername,
+            password: this.formPassword,
+            scope: '*'
+          })
+          .then(() => {
             this.formError = null
-          } catch (e) {
-            this.formError = e.message
-          }
-        }
-        this.$uikit.modal(this.$refs.modal).hide()
+            if (!this.$store.state.user) {
+              try {
+                this.$store.dispatch('getCurrentUser', {})
+                this.formError = null
+              } catch (e) {
+                this.formError = e.message
+              }
+            }
+            this.$uikit.modal(this.$refs.modal).hide()
+            this.submitting = false
+          })
       } catch (e) {
         this.formError = e.response.data.message
+        if (e.response && e.response.data && e.response.data.errors) {
+          this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+        }
+        this.submitting = false
       }
     }
   }

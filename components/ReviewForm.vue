@@ -10,11 +10,7 @@
           uk-icon="icon: close; ratio: 2.2;"
         />
       </a>
-      <form
-        v-if="loggedIn"
-        class="uk-background-default"
-        @submit.prevent="formAction"
-      >
+      <form v-if="loggedIn" class="uk-background-default">
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">
             <span v-if="editReview">
@@ -296,7 +292,10 @@
             name="create"
             value="true"
             :class="{ 'uk-disabled': submitting }"
+            @click="formAction"
           >
+            <span v-if="!submitting" uk-icon="icon: plus; ratio: 0.7;" />
+            <div v-else uk-spinner="ratio: 0.5;"></div>
             <span v-if="editReview">
               Edit
             </span>
@@ -438,8 +437,9 @@ export default {
               })
           } catch (e) {
             this.formError = e.message
+            this.submitting = false
             if (e.response && e.response.data && e.response.data.errors) {
-              this.formError += ' ' + JSON.stringify(e.response.data.errors)
+              this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
             }
             return e
           }
@@ -481,8 +481,9 @@ export default {
               })
           } catch (e) {
             this.formError = e.message
+            this.submitting = false
             if (e.response && e.response.data && e.response.data.errors) {
-              this.formError += ' ' + JSON.stringify(e.response.data.errors)
+              this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
             }
             return e
           }
