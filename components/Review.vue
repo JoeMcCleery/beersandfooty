@@ -82,7 +82,7 @@
           class="uk-button uk-button-default uk-button-small"
           :class="{
             'uk-button-primary': userVote && userVote.upvote === 1,
-            'uk-disabled': !user
+            'uk-disabled': !user || submitting
           }"
           title="Upvote Review"
           @click="voteAction(1, $event)"
@@ -105,7 +105,7 @@
           title="Downvote Review"
           :class="{
             'uk-button-danger': userVote && userVote.upvote === 0,
-            'uk-disabled': !user
+            'uk-disabled': !user || submitting
           }"
           @click="voteAction(0, $event)"
         >
@@ -162,6 +162,7 @@ export default {
   },
   data() {
     return {
+      submitting: false,
       reviewData: this.review
     }
   },
@@ -204,34 +205,59 @@ export default {
   },
   watch: {
     review() {
-      this.reviewData = this.review
+      this.reviewData = JSON.parse(JSON.stringify(this.review))
     }
   },
   methods: {
     async voteAction(upvote, event) {
-      // eslint-disable-next-line camelcase
-      const review_id = this.reviewData.id
-      // eslint-disable-next-line camelcase
-      if (review_id) {
-        event.target.classList.add('uk-disabled')
+      if (!this.submitting) {
+        this.submitting = true
+        // eslint-disable-next-line camelcase
+        const review_id = this.reviewData.id
+        // eslint-disable-next-line camelcase
+        if (review_id) {
+          event.target.classList.add('uk-disabled')
 
-        if (this.userVote && this.userVote.upvote === upvote) {
-          await this.$store.dispatch('deleteVote', {
-            voteID: this.userVote.id
+          if (this.userVote && this.userVote.upvote === upvote) {
+            if (upvote) {
+              this.reviewData.votes.upvotes--
+              this.reviewData.score--
+            } else {
+              this.reviewData.votes.downvotes--
+              this.reviewData.score++
+            }
+            await this.$store.dispatch('deleteVote', {
+              voteID: this.userVote.id
+            })
+          } else {
+            if (upvote) {
+              this.reviewData.votes.upvotes++
+              this.reviewData.score++
+              if (this.userVote) {
+                this.reviewData.votes.downvotes--
+                this.reviewData.score++
+              }
+            } else {
+              this.reviewData.votes.downvotes++
+              this.reviewData.score--
+              if (this.userVote) {
+                this.reviewData.votes.upvotes--
+                this.reviewData.score--
+              }
+            }
+            await this.$store.dispatch('createVote', {
+              review_id,
+              upvote
+            })
+          }
+
+          await this.$store.dispatch('getCurrentUser')
+          this.reviewData = await this.$store.dispatch('getReview', {
+            review_id
           })
-        } else {
-          await this.$store.dispatch('createVote', {
-            review_id,
-            upvote
-          })
+
+          this.submitting = false
         }
-
-        await this.$store.dispatch('getCurrentUser')
-        this.reviewData = await this.$store.dispatch('getReview', {
-          review_id
-        })
-
-        event.target.classList.remove('uk-disabled')
       }
     },
     editReviewModal() {
