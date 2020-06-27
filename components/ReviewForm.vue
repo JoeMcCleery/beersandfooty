@@ -10,7 +10,11 @@
           uk-icon="icon: close; ratio: 2.2;"
         />
       </a>
-      <form v-if="loggedIn" class="uk-background-default">
+      <form
+        v-if="loggedIn"
+        class="uk-background-default"
+        @submit.prevent="formAction"
+      >
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">
             <span v-if="editReview">
@@ -291,7 +295,7 @@
             type="submit"
             name="create"
             value="true"
-            @click.prevent="formAction"
+            :class="{ 'uk-disabled': submitting }"
           >
             <span v-if="editReview">
               Edit
@@ -318,6 +322,7 @@ export default {
   components: { Review: () => import('~/components/Review.vue') },
   data() {
     return {
+      submitting: false,
       formError: null,
       showPreview: false,
       review: {
@@ -392,84 +397,95 @@ export default {
   },
   methods: {
     async formAction(e) {
-      if (!this.review.id) {
-        this.review.publish_date = this.getTimestamp()
-        try {
-          const newReview = await this.$store.dispatch('createReview', {
-            user_id: this.user.id,
-            title: this.review.title,
-            type: this.review.type,
-            publish_date: this.review.publish_date,
-            content_blocks: this.review.content_blocks
-          })
-          this.review = {
-            id: 0,
-            user_id: 0,
-            author: '',
-            title: '',
-            type: 'beer',
-            publish_date: this.getTimestamp(),
-            content_blocks: [],
-            votes: [
-              {
-                downvotes: 1,
-                upvotes: 0
-              }
-            ],
-            created_at: 0,
-            updated_at: 0,
-            deleted_at: 0
+      if (!this.submitting) {
+        this.submitting = true
+        if (!this.review.id) {
+          this.review.publish_date = this.getTimestamp()
+          try {
+            return await this.$store
+              .dispatch('createReview', {
+                user_id: this.user.id,
+                title: this.review.title,
+                type: this.review.type,
+                publish_date: this.review.publish_date,
+                content_blocks: this.review.content_blocks
+              })
+              .then((data) => {
+                this.review = {
+                  id: 0,
+                  user_id: 0,
+                  author: '',
+                  title: '',
+                  type: 'beer',
+                  publish_date: this.getTimestamp(),
+                  content_blocks: [],
+                  votes: [
+                    {
+                      downvotes: 1,
+                      upvotes: 0
+                    }
+                  ],
+                  created_at: 0,
+                  updated_at: 0,
+                  deleted_at: 0
+                }
+                this.formError = null
+                const modal = document.querySelector('#review-form-modal')
+                this.$uikit.modal(modal).hide()
+                this.$store.dispatch('getCurrentUser')
+                this.submitting = false
+                return data
+              })
+          } catch (e) {
+            this.formError = e.message
+            if (e.response && e.response.data && e.response.data.errors) {
+              this.formError += ' ' + JSON.stringify(e.response.data.errors)
+            }
+            return e
           }
-          this.formError = null
-          const modal = document.querySelector('#review-form-modal')
-          this.$uikit.modal(modal).hide()
-          await this.$store.dispatch('getCurrentUser')
-          return newReview
-        } catch (e) {
-          this.formError = e.message
-          if (e.response && e.response.data && e.response.data.errors) {
-            this.formError += ' ' + JSON.stringify(e.response.data.errors)
+        } else {
+          try {
+            return await this.$store
+              .dispatch('updateReview', {
+                review_id: this.review.id,
+                title: this.review.title,
+                type: this.review.type,
+                publish_date: this.review.publish_date,
+                content_blocks: this.review.content_blocks
+              })
+              .then((data) => {
+                this.review = {
+                  id: 0,
+                  user_id: 0,
+                  author: '',
+                  title: '',
+                  type: 'beer',
+                  publish_date: this.getTimestamp(),
+                  content_blocks: [],
+                  votes: [
+                    {
+                      downvotes: 1,
+                      upvotes: 0
+                    }
+                  ],
+                  created_at: 0,
+                  updated_at: 0,
+                  deleted_at: 0
+                }
+                this.formError = null
+                const modal = document.querySelector('#review-form-modal')
+                this.$uikit.modal(modal).hide()
+                this.$store.dispatch('getCurrentUser')
+                this.submitting = false
+                return data
+              })
+          } catch (e) {
+            this.formError = e.message
+            if (e.response && e.response.data && e.response.data.errors) {
+              this.formError += ' ' + JSON.stringify(e.response.data.errors)
+            }
+            return e
           }
-          return e
-        }
-      } else {
-        try {
-          const updatedReview = await this.$store.dispatch('updateReview', {
-            review_id: this.review.id,
-            title: this.review.title,
-            type: this.review.type,
-            publish_date: this.review.publish_date,
-            content_blocks: this.review.content_blocks
-          })
-          this.review = {
-            id: 0,
-            user_id: 0,
-            author: '',
-            title: '',
-            type: 'beer',
-            publish_date: this.getTimestamp(),
-            content_blocks: [],
-            votes: [
-              {
-                downvotes: 1,
-                upvotes: 0
-              }
-            ],
-            created_at: 0,
-            updated_at: 0,
-            deleted_at: 0
-          }
-          this.formError = null
-          const modal = document.querySelector('#review-form-modal')
-          this.$uikit.modal(modal).hide()
-          await this.$store.dispatch('getCurrentUser')
-          return updatedReview
-        } catch (e) {
-          this.formError = e.message
-          if (e.response && e.response.data && e.response.data.errors) {
-            this.formError += ' ' + JSON.stringify(e.response.data.errors)
-          }
-          return e
         }
       }
     },
