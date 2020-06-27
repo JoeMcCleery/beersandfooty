@@ -292,7 +292,7 @@
             name="create"
             value="true"
             :class="{ 'uk-disabled': submitting }"
-            @click="formAction"
+            @click.prevent="formAction"
           >
             <span v-if="!submitting" uk-icon="icon: plus; ratio: 0.7;" />
             <div v-else uk-spinner="ratio: 0.5;"></div>
@@ -401,7 +401,7 @@ export default {
         if (!this.review.id) {
           this.review.publish_date = this.getTimestamp()
           try {
-            return await this.$store
+            await this.$store
               .dispatch('createReview', {
                 url:
                   process.env.API_URL +
@@ -450,7 +450,7 @@ export default {
           }
         } else {
           try {
-            return await this.$store
+            await this.$store
               .dispatch('updateReview', {
                 url:
                   process.env.API_URL +
