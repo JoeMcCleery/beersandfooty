@@ -53,8 +53,8 @@
             :class="{ 'uk-disabled': submitting }"
             @click.prevent="submitForm(true)"
           >
-            <span v-if="!submitting" uk-icon="icon: sign-in;" />
-            <div v-else-if="!creatingUser" uk-spinner="ratio: 0.5;"></div>
+            <span v-if="!submitting || creatingUser" uk-icon="icon: sign-in;" />
+            <div v-else uk-spinner="ratio: 0.5;"></div>
             Login
           </button>
           <button
