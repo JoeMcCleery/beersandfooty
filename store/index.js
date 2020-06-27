@@ -236,10 +236,10 @@ export const actions = {
   async createReview(
     { commit },
     // eslint-disable-next-line camelcase
-    { user_id, title, type, publish_date, content_blocks }
+    { url, user_id, title, type, publish_date, content_blocks }
   ) {
     const { data } = await axios.post(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
+      url,
       {
         user_id,
         title,
@@ -263,10 +263,10 @@ export const actions = {
   async updateReview(
     { commit },
     // eslint-disable-next-line camelcase
-    { review_id, title, type, publish_date, content_blocks }
+    { url, review_id, title, type, publish_date, content_blocks }
   ) {
     const { data } = await axios.put(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
+      url,
       {
         id: review_id,
         title,

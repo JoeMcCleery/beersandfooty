@@ -403,6 +403,11 @@ export default {
           try {
             return await this.$store
               .dispatch('createReview', {
+                url:
+                  process.env.API_URL +
+                  '/api/' +
+                  process.env.API_VERSION +
+                  '/reviews/',
                 user_id: this.user.id,
                 title: this.review.title,
                 type: this.review.type,
@@ -447,6 +452,11 @@ export default {
           try {
             return await this.$store
               .dispatch('updateReview', {
+                url:
+                  process.env.API_URL +
+                  '/api/' +
+                  process.env.API_VERSION +
+                  '/reviews/',
                 review_id: this.review.id,
                 title: this.review.title,
                 type: this.review.type,
