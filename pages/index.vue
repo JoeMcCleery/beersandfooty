@@ -21,10 +21,7 @@
           <!-- Filter -->
           <ul uk-accordion>
             <li class="uk-width-small uk-margin-auto">
-              <a
-                class="uk-accordion-title uk-text-center uk-text-small uk-light"
-                href="#"
-              >
+              <a class="uk-accordion-title uk-text-center uk-light" href="#">
                 Filter Settings
                 <span uk-icon="icon: settings; ratio: 0.7;" />
               </a>
