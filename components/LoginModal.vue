@@ -114,11 +114,20 @@ export default {
       } catch (e) {
         this.formError = e.message
         if (e.response && e.response.data && e.response.data.errors) {
-          this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+          this.formError += JSON.stringify(
+            this.getErrors(e.response.data.errors)
+          )
         }
         this.creatingUser = false
         this.submitting = false
       }
+    },
+    getErrors(e) {
+      let string = ''
+      Object.values(e).forEach((data) => {
+        string += ' ' + data[0]
+      })
+      return string
     },
     async getUserToken() {
       try {
@@ -146,7 +155,9 @@ export default {
       } catch (e) {
         this.formError = e.response.data.message
         if (e.response && e.response.data && e.response.data.errors) {
-          this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+          this.formError += JSON.stringify(
+            this.getErrors(e.response.data.errors)
+          )
         }
         this.submitting = false
       }

@@ -439,7 +439,9 @@ export default {
             this.formError = e.message
             this.submitting = false
             if (e.response && e.response.data && e.response.data.errors) {
-              this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+              this.formError += JSON.stringify(
+                this.getErrors(e.response.data.errors)
+              )
             }
             return e
           }
@@ -483,12 +485,21 @@ export default {
             this.formError = e.message
             this.submitting = false
             if (e.response && e.response.data && e.response.data.errors) {
-              this.formError += ' ' + JSON.stringify(e.response.data.errors[0])
+              this.formError += JSON.stringify(
+                this.getErrors(e.response.data.errors)
+              )
             }
             return e
           }
         }
       }
+    },
+    getErrors(e) {
+      let string = ''
+      Object.values(e).forEach((data) => {
+        string += ' ' + data[0]
+      })
+      return string
     },
     saveImageForBlock(e, block) {
       const files = e.target.files || e.dataTransfer.files
