@@ -6,7 +6,7 @@
       >
         <ul class="uk-navbar-nav">
           <li :class="{ 'uk-active': pageTitle === 'Home' }">
-            <nuxt-link to="/" class="">
+            <nuxt-link to="/" title="Beers and Footy Home">
               <span class="icon-container uk-height-1-1">
                 <img
                   :class="{ 'icon-beer': pageTitle === 'Home' }"
@@ -23,11 +23,11 @@
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': pageTitle === 'About' }">
-            <nuxt-link to="/about" class="">About</nuxt-link>
+            <nuxt-link to="/about" title="About">About</nuxt-link>
           </li>
           <!-- Auth Routes -->
           <li v-if="loggedIn" :class="{ 'uk-active': pageTitle === 'Account' }">
-            <nuxt-link to="/account" class="">
+            <nuxt-link to="/account" title="Account">
               Account
             </nuxt-link>
           </li>
