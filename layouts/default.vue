@@ -10,7 +10,7 @@
           href="#review-form-modal"
           class="uk-button uk-button-primary uk-border-circle"
           title="Create New Review"
-          style="padding: 0; width: 40px;"
+          style="padding: 0; width: 50px; line-height: 50px;"
           uk-toggle
           @click="clearEditReview"
         >
@@ -20,7 +20,7 @@
           v-else
           href="#login-modal"
           class="uk-button uk-button-primary uk-border-circle"
-          style="padding: 0; width: 40px;"
+          style="padding: 0; width: 50px; line-height: 50px;"
           uk-toggle
         >
           <span uk-icon="icon: sign-in;" />

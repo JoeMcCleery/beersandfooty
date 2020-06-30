@@ -61,7 +61,6 @@ html, body {
     color: $footycolour;
     @extend .brandgradient-anim;
     @extend .opaque;
-    @extend .reverse;
     @extend .text;
     @extend .fast;
     font-weight: bold;
