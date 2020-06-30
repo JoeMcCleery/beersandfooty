@@ -1,8 +1,1 @@
-#Home {
-  .header-content h1, .header-content a {
-    color: $footycolour;
-    font-size: 4rem;
-    text-align: center;
-    @include glow-text($footycolour);
-  }
-}
+#Home {}

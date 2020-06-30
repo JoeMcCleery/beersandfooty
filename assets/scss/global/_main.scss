@@ -29,6 +29,10 @@ html, body {
   word-break: break-word;
 }
 
+#__nuxt, #__layout, .main-page {
+  min-height: 100vh;
+}
+
 *,
 *:before,
 *:after {
@@ -36,21 +40,62 @@ html, body {
   margin: 0;
 }
 .content {
-  background: $brand-gradient-alpha;
+  @extend .brandgradient-anim;
+  @extend .reverse;
+
   min-height: 100vh;
   padding-top: $navbar-height;
 }
 .header {
+  background: #fff;
+  color: $footycolour;
   width: 100%;
   height: $header-height;
+  border-radius: 0;
+  @extend .uk-padding;
+  box-shadow: 0 0 4px rgba(0,0,0,0.08);
   h1 {
-    color: $grey;
+    font-size: 3rem;
+    color: $footycolour;
+    @extend .brandgradient-anim;
+    @extend .opaque;
+    @extend .reverse;
+    @extend .text;
+    @extend .fast;
     font-weight: bold;
   }
 }
+@include for-tablet {
+  .header {
+    margin: auto;
+    max-width: 600px;
+    border-radius: 0 0 2px 2px;
+  }
+}
+// Gradient Animation
+.brandgradient-anim {
+  background: $brand-gradient-alpha repeat-y;
+  background-size: 100% 3000px;
+  animation: gradient-animation 30s linear infinite;
+  &.opaque {
+    background: $brand-gradient repeat-y;
+    background-size: 100% 3000px;
+  }
+  &.text {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &.reverse {
+    animation: gradient-animation 30s linear infinite reverse;
+  }
+  &.fast {
+    animation-duration: 2s;
+  }
+}
 
-#__nuxt, #__layout, .main-page, body {
-  min-height: 100vh;
+@keyframes gradient-animation {
+  from { background-position: 50% 0; }
+  to { background-position: 50% 3000px; }
 }
 
 // Page Transitions

@@ -54,7 +54,7 @@ export default {
     meta: {
       name: process.env.SITE_TITLE || '',
       lang: 'en',
-      ogHost: 'https://beersandfooty.com',
+      ogHost: process.env.BASE_URL || 'https://beersandfooty.com',
       ogImage: true
     },
     icon: {

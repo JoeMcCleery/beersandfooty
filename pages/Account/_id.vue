@@ -3,9 +3,7 @@
     <div class="content">
       <svg-background />
       <!--  Header  -->
-      <div
-        class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-padding"
-      >
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">
           <span v-if="user"> {{ user.username }}'s </span>
           Account

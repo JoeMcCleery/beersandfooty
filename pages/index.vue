@@ -3,20 +3,8 @@
     <div class="content">
       <svg-background />
       <!--  Header  -->
-      <div class="header uk-flex uk-flex-center uk-flex-middle uk-padding">
-        <div class="header-content">
-          <h1>
-            Beers and Footy
-          </h1>
-          <div
-            v-if="clientAuth"
-            class="uk-position-bottom-center uk-margin-bottom"
-          >
-            <a v-scroll-to="'#reviews'" href="#"
-              ><span uk-icon="icon: chevron-down; ratio: 4;"
-            /></a>
-          </div>
-        </div>
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
+        <h1 class="uk-text-center">Beers and Footy</h1>
       </div>
       <!--  Content  -->
       <section v-if="clientAuth" id="reviews" class="uk-section">

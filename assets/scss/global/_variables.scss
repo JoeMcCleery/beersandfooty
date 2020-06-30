@@ -12,8 +12,8 @@ $grey: #343434;
 $grey-light: #e7e7e7;
 $transparent-white: rgba(255,255,255,0.95);
 
-$brand-gradient: repeating-linear-gradient(to bottom, $beerscolour 0px, $beerscolour 500px, $footycolour 1500px, $footycolour 2000px, $beerscolour 3000px);
-$brand-gradient-alpha: repeating-linear-gradient(to bottom, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
+$brand-gradient: linear-gradient(180deg, $beerscolour 0px, $beerscolour 500px, $footycolour 1500px, $footycolour 2000px, $beerscolour 3000px);
+$brand-gradient-alpha: linear-gradient(180deg, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
 
 // Utility
 $border-radius: 2px;
@@ -23,7 +23,7 @@ $navbar-height: 60px;
 $navbar-padding: 10px;
 
 // Header
-$header-height: calc(100vh - 60px);
+$header-height: 200px;
 
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
@@ -32,11 +32,6 @@ $global-secondary-background: #333;
 $global-muted-background: #fafafa;
 $button-default-background: #fdfdfd;
 $global-primary-background: $brand-purple;
-
-$navbar-nav-item-color: #fff;
-$navbar-nav-item-hover-color: darken(#fff, 10%);
-$navbar-nav-item-onclick-color: darken(#fff, 20%);
-$navbar-nav-item-active-color: #fff;
 
 $accordion-title-color: white;
 $accordion-title-hover-color: darken(white, 5%);

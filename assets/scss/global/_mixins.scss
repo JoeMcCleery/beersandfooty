@@ -72,11 +72,11 @@
 }
 @mixin hook-navbar-nav-item-active() {
   font-weight: bold;
-}
-
-// Off canvas
-@mixin hook-offcanvas-bar() {
-  @extend .uk-hidden\@l
+  @extend .brandgradient-anim;
+  @extend .opaque;
+  @extend .reverse;
+  @extend .text;
+  @extend .fast;
 }
 
 // Lightbox
