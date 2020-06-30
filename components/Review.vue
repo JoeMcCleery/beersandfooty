@@ -2,7 +2,7 @@
   <div>
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body">
-        <h3 class="uk-card-title uk-text-italic uk-text-bold">
+        <h3 class="uk-card-title uk-text-bold">
           <span v-if="!noTitle">{{ reviewData.title }}<br /></span>
           <nuxt-link
             :to="'/review/' + reviewData.id"
