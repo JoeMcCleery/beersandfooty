@@ -8,7 +8,7 @@
         </h1>
       </div>
       <!--  Page Content Container  -->
-      <div class="uk-padding">
+      <div class="uk-padding-small">
         <review v-if="review" :review="review" :no-title="true" />
       </div>
     </div>
