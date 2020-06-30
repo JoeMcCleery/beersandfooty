@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="content">
-      <svg-background />
       <!--  Header  -->
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">About</h1>
@@ -28,9 +27,6 @@
 
 <script>
 export default {
-  name: 'About',
-  components: {
-    SvgBackground: () => import('~/components/SvgBackground.vue')
-  }
+  name: 'About'
 }
 </script>

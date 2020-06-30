@@ -1,13 +1,16 @@
 <template>
   <div>
     <div class="content">
-      <svg-background />
+      <!--  Header  -->
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
+        <h1 class="uk-text-center">
+          <span v-if="review">{{ review.title }}</span>
+        </h1>
+      </div>
       <!--  Page Content Container  -->
-      <section v-if="review" class="uk-section">
-        <div class="uk-container">
-          <review :review="review" />
-        </div>
-      </section>
+      <div class="uk-padding">
+        <review v-if="review" :review="review" :no-title="true" />
+      </div>
     </div>
   </div>
 </template>
@@ -20,9 +23,9 @@ export default {
     return /^\d+$/.test(params.id)
   },
   components: {
-    Review: () => import('@/components/Review'),
-    SvgBackground: () => import('~/components/SvgBackground.vue')
+    Review: () => import('@/components/Review')
   },
+  transition: 'page',
   data() {
     return {
       id: this.$route.params.id,
@@ -42,6 +45,13 @@ export default {
       if (result) {
         this.reviewData = result
       }
+    }
+  },
+  head() {
+    return {
+      title: this.review
+        ? process.env.SITE_TITLE + ' - ' + this.review.title
+        : process.env.SITE_TITLE
     }
   }
 }

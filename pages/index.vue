@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="content">
-      <svg-background />
       <!--  Header  -->
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">Beers and Footy</h1>
@@ -121,8 +120,16 @@
 export default {
   name: 'Home',
   components: {
-    SvgBackground: () => import('~/components/SvgBackground.vue'),
     Review: () => import('~/components/Review.vue')
+  },
+  transition(to, from) {
+    if (from && (from.name === 'Account-id' || from.name === 'Review-id')) {
+      return 'page'
+    }
+    if (to.name === 'index') {
+      return 'slide-right'
+    }
+    return 'slide-left'
   },
   data() {
     return {

@@ -6,7 +6,20 @@
       >
         <ul class="uk-navbar-nav">
           <li :class="{ 'uk-active': pageTitle === 'Home' }">
-            <nuxt-link to="/" class="">Home</nuxt-link>
+            <nuxt-link to="/" class="">
+              <span class="icon-container uk-height-1-1">
+                <img
+                  :class="{ 'icon-beer': pageTitle === 'Home' }"
+                  data-src="@/assets/images/beer-icon.svg"
+                  uk-svg
+                />
+                <img
+                  :class="{ 'icon-footy': pageTitle === 'Home' }"
+                  data-src="@/assets/images/football-icon.svg"
+                  uk-svg
+                />
+              </span>
+            </nuxt-link>
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': pageTitle === 'About' }">

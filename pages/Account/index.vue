@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="content">
-      <svg-background />
       <!--  Header  -->
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">Your Account</h1>
@@ -87,8 +86,16 @@ export default {
   name: 'Account',
   components: {
     Review: () => import('@/components/Review'),
-    SvgBackground: () => import('~/components/SvgBackground.vue'),
     AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+  },
+  transition(to, from) {
+    if (from && (from.name === 'Account-id' || from.name === 'Review-id')) {
+      return 'page'
+    }
+    if (to.name === 'Account') {
+      return 'slide-left'
+    }
+    return 'slide-right'
   },
   computed: {
     user() {

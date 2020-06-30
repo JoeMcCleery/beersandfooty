@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="content">
-      <svg-background />
       <!--  Header  -->
       <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">
@@ -85,9 +84,9 @@ export default {
     // Must be a number
     return /^\d+$/.test(params.id)
   },
+  transition: 'page',
   components: {
     Review: () => import('@/components/Review'),
-    SvgBackground: () => import('~/components/SvgBackground.vue'),
     AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
   data() {

@@ -3,7 +3,7 @@
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body">
         <h3 class="uk-card-title uk-text-italic uk-text-bold">
-          {{ reviewData.title }}<br />
+          <span v-if="!noTitle">{{ reviewData.title }}<br /></span>
           <nuxt-link
             :to="'/review/' + reviewData.id"
             class="uk-text-small publish-date"
@@ -27,7 +27,7 @@
             {{ formattedPublishDate }}
           </nuxt-link>
           <nuxt-link
-            :to="'/account/' + reviewData.user_id"
+            :to="userReview ? '/account' : '/account/' + reviewData.user_id"
             class="uk-text-small uk-margin-small uk-float-right publish-date"
             :title="'go to ' + reviewData.author + '\'s account'"
           >
@@ -129,6 +129,10 @@ export default {
     AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
   props: {
+    noTitle: {
+      type: Boolean,
+      default: false
+    },
     review: {
       type: Object,
       default: () => {
@@ -178,11 +182,11 @@ export default {
     user() {
       return this.$store.state.user
     },
+    userReview() {
+      return this.user && this.reviewData.user_id === this.user.id
+    },
     userCanEditReview() {
-      return (
-        (this.user && this.reviewData.user_id === this.user.id) ||
-        (this.user && this.user.isAdmin)
-      )
+      return this.userReview || (this.user && this.user.isAdmin)
     },
     userVotes() {
       return this.$store.state.userVotes

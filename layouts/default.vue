@@ -29,6 +29,7 @@
     </div>
     <!--  Page  -->
     <div>
+      <svg-background />
       <nuxt />
     </div>
     <!--  Modals  -->
@@ -43,7 +44,8 @@ export default {
   components: {
     ReviewFormModal: () => import('~/components/ReviewFormModal.vue'),
     Navbar: () => import('~/components/Navbar.vue'),
-    LoginModal: () => import('~/components/LoginModal.vue')
+    LoginModal: () => import('~/components/LoginModal.vue'),
+    SvgBackground: () => import('~/components/SvgBackground.vue')
   },
   async fetch() {
     if (!this.$store.state.clientAccessToken) {
