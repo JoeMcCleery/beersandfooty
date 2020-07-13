@@ -93,14 +93,18 @@
             </label>
           </div>
 
-          <div class="blocks uk-grid-stack uk-grid-collapse" uk-grid>
-            <div
+          <ul
+            v-if="sortedContentBlocks.length"
+            class="blocks uk-grid-stack uk-grid-collapse uk-list uk-list-striped"
+            uk-grid
+          >
+            <li
               v-for="(block, idx) in sortedContentBlocks"
               :key="encodeURI(idx + block.type + block.sort)"
-              class="uk-width-1-1 uk-margin-small uk-position-relative"
+              class="uk-width-1-1"
             >
-              <div class="uk-animation-fade uk-background-default">
-                <div class="uk-position-top-right uk-margin-small-right">
+              <div class="uk-animation-fade uk-position-relative">
+                <div class="uk-position-top-right">
                   <a
                     id="removeBlock"
                     name="removeBlock"
@@ -109,10 +113,13 @@
                     class=""
                     @click="removeBlock(idx)"
                   >
-                    <span uk-icon="icon: trash" class="uk-icon-link icon-red" />
+                    <span
+                      uk-icon="icon: trash; ratio: 1.5;"
+                      class="uk-icon-link icon-red"
+                    />
                   </a>
                 </div>
-                <div class="">
+                <div>
                   <div class="uk-inline">
                     <div>
                       <select
@@ -226,9 +233,9 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div>
+            </li>
+          </ul>
+          <div class="uk-margin">
             <div
               class="uk-grid-small uk-child-width-auto uk-flex uk-flex-center"
               uk-grid

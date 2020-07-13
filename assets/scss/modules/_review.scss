@@ -5,9 +5,6 @@
   .image img {
     border-radius: 2px;
   }
-  .publish-date {
-    font-size: 0.75rem;
-  }
   &.beer {
     box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     hr {
@@ -18,7 +15,7 @@
       color: $beerscolour;
       text-shadow: 0 0 4px transparentize($beerscolour, 0.8);
     }
-    .publish-date {
+    .icons a {
       color: lighten($beerscolour, 20%);
       text-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     }
@@ -34,7 +31,7 @@
       color: $footycolour;
       text-shadow: 0 0 4px transparentize($footycolour, 0.8);
     }
-    .publish-date {
+    .icons a {
       color: lighten($footycolour, 20%);
       text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     }

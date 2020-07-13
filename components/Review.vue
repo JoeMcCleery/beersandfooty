@@ -2,38 +2,41 @@
   <div>
     <div class="uk-card uk-card-default review" :class="reviewData.type">
       <div class="uk-card-body">
-        <h3 class="uk-card-title uk-text-bold">
-          <span v-if="!noTitle">{{ reviewData.title }}<br /></span>
-          <nuxt-link
-            :to="'/review/' + reviewData.id"
-            class="uk-text-small publish-date"
-            title="go to review's page"
-          >
-            <span
-              v-if="reviewData"
-              class="icon-container icon-container-small uk-inline"
-            >
-              <img
-                v-if="reviewData.type === 'beer'"
-                data-src="@/assets/images/beer-icon.svg"
-                uk-svg
-              />
-              <img
-                v-if="reviewData.type === 'footy'"
-                data-src="@/assets/images/football-icon.svg"
-                uk-svg
-              />
-            </span>
-            {{ formattedPublishDate }}
-          </nuxt-link>
-          <nuxt-link
-            :to="userReview ? '/account' : '/account/' + reviewData.user_id"
-            class="uk-text-small uk-margin-small uk-float-right publish-date"
-            :title="'go to ' + reviewData.author + '\'s account'"
-          >
-            By {{ reviewData.author }}
-          </nuxt-link>
-        </h3>
+        <div v-if="!contentOnly" class="uk-card-title uk-text-bold">
+          <div class="uk-card-title">{{ reviewData.title }}</div>
+          <div class="icons uk-grid-small uk-child-width-auto" uk-grid>
+            <div>
+              <a style="cursor: default" :title="reviewData.type + ' review'">
+                <img
+                  v-if="reviewData.type === 'beer'"
+                  data-src="@/assets/images/beer-icon.svg"
+                  uk-svg
+                />
+                <img
+                  v-if="reviewData.type === 'footy'"
+                  data-src="@/assets/images/football-icon.svg"
+                  uk-svg
+                />
+              </a>
+            </div>
+            <div>
+              <nuxt-link
+                :to="'/review/' + reviewData.id"
+                :title="formattedPublishDate"
+              >
+                <span uk-icon="icon: calendar; ratio: 1.2;" />
+              </nuxt-link>
+            </div>
+            <div v-if="reviewData.user_id">
+              <nuxt-link
+                :to="userReview ? '/account' : '/account/' + reviewData.user_id"
+                :title="reviewData.author"
+              >
+                <span uk-icon="user" />
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
         <a
           v-if="userCanEditReview && loggedIn"
           title="Edit Review"
@@ -42,7 +45,7 @@
         >
           <span uk-icon="icon: more-vertical; ratio: 0.75;" />
         </a>
-        <hr />
+        <hr v-if="!contentOnly" />
         <div
           v-for="(block, idx) in reviewData.content_blocks"
           :key="idx"
@@ -129,7 +132,7 @@ export default {
     AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
   },
   props: {
-    noTitle: {
+    contentOnly: {
       type: Boolean,
       default: false
     },

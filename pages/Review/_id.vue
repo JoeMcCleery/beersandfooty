@@ -2,14 +2,38 @@
   <div>
     <div class="content">
       <!--  Header  -->
-      <div class="header uk-flex uk-flex-center uk-flex-middle">
-        <h1 class="uk-text-center">
-          <span v-if="review">{{ review.title }}</span>
-        </h1>
+      <div v-if="reviewData" class="header review" :class="reviewData.type">
+        <h1 class="uk-text-large">{{ review.title }}</h1>
+        <hr />
+        <p>{{ formattedPublishDate }}</p>
+        <div class="icons uk-grid-small uk-child-width-auto" uk-grid>
+          <div>
+            <a style="cursor: default" :title="reviewData.type + ' review'">
+              <img
+                v-if="reviewData.type === 'beer'"
+                data-src="@/assets/images/beer-icon.svg"
+                uk-svg
+              />
+              <img
+                v-if="reviewData.type === 'footy'"
+                data-src="@/assets/images/football-icon.svg"
+                uk-svg
+              />
+            </a>
+          </div>
+          <div>
+            <nuxt-link
+              :to="userReview ? '/account' : '/account/' + reviewData.user_id"
+              :title="reviewData.author"
+            >
+              <span uk-icon="user" />
+            </nuxt-link>
+          </div>
+        </div>
       </div>
       <!--  Page Content Container  -->
       <div class="uk-padding-small">
-        <review v-if="review" :review="review" :no-title="true" />
+        <review v-if="review" :review="review" :content-only="true" />
       </div>
     </div>
   </div>
@@ -35,6 +59,11 @@ export default {
   computed: {
     review() {
       return this.reviewData
+    },
+    formattedPublishDate() {
+      return new Date(
+        parseInt(this.reviewData.publish_date) * 1000
+      ).toLocaleString()
     }
   },
   async mounted() {

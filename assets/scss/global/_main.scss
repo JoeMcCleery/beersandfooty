@@ -52,7 +52,7 @@ html, body {
   background: #fff;
   color: $footycolour;
   width: 100%;
-  height: $header-height;
+  min-height: $header-height;
   border-radius: 0;
   @extend .uk-padding;
   box-shadow: 0 0 4px rgba(0,0,0,0.08);
