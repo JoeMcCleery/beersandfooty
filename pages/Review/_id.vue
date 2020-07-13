@@ -64,6 +64,12 @@ export default {
       return new Date(
         parseInt(this.reviewData.publish_date) * 1000
       ).toLocaleString()
+    },
+    user() {
+      return this.$store.state.user
+    },
+    userReview() {
+      return this.user && this.review.user_id === this.user.id
     }
   },
   async mounted() {
