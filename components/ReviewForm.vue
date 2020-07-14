@@ -526,6 +526,7 @@ export default {
       idx,
       type = 'long_text',
       block = {
+        id: 0,
         sort: idx,
         type,
         content: '',
