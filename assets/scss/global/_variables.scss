@@ -3,12 +3,13 @@ $images-dir: '../../images/';
 
 // Colours
 $brand-purple: #7b47bb;
+$brand-green: #64BA34;
 $beerscolour: rgb(255, 131, 58);
 $beerscolour-alpha: transparentize($beerscolour, 0.05);
 $footycolour: rgb(255, 181, 55);
 $footycolour-alpha: transparentize($footycolour, 0.05);
 $background-dark: #1f1f1f;
-$grey: #343434;
+$grey: #777;
 $grey-light: #e7e7e7;
 $transparent-white: rgba(255,255,255,0.95);
 
@@ -28,7 +29,7 @@ $header-height: 200px;
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
-$global-secondary-background: #34BA59;
+$global-secondary-background: $brand-green;
 $global-muted-background: #fafafa;
 $button-default-background: #fdfdfd;
 $global-primary-background: $brand-purple;

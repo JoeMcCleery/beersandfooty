@@ -11,6 +11,7 @@
   }
 }
 @mixin hook-button-default() {
+  color: $grey;
   @include glow-box($button-default-background);
 }
 @mixin hook-button-danger() {
@@ -37,6 +38,9 @@
   .uk-card-footer {
     border-radius: $border-radius;
   }
+}
+@mixin hook-card-default() {
+  color: $grey;
 }
 
 // Modals

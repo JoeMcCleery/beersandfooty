@@ -1,10 +1,13 @@
 .user-card {
+  margin: auto;
+  max-width: 600px;
   .uk-card-title {
     @extend .brandgradient-anim;
     @extend .opaque;
     @extend .text;
     @extend .fast;
   }
+  hr {
+    width: 100%;
+  }
 }
-
-

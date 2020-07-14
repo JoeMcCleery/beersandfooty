@@ -2,16 +2,8 @@
   <div>
     <div class="content">
       <!--  Header  -->
-      <div class="header">
+      <div class="header uk-flex uk-flex-center uk-flex-middle">
         <h1 class="uk-text-center">Your Account</h1>
-        <button
-          class="uk-button uk-button-danger uk-align-right"
-          @click="logout"
-          title="Logout"
-          style="width: 40px; padding: 0;"
-        >
-          <span uk-icon="icon: sign-out;" />
-        </button>
       </div>
       <!--  Page Content Container  -->
       <section v-if="loggedIn" class="uk-section">
@@ -85,10 +77,6 @@ export default {
     }
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout', {})
-      this.$router.push('/')
-    },
     formatDate(dateTimeValue) {
       return new Date(dateTimeValue).toLocaleString()
     }

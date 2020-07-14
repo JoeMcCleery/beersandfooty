@@ -1,37 +1,46 @@
 <template>
-  <div>
-    <div class="uk-card uk-card-default user-card">
-      <div class="uk-card-body">
-        <div class="uk-card-title uk-text-bold uk-margin-small">
-          <div>{{ userData.username }}</div>
-        </div>
-        <div
-          class="icons uk-grid-collapse uk-text-muted uk-child-width-1-1"
-          uk-grid
+  <div class="uk-card uk-card-default user-card">
+    <div class="uk-card-body">
+      <div class="uk-card-title uk-text-bold uk-margin">
+        {{ userData.username }}
+
+        <button
+          v-if="currentUser"
+          class="uk-button uk-button-danger uk-align-right"
+          @click="logout"
+          title="Logout"
+          style="width: 40px; padding: 0;"
         >
+          <span uk-icon="icon: sign-out;" />
+        </button>
+      </div>
+      <hr />
+      <div
+        class="icons uk-grid-collapse uk-text-muted uk-child-width-1-1"
+        uk-grid
+      >
+        <div>
           <div>
-            <div>
-              <span uk-icon="calendar" />
-              {{ formatDate(user.created_at) }}
-            </div>
+            <span uk-icon="calendar" />
+            {{ formatDate(user.created_at) }}
           </div>
+        </div>
+        <div>
           <div>
-            <div>
-              <span uk-icon="star" />
-              <animated-number :number="userData.score" class="uk-inline" />
-            </div>
+            <span uk-icon="star" />
+            <animated-number :number="userData.score" class="uk-inline" />
           </div>
+        </div>
+        <div>
           <div>
-            <div>
-              <span uk-icon="check" />
-              <animated-number :number="numVotes" class="uk-inline" />
-            </div>
+            <span uk-icon="check" />
+            <animated-number :number="numVotes" class="uk-inline" />
           </div>
+        </div>
+        <div>
           <div>
-            <div>
-              <span uk-icon="file-edit" />
-              <animated-number :number="numReviews" class="uk-inline" />
-            </div>
+            <span uk-icon="file-edit" />
+            <animated-number :number="numReviews" class="uk-inline" />
           </div>
         </div>
       </div>
@@ -67,7 +76,7 @@ export default {
   },
   computed: {
     currentUser() {
-      return this.$store.state.user
+      return this.$store.state.user.id === this.userData.id
     },
     numVotes() {
       return this.userData.votes ? this.userData.votes.length : 0
@@ -84,6 +93,10 @@ export default {
   methods: {
     formatDate(dateTimeValue) {
       return new Date(dateTimeValue).toDateString()
+    },
+    logout() {
+      this.$store.dispatch('logout', {})
+      this.$router.push('/')
     }
   }
 }
