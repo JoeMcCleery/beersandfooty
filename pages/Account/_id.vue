@@ -12,58 +12,19 @@
       <section v-if="user" class="uk-section">
         <div class="uk-container">
           <div>
-            <div class="user-details">
-              <p class="uk-text-large">
-                Username:<br /><b>
-                  {{ user.username }}
-                </b>
-              </p>
-              <p>
-                Date Created:
-                <b>
-                  {{ formatDate(user.created_at) }}
-                </b>
-              </p>
-              <p>
-                Votes Made:
-                <b>
-                  <animated-number :number="numVotes" class="uk-inline" />
-                </b>
-              </p>
-              <p>
-                User Score:
-                <b>
-                  <animated-number :number="userScore" class="uk-inline" />
-                </b>
-              </p>
-              <p>
-                Reviews:
-                <b>
-                  <animated-number
-                    :number="userReviews.length"
-                    class="uk-inline"
-                  />
-                </b>
-              </p>
+            <!--  Masonry Grid  -->
+            <div
+              class="uk-child-width-1-2@m uk-child-width-1-3@l"
+              uk-grid="masonry: true"
+            >
               <div>
-                <!--  Masonry Grid  -->
-                <div
-                  v-if="userReviews.length"
-                  class="uk-child-width-1-2@m uk-child-width-1-3@l"
-                  uk-grid="masonry: true"
-                >
-                  <review
-                    v-for="r in userReviews"
-                    :key="r.title + r.id"
-                    :review="r"
-                  />
-                </div>
-                <div v-else>
-                  <p class="uk-text-italic uk-light">
-                    No Reviews Made...
-                  </p>
-                </div>
+                <user-card :user="user" />
               </div>
+              <review
+                v-for="r in userReviews"
+                :key="r.title + r.id"
+                :review="r"
+              />
             </div>
           </div>
         </div>
@@ -86,8 +47,8 @@ export default {
   },
   transition: 'page',
   components: {
-    Review: () => import('@/components/Review'),
-    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+    UserCard: () => import('@/components/UserCard'),
+    Review: () => import('@/components/Review')
   },
   data() {
     return {

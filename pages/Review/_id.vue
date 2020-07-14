@@ -3,7 +3,7 @@
     <div class="content">
       <!--  Header  -->
       <div v-if="reviewData" class="header review" :class="reviewData.type">
-        <h1 class="uk-text-large">{{ review.title }}</h1>
+        <h1>{{ review.title }}</h1>
         <hr />
         <p>{{ formattedPublishDate }}</p>
         <div class="icons uk-grid-small uk-child-width-auto" uk-grid>

@@ -1,13 +1,6 @@
 <template>
-  <div
-    id="review-form-modal"
-    ref="modal"
-    class="uk-modal-container uk-flex-top uk-modal"
-    uk-modal
-  >
-    <div
-      class="uk-modal-dialog uk-margin-auto-vertical uk-transparent uk-margin-bottom"
-    >
+  <div id="review-form-modal" ref="modal" class="uk-flex-top uk-modal" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical">
       <review-form />
     </div>
   </div>

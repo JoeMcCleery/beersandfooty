@@ -14,7 +14,7 @@
           uk-toggle
           @click="clearEditReview"
         >
-          <span uk-icon="icon: plus;" />
+          <span uk-icon="icon: file-edit;" />
         </a>
         <a
           v-else

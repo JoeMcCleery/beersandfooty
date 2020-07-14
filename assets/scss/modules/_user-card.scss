@@ -1,0 +1,10 @@
+.user-card {
+  .uk-card-title {
+    @extend .brandgradient-anim;
+    @extend .opaque;
+    @extend .text;
+    @extend .fast;
+  }
+}
+
+

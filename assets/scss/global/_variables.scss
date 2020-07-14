@@ -16,7 +16,7 @@ $brand-gradient: linear-gradient(180deg, $beerscolour 0px, $beerscolour 500px, $
 $brand-gradient-alpha: linear-gradient(180deg, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
 
 // Utility
-$border-radius: 2px;
+$border-radius: 25px;
 
 // Nav
 $navbar-height: 60px;
@@ -28,7 +28,7 @@ $header-height: 200px;
 // Uikit variable overrides
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
-$global-secondary-background: #333;
+$global-secondary-background: #34BA59;
 $global-muted-background: #fafafa;
 $button-default-background: #fdfdfd;
 $global-primary-background: $brand-purple;

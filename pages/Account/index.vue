@@ -2,72 +2,34 @@
   <div>
     <div class="content">
       <!--  Header  -->
-      <div class="header uk-flex uk-flex-center uk-flex-middle">
+      <div class="header">
         <h1 class="uk-text-center">Your Account</h1>
+        <button
+          class="uk-button uk-button-danger uk-align-right"
+          @click="logout"
+          title="Logout"
+          style="width: 40px; padding: 0;"
+        >
+          <span uk-icon="icon: sign-out;" />
+        </button>
       </div>
       <!--  Page Content Container  -->
       <section v-if="loggedIn" class="uk-section">
         <div class="uk-container">
           <div>
-            <button
-              class="uk-button uk-button-danger uk-align-right"
-              @click="logout"
+            <!--  Masonry Grid  -->
+            <div
+              class="uk-child-width-1-2@m uk-child-width-1-3@l"
+              uk-grid="masonry: true"
             >
-              <span uk-icon="icon: sign-out;" />
-              Logout
-            </button>
-            <div class="user-details">
-              <p class="uk-text-large">
-                Username:<br /><b>
-                  {{ user.username }}
-                </b>
-              </p>
-              <p>
-                Date Created:
-                <b>
-                  {{ formatDate(user.created_at) }}
-                </b>
-              </p>
-              <p>
-                Votes Made:
-                <b>
-                  <animated-number :number="numVotes" class="uk-inline" />
-                </b>
-              </p>
-              <p>
-                User Score:
-                <b>
-                  <animated-number :number="userScore" class="uk-inline" />
-                </b>
-              </p>
-              <p>
-                Reviews:
-                <b>
-                  <animated-number
-                    :number="userReviews.length"
-                    class="uk-inline"
-                  />
-                </b>
-              </p>
               <div>
-                <!--  Masonry Grid  -->
-                <div
-                  v-if="userReviews.length"
-                  class="uk-child-width-1-2@m uk-child-width-1-3@l"
-                  uk-grid="masonry: true"
-                >
-                  <review
-                    v-for="r in userReviews"
-                    :key="r.title + r.id"
-                    :review="r"
-                  />
-                </div>
-                <div v-else>
-                  <p class="uk-text-italic uk-light">
-                    No Reviews Made...
-                  </p>
-                </div>
+                <user-card :user="user" />
               </div>
+              <review
+                v-for="r in userReviews"
+                :key="r.title + r.id"
+                :review="r"
+              />
             </div>
           </div>
         </div>
@@ -85,8 +47,8 @@
 export default {
   name: 'Account',
   components: {
-    Review: () => import('@/components/Review'),
-    AnimatedNumber: () => import('~/components/AnimatedNumber.vue')
+    UserCard: () => import('@/components/UserCard'),
+    Review: () => import('@/components/Review')
   },
   transition(to, from) {
     if (from && (from.name === 'Account-id' || from.name === 'Review-id')) {

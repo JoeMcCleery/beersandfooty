@@ -3,7 +3,7 @@
   &:not([disabled='disabled']) {
     @extend .uk-box-shadow-hover-small;
   }
-  border-radius: 2px;
+  border-radius: $border-radius;
   transition: box-shadow 100ms, background-color 100ms;
 
   &:active:not([disabled='disabled']) {
@@ -26,24 +26,37 @@
 // Cards
 @mixin hook-card() {
   @extend .uk-box-shadow-small;
-  border-radius: 2px;
+  border-radius: $border-radius;
   overflow-wrap: break-word;
   .uk-card-title {
     font-size: 1.8rem;
   }
   .uk-card-body {
-    border-radius: 2px;
+    border-radius: $border-radius;
   }
   .uk-card-footer {
-    border-radius: 2px;
+    border-radius: $border-radius;
   }
 }
 
 // Modals
 @mixin hook-modal() {
+  .uk-modal-dialog {
+    border-radius: $border-radius;
+    background-color: transparent;
+  }
+  .uk-modal-header {
+    border-radius: $border-radius $border-radius 0 0;
+  }
   .uk-modal-title {
     color: $button-primary-background;
     @include glow-text($button-primary-background);
+  }
+  .uk-modal-body {
+    background-color: $background-default-background;
+  }
+  .uk-modal-footer {
+    border-radius: 0 0 $border-radius $border-radius;
   }
 }
 

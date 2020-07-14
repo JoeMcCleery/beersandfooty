@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="review-form uk-grid uk-flex-center uk-flex-middle uk-margin-bottom uk-child-width-1-1 uk-child-width-1-2@m"
-    uk-grid
-  >
+  <div class="review-form uk-child-width-1-1" uk-grid>
     <div class="uk-position-relative">
       <a href="#review-form-modal" class="uk-modal-close-default" uk-toggle>
         <span
@@ -10,7 +7,7 @@
           uk-icon="icon: close; ratio: 2.2;"
         />
       </a>
-      <form v-if="loggedIn" class="uk-background-default">
+      <form v-if="loggedIn" class="">
         <div class="uk-modal-header">
           <h2 class="uk-modal-title">
             <span v-if="editReview">
@@ -95,28 +92,32 @@
 
           <ul
             v-if="sortedContentBlocks.length"
-            class="blocks uk-grid-stack uk-grid-collapse uk-list uk-list-striped"
+            class="blocks uk-grid-stack uk-grid-collapse uk-list"
             uk-grid
           >
             <li
               v-for="(block, idx) in sortedContentBlocks"
-              :key="encodeURI(idx + block.type + block.sort)"
+              :key="
+                encodeURI(
+                  idx + block.type + block.sort + block.created_at + block.id
+                )
+              "
               class="uk-width-1-1"
             >
-              <div class="uk-animation-fade uk-position-relative">
+              <div
+                class="uk-animation-fade uk-animation-fast uk-position-relative"
+              >
                 <div class="uk-position-top-right">
                   <a
                     id="removeBlock"
                     name="removeBlock"
                     :title="'Trash ' + sanitizedType(block.type) + ' Block'"
                     type="button"
-                    class=""
+                    class="uk-button uk-button-danger uk-button-small uk-border-circle"
+                    style="width: 30px; padding: 0;"
                     @click="removeBlock(idx)"
                   >
-                    <span
-                      uk-icon="icon: trash; ratio: 1.5;"
-                      class="uk-icon-link icon-red"
-                    />
+                    <span uk-icon="icon: trash;" />
                   </a>
                 </div>
                 <div>
@@ -135,7 +136,7 @@
                     </div>
                   </div>
                   <button
-                    :class="{ 'uk-hidden': block.sort <= 0 }"
+                    :class="{ 'uk-invisible': block.sort <= 0 }"
                     name="blockIndexUp"
                     :title="'Move ' + sanitizedType(block.type) + ' block up'"
                     type="button"
@@ -146,7 +147,8 @@
                   </button>
                   <button
                     :class="{
-                      'uk-hidden': block.sort >= sortedContentBlocks.length - 1
+                      'uk-invisible':
+                        block.sort >= sortedContentBlocks.length - 1
                     }"
                     name="blockIndexDown"
                     :title="'Move ' + sanitizedType(block.type) + ' block down'"
@@ -237,7 +239,7 @@
           </ul>
           <div class="uk-margin">
             <div
-              class="uk-grid-small uk-child-width-auto uk-flex uk-flex-center"
+              class="uk-grid-small uk-child-width-auto uk-flex uk-flex-right"
               uk-grid
             >
               <div>
@@ -258,9 +260,10 @@
                 <div>
                   <button
                     name="addBlock"
-                    title="addBlock"
+                    title="add block"
                     type="button"
-                    class="uk-button uk-button-default uk-button-small"
+                    class="uk-button uk-button-secondary uk-border-circle uk-button-small"
+                    style="width: 30px; padding: 0;"
                     @click="
                       addBlock(
                         sortedContentBlocks.length,
@@ -268,8 +271,7 @@
                       )
                     "
                   >
-                    <span uk-icon="icon: plus; ratio: 0.5" />
-                    Add Block
+                    <span uk-icon="icon: plus" />
                   </button>
                 </div>
               </div>
@@ -301,7 +303,7 @@
             :class="{ 'uk-disabled': submitting }"
             @click.prevent="formAction"
           >
-            <span v-if="!submitting" uk-icon="icon: plus; ratio: 0.7;" />
+            <span v-if="!submitting" uk-icon="plus" />
             <div v-else uk-spinner="ratio: 0.5;"></div>
             <span v-if="editReview">
               Edit
@@ -526,7 +528,8 @@ export default {
       block = {
         sort: idx,
         type,
-        content: ''
+        content: '',
+        created_at: this.getTimestamp()
       }
     ) {
       this.review.content_blocks.splice(idx, 0, block)

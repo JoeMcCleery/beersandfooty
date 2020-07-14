@@ -3,7 +3,7 @@
   max-width: 600px;
   background: white;
   .image img {
-    border-radius: 2px;
+    border-radius: $border-radius;
   }
   &.beer {
     box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
