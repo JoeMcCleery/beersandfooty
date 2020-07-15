@@ -120,18 +120,16 @@
                 </div>
                 <div>
                   <div class="uk-inline">
-                    <div>
-                      <select
-                        v-model="block.type"
-                        name="type"
-                        class="uk-select uk-form-width-small uk-form-small"
-                      >
-                        <option value="long_text">Long Text</option>
-                        <option value="short_text">Short Text</option>
-                        <option value="score">Score</option>
-                        <option value="image">Image</option>
-                      </select>
-                    </div>
+                    <select
+                      v-model="block.type"
+                      name="type"
+                      class="uk-select uk-form-width-small uk-form-small"
+                    >
+                      <option value="long_text">Long Text</option>
+                      <option value="short_text">Short Text</option>
+                      <option value="score">Score</option>
+                      <option value="image">Image</option>
+                    </select>
                   </div>
                   <button
                     :class="{ 'uk-invisible': block.sort <= 0 }"
@@ -237,43 +235,32 @@
             </li>
           </ul>
           <div class="uk-margin">
-            <div
-              class="uk-grid-small uk-child-width-auto uk-flex uk-flex-right"
-              uk-grid
-            >
-              <div>
-                <div>
-                  <select
-                    ref="newBlockType"
-                    name="type"
-                    class="uk-select uk-form-width-small uk-form-small"
-                  >
-                    <option value="long_text">Long Text</option>
-                    <option value="short_text">Short Text</option>
-                    <option value="score">Score</option>
-                    <option value="image">Image</option>
-                  </select>
-                </div>
+            <div class="uk-flex uk-flex-right">
+              <div class="uk-inline">
+                <select
+                  ref="newBlockType"
+                  name="type"
+                  class="uk-select uk-form-width-small uk-form-small"
+                >
+                  <option value="long_text">Long Text</option>
+                  <option value="short_text">Short Text</option>
+                  <option value="score">Score</option>
+                  <option value="image">Image</option>
+                </select>
               </div>
-              <div>
-                <div>
-                  <button
-                    name="addBlock"
-                    title="add block"
-                    type="button"
-                    class="uk-button uk-button-secondary uk-border-rounded uk-button-small"
-                    style="width: 30px; padding: 0;"
-                    @click="
-                      addBlock(
-                        sortedContentBlocks.length,
-                        $refs.newBlockType.value
-                      )
-                    "
-                  >
-                    <span uk-icon="icon: plus; ratio: 0.8;" />
-                  </button>
-                </div>
-              </div>
+              &nbsp;
+              <button
+                name="addBlock"
+                title="add block"
+                type="button"
+                class="uk-button uk-button-secondary uk-border-rounded uk-button-small"
+                style="width: 30px; padding: 0;"
+                @click="
+                  addBlock(sortedContentBlocks.length, $refs.newBlockType.value)
+                "
+              >
+                <span uk-icon="icon: plus; ratio: 0.8;" />
+              </button>
             </div>
           </div>
         </div>

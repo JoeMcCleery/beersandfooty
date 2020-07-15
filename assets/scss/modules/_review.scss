@@ -6,36 +6,34 @@
     border-radius: $border-radius;
   }
   &.beer {
-    box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     hr {
       border-color: transparentize(darken($beerscolour, 10%), 0.8);
-      box-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
+      @include glow-box($beerscolour);
     }
     .uk-card-title {
       color: $beerscolour;
-      text-shadow: 0 0 4px transparentize($beerscolour, 0.8);
+      @include glow-text($beerscolour);
     }
-    .icons a {
+    .icons a svg {
       color: lighten($beerscolour, 20%);
       fill: lighten($beerscolour, 20%);
-      text-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
+      @include glow-icon($beerscolour);
     }
   }
 
   &.footy {
-    box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     hr {
       border-color: transparentize(darken($footycolour, 10%), 0.8);
-      box-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
+      @include glow-box($footycolour);
     }
     .uk-card-title {
       color: $footycolour;
-      text-shadow: 0 0 4px transparentize($footycolour, 0.8);
+      @include glow-text($footycolour);
     }
-    .icons a {
+    .icons a svg {
       color: lighten($footycolour, 20%);
       fill: lighten($footycolour, 20%);
-      text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
+      @include glow-icon($footycolour);
     }
   }
 }
