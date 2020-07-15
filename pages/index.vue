@@ -9,70 +9,56 @@
       <section v-if="clientAuth" id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
-          <ul uk-accordion>
-            <li class="uk-width-1-1 uk-width-medium@s uk-margin-auto">
-              <a class="uk-accordion-title uk-text-center uk-light" href="#">
-                Filter Settings
-                <span uk-icon="icon: settings;" />
-              </a>
-              <div
-                class="uk-accordion-content uk-background-default uk-padding-small"
+          <div class="homepage-filter uk-margin uk-padding uk-margin-auto">
+            <form>
+              <label for="beerFilter" class="uk-inline">
+                <input
+                  id="beerFilter"
+                  v-model="filter.type"
+                  name="beerFilter"
+                  type="checkbox"
+                  class="uk-hidden"
+                  value="beer"
+                  @change="fetchReviews(currentPageLink)"
+                />
+                <a class="icon-container">
+                  <img
+                    class="icon-beer"
+                    data-src="@/assets/images/beer-icon.svg"
+                    uk-svg
+                  />
+                </a>
+              </label>
+              <label for="footyFilter" class="uk-inline">
+                <input
+                  id="footyFilter"
+                  v-model="filter.type"
+                  name="footyFilter"
+                  type="checkbox"
+                  class="uk-hidden"
+                  value="footy"
+                  @change="fetchReviews(currentPageLink)"
+                />
+                <a class="icon-container">
+                  <img
+                    class="icon-footy"
+                    data-src="@/assets/images/football-icon.svg"
+                    uk-svg
+                  />
+                </a>
+              </label>
+              <select
+                id="sortField"
+                v-model="filter.order.field"
+                name="sortField"
+                class="uk-select uk-inline uk-form-width-medium"
+                @change="fetchReviews(currentPageLink)"
               >
-                <div>
-                  <form>
-                    <div class="uk-text-center">
-                      <label for="beerFilter" class="uk-inline">
-                        <input
-                          id="beerFilter"
-                          v-model="filter.type"
-                          name="beerFilter"
-                          type="checkbox"
-                          class="uk-hidden"
-                          value="beer"
-                          @change="fetchReviews(currentPageLink)"
-                        />
-                        <a class="icon-container">
-                          <img
-                            class="icon-beer"
-                            data-src="@/assets/images/beer-icon.svg"
-                            uk-svg
-                          />
-                        </a>
-                      </label>
-                      <label for="footyFilter" class="uk-inline">
-                        <input
-                          id="footyFilter"
-                          v-model="filter.type"
-                          name="footyFilter"
-                          type="checkbox"
-                          class="uk-hidden"
-                          value="footy"
-                          @change="fetchReviews(currentPageLink)"
-                        />
-                        <a class="icon-container">
-                          <img
-                            class="icon-footy"
-                            data-src="@/assets/images/football-icon.svg"
-                            uk-svg
-                          />
-                        </a>
-                      </label>
-                    </div>
-                    <select
-                      id="sortField"
-                      v-model="filter.order.field"
-                      name="sortField"
-                      class="uk-select uk-inline"
-                      @change="fetchReviews(currentPageLink)"
-                    >
-                      <option value="publish_date">Publish Date</option>
-                      <option value="score">Score</option>
-                    </select>
-                  </form>
-                </div>
-              </div>
-            </li>
-          </ul>
+                <option value="publish_date">Publish Date</option>
+                <option value="score">Score</option>
+              </select>
+            </form>
+          </div>
           <!--  Masonry Grid  -->
           <div
             v-if="showReviews"
@@ -103,7 +89,8 @@
                 No more reviews to load.
               </span>
               <span v-else-if="filter.type.length" class="uk-light">
-                Loading reviews...
+                <div uk-spinner="ratio: 0.5;"></div>
+                Loading reviews
               </span>
               <span v-else class="uk-light">
                 Select a review type in the filter settings above.

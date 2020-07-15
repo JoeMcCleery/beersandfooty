@@ -17,7 +17,7 @@ $brand-gradient: linear-gradient(180deg, $beerscolour 0px, $beerscolour 500px, $
 $brand-gradient-alpha: linear-gradient(180deg, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
 
 // Utility
-$border-radius: 25px;
+$border-radius: 20px;
 
 // Nav
 $navbar-height: 60px;
@@ -33,6 +33,3 @@ $global-secondary-background: $brand-green;
 $global-muted-background: #fafafa;
 $button-default-background: #fdfdfd;
 $global-primary-background: $brand-purple;
-
-$accordion-title-color: white;
-$accordion-title-hover-color: darken(white, 5%);

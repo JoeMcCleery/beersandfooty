@@ -117,7 +117,7 @@
                     style="width: 30px; padding: 0;"
                     @click="removeBlock(idx)"
                   >
-                    <span uk-icon="icon: trash;" />
+                    <span uk-icon="icon: trash; ratio: 0.8;" />
                   </a>
                 </div>
                 <div>
@@ -271,7 +271,7 @@
                       )
                     "
                   >
-                    <span uk-icon="icon: plus" />
+                    <span uk-icon="icon: plus; ratio: 0.8;" />
                   </button>
                 </div>
               </div>

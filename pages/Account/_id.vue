@@ -9,11 +9,12 @@
         </h1>
       </div>
       <!--  Page Content Container  -->
-      <section v-if="user" class="uk-section">
+      <section class="uk-section">
         <div class="uk-container">
           <div>
             <!--  Masonry Grid  -->
             <div
+              v-if="user"
               class="uk-child-width-1-2@m uk-child-width-1-3@l"
               uk-grid="masonry: true"
             >
@@ -26,14 +27,15 @@
                 :review="r"
               />
             </div>
+            <div v-else>
+              <div class="uk-text-center uk-light">
+                <div uk-spinner="ratio: 0.5;"></div>
+                Loading account information
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <div v-else>
-        <p class="uk-text-center uk-light">
-          Loading account information...
-        </p>
-      </div>
     </div>
   </div>
 </template>

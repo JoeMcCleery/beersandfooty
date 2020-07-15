@@ -34,6 +34,12 @@
       <!--  Page Content Container  -->
       <div class="uk-padding-small">
         <review v-if="review" :review="review" :content-only="true" />
+        <div v-else>
+          <div class="uk-text-center uk-light">
+            <div uk-spinner="ratio: 0.5;"></div>
+            loading review
+          </div>
+        </div>
       </div>
     </div>
   </div>

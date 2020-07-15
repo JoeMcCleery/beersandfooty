@@ -1,1 +1,7 @@
-#Home {}
+#Home {
+  .homepage-filter {
+    border-radius: $border-radius;
+    background-color: $background-default-background;
+    width: max-content;
+  }
+}
