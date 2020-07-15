@@ -50,6 +50,7 @@
     background-color: transparent;
   }
   .uk-modal-header {
+    background-color: $background-default-background;
     border-radius: $border-radius $border-radius 0 0;
   }
   .uk-modal-title {
@@ -60,6 +61,7 @@
     background-color: $background-default-background;
   }
   .uk-modal-footer {
+    background-color: $background-default-background;
     border-radius: 0 0 $border-radius $border-radius;
   }
 }

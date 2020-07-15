@@ -10,10 +10,10 @@
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <div
-            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-card-default uk-card-body"
+            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-background-muted uk-card-body"
           >
             <span uk-icon="settings" />
-            Filter Settings
+            Filter
             <form>
               <label for="beerFilter" class="uk-inline">
                 <input
@@ -55,7 +55,7 @@
                 id="sortField"
                 v-model="filter.order.field"
                 name="sortField"
-                class="uk-select uk-inline uk-form-width-medium"
+                class="uk-select uk-inline uk-width-auto uk-text-center"
                 @change="fetchReviews(currentPageLink)"
               >
                 <option value="publish_date">Publish Date [desc]</option>

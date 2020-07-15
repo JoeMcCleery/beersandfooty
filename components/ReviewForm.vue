@@ -89,11 +89,9 @@
               </a>
             </label>
           </div>
-
           <ul
             v-if="sortedContentBlocks.length"
-            class="blocks uk-grid-stack uk-grid-collapse uk-list"
-            uk-grid
+            class="blocks uk-margin uk-list"
           >
             <li
               v-for="(block, idx) in sortedContentBlocks"
@@ -186,11 +184,13 @@
                       v-if="['image'].some((v) => block.type === v)"
                       class="uk-text-center"
                     >
-                      <label
-                        class="uk-button uk-button-default uk-button-small"
-                      >
-                        <span uk-icon="icon: upload; ratio: 0.9;" />
-                        Upload <span v-if="block.content">New </span>Image
+                      <label style="cursor: pointer;">
+                        <p
+                          class="uk-text-muted uk-text-small uk-margin-auto uk-form-width-medium"
+                        >
+                          <span uk-icon="icon: upload; ratio: 0.8;" />
+                          Upload <span v-if="block.content">New</span> Image
+                        </p>
                         <input
                           name="content"
                           title="content"
@@ -202,15 +202,14 @@
                           hidden
                           @change="saveImageForBlock($event, block)"
                         />
+                        <div v-if="block.content">
+                          <img
+                            :src="block.content"
+                            class="uk-height-small uk-border-rounded"
+                            uk-img
+                          />
+                        </div>
                       </label>
-                      <div class="uk-width-1-1">
-                        <img
-                          :src="block.content"
-                          class="uk-height-small uk-margin-small-top"
-                          :class="{ 'uk-width-small': !block.content }"
-                          uk-img
-                        />
-                      </div>
                     </div>
                     <div
                       v-if="['score'].some((v) => block.type === v)"
