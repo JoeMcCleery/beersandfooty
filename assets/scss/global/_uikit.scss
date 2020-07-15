@@ -28,7 +28,7 @@ input[type='checkbox']:checked, input[type='radio']:checked {
   @include glow-box($form-radio-checked-background);
 }
 .uk-border-rounded {
-  border-radius: $border-radius;
+  border-radius: $border-radius !important;
 }
 .uk-lightbox-items {
   cursor: pointer;
