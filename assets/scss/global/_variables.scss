@@ -30,5 +30,6 @@ $header-height: 200px;
 $offcanvas-bar-background: #fff;
 $offcanvas-bar-color-mode: none;
 $global-secondary-background: $brand-green;
-$button-default-background: #fdfdfd;
+$background-muted-background: #f8f8f8;
+$button-default-background: $background-muted-background;
 $global-primary-background: $brand-purple;
