@@ -17,6 +17,7 @@
     }
     .icons a {
       color: lighten($beerscolour, 20%);
+      fill: lighten($beerscolour, 20%);
       text-shadow: 0 0 4px transparentize(lighten($beerscolour, 10%), 0.8);
     }
   }
@@ -33,6 +34,7 @@
     }
     .icons a {
       color: lighten($footycolour, 20%);
+      fill: lighten($footycolour, 20%);
       text-shadow: 0 0 4px transparentize(lighten($footycolour, 10%), 0.8);
     }
   }

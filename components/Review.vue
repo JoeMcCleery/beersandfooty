@@ -6,7 +6,7 @@
           <div class="uk-card-title">{{ reviewData.title }}</div>
           <div class="icons uk-grid-small uk-child-width-auto" uk-grid>
             <div>
-              <a style="cursor: default" :title="reviewData.type + ' review'">
+              <a :title="reviewData.type + ' review'">
                 <img
                   v-if="reviewData.type === 'beer'"
                   data-src="@/assets/images/beer-icon.svg"
@@ -35,16 +35,34 @@
                 <span uk-icon="user" />
               </nuxt-link>
             </div>
+            <div v-if="userCanEditReview">
+              <a title="Edit Review" @click="editReviewModal">
+                <img uk-icon="icon: more-vertical;" />
+              </a>
+            </div>
+            <div v-if="userCanEditReview && isAdmin">
+              <a
+                :title="
+                  reviewData.status === 'published'
+                    ? 'Hide Review'
+                    : 'Show Review'
+                "
+                @click="toggleReviewStatus"
+              >
+                <img
+                  v-if="reviewData.status === 'published'"
+                  data-src="@/assets/images/hide.svg"
+                  uk-svg
+                />
+                <img
+                  v-else-if="reviewData.status === 'hidden'"
+                  data-src="@/assets/images/eye.svg"
+                  uk-svg
+                />
+              </a>
+            </div>
           </div>
         </div>
-        <a
-          v-if="userCanEditReview && loggedIn"
-          title="Edit Review"
-          class="uk-position-top-right uk-padding-small uk-text-small uk-text-muted"
-          @click="editReviewModal"
-        >
-          <span uk-icon="icon: more-vertical; ratio: 0.75;" />
-        </a>
         <hr v-if="!contentOnly" />
         <div
           v-for="(block, idx) in reviewData.content_blocks"
@@ -188,8 +206,11 @@ export default {
     userReview() {
       return this.user && this.reviewData.user_id === this.user.id
     },
+    isAdmin() {
+      return this.user && this.user.isAdmin
+    },
     userCanEditReview() {
-      return this.userReview || (this.user && this.user.isAdmin)
+      return (this.userReview || this.isAdmin) && this.loggedIn
     },
     userVotes() {
       return this.$store.state.userVotes
@@ -267,6 +288,7 @@ export default {
         }
       }
     },
+    toggleReviewStatus() {},
     editReviewModal() {
       const modal = document.querySelector('#review-form-modal')
       if (this.reviewData && modal) {

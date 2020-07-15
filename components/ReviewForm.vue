@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <div class="uk-margin uk-text-center">
+          <div class="uk-margin">
             <label for="typeBeer" class="uk-inline">
               <input
                 id="typeBeer"
@@ -113,7 +113,7 @@
                     name="removeBlock"
                     :title="'Trash ' + sanitizedType(block.type) + ' Block'"
                     type="button"
-                    class="uk-button uk-button-danger uk-button-small uk-border-circle"
+                    class="uk-button uk-button-danger uk-button-small uk-border-rounded"
                     style="width: 30px; padding: 0;"
                     @click="removeBlock(idx)"
                   >
@@ -262,7 +262,7 @@
                     name="addBlock"
                     title="add block"
                     type="button"
-                    class="uk-button uk-button-secondary uk-border-circle uk-button-small"
+                    class="uk-button uk-button-secondary uk-border-rounded uk-button-small"
                     style="width: 30px; padding: 0;"
                     @click="
                       addBlock(

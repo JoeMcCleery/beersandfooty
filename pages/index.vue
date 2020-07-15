@@ -9,7 +9,11 @@
       <section v-if="clientAuth" id="reviews" class="uk-section">
         <div class="uk-container uk-container-large">
           <!-- Filter -->
-          <div class="homepage-filter uk-margin uk-padding uk-margin-auto">
+          <div
+            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-card-default uk-card-body"
+          >
+            <span uk-icon="settings" />
+            Filter Settings
             <form>
               <label for="beerFilter" class="uk-inline">
                 <input
@@ -21,7 +25,7 @@
                   value="beer"
                   @change="fetchReviews(currentPageLink)"
                 />
-                <a class="icon-container">
+                <a class="icon-container" title="show/hide beer reviews">
                   <img
                     class="icon-beer"
                     data-src="@/assets/images/beer-icon.svg"
@@ -29,7 +33,7 @@
                   />
                 </a>
               </label>
-              <label for="footyFilter" class="uk-inline">
+              <label for="footyFilter" class="uk-inline uk-margin-small-right">
                 <input
                   id="footyFilter"
                   v-model="filter.type"
@@ -39,7 +43,7 @@
                   value="footy"
                   @change="fetchReviews(currentPageLink)"
                 />
-                <a class="icon-container">
+                <a class="icon-container" title="show/hide footy reviews">
                   <img
                     class="icon-footy"
                     data-src="@/assets/images/football-icon.svg"
@@ -54,8 +58,8 @@
                 class="uk-select uk-inline uk-form-width-medium"
                 @change="fetchReviews(currentPageLink)"
               >
-                <option value="publish_date">Publish Date</option>
-                <option value="score">Score</option>
+                <option value="publish_date">Publish Date [desc]</option>
+                <option value="score">Score [desc]</option>
               </select>
             </form>
           </div>

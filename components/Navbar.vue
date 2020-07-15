@@ -13,6 +13,8 @@
                   data-src="@/assets/images/beer-icon.svg"
                   uk-svg
                 />
+              </span>
+              <span class="icon-container uk-height-1-1">
                 <img
                   :class="{ 'icon-footy': pageTitle === 'Home' }"
                   data-src="@/assets/images/football-icon.svg"
