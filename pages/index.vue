@@ -10,10 +10,12 @@
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <div
-            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-background-muted uk-card-body"
+            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-background-default uk-card-body"
           >
-            <span uk-icon="settings" />
-            Filter
+            <h5 class="uk-text-muted">
+              <span uk-icon="settings" />
+              Filter
+            </h5>
             <form>
               <label for="beerFilter" class="uk-inline">
                 <input
