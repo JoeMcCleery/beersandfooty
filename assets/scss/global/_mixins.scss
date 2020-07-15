@@ -2,10 +2,6 @@
 @mixin hook-button() {
   border-radius: $border-radius;
   transition: box-shadow 100ms, background-color 100ms;
-
-  &:hover:not([disabled='disabled']), &:focus:not([disabled='disabled']) {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
   &:active:not([disabled='disabled']) {
     box-shadow: inset 0 2px 8px rgba(0,0,0,0.08) !important;
   }
