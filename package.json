@@ -11,7 +11,7 @@
     "core-js": "^2.6.5",
     "jquery": "^3.4.1",
     "jquery-touchswipe": "^1.6.19",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "netlify-cms": "^2.10.29",
     "uikit": "^3.3.8-dev.6e092e9cf",
     "vue": "^2.6.10"
