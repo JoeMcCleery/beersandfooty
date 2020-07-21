@@ -80,6 +80,13 @@ export default {
     formatDate(dateTimeValue) {
       return new Date(dateTimeValue).toLocaleString()
     }
+  },
+  head() {
+    return {
+      title: this.user
+        ? process.env.SITE_TITLE + ' - ' + this.user.username
+        : process.env.SITE_TITLE
+    }
   }
 }
 </script>
