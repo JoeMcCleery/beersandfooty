@@ -63,7 +63,9 @@ export default {
       return this.userData
     },
     userReviews() {
-      return this.user.reviews
+      return this.user.reviews.filter((review) => {
+        return review.status === 'published'
+      })
     },
     userVotes() {
       return this.user.votes
