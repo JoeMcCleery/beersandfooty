@@ -335,7 +335,8 @@ export default {
         ],
         created_at: 0,
         updated_at: 0,
-        deleted_at: 0
+        deleted_at: 0,
+        status: 'hidden'
       }
     }
   },
@@ -383,7 +384,8 @@ export default {
           ],
           created_at: 0,
           updated_at: 0,
-          deleted_at: 0
+          deleted_at: 0,
+          status: 'hidden'
         }
       }
       this.formError = ''
@@ -402,7 +404,8 @@ export default {
                 title: this.review.title,
                 type: this.review.type,
                 publish_date: this.review.publish_date,
-                content_blocks: this.review.content_blocks
+                content_blocks: this.review.content_blocks,
+                status: this.review.status
               })
               .then((data) => {
                 this.review = {
@@ -448,7 +451,8 @@ export default {
                 title: this.review.title,
                 type: this.review.type,
                 publish_date: this.review.publish_date,
-                content_blocks: this.review.content_blocks
+                content_blocks: this.review.content_blocks,
+                status: this.review.status
               })
               .then((data) => {
                 this.review = {

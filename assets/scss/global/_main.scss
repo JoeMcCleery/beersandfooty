@@ -97,13 +97,13 @@ html, body {
     -webkit-text-fill-color: transparent;
   }
   &.reverse {
-    animation: gradient-animation 30s linear infinite reverse;
-    &.small {
-      animation: gradient-animation-small 30s linear infinite reverse;
-    }
+    animation-direction: reverse;
+  }
+  &.medium {
+    animation-duration: 10s;
   }
   &.fast {
-    animation-duration: 2s;
+    animation-duration: 3s;
   }
 }
 

@@ -32,6 +32,10 @@
       fill: lighten($beerscolour, 20%);
       @include glow-icon($beerscolour);
     }
+    .selected {
+      color: white !important;
+      background-color: $beerscolour;
+    }
   }
 
   &.footy {
@@ -57,6 +61,10 @@
       color: lighten($footycolour, 20%);
       fill: lighten($footycolour, 20%);
       @include glow-icon($footycolour);
+    }
+    .selected {
+      color: white !important;
+      background-color: $footycolour;
     }
   }
 }

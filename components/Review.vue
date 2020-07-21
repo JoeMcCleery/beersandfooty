@@ -112,7 +112,7 @@
           </p>
           <p
             v-if="block.type === 'score'"
-            class="block uk-text-bold uk-text-center"
+            class="block uk-text-italic uk-text-center"
           >
             {{ block.content }} / 100
           </p>
@@ -137,7 +137,7 @@
         <button
           class="uk-button uk-button-default uk-button-small"
           :class="{
-            'uk-button-primary': userVote && userVote.upvote === 1,
+            selected: userVote && userVote.upvote === 1,
             'uk-disabled': !user || submitting
           }"
           title="Upvote Review"
@@ -160,7 +160,7 @@
           class="uk-button uk-button-default uk-button-small"
           title="Downvote Review"
           :class="{
-            'uk-button-danger': userVote && userVote.upvote === 0,
+            selected: userVote && userVote.upvote === 0,
             'uk-disabled': !user || submitting
           }"
           @click="voteAction(0, $event)"
