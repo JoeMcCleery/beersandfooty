@@ -202,7 +202,7 @@ export default {
         this.$store.dispatch('deleteReview', {
           id: reviewID
         })
-        window.location.reload(true)
+        this.$router.push('/')
       }
     }
   },
