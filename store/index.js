@@ -285,5 +285,27 @@ export const actions = {
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
     }
+  },
+
+  async deleteReview(
+    { commit },
+    // eslint-disable-next-line camelcase
+    { id }
+  ) {
+    const { data } = await axios.delete(
+      process.env.API_URL +
+        '/api/' +
+        process.env.API_VERSION +
+        '/reviews/' +
+        id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+    if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
   }
 }

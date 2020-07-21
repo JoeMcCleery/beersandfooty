@@ -39,6 +39,11 @@
   color: $grey;
 }
 
+// Dropdowns
+@mixin hook-dropdown() {
+  border-radius: $border-radius;
+}
+
 // Modals
 @mixin hook-modal() {
   .uk-modal-dialog {

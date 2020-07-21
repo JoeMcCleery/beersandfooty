@@ -36,9 +36,35 @@
               </nuxt-link>
             </div>
             <div v-if="userCanEditReview">
-              <a title="Edit Review" @click="editReviewModal">
+              <button class="no-button" type="button">
                 <img uk-icon="icon: more-vertical;" />
-              </a>
+              </button>
+              <div
+                uk-dropdown="animation: uk-animation-slide-top-small; duration: 200; mode: click; pos: bottom-justify;"
+              >
+                <ul class="uk-nav uk-dropdown-nav">
+                  <li>
+                    <a
+                      class="uk-text-small"
+                      title="Edit Review"
+                      @click="editReviewModal"
+                    >
+                      <span uk-icon="icon: pencil;" />
+                      Edit
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="uk-text-small"
+                      title="Delete Review"
+                      @click="deleteReview()"
+                    >
+                      <span uk-icon="icon: trash;" />
+                      Delete
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div v-if="userCanEditReview && isAdmin">
               <a
@@ -233,7 +259,7 @@ export default {
   },
   watch: {
     review() {
-      this.reviewData = JSON.parse(JSON.stringify(this.review))
+      this.reviewData = this.review
     }
   },
   methods: {
@@ -247,32 +273,10 @@ export default {
           event.target.classList.add('uk-disabled')
 
           if (this.userVote && this.userVote.upvote === upvote) {
-            if (upvote) {
-              this.reviewData.votes.upvotes--
-              this.reviewData.score--
-            } else {
-              this.reviewData.votes.downvotes--
-              this.reviewData.score++
-            }
             await this.$store.dispatch('deleteVote', {
               voteID: this.userVote.id
             })
           } else {
-            if (upvote) {
-              this.reviewData.votes.upvotes++
-              this.reviewData.score++
-              if (this.userVote) {
-                this.reviewData.votes.downvotes--
-                this.reviewData.score++
-              }
-            } else {
-              this.reviewData.votes.downvotes++
-              this.reviewData.score--
-              if (this.userVote) {
-                this.reviewData.votes.upvotes--
-                this.reviewData.score--
-              }
-            }
             await this.$store.dispatch('createVote', {
               review_id,
               upvote
@@ -296,6 +300,15 @@ export default {
           review: this.reviewData
         })
         this.$uikit.modal(modal).show()
+      }
+    },
+    deleteReview() {
+      const reviewID = this.reviewData.id
+      if (reviewID) {
+        this.$store.dispatch('deleteReview', {
+          id: reviewID
+        })
+        window.location.reload(true)
       }
     }
   }

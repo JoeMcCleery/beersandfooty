@@ -74,6 +74,13 @@ html, body {
     border-radius: 0 0 $border-radius $border-radius;
   }
 }
+
+.no-button {
+  font-size: 100%;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+}
 // Gradient Animation
 .brandgradient-anim {
   background: $brand-gradient-alpha repeat-y;
