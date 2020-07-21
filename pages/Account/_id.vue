@@ -67,7 +67,10 @@ export default {
     },
     userReviews() {
       return this.user.reviews.filter((review) => {
-        return review.status === 'published' || this.currentUser.isAdmin
+        return (
+          review.status === 'published' ||
+          (this.currentUser && this.currentUser.isAdmin)
+        )
       })
     },
     userVotes() {

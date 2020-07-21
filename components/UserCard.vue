@@ -76,7 +76,9 @@ export default {
   },
   computed: {
     currentUser() {
-      return this.$store.state.user.id === this.userData.id
+      return (
+        this.$store.state.user && this.$store.state.user.id === this.userData.id
+      )
     },
     numVotes() {
       return this.userData.votes ? this.userData.votes.length : 0
