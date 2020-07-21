@@ -5,6 +5,9 @@
   .image img {
     border-radius: $border-radius;
   }
+  .uk-dropdown {
+    font-weight: normal;
+  }
   &.beer {
     hr {
       border-color: transparentize(darken($beerscolour, 10%), 0.8);
