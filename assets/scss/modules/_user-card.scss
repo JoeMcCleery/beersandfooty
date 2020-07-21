@@ -4,8 +4,8 @@
   max-width: 600px;
   .uk-card-title {
     @extend .brandgradient-anim;
-    @extend .opaque;
     @extend .text;
+    @extend .small;
     @extend .fast;
   }
   hr {

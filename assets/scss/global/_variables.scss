@@ -6,7 +6,7 @@ $brand-purple: #7b47bb;
 $brand-green: #64BA34;
 $beerscolour: rgb(255, 131, 58);
 $beerscolour-alpha: transparentize($beerscolour, 0.05);
-$footycolour: rgb(255, 181, 55);
+$footycolour: rgb(255, 185, 36);
 $footycolour-alpha: transparentize($footycolour, 0.05);
 $background-dark: #1f1f1f;
 $grey: #777;
@@ -15,6 +15,7 @@ $transparent-white: rgba(255,255,255,0.95);
 
 $brand-gradient: linear-gradient(180deg, $beerscolour 0px, $beerscolour 500px, $footycolour 1500px, $footycolour 2000px, $beerscolour 3000px);
 $brand-gradient-alpha: linear-gradient(180deg, $beerscolour-alpha 0px, $beerscolour-alpha 500px, $footycolour-alpha 1500px, $footycolour-alpha 2000px, $beerscolour-alpha 3000px);
+$brand-gradient-small: linear-gradient(180deg, $beerscolour 0px, $beerscolour 10px, $footycolour 30px, $footycolour 40px, $beerscolour 60px);
 
 // Utility
 $border-radius: 10px;

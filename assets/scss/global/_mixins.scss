@@ -84,9 +84,9 @@
 @mixin hook-navbar-nav-item-active() {
   font-weight: bold;
   @extend .brandgradient-anim;
-  @extend .opaque;
   @extend .reverse;
   @extend .text;
+  @extend .small;
   @extend .fast;
 }
 

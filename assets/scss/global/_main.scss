@@ -59,11 +59,7 @@ html, body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   h1 {
     font-size: 3rem;
-    color: $footycolour;
-    @extend .brandgradient-anim;
-    @extend .opaque;
-    @extend .text;
-    @extend .fast;
+    color: $beerscolour;
     font-weight: bold;
   }
 }
@@ -91,21 +87,33 @@ html, body {
     background: $brand-gradient repeat-y;
     background-size: 100% 3000px;
   }
+  &.small {
+    background: $brand-gradient-small repeat-y;
+    background-size: 100% 60px;
+    animation: gradient-animation-small 30s linear infinite;
+  }
   &.text {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   &.reverse {
     animation: gradient-animation 30s linear infinite reverse;
+    &.small {
+      animation: gradient-animation-small 30s linear infinite reverse;
+    }
   }
   &.fast {
-    animation-duration: 5s;
+    animation-duration: 2s;
   }
 }
 
 @keyframes gradient-animation {
   from { background-position: 50% 0; }
   to { background-position: 50% 3000px; }
+}
+@keyframes gradient-animation-small {
+  from { background-position: 50% 0; }
+  to { background-position: 50% 60px; }
 }
 
 // Page Transitions

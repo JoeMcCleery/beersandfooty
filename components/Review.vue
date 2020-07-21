@@ -90,11 +90,7 @@
                         data-src="@/assets/images/eye.svg"
                         uk-svg
                       />
-                      {{
-                        reviewData.status === 'published'
-                          ? 'Hide Review'
-                          : 'Show Review'
-                      }}
+                      {{ reviewData.status === 'published' ? 'Hide' : 'Show' }}
                     </a>
                   </li>
                 </ul>

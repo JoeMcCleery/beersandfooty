@@ -9,6 +9,12 @@
     font-weight: normal;
   }
   &.beer {
+    > h1 {
+      color: $beerscolour;
+    }
+    > p {
+      color: lighten($beerscolour, 20%);
+    }
     hr {
       border-color: transparentize(darken($beerscolour, 10%), 0.8);
       @include glow-box($beerscolour);
@@ -29,6 +35,12 @@
   }
 
   &.footy {
+    > h1 {
+      color: $footycolour;
+    }
+    > p {
+      color: lighten($footycolour, 20%);
+    }
     hr {
       border-color: transparentize(darken($footycolour, 10%), 0.8);
       @include glow-box($footycolour);
