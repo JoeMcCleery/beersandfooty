@@ -59,12 +59,15 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.user
+    },
     user() {
       return this.userData
     },
     userReviews() {
       return this.user.reviews.filter((review) => {
-        return review.status === 'published'
+        return review.status === 'published' || this.currentUser.isAdmin
       })
     },
     userVotes() {
