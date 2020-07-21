@@ -14,7 +14,10 @@
       color: $beerscolour;
       @include glow-text($beerscolour);
     }
-    .icons > div > a > span > svg, .icons > div > a > svg, .icons button > svg {
+    .icons a {
+      color: $beerscolour;
+    }
+    .icons a span svg, .icons a svg, .icons button svg {
       cursor: pointer;
       color: lighten($beerscolour, 20%);
       fill: lighten($beerscolour, 20%);
@@ -31,7 +34,10 @@
       color: $footycolour;
       @include glow-text($footycolour);
     }
-    .icons > div > a > span > svg, .icons > div > a > svg, .icons button > svg {
+    .icons a {
+      color: $footycolour;
+    }
+    .icons a span svg, .icons a svg, .icons button svg {
       cursor: pointer;
       color: lighten($footycolour, 20%);
       fill: lighten($footycolour, 20%);
