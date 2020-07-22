@@ -137,6 +137,7 @@
                     :title="'Move ' + sanitizedType(block.type) + ' block up'"
                     type="button"
                     class="uk-button uk-button-default uk-button-small"
+                    style="width: 30px; padding: 0;"
                     @click="moveBlock(idx, idx - 1)"
                   >
                     <span uk-icon="icon: chevron-up" />
@@ -150,6 +151,7 @@
                     :title="'Move ' + sanitizedType(block.type) + ' block down'"
                     type="button"
                     class="uk-button uk-button-default uk-button-small"
+                    style="width: 30px; padding: 0;"
                     @click="moveBlock(idx, idx + 1)"
                   >
                     <span uk-icon="icon: chevron-down" />
