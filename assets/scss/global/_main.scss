@@ -74,7 +74,7 @@ html, body {
 .no-button {
   font-size: 100%;
   font-family: inherit;
-  border: 0;
+  border: 0 !important;
   padding: 0;
   background-color: transparent;
 }
