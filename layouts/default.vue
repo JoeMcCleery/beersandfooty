@@ -35,6 +35,7 @@
     <!--  Modals  -->
     <login-modal />
     <review-form-modal />
+    <confirm-review-deletion-modal />
   </div>
 </template>
 
@@ -45,7 +46,9 @@ export default {
     ReviewFormModal: () => import('~/components/ReviewFormModal.vue'),
     Navbar: () => import('~/components/Navbar.vue'),
     LoginModal: () => import('~/components/LoginModal.vue'),
-    SvgBackground: () => import('~/components/SvgBackground.vue')
+    SvgBackground: () => import('~/components/SvgBackground.vue'),
+    ConfirmReviewDeletionModal: () =>
+      import('~/components/ConfirmReviewDeletionModal.vue')
   },
   async fetch() {
     if (!this.$store.state.clientAccessToken) {

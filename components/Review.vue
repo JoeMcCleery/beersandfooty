@@ -64,7 +64,9 @@
                     <a
                       class="uk-text-small"
                       title="Delete Review"
-                      @click="deleteReview()"
+                      href="#delete-review-modal"
+                      @click="setEditReview"
+                      uk-toggle
                     >
                       <span uk-icon="icon: trash;" />
                       Delete
@@ -327,22 +329,16 @@ export default {
         }
       }
     },
+    setEditReview() {
+      this.$store.dispatch('setEditReview', {
+        review: this.reviewData
+      })
+    },
     editReviewModal() {
       const modal = document.querySelector('#review-form-modal')
       if (this.reviewData && modal) {
-        this.$store.dispatch('setEditReview', {
-          review: this.reviewData
-        })
+        this.setEditReview()
         this.$uikit.modal(modal).show()
-      }
-    },
-    deleteReview() {
-      const reviewID = this.reviewData.id
-      if (reviewID) {
-        this.$store.dispatch('deleteReview', {
-          id: reviewID
-        })
-        window.location.reload(true)
       }
     }
   }
