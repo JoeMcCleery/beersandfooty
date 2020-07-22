@@ -74,8 +74,9 @@ html, body {
 .no-button {
   font-size: 100%;
   font-family: inherit;
-  border: 0 !important;
+  border: 0;
   padding: 0;
+  outline: none;
   background-color: transparent;
 }
 // Gradient Animation
