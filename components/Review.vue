@@ -65,8 +65,8 @@
                       class="uk-text-small"
                       title="Delete Review"
                       href="#delete-review-modal"
-                      @click="setEditReview"
                       uk-toggle
+                      @click="setEditReview"
                     >
                       <span uk-icon="icon: trash;" />
                       Delete

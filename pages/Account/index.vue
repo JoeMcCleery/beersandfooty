@@ -14,9 +14,7 @@
               class="uk-child-width-1-2@m uk-child-width-1-3@l"
               uk-grid="masonry: true"
             >
-              <div>
-                <user-card :user="user" />
-              </div>
+              <user-card :user="user" />
               <review
                 v-for="r in userReviews"
                 :key="r.title + r.id"
@@ -46,10 +44,9 @@ export default {
     if (from && (from.name === 'Account-id' || from.name === 'Review-id')) {
       return 'page'
     }
-    if (to.name === 'Account') {
-      return 'slide-left'
+    if (to.name === 'About') {
+      return 'slide-right'
     }
-    return 'slide-right'
   },
   computed: {
     user() {

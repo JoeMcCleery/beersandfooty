@@ -83,10 +83,10 @@
 }
 @mixin hook-navbar-nav-item-active() {
   font-weight: bold;
-  @extend .brandgradient-anim;
-  @extend .text;
-  @extend .small;
-  @extend .fast;
+  &:not(.no-uk-icon) {
+    color: $beerscolour;
+    @include glow-icon($beerscolour);
+  }
 }
 
 // Lightbox

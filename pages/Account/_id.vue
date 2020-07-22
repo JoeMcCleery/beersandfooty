@@ -18,9 +18,7 @@
               class="uk-child-width-1-2@m uk-child-width-1-3@l"
               uk-grid="masonry: true"
             >
-              <div>
-                <user-card :user="user" />
-              </div>
+              <user-card :user="user" />
               <review
                 v-for="r in userReviews"
                 :key="r.title + r.id"

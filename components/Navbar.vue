@@ -6,7 +6,7 @@
       >
         <ul class="uk-navbar-nav">
           <li :class="{ 'uk-active': pageTitle === 'Home' }">
-            <nuxt-link to="/" title="Beers and Footy Home">
+            <nuxt-link class="no-uk-icon" to="/" title="Beers and Footy Home">
               <span class="icon-container uk-height-1-1">
                 <img
                   :class="{ 'icon-beer': pageTitle === 'Home' }"
@@ -25,12 +25,19 @@
           </li>
           <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': pageTitle === 'About' }">
-            <nuxt-link to="/about" title="About">About</nuxt-link>
+            <nuxt-link to="/about" title="About">
+              <span uk-icon="info" />
+            </nuxt-link>
           </li>
           <!-- Auth Routes -->
           <li v-if="loggedIn" :class="{ 'uk-active': pageTitle === 'Account' }">
             <nuxt-link to="/account" title="Account">
-              Account
+              <span uk-icon="user" />
+            </nuxt-link>
+          </li>
+          <li v-if="isAdmin" :class="{ 'uk-active': pageTitle === 'Admin' }">
+            <nuxt-link to="/admin" title="Admin">
+              <span uk-icon="cog" />
             </nuxt-link>
           </li>
         </ul>
@@ -56,6 +63,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
+    },
+    isAdmin() {
+      return this.loggedIn && this.$store.state.user.isAdmin
     }
   }
 }
