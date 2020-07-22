@@ -36,6 +36,7 @@
     .selected {
       color: white !important;
       background-color: $beerscolour;
+      @include glow-box($beerscolour);
     }
   }
 
@@ -66,6 +67,7 @@
     .selected {
       color: white !important;
       background-color: $footycolour;
+      @include glow-box($footycolour);
     }
   }
 }
