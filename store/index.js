@@ -164,6 +164,25 @@ export const actions = {
     }
   },
 
+  async getUnpublishedReviews({ commit }) {
+    const { data } = await axios.get(
+      process.env.API_URL +
+        '/api/' +
+        process.env.API_VERSION +
+        '/reviews/unpublished',
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.clientAccessToken
+        }
+      }
+    )
+    if (data.data) {
+      return data.data
+    } else if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+  },
+
   // eslint-disable-next-line camelcase
   async getReview({ commit }, { review_id }) {
     const { data } = await axios.get(

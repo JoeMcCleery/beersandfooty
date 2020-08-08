@@ -8,7 +8,14 @@
       <!--  Page Content Container  -->
       <section class="uk-section">
         <div class="uk-container uk-text-center">
-          <!--  Masonry Grid  -->
+          <!--  Masonry Grids  -->
+          <div
+            v-if="reviews"
+            class="uk-child-width-1-2@m uk-child-width-1-3@l"
+            uk-grid="masonry: true"
+          >
+            <review v-for="r in reviews" :key="r.title + r.id" :review="r" />
+          </div>
           <div
             v-if="users"
             class="uk-child-width-1-2@m uk-child-width-1-3@l"
@@ -29,7 +36,8 @@
 export default {
   name: 'Admin',
   components: {
-    UserCard: () => import('@/components/UserCard')
+    UserCard: () => import('@/components/UserCard'),
+    Review: () => import('@/components/Review')
   },
   transition(to, from) {
     if (from && (from.name === 'Account-id' || from.name === 'Review-id')) {
@@ -42,7 +50,8 @@ export default {
   },
   data() {
     return {
-      users: []
+      users: [],
+      reviews: []
     }
   },
   computed: {
