@@ -64,6 +64,7 @@ export default {
   },
   async mounted() {
     this.users = await this.$store.dispatch('getUsers')
+    this.reviews = await this.$store.dispatch('getUnpublishedReviews')
   }
 }
 </script>
