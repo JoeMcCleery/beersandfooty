@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default review" :class="reviewData.type">
+    <div
+      class="uk-card uk-card-default uk-text-left review"
+      :class="reviewData.type"
+    >
       <div class="uk-card-body">
         <div v-if="!contentOnly" class="uk-card-title uk-text-bold">
           <div class="uk-card-title">{{ reviewData.title }}</div>

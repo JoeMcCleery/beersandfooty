@@ -9,22 +9,24 @@
       <section class="uk-section">
         <div class="uk-container">
           <p>
-            <b>How to use:</b>
+            <b>How to use:</b><br />
             Create an account and login to start writing reviews. Initially an
             Admin will need to publish any reviews you write for it to be
             visible to the public.
           </p>
           <p>
-            <b>Tech info:</b>
+            <b>Tech info:</b><br />
             The frontend of this website is running nuxt in universal mode.
             There is also a Laravel API used to handle data storage and
             manipulation.
           </p>
-          <a
-            href="mailto:contact@beersandfooty.com?subject=Feedback"
-            class="uk-button uk-button-secondary"
-            >contact@beersandfooty.com</a
-          >
+          <div class="uk-text-center uk-margin-large">
+            <a
+              href="mailto:contact@beersandfooty.com?subject=Feedback"
+              class="uk-button uk-button-secondary"
+              >contact@beersandfooty.com</a
+            >
+          </div>
         </div>
       </section>
     </div>

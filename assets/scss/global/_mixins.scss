@@ -94,6 +94,16 @@
   display: none;
 }
 
+// Accordion
+@mixin hook-accordion() {
+  .uk-accordion-title span {
+    transition: transform $animation-duration/2   ease-in-out;
+  }
+  .uk-open .uk-accordion-title span {
+    transform: rotateZ(180deg);
+  }
+}
+
 // Glow Effect
 @mixin glow-text($color) {
   text-shadow: 0 0 8px transparentize(lighten($color, 10%), 0.8);

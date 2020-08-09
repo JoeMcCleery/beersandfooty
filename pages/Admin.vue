@@ -9,20 +9,45 @@
       <section class="uk-section">
         <div class="uk-container uk-text-center">
           <!--  Masonry Grids  -->
-          <div
-            v-if="reviews"
-            class="uk-child-width-1-2@m uk-child-width-1-3@l"
-            uk-grid="masonry: true"
-          >
-            <review v-for="r in reviews" :key="r.title + r.id" :review="r" />
-          </div>
-          <div
-            v-if="users"
-            class="uk-child-width-1-2@m uk-child-width-1-3@l"
-            uk-grid="masonry: true"
-          >
-            <user-card v-for="u in users" :key="u.username + u.id" :user="u" />
-          </div>
+          <ul uk-accordion>
+            <li>
+              <a class="uk-accordion-title" href="#"
+                >Unpublished Reviews<span uk-icon="chevron-down"
+              /></a>
+              <div class="uk-accordion-content">
+                <div
+                  v-if="reviews"
+                  class="uk-child-width-1-2@m uk-child-width-1-3@l"
+                  uk-grid="masonry: true"
+                >
+                  <review
+                    v-for="r in reviews"
+                    :key="r.title + r.id"
+                    :review="r"
+                  />
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <a class="uk-accordion-title" href="#"
+                >Users<span uk-icon="chevron-down"
+              /></a>
+              <div class="uk-accordion-content">
+                <div
+                  v-if="users"
+                  class="uk-child-width-1-2@m uk-child-width-1-3@l"
+                  uk-grid="masonry: true"
+                >
+                  <user-card
+                    v-for="u in users"
+                    :key="u.username + u.id"
+                    :user="u"
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
     </div>

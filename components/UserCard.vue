@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default user-card">
-      <div class="uk-card-body uk-text-left">
+    <div class="uk-card uk-card-default uk-text-left user-card">
+      <div class="uk-card-body">
         <div class="uk-card-title uk-text-bold uk-margin">
           {{ userData.username }}
 
