@@ -129,7 +129,7 @@
               <a class="uk-inline" :href="block.content">
                 <img
                   src=""
-                  :data-src="block.content"
+                  :data-src="secureURL(block.content)"
                   :alt="block.title"
                   uk-img
                 />
@@ -343,6 +343,9 @@ export default {
         this.setEditReview()
         this.$uikit.modal(modal).show()
       }
+    },
+    secureURL(url) {
+      return url.replace(/^http:\/\//i, 'https://');
     }
   }
 }
