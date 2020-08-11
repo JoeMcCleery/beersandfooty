@@ -345,7 +345,7 @@ export default {
       }
     },
     secureURL(url) {
-      return url.replace(/^http:\/\//i, 'https://');
+      return url.replace(/^http:\/\//i, 'https://')
     }
   }
 }
