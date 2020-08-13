@@ -3,7 +3,12 @@
     <div class="uk-card uk-card-default uk-text-left user-card">
       <div class="uk-card-body">
         <div class="uk-card-title uk-text-bold uk-margin">
-          {{ userData.username }}
+          <a v-if="!currentUser" :href="'/account/' + user.id">
+            {{ userData.username }}
+          </a>
+          <span v-else>
+            {{ userData.username }}
+          </span>
 
           <button
             v-if="currentUser"
