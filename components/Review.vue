@@ -347,7 +347,7 @@ export default {
     secureURL(url) {
       let newUrl = new URL(url)
       newURL.hostname = 'api.beersandfooty.com'
-      return newURL
+      return newURL.replace('http://', 'https://')
     }
   }
 }
