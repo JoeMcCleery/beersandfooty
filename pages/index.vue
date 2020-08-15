@@ -147,7 +147,7 @@ export default {
     currentPageLink() {
       if (this.showReviews) {
         const meta = this.reviews.meta
-        return meta ? meta.path : null
+        return meta ? this.apiURL(meta.path) : null
       }
       return (
         process.env.API_URL +
@@ -159,14 +159,14 @@ export default {
     nextPageLink() {
       if (this.showReviews) {
         const links = this.reviews.links
-        return links ? links.next : null
+        return links ? this.apiURL(links.next) : null
       }
       return null
     },
     previousPageLink() {
       if (this.showReviews) {
         const links = this.reviews.links
-        return links ? links.prev : null
+        return links ? this.apiURL(links.prev) : null
       }
       return null
     },
@@ -215,6 +215,12 @@ export default {
             this.reviews = []
           }
         })
+    },
+    apiURL(url) {
+      const newUrl = new URL(url)
+      newUrl.hostname = process.env.API_URL
+      newUrl.protocol = process.env.MODE === 'live' ? 'https' : 'http'
+      return newUrl.href
     }
   }
 }
