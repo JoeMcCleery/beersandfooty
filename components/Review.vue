@@ -129,7 +129,7 @@
               <a class="uk-inline" :href="block.content">
                 <img
                   src=""
-                  :data-src="secureURL(block.content)"
+                  :data-src="apiURL(block.content)"
                   :alt="block.title"
                   uk-img
                 />
@@ -344,9 +344,10 @@ export default {
         this.$uikit.modal(modal).show()
       }
     },
-    secureURL(url) {
-      let newUrl = new URL(url)
-      newUrl.hostname = 'api.beersandfooty.com'
+    apiURL(url) {
+      const newUrl = new URL(url)
+      newUrl.hostname = process.env.API_URL
+      newUrl.protocol = process.env.MODE === 'live' ? 'https' : 'http'
       return newUrl.href
     }
   }

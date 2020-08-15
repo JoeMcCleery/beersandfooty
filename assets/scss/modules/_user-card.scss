@@ -7,6 +7,9 @@
     @extend .text;
     @extend .small;
     @extend .fast;
+    a:hover {
+      text-decoration: none;
+    }
   }
   hr {
     width: 100%;
