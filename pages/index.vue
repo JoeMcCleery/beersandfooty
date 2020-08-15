@@ -195,6 +195,7 @@ export default {
       if (window) {
         url = new URL(url)
         url.hostname = process.env.API_DOMAIN
+        url.protocol = process.env.MODE === 'live' ? 'https' : 'http'
         url = url.href
       }
       await this.$axios
