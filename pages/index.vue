@@ -221,6 +221,7 @@ export default {
       const newUrl = new URL(url)
       newUrl.hostname = process.env.API_URL
       newUrl.protocol = process.env.MODE === 'live' ? 'https' : 'http'
+      console.log(newUrl.href)
       return newUrl.href
     }
   }
