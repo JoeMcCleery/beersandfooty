@@ -192,7 +192,7 @@ export default {
       } else {
         url += '?filter=' + JSON.stringify(this.filter)
       }
-      if (window) {
+      if (process.client) {
         url = new URL(url)
         url.hostname = process.env.API_DOMAIN
         url.protocol = process.env.MODE === 'live' ? 'https' : 'http'
