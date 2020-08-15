@@ -126,7 +126,7 @@
             class="block uk-text-center uk-margin"
           >
             <div uk-lightbox="animation: slide;">
-              <a class="uk-inline" :href="block.content">
+              <a class="uk-inline" :href="apiURL(block.content)">
                 <img
                   src=""
                   :data-src="apiURL(block.content)"
