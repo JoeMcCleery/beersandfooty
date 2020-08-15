@@ -187,11 +187,15 @@ export default {
     },
     async fetchReviews(url, addData = false) {
       this.submitting = true
-      url = this.apiURL(url)
       if (url.includes('?page')) {
         url += '&filter=' + JSON.stringify(this.filter)
       } else {
         url += '?filter=' + JSON.stringify(this.filter)
+      }
+      if (window) {
+        url = new URL(url)
+        url.hostname = process.env.API_DOMAIN
+        url = url.href
       }
       await this.$axios
         .get(url, {
@@ -216,13 +220,6 @@ export default {
             this.reviews = []
           }
         })
-    },
-    apiURL(url) {
-      const newUrl = new URL(url)
-      newUrl.hostname = process.env.API_URL
-      newUrl.protocol = process.env.MODE === 'live' ? 'https' : 'http'
-      console.log(newUrl.href)
-      return newUrl.href
     }
   }
 }
