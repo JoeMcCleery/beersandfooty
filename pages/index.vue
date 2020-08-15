@@ -147,7 +147,7 @@ export default {
     currentPageLink() {
       if (this.showReviews) {
         const meta = this.reviews.meta
-        return meta ? this.apiURL(meta.path) : null
+        return meta ? meta.path : null
       }
       return (
         process.env.API_URL +
@@ -159,14 +159,14 @@ export default {
     nextPageLink() {
       if (this.showReviews) {
         const links = this.reviews.links
-        return links ? this.apiURL(links.next) : null
+        return links ? links.next : null
       }
       return null
     },
     previousPageLink() {
       if (this.showReviews) {
         const links = this.reviews.links
-        return links ? this.apiURL(links.prev) : null
+        return links ? links.prev : null
       }
       return null
     },
@@ -187,6 +187,7 @@ export default {
     },
     async fetchReviews(url, addData = false) {
       this.submitting = true
+      url = this.apiURL(url)
       if (url.includes('?page')) {
         url += '&filter=' + JSON.stringify(this.filter)
       } else {
