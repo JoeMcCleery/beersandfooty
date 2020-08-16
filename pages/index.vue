@@ -10,57 +10,72 @@
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <div
-            class="homepage-filter uk-margin-large uk-margin-auto uk-card uk-background-default uk-card-body"
+            class="uk-width-1-1 uk-flex-column uk-flex uk-flex-center uk-flex-middle uk-margin-small"
           >
-            <form>
-              <label for="beerFilter" class="uk-inline">
-                <input
-                  id="beerFilter"
-                  v-model="filter.type"
-                  name="beerFilter"
-                  type="checkbox"
-                  class="uk-hidden"
-                  value="beer"
-                  @change="fetchReviews(currentPageLink)"
-                />
-                <a class="icon-container" title="show/hide beer reviews">
-                  <img
-                    class="icon-beer"
-                    data-src="@/assets/images/beer-icon.svg"
-                    uk-svg
+            <a
+              class="filter-toggle uk-link-text uk-margin-small"
+              uk-toggle="target: #filter-toggle-target; animation: uk-animation-fade"
+              >Filter</a
+            >
+            <div
+              id="filter-toggle-target"
+              class="homepage-filter uk-card uk-background-default uk-card-body"
+              hidden
+            >
+              <form>
+                <label for="beerFilter" class="uk-inline">
+                  <input
+                    id="beerFilter"
+                    v-model="filter.type"
+                    name="beerFilter"
+                    type="checkbox"
+                    class="uk-hidden"
+                    value="beer"
+                    @change="fetchReviews(currentPageLink)"
                   />
-                </a>
-              </label>
-              <label for="footyFilter" class="uk-inline uk-margin-small-right">
-                <input
-                  id="footyFilter"
-                  v-model="filter.type"
-                  name="footyFilter"
-                  type="checkbox"
-                  class="uk-hidden"
-                  value="footy"
-                  @change="fetchReviews(currentPageLink)"
-                />
-                <a class="icon-container" title="show/hide footy reviews">
-                  <img
-                    class="icon-footy"
-                    data-src="@/assets/images/football-icon.svg"
-                    uk-svg
+                  <a class="icon-container" title="show/hide beer reviews">
+                    <img
+                      class="icon-beer"
+                      data-src="@/assets/images/beer-icon.svg"
+                      uk-svg
+                    />
+                  </a>
+                </label>
+                <label
+                  for="footyFilter"
+                  class="uk-inline uk-margin-small-right"
+                >
+                  <input
+                    id="footyFilter"
+                    v-model="filter.type"
+                    name="footyFilter"
+                    type="checkbox"
+                    class="uk-hidden"
+                    value="footy"
+                    @change="fetchReviews(currentPageLink)"
                   />
-                </a>
-              </label>
-              <select
-                id="sortField"
-                v-model="filter.order.field"
-                name="sortField"
-                class="uk-select uk-inline uk-width-auto uk-text-center"
-                @change="fetchReviews(currentPageLink)"
-              >
-                <option value="publish_date">Publish Date [desc]</option>
-                <option value="score">Score [desc]</option>
-              </select>
-            </form>
+                  <a class="icon-container" title="show/hide footy reviews">
+                    <img
+                      class="icon-footy"
+                      data-src="@/assets/images/football-icon.svg"
+                      uk-svg
+                    />
+                  </a>
+                </label>
+                <select
+                  id="sortField"
+                  v-model="filter.order.field"
+                  name="sortField"
+                  class="uk-select uk-inline uk-width-auto uk-text-center"
+                  @change="fetchReviews(currentPageLink)"
+                >
+                  <option value="publish_date">Publish Date</option>
+                  <option value="score">Score</option>
+                </select>
+              </form>
+            </div>
           </div>
+
           <!--  Masonry Grid  -->
           <div
             v-if="showReviews"

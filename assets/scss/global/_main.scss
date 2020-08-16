@@ -118,39 +118,46 @@ html, body {
 }
 
 // Page Transitions
+$pageTransitionDuration: 250ms;
 .page-enter-active {
   opacity: 1;
-  transition: opacity 250ms linear;
+  transition: opacity $pageTransitionDuration linear;
 }
 .page-leave-active {
   opacity: 0;
-  transition: opacity 250ms;
+  transition: opacity $pageTransitionDuration;
 }
 .page-enter {
   opacity: 0;
 }
 
 .slide-left-enter-active {
+  opacity: 1;
   transform: translateX(0);
-  transition: transform 250ms ease-in-out;
+  transition: transform $pageTransitionDuration ease-in-out, opacity $pageTransitionDuration linear;
 }
 .slide-left-leave-active {
+  opacity: 0;
   transform: translateX(-100%);
-  transition: transform 250ms ease-in-out;
+  transition: transform $pageTransitionDuration ease-in-out, opacity $pageTransitionDuration;
 }
 .slide-left-enter {
+  opacity: 0;
   transform: translateX(100%);
 }
 
 .slide-right-enter-active {
+  opacity: 1;
   transform: translateX(0);
-  transition: transform 250ms ease-in-out;
+  transition: transform $pageTransitionDuration ease-in-out, opacity $pageTransitionDuration linear;
 }
 .slide-right-leave-active {
+  opacity: 0;
   transform: translateX(100%);
-  transition: transform 250ms ease-in-out;
+  transition: transform $pageTransitionDuration ease-in-out, opacity $pageTransitionDuration;
 }
 .slide-right-enter {
+  opacity: 0;
   transform: translateX(-100%);
 }
 
