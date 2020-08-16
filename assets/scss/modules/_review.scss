@@ -2,12 +2,30 @@
   margin: auto;
   max-width: 600px;
   background: white;
+  position: relative;
   .image img {
     border-radius: $border-radius;
   }
   .uk-dropdown {
     font-weight: normal;
     z-index: 1000;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    background: url($images-dir + 'background-white.svg') center;
+    background-color: $beerscolour-alpha;
+    background-size: 600px 600px;
+    background-position: 0 0;
+    z-index: -1;
+    border-radius: 6px;
+    animation: scroll-bg 10s linear infinite;
+    @extend .uk-box-shadow-small;
+    opacity: 0.7;
   }
   &.beer {
     > h1 {
@@ -37,6 +55,9 @@
       color: white !important;
       background-color: $beerscolour;
       @include glow-box($beerscolour);
+    }
+    &:after {
+      background-color: $beerscolour-alpha;
     }
   }
 
@@ -69,7 +90,18 @@
       background-color: $footycolour;
       @include glow-box($footycolour);
     }
+    &:after {
+      background-color: $footycolour-alpha;
+    }
+  }
+
+  @keyframes scroll-bg {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 300px 300px;
+    }
   }
 }
-
 
