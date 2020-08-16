@@ -51,7 +51,6 @@ html, body {
 }
 .header {
   background: #fff;
-  color: $footycolour;
   width: 100%;
   min-height: $header-height;
   border-radius: 0;
@@ -59,8 +58,11 @@ html, body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   h1 {
     font-size: 3rem;
-    color: $beerscolour;
     font-weight: bold;
+    @extend .brandgradient-anim;
+    @extend .text;
+    @extend .small;
+    @extend .fast;
   }
 }
 @include for-tablet {

@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div class="uk-card uk-card-default uk-text-left user-card">
+    <div
+      class="uk-card uk-card-default uk-text-left user-card"
+      :class="{ admin: userData.isAdmin }"
+    >
       <div class="uk-card-body">
         <div class="uk-card-title uk-text-bold uk-margin">
-          <a v-if="!currentUser" :href="'/account/' + user.id">
+          <nuxt-link
+            v-if="!isAccountPage"
+            :to="currentUser ? '/account/' : '/account/' + user.id"
+          >
             {{ userData.username }}
-          </a>
+          </nuxt-link>
           <span v-else>
             {{ userData.username }}
           </span>
@@ -28,7 +34,7 @@
           <div>
             <div>
               <span uk-icon="calendar" />
-              {{ formatDate(user.created_at) }}
+              {{ formatDate(userData.created_at) }}
             </div>
           </div>
           <div>
@@ -71,7 +77,8 @@ export default {
           score: 0,
           created_at: 0,
           reviews_made: 0,
-          votes_made: 0
+          votes_made: 0,
+          isAdmin: false
         }
       }
     }
@@ -92,6 +99,13 @@ export default {
     },
     numReviews() {
       return this.userData.reviews ? this.userData.reviews.length : 0
+    },
+    isAccountPage() {
+      console.log(this.$nuxt.$route.name)
+      return (
+        this.$nuxt.$route.name === 'Account' ||
+        this.$nuxt.$route.name === 'Account-id'
+      )
     }
   },
   watch: {

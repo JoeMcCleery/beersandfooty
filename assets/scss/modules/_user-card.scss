@@ -2,14 +2,17 @@
   background-color: $background-default-background;
   margin: auto;
   max-width: 600px;
-  .uk-card-title {
+  .uk-card-title, .uk-card-title a {
+    color: $beerscolour;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &.admin .uk-card-title {
     @extend .brandgradient-anim;
     @extend .text;
     @extend .small;
     @extend .fast;
-    a:hover {
-      text-decoration: none;
-    }
   }
   hr {
     width: 100%;

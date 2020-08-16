@@ -10,7 +10,7 @@
         <div class="uk-container uk-container-large">
           <!-- Filter -->
           <div
-            class="uk-width-1-1 uk-flex-column uk-flex uk-flex-center uk-flex-middle uk-margin-small"
+            class="uk-width-1-1 uk-flex-column uk-flex uk-flex-center uk-flex-middle uk-margin"
           >
             <a
               class="filter-toggle uk-link-text uk-margin-small"

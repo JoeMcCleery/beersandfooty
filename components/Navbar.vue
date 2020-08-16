@@ -23,7 +23,6 @@
               </span>
             </nuxt-link>
           </li>
-          <li class="uk-nav-divider"></li>
           <li :class="{ 'uk-active': pageTitle === 'About' }">
             <nuxt-link to="/about" title="About">
               <span uk-icon="info" />
@@ -35,10 +34,36 @@
               <span uk-icon="user" />
             </nuxt-link>
           </li>
-          <li v-if="isAdmin" :class="{ 'uk-active': pageTitle === 'Admin' }">
+          <li
+            v-if="isAdmin"
+            class="uk-margin-small-right"
+            :class="{ 'uk-active': pageTitle === 'Admin' }"
+          >
             <nuxt-link to="/admin" title="Admin">
               <span uk-icon="cog" />
             </nuxt-link>
+          </li>
+          <li v-if="loggedIn">
+            <a
+              href="#review-form-modal"
+              class="uk-button uk-button-primary uk-border-rounded"
+              title="Create New Review"
+              style="padding: 0; width: 50px; line-height: 50px;"
+              uk-toggle
+              @click="clearEditReview"
+            >
+              <span uk-icon="icon: file-edit;" />
+            </a>
+          </li>
+          <li v-else>
+            <a
+              href="#login-modal"
+              class="uk-button uk-button-primary uk-border-rounded"
+              style="padding: 0; width: 50px; line-height: 50px;"
+              uk-toggle
+            >
+              <span uk-icon="icon: sign-in;" />
+            </a>
           </li>
         </ul>
       </div>
@@ -66,6 +91,13 @@ export default {
     },
     isAdmin() {
       return this.loggedIn && this.$store.state.user.isAdmin
+    }
+  },
+  methods: {
+    clearEditReview() {
+      if (this.$store.getters.getEditReview) {
+        this.$store.dispatch('setEditReview', { review: null })
+      }
     }
   }
 }
