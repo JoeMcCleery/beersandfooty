@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isPublished && !isAdmin">
     <div
       class="uk-card uk-card-default uk-text-left review"
       :class="reviewData.type"
@@ -205,6 +205,7 @@ export default {
           title: '',
           type: 'beer',
           publish_date: 0,
+          status: 'hidden',
           content_blocks: [
             {
               sort: 0,
@@ -248,6 +249,9 @@ export default {
     },
     isAdmin() {
       return this.user && this.user.isAdmin
+    },
+    isPublished() {
+      return this.reviewData.status === 'published'
     },
     userCanEditReview() {
       return (this.userReview || this.isAdmin) && this.loggedIn
