@@ -207,6 +207,13 @@ export default {
       } else {
         url += '?filter=' + JSON.stringify(this.filter)
       }
+      if (process.client) {
+        url = new URL(url)
+        url.hostname = process.env.API_DOMAIN
+        url.port = process.env.API_PORT
+        url.protocol = process.env.MODE === 'live' ? 'https' : 'http'
+        url = url.href
+      }
       await this.$axios
         .get(url, {
           headers: {
