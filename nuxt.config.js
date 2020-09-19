@@ -33,13 +33,25 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    'vue-scrollto/nuxt'
+    'vue-scrollto/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/google-analytics'
   ],
+  sitemap: {
+    hostname: process.env.BASE_URL || 'https://beersandfooty.com',
+    gzip: true,
+    routes: async () => {
+      const { reviews } = await this.$store.dispatch('getPublishedReviews')
+      return reviews.map((review) => `/review/${review.id}`)
+    }
+  },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    dev: process.env.MODE
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -52,7 +64,7 @@ export default {
       lang: 'en',
       mobileApp: true,
       mobileAppIOS: true,
-      ogHost: 'beersandfooty.com',
+      ogHost: process.env.NUXT_HOST || 'beersandfooty.com',
       ogImage: true,
       favicon: true,
       description: 'Beer related footy reviews and footy related beer reviews.',
@@ -62,7 +74,7 @@ export default {
       ogTitle: process.env.SITE_TITLE || 'Beers and Footy',
       ogDescription:
         'Beer related footy reviews and footy related beer reviews.',
-      ogUrl: process.env.BASE_URL || 'Beers and Footy',
+      ogUrl: process.env.BASE_URL || 'https://beersandfooty.com',
       nativeUI: true
     },
     icon: {
