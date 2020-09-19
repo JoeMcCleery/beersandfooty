@@ -231,6 +231,11 @@ export default {
           hid: 'og:url',
           name: 'og:url',
           content: process.env.baseUrl + '/review/' + this.id
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.review ? this.review.title : process.env.SITE_TITLE
         }
       ]
     }

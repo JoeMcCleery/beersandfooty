@@ -48,11 +48,6 @@ export default {
       return 'slide-right'
     }
   },
-  async fetch() {
-    if (this.loggedIn) {
-      await this.$store.dispatch('getCurrentUser')
-    }
-  },
   computed: {
     user() {
       return this.$store.state.user
@@ -71,6 +66,11 @@ export default {
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
+    }
+  },
+  async mounted() {
+    if (this.loggedIn) {
+      await this.$store.dispatch('getCurrentUser')
     }
   },
   methods: {

@@ -50,14 +50,6 @@ export default {
     UserCard: () => import('@/components/UserCard'),
     Review: () => import('@/components/Review')
   },
-  async fetch() {
-    if (this.id) {
-      const result = await this.$store.dispatch('getUser', { id: this.id })
-      if (result) {
-        this.userData = result
-      }
-    }
-  },
   data() {
     return {
       id: this.$route.params.id,
@@ -87,6 +79,14 @@ export default {
     },
     userScore() {
       return this.user.score
+    }
+  },
+  async mounted() {
+    if (this.id) {
+      const result = await this.$store.dispatch('getUser', { id: this.id })
+      if (result) {
+        this.userData = result
+      }
     }
   },
   methods: {

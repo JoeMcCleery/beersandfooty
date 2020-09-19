@@ -73,10 +73,6 @@ export default {
     }
     return 'slide-right'
   },
-  async fetch() {
-    this.users = await this.$store.dispatch('getUsers')
-    this.reviews = await this.$store.dispatch('getUnpublishedReviews')
-  },
   data() {
     return {
       users: [],
@@ -90,6 +86,10 @@ export default {
     isAdmin() {
       return this.loggedIn && this.$store.state.user.isAdmin
     }
+  },
+  async mounted() {
+    this.users = await this.$store.dispatch('getUsers')
+    this.reviews = await this.$store.dispatch('getUnpublishedReviews')
   }
 }
 </script>
