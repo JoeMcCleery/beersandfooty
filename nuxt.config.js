@@ -1,5 +1,4 @@
 export default {
-  mode: 'universal',
   /*
    ** Headers of the page
    */
@@ -42,11 +41,11 @@ export default {
   ],
   sitemap: {
     hostname: process.env.BASE_URL || 'https://beersandfooty.com',
-    gzip: true,
-    routes: async () => {
-      const { reviews } = await this.$store.dispatch('getPublishedReviews')
-      return reviews.map((review) => `/review/${review.id}`)
-    }
+    gzip: true
+    // routes: async () => {
+    //   const { reviews } = await this.store.dispatch('getPublishedReviews')
+    //   return reviews.map((review) => `/review/${review.id}`)
+    // }
   },
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID,

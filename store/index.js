@@ -5,7 +5,8 @@ const mode = process.env.MODE
 
 export const state = () => ({
   page: null,
-  api_version: process.env.API_VERSION,
+  apiUrl: process.env.API_URL,
+  apiVersion: process.env.API_VERSION,
   user: null,
   userVotes: null,
   userAccessToken: null,
@@ -72,7 +73,7 @@ export const actions = {
 
   // eslint-disable-next-line camelcase
   async getClientToken({ commit }, { client_id, client_secret, scope }) {
-    const { data } = await axios.post(process.env.API_URL + '/oauth/token', {
+    const { data } = await axios.post(this.state.apiUrl + '/oauth/token', {
       grant_type: 'client_credentials',
       client_id,
       client_secret,
@@ -91,7 +92,7 @@ export const actions = {
     { client_id, client_secret, username, password, scope }
   ) {
     const { data } = await axios.post(
-      process.env.API_URL + '/oauth/token',
+      this.state.apiUrl + '/oauth/token',
       {
         grant_type: 'password',
         client_id,
@@ -116,7 +117,7 @@ export const actions = {
 
   async getCurrentUser({ commit }) {
     const { data } = await axios.get(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/user/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/user/',
       {
         headers: {
           Authorization: 'Bearer ' + this.state.userAccessToken
@@ -134,7 +135,7 @@ export const actions = {
 
   async getUser({ commit }, { id }) {
     const { data } = await axios.get(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/' + id,
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/users/' + id,
       {
         headers: {
           Authorization: 'Bearer ' + this.state.clientAccessToken
@@ -150,7 +151,7 @@ export const actions = {
 
   async getUsers({ commit }) {
     const { data } = await axios.get(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/users/',
       {
         headers: {
           Authorization: 'Bearer ' + this.state.clientAccessToken
@@ -166,9 +167,9 @@ export const actions = {
 
   async getUnpublishedReviews({ commit }) {
     const { data } = await axios.get(
-      process.env.API_URL +
+      this.state.apiUrl +
         '/api/' +
-        process.env.API_VERSION +
+        this.state.apiVersion +
         '/reviews/unpublished',
       {
         headers: {
@@ -185,9 +186,9 @@ export const actions = {
 
   async getPublishedReviews({ commit }) {
     const { data } = await axios.get(
-      process.env.API_URL +
+      this.state.apiUrl +
         '/api/' +
-        process.env.API_VERSION +
+        this.state.apiVersion +
         '/reviews/published',
       {
         headers: {
@@ -205,9 +206,9 @@ export const actions = {
   // eslint-disable-next-line camelcase
   async getReview({ commit }, { review_id }) {
     const { data } = await axios.get(
-      process.env.API_URL +
+      this.state.apiUrl +
         '/api/' +
-        process.env.API_VERSION +
+        this.state.apiVersion +
         '/reviews/' +
         // eslint-disable-next-line camelcase
         review_id,
@@ -227,7 +228,7 @@ export const actions = {
 
   async createUser({ commit }, { username, password }) {
     const { data } = await axios.post(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/users/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/users/',
       {
         username,
         password
@@ -248,7 +249,7 @@ export const actions = {
   // eslint-disable-next-line camelcase
   async createVote({ commit }, { review_id, upvote }) {
     const { data } = await axios.post(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/votes/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/votes/',
       {
         review_id,
         upvote
@@ -269,9 +270,9 @@ export const actions = {
   // eslint-disable-next-line camelcase
   async deleteVote({ commit }, { voteID }) {
     const { data } = await axios.delete(
-      process.env.API_URL +
+      this.state.apiUrl +
         '/api/' +
-        process.env.API_VERSION +
+        this.state.apiVersion +
         '/votes/' +
         encodeURI(voteID),
       {
@@ -293,7 +294,7 @@ export const actions = {
     { user_id, title, type, publish_date, content_blocks, status }
   ) {
     const { data } = await axios.post(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/reviews/',
       {
         user_id,
         title,
@@ -321,7 +322,7 @@ export const actions = {
     { review_id, title, type, publish_date, content_blocks, status }
   ) {
     const { data } = await axios.put(
-      process.env.API_URL + '/api/' + process.env.API_VERSION + '/reviews/',
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/reviews/',
       {
         id: review_id,
         title,
@@ -349,11 +350,7 @@ export const actions = {
     { id }
   ) {
     const { data } = await axios.delete(
-      process.env.API_URL +
-        '/api/' +
-        process.env.API_VERSION +
-        '/reviews/' +
-        id,
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/reviews/' + id,
       {
         headers: {
           Authorization: 'Bearer ' + this.state.userAccessToken

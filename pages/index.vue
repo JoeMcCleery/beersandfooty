@@ -165,9 +165,9 @@ export default {
         return meta ? meta.path : null
       }
       return (
-        process.env.API_URL +
+        this.$store.state.apiUrl +
         '/api/' +
-        this.$store.state.api_version +
+        this.$store.state.apiVersion +
         '/reviews'
       )
     },
@@ -206,13 +206,6 @@ export default {
         url += '&filter=' + JSON.stringify(this.filter)
       } else {
         url += '?filter=' + JSON.stringify(this.filter)
-      }
-      if (process.client) {
-        url = new URL(url)
-        url.hostname = process.env.API_DOMAIN
-        url.port = process.env.API_PORT
-        url.protocol = process.env.MODE === 'live' ? 'https' : 'http'
-        url = url.href
       }
       await this.$axios
         .get(url, {
