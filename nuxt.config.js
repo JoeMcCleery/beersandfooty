@@ -4,15 +4,10 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.SITE_TITLE || '',
+    title: process.env.SITE_TITLE || 'Beers and Footy',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ]
   },
   /*
@@ -52,10 +47,23 @@ export default {
   axios: {},
   pwa: {
     meta: {
-      name: process.env.SITE_TITLE || '',
+      author: 'FEAR Indigo',
+      name: process.env.SITE_TITLE || 'Beers and Footy',
       lang: 'en',
-      ogHost: process.env.BASE_URL || 'https://beersandfooty.com',
-      ogImage: true
+      mobileApp: true,
+      mobileAppIOS: true,
+      ogHost: 'beersandfooty.com',
+      ogImage: true,
+      favicon: true,
+      description: 'Beer related footy reviews and footy related beer reviews.',
+      theme_color: '#FF833A',
+      ogType: 'website',
+      ogSiteName: process.env.SITE_TITLE || 'Beers and Footy',
+      ogTitle: process.env.SITE_TITLE || 'Beers and Footy',
+      ogDescription:
+        'Beer related footy reviews and footy related beer reviews.',
+      ogUrl: process.env.BASE_URL || 'Beers and Footy',
+      nativeUI: true
     },
     icon: {
       iconSrc: '@/static/icon.png'
