@@ -135,6 +135,9 @@ export default {
     }
     return 'slide-left'
   },
+  async fetch() {
+    await this.fetchReviews(this.currentPageLink)
+  },
   data() {
     return {
       submitting: false,
@@ -192,9 +195,6 @@ export default {
       }
       return 0
     }
-  },
-  mounted() {
-    this.fetchReviews(this.currentPageLink)
   },
   methods: {
     loadMoreReviews(url) {

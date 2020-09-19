@@ -119,6 +119,16 @@ export default {
     Review: () => import('@/components/Review')
   },
   transition: 'page',
+  async fetch() {
+    if (this.id) {
+      const result = await this.$store.dispatch('getReview', {
+        review_id: this.id
+      })
+      if (result) {
+        this.reviewData = result
+      }
+    }
+  },
   data() {
     return {
       id: this.$route.params.id,
@@ -148,16 +158,6 @@ export default {
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
-    }
-  },
-  async mounted() {
-    if (this.id) {
-      const result = await this.$store.dispatch('getReview', {
-        review_id: this.id
-      })
-      if (result) {
-        this.reviewData = result
-      }
     }
   },
   methods: {

@@ -27,10 +27,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
-  ],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/google-analytics'],
   /*
    ** Nuxt.js modules
    */
@@ -39,8 +36,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'vue-scrollto/nuxt',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/sitemap'
   ],
   sitemap: {
     hostname: process.env.BASE_URL || 'https://beersandfooty.com',
