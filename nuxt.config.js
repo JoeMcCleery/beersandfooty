@@ -9,6 +9,9 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ]
   },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://beersandfooty.com'
+  },
   /*
    ** Customize the progress-bar color
    */

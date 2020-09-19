@@ -210,7 +210,29 @@ export default {
     return {
       title: this.review
         ? process.env.SITE_TITLE + ' - ' + this.review.title
-        : process.env.SITE_TITLE
+        : process.env.SITE_TITLE,
+      meta: [
+        {
+          hid: 'author',
+          name: 'author',
+          content: this.review ? this.review.author : ''
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'article'
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.review ? this.review.content_blocks[0].content : ''
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: process.env.baseUrl + '/review/' + this.id
+        }
+      ]
     }
   }
 }
