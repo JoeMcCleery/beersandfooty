@@ -67,7 +67,7 @@ export default {
       ogImage: true,
       favicon: true,
       description: 'Beer related footy reviews and footy related beer reviews.',
-      theme_color: '#FF833A',
+      theme_color: '#ff833a',
       ogType: 'website',
       ogSiteName: process.env.SITE_TITLE || 'Beers and Footy',
       ogTitle: process.env.SITE_TITLE || 'Beers and Footy',
