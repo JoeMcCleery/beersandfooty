@@ -3,7 +3,7 @@
     <div class="content">
       <!--  Header  -->
       <div v-if="reviewData" class="header review" :class="reviewData.type">
-        <h1>{{ review.title }}</h1>
+        <h1>{{ reviewData.title }}</h1>
         <hr />
         <p>{{ formattedPublishDate }}</p>
         <div class="icons uk-grid-small uk-child-width-auto" uk-grid>
@@ -96,7 +96,7 @@
       </div>
       <!--  Page Content Container  -->
       <div class="uk-padding-small">
-        <review v-if="review" :review="review" :content-only="true" />
+        <review v-if="reviewData" :review="reviewData" :content-only="true" />
         <div v-else>
           <div class="uk-text-center uk-light">
             <div uk-spinner="ratio: 0.5;"></div>
@@ -148,7 +148,7 @@ export default {
       return this.$store.state.user
     },
     userReview() {
-      return this.user && this.review.user_id === this.user.id
+      return this.user && this.reviewData.user_id === this.user.id
     },
     isAdmin() {
       return this.user && this.user.isAdmin
@@ -158,6 +158,37 @@ export default {
     },
     loggedIn() {
       return this.$store.state.userAccessToken && this.$store.state.user
+    },
+    ogImage() {
+      if (this.reviewData) {
+        switch (this.reviewData.type) {
+          case 'beer':
+            return '/beer-og.png'
+          case 'footy':
+            return '/footy-og.png'
+          default:
+            return '/favicon.ico'
+        }
+      }
+      return '@/static/favicon.ico'
+    },
+    ogDescription() {
+      let description =
+        'Beer related footy reviews and footy related beer reviews'
+      if (this.reviewData) {
+        if (this.reviewData.content_blocks.length) {
+          const firstTextBlock = this.reviewData.content_blocks.filter(
+            (block) => {
+              return block.type === 'long_text' || block.type === 'short_text'
+            }
+          )[0]
+          if (firstTextBlock) {
+            const append = firstTextBlock.content.length > 100 ? '...' : ''
+            description = firstTextBlock.content.slice(0, 100) + append
+          }
+        }
+      }
+      return description
     }
   },
   methods: {
@@ -172,11 +203,11 @@ export default {
         }
         try {
           await this.$store.dispatch('updateReview', {
-            review_id: this.review.id,
-            title: this.review.title,
-            type: this.review.type,
-            publish_date: this.review.publish_date,
-            content_blocks: this.review.content_blocks,
+            review_id: this.reviewData.id,
+            title: this.reviewData.title,
+            type: this.reviewData.type,
+            publish_date: this.reviewData.publish_date,
+            content_blocks: this.reviewData.content_blocks,
             status: newStatus
           })
           this.submitting = false
@@ -208,14 +239,14 @@ export default {
   },
   head() {
     return {
-      title: this.review
-        ? process.env.SITE_TITLE + ' - ' + this.review.title
+      title: this.reviewData
+        ? process.env.SITE_TITLE + ' - ' + this.reviewData.title
         : process.env.SITE_TITLE,
       meta: [
         {
           hid: 'author',
           name: 'author',
-          content: this.review ? this.review.author : ''
+          content: this.reviewData ? this.reviewData.author : ''
         },
         {
           hid: 'og:type',
@@ -225,7 +256,7 @@ export default {
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.review ? this.review.content_blocks[0].content : ''
+          content: this.ogDescription
         },
         {
           hid: 'og:url',
@@ -235,7 +266,14 @@ export default {
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.review ? this.review.title : process.env.SITE_TITLE
+          content: this.reviewData
+            ? this.reviewData.title
+            : process.env.SITE_TITLE
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.ogImage
         }
       ]
     }

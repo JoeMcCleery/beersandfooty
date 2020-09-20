@@ -77,7 +77,7 @@ export default {
       nativeUI: true
     },
     icon: {
-      iconSrc: '@/static/icon.png'
+      iconSrc: '@/static/favicon.ico'
     }
   },
   /*
