@@ -11,7 +11,7 @@
       >
         <div>
           <a class="uk-button uk-button-danger" @click="deleteReview()">
-            Delete
+            <span uk-icon="icon: trash;" /> Delete
           </a>
         </div>
         <div>

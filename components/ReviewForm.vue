@@ -196,11 +196,11 @@
                           title="content"
                           type="file"
                           class="uk-text-center uk-width-expand"
-                          placeholder="content here..."
+                          placeholder="upload image..."
                           required="required"
                           accept="image/x-png,image/gif,image/jpeg"
                           hidden
-                          @change="saveImageForBlock($event, block)"
+                          @change="uploadImage($event, block)"
                         />
                         <div v-if="block.content">
                           <img
@@ -306,7 +306,7 @@
     <!--  preview  -->
     <div v-if="showPreview">
       <div>
-        <review :key="preview.title" :review="preview" />
+        <review key="review-preview" :review="preview" />
       </div>
     </div>
   </div>
@@ -502,12 +502,18 @@ export default {
       })
       return string
     },
-    saveImageForBlock(e, block) {
+    uploadImage(e, block) {
       const files = e.target.files || e.dataTransfer.files
       if (files.length) {
         const reader = new FileReader()
-        reader.onload = (e) => {
-          block.content = e.target.result
+        reader.onload = async (e) => {
+          const result = await this.$store.dispatch('uploadImage', {
+            imageData: e.target.result
+          })
+          console.log(result)
+          if (result) {
+            block.content = result
+          }
         }
         reader.readAsDataURL(files[0])
       } else {

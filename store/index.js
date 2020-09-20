@@ -260,7 +260,7 @@ export const actions = {
         }
       }
     )
-    if (data.data && data.data) {
+    if (data.data) {
       return data.data
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
@@ -309,7 +309,7 @@ export const actions = {
         }
       }
     )
-    if (data.data && data.data) {
+    if (data.data) {
       return data.data
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
@@ -337,7 +337,7 @@ export const actions = {
         }
       }
     )
-    if (data.data && data.data) {
+    if (data.data) {
       return data.data
     } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
@@ -358,6 +358,30 @@ export const actions = {
       }
     )
     if (!data.success && data.message && mode === 'dev') {
+      throw new Error(data.message)
+    }
+  },
+
+  async uploadImage(
+    { commit },
+    // eslint-disable-next-line camelcase
+    { imageData }
+  ) {
+    const { data } = await axios.post(
+      this.state.apiUrl + '/api/' + this.state.apiVersion + '/upload-image/',
+      {
+        imageData
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.state.userAccessToken
+        }
+      }
+    )
+
+    if (data.success) {
+      return data.url
+    } else if (!data.success && data.message && mode === 'dev') {
       throw new Error(data.message)
     }
   }

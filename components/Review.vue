@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isPublished || (!isPublished && isAdmin)">
+  <div v-if="isPublished || (!isPublished && isAdmin) || reviewData.id === 0">
     <div
       class="uk-card uk-card-default uk-text-left review"
       :class="reviewData.type"
