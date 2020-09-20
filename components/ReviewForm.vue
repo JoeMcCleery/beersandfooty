@@ -306,7 +306,7 @@
     <!--  preview  -->
     <div v-if="showPreview">
       <div>
-        <review key="review-preview" :review="preview" />
+        <review :key="preview.title" :review="preview" />
       </div>
     </div>
   </div>
