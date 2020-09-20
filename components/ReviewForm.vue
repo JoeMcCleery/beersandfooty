@@ -510,14 +510,11 @@ export default {
           const result = await this.$store.dispatch('uploadImage', {
             imageData: e.target.result
           })
-          console.log(result)
           if (result) {
             block.content = result
           }
         }
         reader.readAsDataURL(files[0])
-      } else {
-        block.content = 'https://via.placeholder.com/512'
       }
     },
     addBlock(
